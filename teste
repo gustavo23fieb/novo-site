@@ -241,3 +241,253 @@
 </body>
 </html>
 
+
+
+
+
+
+
+________________________________________________________________________________________
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIEBTECH FIEB</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* =====================
+                           RESET E SEGURANÇA
+                ===================== */
+        * {
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            max-width: 100% !important;
+        }
+
+        html, body {
+            width: 100% !important;
+            overflow-x: hidden !important;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* =====================
+                           TOPBAR
+                ===================== */
+        .topbar {
+            width: 100% !important;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 8px 10px !important;
+        }
+
+            .topbar ul {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: flex-end !important;
+                list-style: none !important;
+                gap: 15px !important;
+            }
+
+            .topbar li {
+                font-weight: 600 !important;
+                color: #333 !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+
+            .topbar i {
+                margin-left: 6px !important;
+            }
+
+            .topbar a {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+
+        /* =====================
+                           HEADER CUSTOMIZADO
+                ===================== */
+        .custom-header {
+            width: 100% !important;
+            background: linear-gradient(90deg, #7d2ae8, #0d6efd);
+            padding: 15px 50px !important;
+            color: white !important;
+        }
+
+        .header-content {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            justify-content: space-between !important;
+        }
+
+        .logo {
+           display : flex;
+           flex-direction: column;
+           align-items: flex-start;
+           gap: 2px;
+        }
+
+            .logo img {
+                width: 160px;
+                height: 63px !important;
+                display: block;
+            }
+
+            .logo .slogan {
+              font-size: 12px;
+              color: #fff
+              line-height: 1.1;
+              margin: 0;
+    
+            }
+
+        /* =====================
+                           MENU
+                ===================== */
+        .menu {
+            margin-left: auto; /* empurra o menu para a direita */
+        }
+
+            .menu ul {
+                list-style: none !important;
+                display: flex !important;
+                gap: 20px !important;
+                margin: 0;
+                padding: 0;
+            }
+
+            .menu li a {
+                color: #fff !important;
+                text-decoration: none !important;
+                font-weight: 600 !important;
+                white-space: nowrap !important;
+            }
+
+                .menu li a:hover {
+                    opacity: 0.7 !important;
+                }
+
+        /* =====================
+                           CONTEÚDO
+                ===================== */
+        .conteudo-pagina {
+            width: 95% !important;
+            max-width: 1300px !important;
+            margin: 40px auto !important;
+        }
+
+        img, iframe, video {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* =====================
+                           FOOTER
+                ===================== */
+        footer {
+            width: 100% !important;
+            background: #f8f9fa !important;
+            padding: 15px 10px !important;
+            text-align: center !important;
+        }
+
+        /* =====================
+                           MEDIA QUERIES PARA TELAS PEQUENAS
+                ===================== */
+        (max-width: 768px) {
+            .topbar ul {
+                justify-content: center !important;
+                gap: 10px !important;
+            }
+
+            .header-content {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                gap: 10px !important;
+            }
+
+            .menu ul {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 10px !important;
+            }
+
+            .logo {
+                margin-left: 0 !important;
+                align-items: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <ul>
+            <li>
+                <a href="https://fieb.edu.br/soualuno" target="_blank" aria-label="Sou Aluno" rel="noopener noreferrer">
+                    Sou Aluno <i class="fas fa-book-reader"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://fieb.edu.br/soucolaborador" target="_blank" aria-label="Sou Colaborador" rel="noopener noreferrer">
+                    Sou Colaborador <i class="fas fa-users"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://fieb.edu.br/souresponsavel" target="_blank" aria-label="Sou Responsável" rel="noopener noreferrer">
+                    Sou Responsável <i class="fas fa-user-shield"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Header Customizado -->
+    <div class="custom-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://fieb.edu.br/wp-content/uploads/2024/06/logo-fiebtech-branco.png" alt="FIEBTECH" />
+                <span class="slogan">Educação conectada ao futuro</span>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">A FIEB</a></li>
+                    <li><a href="#">Cursos</a></li>
+                    <li><a href="#">Unidades</a></li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="conteudo-pagina">
+        <h1>Página Inicial</h1>
+        <p>Conteúdo da página...</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 - site - <a href="/Home/Privacy">Privacy</a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
