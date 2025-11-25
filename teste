@@ -1,151 +1,235 @@
-@{
-    ViewData["Title"] = "FIEB";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIEBTECH FIEB</title>
 
-<div class="text-center">
-    <h1 class="display-4">Teste<
-    /h1>
-        <p>Teste</p>
-</div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+    <style>
+        /* =====================
+                   RESET E SEGURANÇA
+                ===================== */
+        * {
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            max-width: 100% !important;
+        }
 
-------------------------------
-@{
-    ViewData["Title"] = "FIEBTECH";
-}
+        html, body {
+            width: 100% !important;
+            overflow-x: hidden !important; /* elimina scroll lateral */
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-<!----------------------------------->
-<!-- TOPBAR -->
-<!----------------------------------->
-<div class="topbar">
-    <div class="container">
+        /* =====================
+                   NAVBAR BOOTSTRAP
+                ===================== */
+        .navbar,
+        .navbar .container-fluid,
+        .navbar-collapse {
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+        }
+
+        /* =====================
+                   TOPBAR
+                ===================== */
+        .topbar {
+            width: 100% !important;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 8px 10px !important;
+        }
+
+            .topbar ul {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: flex-end !important;
+                list-style: none !important;
+                gap: 15px !important;
+            }
+
+            .topbar li {
+                font-weight: 600 !important;
+                color: #333 !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+
+            .topbar i {
+                margin-left: 6px !important;
+            }
+
+        /* =====================
+                   HEADER CUSTOMIZADO
+                ===================== */
+        .custom-header {
+            width: 100% !important;
+            background: linear-gradient(90deg, #7d2ae8, #0d6efd);
+            padding: 15px 10px !important;
+            color: white !important;
+        }
+
+        .header-content {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+        }
+
+        .logo img {
+            height: 48px !important;
+        }
+
+        .logo .slogan {
+            font-size: 12px !important;
+            opacity: 0.85 !important;
+            margin-top: 3px !important;
+            display: block !important;
+        }
+
+        /* =====================
+                   MENU
+                ===================== */
+        .menu ul {
+            list-style: none !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 20px !important;
+        }
+
+        .menu li a {
+            color: #fff !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            white-space: nowrap !important;
+        }
+
+            .menu li a:hover {
+                opacity: 0.7 !important;
+            }
+
+        /* =====================
+                   CONTEÚDO
+                ===================== */
+        .conteudo-pagina {
+            width: 95% !important;
+            max-width: 1300px !important;
+            margin: 40px auto !important;
+        }
+
+        img, iframe, video {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* =====================
+                   FOOTER
+                ===================== */
+        footer {
+            width: 100% !important;
+            background: #f8f9fa !important;
+            padding: 15px 10px !important;
+            text-align: center !important;
+        }
+
+        /* =====================
+                   MEDIA QUERIES PARA TELAS PEQUENAS
+                ===================== */
+         (max-width: 768px) {
+            .topbar ul {
+                justify-content: center !important;
+                gap: 10px !important;
+            }
+
+            .header-content {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .menu ul {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 10px !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR BOOTSTRAP -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">site</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Home/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Topbar -->
+    <div class="topbar">
         <ul>
             <li>Sou Aluno <i class="fa fa-user-graduate"></i></li>
             <li>Sou Colaborador <i class="fa fa-users"></i></li>
             <li>Sou Responsável <i class="fa fa-user-shield"></i></li>
         </ul>
     </div>
-</div>
 
-<!----------------------------------->
-<!-- HEADER PRINCIPAL -->
-<!----------------------------------->
-<header class="header">
-    <div class="container header-content">
-
-        <div class="logo">
-            <img src="https://fieb.edu.br/wp-content/uploads/2024/06/logo-fiebtech-branco.png" alt="FIEBTECH" />
-            <span class="slogan">Educação conectada ao futuro</span>
+    <!-- Header Customizado -->
+    <div class="custom-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://fieb.edu.br/wp-content/uploads/2024/06/logo-fiebtech-branco.png" alt="FIEBTECH" />
+                <span class="slogan">Educação conectada ao futuro</span>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">A FIEB</a></li>
+                    <li><a href="#">Cursos</a></li>
+                    <li><a href="#">Unidades</a></li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
         </div>
-
-        <nav class="menu">
-            <ul>
-                <li><a href="#">A FIEB</a></li>
-                <li><a href="#">Cursos</a></li>
-                <li><a href="#">Unidades</a></li>
-                <li><a href="#">Notícias</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-
     </div>
-</header>
 
+    <!-- Conteúdo -->
+    <div class="conteudo-pagina">
+        <h1>Página Inicial</h1>
+        <p>Conteúdo da página...</p>
+    </div>
 
-<div class="container">
-    <h1 class="mt-4">Página Inicial</h1>
-    <p>Conteúdo da página...</p>
-</div>
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 - site - <a href="/Home/Privacy">Privacy</a>
+    </footer>
 
-<!----------------------------------->
-<!-- ESTILOS -->
-<!----------------------------------->
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .container {
-        width: 90%;
-        margin: auto;
-    }
-
-    /* Topbar */
-    .topbar {
-        background: #ffffff;
-        padding: 8px 0;
-        font-size: 14px;
-    }
-
-        .topbar ul {
-            display: flex;
-            justify-content: flex-end;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-            .topbar ul li {
-                margin-left: 20px;
-                display: flex;
-                align-items: center;
-                color: #333;
-                font-weight: 600;
-            }
-
-                .topbar ul li i {
-                    margin-left: 6px;
-                }
-
-    /* Header principal */
-    .header {
-        background: linear-gradient(90deg, #7d2ae8, #0d6efd);
-        padding: 15px 0;
-        color: white;
-    }
-
-    .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo img {
-        height: 45px;
-    }
-
-    .logo .slogan {
-        font-size: 12px;
-        display: block;
-        opacity: 0.8;
-        margin-top: 3px;
-    }
-
-    .menu ul {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-        .menu ul li {
-            margin-left: 25px;
-        }
-
-            .menu ul li a {
-                color: white;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 15px;
-                transition: opacity 0.2s;
-            }
-
-                .menu ul li a:hover {
-                    opacity: 0.6;
-                }
-</style>
-
-<!-- ÍCONES -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Scripts -->
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
