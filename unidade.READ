@@ -1,0 +1,92 @@
+<?php
+// Controle de cache ajustado para produção (flexível)
+header("Cache-Control: public, max-age=3600, must-revalidate");
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <!-- SEO básico -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO avançado -->
+    <meta name="description" content="FIEB - Fundação Instituto de Educação de Barueri. Ensino de qualidade em Barueri e região.">
+    <meta name="keywords" content="FIEB, Educação, Barueri, Ensino Médio, Técnico, Escola Pública">
+    <meta name="author" content="FIEB">
+    <link rel="canonical" href="<?php echo get_site_url(); ?>">
+
+    <!-- Open Graph (redes sociais) -->
+    <meta property="og:title" content="FIEB - Educação de Excelência">
+    <meta property="og:description" content="Conheça as unidades da FIEB e seus cursos.">
+    <meta property="og:url" content="<?php echo get_site_url(); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<?php echo get_site_url(); ?>/assets/img/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="<?php echo get_site_url(); ?>/assets/img/favicon.png" type="image/png">
+
+    <!-- CSS (versão minificada e versionada) -->
+    <link rel="stylesheet" href="<?php echo get_site_url(); ?>/assets/css/bootstrap.min.css?v=1.0">
+    <link rel="stylesheet" href="<?php echo get_site_url(); ?>/assets/css/style.min.css?v=1.0">
+    <link rel="stylesheet" href="<?php echo get_site_url(); ?>/assets/css/responsive.min.css?v=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- JS (com performance ideal: defer + carregamento no head sem bloquear renderização) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="<?php echo get_site_url(); ?>/assets/js/bootstrap.bundle.min.js" defer></script>
+    <script src="<?php echo get_site_url(); ?>/assets/js/main.js?v=1.0" defer></script>
+
+    <title>FIEB - Fundação Instituto de Educação de Barueri</title>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-container">
+
+        <!-- Logotipo -->
+        <a href="<?php echo get_site_url(); ?>" class="header-logo" aria-label="Voltar para a página inicial">
+            <img src="<?php echo get_site_url(); ?>/assets/img/logo.png" alt="Logo FIEB">
+        </a>
+
+        <!-- Menu Desktop -->
+        <nav class="header-nav" role="navigation" aria-label="Menu Principal">
+            <ul class="nav-list">
+                <li><a href="<?php echo get_site_url(); ?>">Home</a></li>
+                <li><a href="<?php echo get_site_url(); ?>/institucional">Institucional</a></li>
+                <li><a href="<?php echo get_site_url(); ?>/unidades">Unidades</a></li>
+                <li><a href="<?php echo get_site_url(); ?>/cursos">Cursos</a></li>
+                <li><a href="<?php echo get_site_url(); ?>/documentos">Documentos</a></li>
+                <li><a href="<?php echo get_site_url(); ?>/contato">Contato</a></li>
+            </ul>
+        </nav>
+
+        <!-- Botão Mobile -->
+        <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Menu Mobile -->
+    <nav class="mobile-nav" aria-label="Menu Mobile">
+        <ul>
+            <li><a href="<?php echo get_site_url(); ?>">Home</a></li>
+            <li><a href="<?php echo get_site_url(); ?>/institucional">Institucional</a></li>
+            <li><a href="<?php echo get_site_url(); ?>/unidades">Unidades</a></li>
+            <li><a href="<?php echo get_site_url(); ?>/cursos">Cursos</a></li>
+            <li><a href="<?php echo get_site_url(); ?>/documentos">Documentos</a></li>
+            <li><a href="<?php echo get_site_url(); ?>/contato">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Início do Conteúdo -->
+<main>
