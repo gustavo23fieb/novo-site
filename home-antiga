@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIEB</title>
+
+    <link rel="shortcut icon" href="https://stgwebfiebbrs001.blob.core.windows.net/web/favicon.png?v=1" type="image/x-icon">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <link href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/owl.carousel.min.css">
+    <link href="<?php bloginfo('template_directory'); ?>/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/lightbox.min.css">
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "onphvmyxfz");
+    </script>
+    <!-- Google tag (gtag.js) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16910069410"></script>
+     <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16910069410'); </script>
+     <!-- Event snippet for Visualização de página conversion page -->
+      <script> gtag('event', 'conversion', { 'send_to': 'AW-16910069410/TXPoCOKusaYaEKLdrP8-', 'value': 1.0, 'currency': 'BRL' }); </script>
+</head>
+<body id="topo">
+    <header class="sticky-md-top">
+        <div class="container topo">
+            <div id="bt-acesso" class="d-flex justify-content-end">
+                <span>Acesso <i class="fas fa-lock"></i></span>
+            </div>
+            <div id="acessos">
+                <ul class="d-flex justify-content-end">
+                    <li>
+                        <a href="https://fieb.edu.br/soualuno" target="_blank" aria-label="Sou Aluno" rel="noopener noreferrer">Sou Aluno <i class="fas fa-book-reader"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://fieb.edu.br/soucolaborador" target="_blank" aria-label="Sou Colaborador" rel="noopener noreferrer">Sou Colaborador <i class="fas fa-users"></i></a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://fieb.edu.br/souresponsavel" target="_blank" aria-label="Sou Responsável" rel="noopener noreferrer">Sou Responsável<i class="fas fa-user-shield"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-dark navbar-expand-md menu home">
+            <div class="container">
+                <a 
+                    href="<?php echo get_site_url();?>/" 
+                    class="navbar-brand" 
+                    aria-label="Logotipo FIEB">
+
+                    <object data="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" 
+                        alt="Logotipo FIEB"
+                        width="160" class="logo"></object>
+                </a>
+                <button
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Menu"
+                    class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarNav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav texto-menu ms-auto d-block d-md-flex">
+                        <li class="nav-item dropdown">
+                            <a 
+                                id="navbarScrollingAFIEB"
+                                href="#" 
+                                class="nav-link dropdown dropdown-toggle" 
+                                role="button" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false"
+                                aria-label="A FIEB">
+                                A FIEB
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingAFIEB">
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/historia">História</a></li>
+                                <li><a class="dropdown-item" href="<?php echo get_site_url();?>/#footer">Institucional</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<? echo get_site_url();?>/curso" class="nav-link" aria-label="Cursos">
+                                Cursos
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a 
+                            id="navbarScrollingUnidades"
+                            href="#" 
+                            class="nav-link dropdown dropdown-toggle" 
+                            role="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false"
+                            aria-label="Unidades">
+                                Unidades
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingUnidades">
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/unidade/aldeia-da-serra">FIEB - Aldeia da Serra</a></li>
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/unidade/alphaville">FIEB - Alphaville</a></li>
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/unidade/engenho-novo">FIEB - Engenho Novo</a></li>
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/unidade/jardim-belval">FIEB - Jardim Belval</a></li>
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/unidade/jardim-paulista">FIEB - Jardim Paulista</a></li>
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/unidade/maria-cristina">FIEB - Maria Cristina</a></li>
+                                <li><a class="dropdown-item" href="<? echo get_site_url();?>/unidade/parque-imperial">FIEB - Parque Imperial</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo get_site_url();?>/noticia" class="nav-link" aria-label="Notícias">
+                                Notícias
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<? echo get_site_url();?>/fale-conosco" class="nav-link" aria-label="Contato">
+                                Contato
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
