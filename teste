@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -192,9 +192,16 @@
     <!-- Topbar -->
     <div class="topbar">
         <ul>
-            <li>Sou Aluno <i class="fa fa-user-graduate"></i></li>
-            <li>Sou Colaborador <i class="fa fa-users"></i></li>
-            <li>Sou Responsável <i class="fa fa-user-shield"></i></li>
+            <li>
+                <a href="https://fieb.edu.br/soualuno" target="_blank" aria-label="Sou Aluno" rel="noopener noreferrer">Sou Aluno <i class="fas fa-book-reader"></i></a>
+            </li>
+            <li>
+                <a href="https://fieb.edu.br/soucolaborador" target="_blank" aria-label="Sou Colaborador" rel="noopener noreferrer">Sou Colaborador <i class="fas fa-users"></i></a>
+            </li>
+
+            <li>
+                <a href="https://fieb.edu.br/souresponsavel" target="_blank" aria-label="Sou Responsável" rel="noopener noreferrer">Sou Responsável<i class="fas fa-user-shield"></i></a>
+            </li>
         </ul>
     </div>
 
@@ -233,3 +240,4 @@
     <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
