@@ -7,3 +7,145 @@
     /h1>
         <p>Teste</p>
 </div>
+
+
+
+------------------------------
+@{
+    ViewData["Title"] = "FIEBTECH";
+}
+
+<!----------------------------------->
+<!-- TOPBAR -->
+<!----------------------------------->
+<div class="topbar">
+    <div class="container">
+        <ul>
+            <li>Sou Aluno <i class="fa fa-user-graduate"></i></li>
+            <li>Sou Colaborador <i class="fa fa-users"></i></li>
+            <li>Sou Responsável <i class="fa fa-user-shield"></i></li>
+        </ul>
+    </div>
+</div>
+
+<!----------------------------------->
+<!-- HEADER PRINCIPAL -->
+<!----------------------------------->
+<header class="header">
+    <div class="container header-content">
+
+        <div class="logo">
+            <img src="https://fieb.edu.br/wp-content/uploads/2024/06/logo-fiebtech-branco.png" alt="FIEBTECH" />
+            <span class="slogan">Educação conectada ao futuro</span>
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="#">A FIEB</a></li>
+                <li><a href="#">Cursos</a></li>
+                <li><a href="#">Unidades</a></li>
+                <li><a href="#">Notícias</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+
+<div class="container">
+    <h1 class="mt-4">Página Inicial</h1>
+    <p>Conteúdo da página...</p>
+</div>
+
+<!----------------------------------->
+<!-- ESTILOS -->
+<!----------------------------------->
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+        width: 90%;
+        margin: auto;
+    }
+
+    /* Topbar */
+    .topbar {
+        background: #ffffff;
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+        .topbar ul {
+            display: flex;
+            justify-content: flex-end;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .topbar ul li {
+                margin-left: 20px;
+                display: flex;
+                align-items: center;
+                color: #333;
+                font-weight: 600;
+            }
+
+                .topbar ul li i {
+                    margin-left: 6px;
+                }
+
+    /* Header principal */
+    .header {
+        background: linear-gradient(90deg, #7d2ae8, #0d6efd);
+        padding: 15px 0;
+        color: white;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .logo .slogan {
+        font-size: 12px;
+        display: block;
+        opacity: 0.8;
+        margin-top: 3px;
+    }
+
+    .menu ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .menu ul li {
+            margin-left: 25px;
+        }
+
+            .menu ul li a {
+                color: white;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 15px;
+                transition: opacity 0.2s;
+            }
+
+                .menu ul li a:hover {
+                    opacity: 0.6;
+                }
+</style>
+
+<!-- ÍCONES -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
