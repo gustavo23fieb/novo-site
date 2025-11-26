@@ -11,224 +11,250 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <!-- Google Fonts (Poppins para slogan e menu) -->
+    <!-- Google Fonts (Poppins) -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* -----------------------
+               CONFIGURAÇÕES RÁPIDAS
+               ----------------------- */
+        :root {
+            --site-gutter: 48px; /* espaço lateral (altera o "encaixe" do header) */
+            --menu-gap: 40px; /* espaçamento entre itens do menu */
+            --topbar-gap: 28px; /* espaçamento entre itens da topbar */
+            --header-height: 92px; /* altura visual do header (ajuste fino) */
+        }
+
         /* =====================
-                                   RESET E SEGURANÇA
-                        ===================== */
+               RESET BÁSICO
+            ===================== */
         * {
-            margin: 0 !important;
-            padding: 0 !important;
-            box-sizing: border-box !important;
-            max-width: 100% !important;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         html, body {
-            width: 100% !important;
-            overflow-x: hidden !important;
-            font-family: 'Arial', Helvetica, sans-serif;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
         }
 
         /* =====================
-                                   TOPBAR
-                        ===================== */
-        .topbar {
-            width: 100% !important;
-            background: #fff;
-            border-bottom: 1px solid #e5e5e5;
-            padding: 8px 80px !important;
+               CONTAINER CENTRAL (alinha tudo igual)
+            ===================== */
+        .site-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 var(--site-gutter);
+            width: 100%;
         }
 
+        /* =====================
+               TOPBAR
+            ===================== */
+        .topbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            /* sem padding lateral aqui — o container controla */
+        }
+
+            .topbar .site-container {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end; /* mantém no lado direito do container */
+                height: 36px;
+            }
+
             .topbar ul {
-                display: flex !important;
-                flex-wrap: wrap !important;
-                justify-content: flex-end !important;
-                list-style: none !important;
-                gap: 22px !important;
-            }
-
-            .topbar li {
-                font-size: 13px !important;
-                font-weight: 600 !important;
-                color: #333 !important;
-                display: flex !important;
-                align-items: center !important;
-                padding-right: 40px !important
-            }
-
-            .topbar i {
-                margin-left: 6px !important;
-                font-size: 13px !important;
+                display: flex;
+                gap: var(--topbar-gap);
+                list-style: none;
+                align-items: center;
             }
 
             .topbar a {
-                text-decoration: none !important;
-                color: inherit !important;
+                color: #333;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 13px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .topbar i {
+                font-size: 13px;
             }
 
         /* =====================
-                                   HEADER CUSTOMIZADO
-                        ===================== */
+               HEADER PRINCIPAL
+            ===================== */
         .custom-header {
-            width: 100% !important;
+            width: 100%;
             background: linear-gradient(90deg, #7d2ae8, #0d6efd);
-            padding: 15px 50px !important;
-            color: white !important;
+            /* altura visual controlada pelo conteúdo + header-height */
+            box-shadow: inset 0 -1px rgba(0,0,0,0.06);
         }
 
-        .header-content {
-            display: flex !important;
-            align-items: center !important;
-            flex-wrap: wrap !important;
-            justify-content: space-between !important;
-        }
+            .custom-header .site-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: var(--header-height);
+            }
 
+        /* =====================
+               LOGO
+            ===================== */
         .logo {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            position: relative;
+            justify-content: center;
+            align-items: flex-start; /* logo sempre na esquerda do container */
         }
 
             .logo img {
-                width: 160px;
-                height: 63px;
-                object-fit: contain;
+                width: 170px; /* ajuste para ficar proporcional — trocar se precisar */
+                height: auto;
                 display: block;
             }
 
-            .logo .slogan {
-                font-family: 'Poppins', sans-serif;
-                font-size: 14px;
-                font-weight: 400;
-                color: #ffffff;
-                margin-top: 2px;
-                line-height: 1.2;
-            }
-
-        /* =====================
-                                   MENU
-                        ===================== */
-        .menu {
-            margin-left: auto;
+        .slogan {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 6px;
+            line-height: 1;
         }
 
-            .menu ul {
-                list-style: none !important;
-                display: flex !important;
-                gap: 20px !important;
+        /* =====================
+               MENU (centralizado no espaço entre logo e topbar)
+            ===================== */
+        .header-inner {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* o nav ocupa espaço flexível entre logo e o "lado direito" do header */
+        nav.main-nav {
+            display: flex;
+            flex: 1; /* ocupa o espaço disponível */
+            justify-content: center; /* centraliza o menu no espaço */
+        }
+
+            nav.main-nav ul {
+                display: flex;
+                gap: var(--menu-gap);
+                list-style: none;
+                align-items: center;
                 margin: 0;
                 padding: 0;
             }
 
-            .menu li a {
+            nav.main-nav a {
+                color: #fff;
                 font-family: 'Poppins', sans-serif;
-                font-size: 14px;
                 font-weight: 600;
-                color: #fff !important;
-                text-decoration: none !important;
-                white-space: nowrap !important;
+                font-size: 15px;
+                text-decoration: none;
+                display: inline-block;
+                padding: 6px 0;
             }
 
-                .menu li a:hover {
-                    opacity: 0.7 !important;
+                nav.main-nav a:hover {
+                    opacity: 0.85;
                 }
 
         /* =====================
-                                   CONTEÚDO
-                        ===================== */
+               FOOTER / OUTROS
+            ===================== */
         .conteudo-pagina {
-            width: 95% !important;
-            max-width: 1300px !important;
-            margin: 40px auto !important;
-        }
-
-        img, iframe, video {
-            max-width: 100% !important;
-            height: auto !important;
+            width: 100%;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 var(--site-gutter);
         }
 
         /* =====================
-                                   FOOTER
-                        ===================== */
-        footer {
-            width: 100% !important;
-            background: #f8f9fa !important;
-            padding: 15px 10px !important;
-            text-align: center !important;
+               RESPONSIVO
+            ===================== */
+         (max-width: 992px) {
+            :root {
+                --site-gutter: 28px;
+                --menu-gap: 26px;
+            }
+
+            .logo img {
+                width: 150px;
+            }
         }
 
-        /* =====================
-                                   MEDIA QUERIES PARA TELAS PEQUENAS
-                        ===================== */
-        (max - width: 768px)
-
-        {
-            .topbar ul {
-                justify-content: center !important;
-                gap: 10px !important;
+         (max-width: 768px) {
+            :root {
+                --site-gutter: 18px;
+                --menu-gap: 18px;
+                --topbar-gap: 14px;
             }
 
-            .header-content {
-                flex-direction: column !important;
-                align-items: center !important;
-                text-align: center !important;
-                gap: 10px !important;
+            .custom-header .site-container {
+                flex-direction: column;
+                height: auto;
+                gap: 10px;
+                padding-top: 12px;
+                padding-bottom: 12px;
             }
 
-            .menu ul {
-                flex-direction: column !important;
-                gap: 10px !important;
-                margin-top: 10px !important;
+            nav.main-nav {
+                order: 2;
+                width: 100%;
+                justify-content: center;
             }
+
+                nav.main-nav ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 12px;
+                }
 
             .logo {
-                margin-left: 0 !important;
-                align-items: center !important;
+                order: 1;
+                align-items: center;
             }
-        }
 
-        /* =====================
-                                   OCULTAR LINKS INDESEJADOS
-                        ===================== */
-        a[href*="privacy"], a[href*="home"], a[href*="site"] {
-            display: none !important;
+            .topbar .site-container {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- Topbar -->
-    <div class="topbar">
-        <ul>
-            <li>
-                <a href="https://fieb.edu.br/soualuno" target="_blank" aria-label="Sou Aluno" rel="noopener noreferrer">
-                    Sou Aluno <i class="fas fa-book-reader"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://fieb.edu.br/soucolaborador" target="_blank" aria-label="Sou Colaborador" rel="noopener noreferrer">
-                    Sou Colaborador <i class="fas fa-users"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://fieb.edu.br/souresponsavel" target="_blank" aria-label="Sou Responsável" rel="noopener noreferrer">
-                    Sou Responsável <i class="fas fa-user-shield"></i>
-                </a>
-            </li>
-        </ul>
+    <div class="topbar" role="banner">
+        <div class="site-container">
+            <ul>
+                <li><a href="https://fieb.edu.br/soualuno" target="_blank" rel="noopener">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
+                <li><a href="https://fieb.edu.br/soucolaborador" target="_blank" rel="noopener">Sou Colaborador <i class="fas fa-users"></i></a></li>
+                <li><a href="https://fieb.edu.br/souresponsavel" target="_blank" rel="noopener">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Header Customizado -->
-    <div class="custom-header">
-        <div class="header-content">
-            <div class="logo">
-                <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH" />
-                <span class="slogan"></span>
+    <!-- Header -->
+    <header class="custom-header" role="banner">
+        <div class="site-container header-inner">
+            <!-- Logo -->
+            <div class="logo" aria-label="FIEBTECH">
+                <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH">
+                <div class="slogan"></div>
             </div>
-            <nav class="menu">
+
+            <!-- Menu central -->
+            <nav class="main-nav" role="navigation" aria-label="Menu principal">
                 <ul>
                     <li><a href="#">A FIEB</a></li>
                     <li><a href="#">Cursos</a></li>
@@ -238,18 +264,13 @@
                 </ul>
             </nav>
         </div>
-    </div>
+    </header>
 
     <!-- Conteúdo -->
-    <div class="conteudo-pagina">
-    </div>
+    <main class="conteudo-pagina" role="main">
+        <!-- sua página -->
+    </main>
 
-    <!-- Footer -->
-    <footer>
-        
-    </footer>
-
-    <!-- Scripts -->
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
