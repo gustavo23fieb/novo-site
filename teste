@@ -31,7 +31,6 @@
         html, body {
             width: 100%;
             font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden;
         }
 
         .site-container {
@@ -50,19 +49,8 @@
 
             .topbar .site-container {
                 display: flex;
-                align-items: flex-end;
                 justify-content: flex-end;
-                padding: 10px 0 6px 0;
-                gap: 0;
-            }
-
-            .topbar ul {
-                display: flex;
                 gap: var(--topbar-gap);
-                list-style: none;
-                align-items: center;
-                margin: 0;
-                padding: 0;
             }
 
             .topbar a {
@@ -72,12 +60,7 @@
                 font-size: 13px;
                 display: inline-flex;
                 align-items: center;
-                gap: 8px;
-                padding: 4px 6px;
-            }
-
-            .topbar i {
-                font-size: 13px;
+                gap: 6px;
             }
 
         /* ===== HEADER ===== */
@@ -94,39 +77,16 @@
                 height: var(--header-height);
             }
 
-        .logo {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+        .logo img {
+            width: 170px;
+            height: auto;
         }
 
-            .logo img {
-                width: 170px;
-                height: auto;
-                display: block;
-            }
-
-        .slogan {
-            font-family: 'Poppins',sans-serif;
-            font-size: 13px;
-            color: rgba(255,255,255,0.95);
-            margin-top: 6px;
-        }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            width: 100%;
-        }
-
-        /* ===== MENU ===== */
+        /* ===== NAV MENU ===== */
         nav.main-nav {
             display: flex;
             flex: 1;
             justify-content: flex-end;
-            padding-right: 30px;
             position: relative;
         }
 
@@ -137,12 +97,16 @@
                 align-items: center;
                 margin: 0;
                 padding: 0;
-                white-space: nowrap; /* não quebra linha */
+                white-space: nowrap; /* evita quebra de linha */
+            }
+
+            nav.main-nav li {
+                position: relative;
             }
 
             nav.main-nav a {
                 color: #fff;
-                font-family: 'Poppins',sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-weight: 600;
                 font-size: 15px;
                 text-decoration: none;
@@ -150,45 +114,34 @@
                 padding: 6px 0;
             }
 
-                nav.main-nav a:hover {
-                    opacity: 0.85;
-                }
-
-            /* Submenus */
-            nav.main-nav ul li {
-                position: relative;
-                cursor: pointer;
+            /* ===== SUBMENU ===== */
+            nav.main-nav .submenu {
+                display: none;
+                position: absolute; /* fica fora do fluxo */
+                top: 100%; /* abaixo do item pai */
+                left: 0;
+                background: #0d6efd;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                min-width: 200px;
+                border-radius: 4px;
+                z-index: 9999;
             }
 
-                nav.main-nav ul li .submenu {
-                    display: none;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    background: #0d6efd;
-                    list-style: none;
-                    padding: 10px 0;
-                    min-width: 180px;
-                    border-radius: 4px;
-                    z-index: 99;
-                }
-
-                    nav.main-nav ul li .submenu li {
-                        padding: 0;
-                    }
-
-                    nav.main-nav ul li .submenu a {
-                        display: block;
-                        padding: 8px 16px;
-                        color: #fff;
-                        font-size: 14px;
-                    }
-
-                nav.main-nav ul li.active .submenu {
+                nav.main-nav .submenu li a {
                     display: block;
+                    padding: 8px 16px;
+                    color: #fff;
+                    font-size: 14px;
                 }
 
-        /* Mobile Menu */
+            /* Ativa submenu ao clicar ou hover */
+            nav.main-nav li.active > .submenu {
+                display: block;
+            }
+
+        /* Mobile */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -209,38 +162,23 @@
                 gap: 0;
             }
 
-                nav.main-nav.mobile-active ul li {
-                    width: 100%;
+            nav.main-nav.mobile-active li {
+                width: 100%;
+            }
+
+                nav.main-nav.mobile-active li .submenu {
+                    position: relative;
+                    top: 0;
                 }
 
-                    nav.main-nav.mobile-active ul li .submenu {
-                        position: relative;
-                        top: 0;
-                        display: none;
-                    }
-
-                    nav.main-nav.mobile-active ul li.active .submenu {
-                        display: block;
-                    }
-
-        /* Conteúdo página */
-        .conteudo-pagina {
-            width: 100%;
-            max-width: 1300px;
-            margin: 40px auto;
-            padding: 0 var(--site-gutter);
-        }
+                nav.main-nav.mobile-active li.active > .submenu {
+                    display: block;
+                }
 
         /* RESPONSIVO */
          (max-width: 768px) {
-            :root {
-                --site-gutter: 18px;
-                --menu-gap: 14px;
-                --topbar-gap: 10px;
-            }
-
-            .logo img {
-                width: 140px;
+            .mobile-menu-toggle {
+                display: block;
             }
 
             nav.main-nav {
@@ -248,59 +186,37 @@
                 width: 100%;
             }
 
-            .mobile-menu-toggle {
-                display: block;
-            }
+                nav.main-nav ul {
+                    flex-direction: column;
+                    gap: 0;
+                }
 
-            nav.main-nav ul {
-                flex-direction: column;
-                gap: 0;
-            }
-
-                nav.main-nav ul li {
-                    width: 100%;
+                nav.main-nav li {
                     text-align: center;
                 }
 
-                    nav.main-nav ul li .submenu a {
+                    nav.main-nav li .submenu a {
                         text-align: center;
                     }
-
-            .topbar .site-container {
-                justify-content: center;
-                align-items: center;
-                padding: 8px 0;
-            }
-
-            .custom-header .site-container {
-                flex-direction: column;
-                height: auto;
-                gap: 10px;
-                padding-top: 12px;
-                padding-bottom: 12px;
-            }
         }
     </style>
 </head>
 <body>
 
     <!-- Topbar -->
-    <div class="topbar" role="banner">
+    <div class="topbar">
         <div class="site-container">
-            <ul>
-                <li><a href="https://fieb.edu.br/soualuno" target="_blank" rel="noopener">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
-                <li><a href="https://fieb.edu.br/soucolaborador" target="_blank" rel="noopener">Sou Colaborador <i class="fas fa-users"></i></a></li>
-                <li><a href="https://fieb.edu.br/souresponsavel" target="_blank" rel="noopener">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
-            </ul>
+            <a href="https://fieb.edu.br/soualuno" target="_blank">Sou Aluno <i class="fas fa-book-reader"></i></a>
+            <a href="https://fieb.edu.br/soucolaborador" target="_blank">Sou Colaborador <i class="fas fa-users"></i></a>
+            <a href="https://fieb.edu.br/souresponsavel" target="_blank">Sou Responsável <i class="fas fa-user-shield"></i></a>
         </div>
     </div>
 
     <!-- Header -->
-    <header class="custom-header" role="banner">
-        <div class="site-container header-inner">
+    <header class="custom-header">
+        <div class="site-container">
             <div class="logo">
                 <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH">
-                <div class="slogan"></div>
             </div>
 
             <!-- Botão Mobile -->
@@ -315,14 +231,19 @@
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
+                    <li><a href="#">Cursos</a></li>
                     <li>
-                        <a href="#">Cursos</a>
+                        <a href="#">Unidades</a>
                         <ul class="submenu">
-                            <li><a href="#">Técnicos</a></li>
-                            <li><a href="#">Graduação</a></li>
+                            <li><a href="#">FIEB - Aldeia da Serra</a></li>
+                            <li><a href="#">FIEB - Alphaville</a></li>
+                            <li><a href="#">FIEB - Engenho Novo</a></li>
+                            <li><a href="#">FIEB - Jardim Belval</a></li>
+                            <li><a href="#">FIEB - Jardim Paulista</a></li>
+                            <li><a href="#">FIEB - Maria Cristina</a></li>
+                            <li><a href="#">FIEB - Parque Imperial</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Unidades</a></li>
                     <li><a href="#">Notícias</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
@@ -333,37 +254,35 @@
     <main class="conteudo-pagina"></main>
 
     <script>
-        // Seleciona apenas itens do menu principal (não afeta topbar)
+        // Mobile toggle
         const toggleBtn = document.querySelector('.mobile-menu-toggle');
         const nav = document.querySelector('nav.main-nav');
         const menuItems = nav.querySelectorAll('li > a');
 
-        // Abrir/fechar menu mobile
         toggleBtn.addEventListener('click', () => {
-          nav.classList.toggle('mobile-active');
+            nav.classList.toggle('mobile-active');
         });
 
-        // Submenus clicáveis
+        // Submenu clicável
         menuItems.forEach(item => {
-          item.addEventListener('click', (e) => {
-            const parentLi = item.parentElement;
-            const submenu = parentLi.querySelector('.submenu');
-            if(submenu) {
-              e.preventDefault(); // só previne se tiver submenu
-              // Fecha outros submenus
-              nav.querySelectorAll('li.active').forEach(li => {
-                if(li !== parentLi) li.classList.remove('active');
-              });
-              parentLi.classList.toggle('active');
-            }
-          });
+            item.addEventListener('click', (e) => {
+                const parentLi = item.parentElement;
+                const submenu = parentLi.querySelector('.submenu');
+                if(submenu){
+                    e.preventDefault();
+                    nav.querySelectorAll('li.active').forEach(li => {
+                        if(li !== parentLi) li.classList.remove('active');
+                    });
+                    parentLi.classList.toggle('active');
+                }
+            });
         });
 
         // Fecha submenus ao clicar fora
         document.addEventListener('click', (e) => {
-          if(!nav.contains(e.target)) {
-            nav.querySelectorAll('li.active').forEach(li => li.classList.remove('active'));
-          }
+            if(!nav.contains(e.target)){
+                nav.querySelectorAll('li.active').forEach(li => li.classList.remove('active'));
+            }
         });
     </script>
 
