@@ -19,7 +19,6 @@
             --site-gutter: 48px;
             --menu-gap: 40px;
             --topbar-gap: 28px;
-            --header-height: 92px;
         }
 
         * {
@@ -66,9 +65,9 @@
         /* ===== HEADER ===== */
         .custom-header {
             width: 100%;
-            height: var(--header-height);
+            min-height: 400px; /* altura desktop */
             background: linear-gradient(90deg, rgba(125,42,232,0.6), rgba(13,110,253,0.6)), url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg') center center / cover no-repeat;
-            box-shadow: inset 0 -1px rgba(0,0,0,0.06);
+            position: relative;
         }
 
             .custom-header .site-container {
@@ -176,7 +175,13 @@
                 }
 
         /* RESPONSIVO */
-         (max-width: 768px) {
+        (max - width: 768px)
+
+        {
+            .custom-header {
+                min-height: 250px;
+            }
+
             .mobile-menu-toggle {
                 display: block;
             }
@@ -199,6 +204,7 @@
                         text-align: center;
                     }
         }
+
     </style>
 </head>
 <body>
