@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FIEBTECH FIEB</title>
+    <title>FIEBTECH</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -11,8 +11,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+    <!-- Google Fonts (exemplo: Poppins para slogan e menu) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
-        /* RESET E SEGURANÇA */
+        /* =====================
+                           RESET E SEGURANÇA
+                ===================== */
         * {
             margin: 0 !important;
             padding: 0 !important;
@@ -23,10 +28,12 @@
         html, body {
             width: 100% !important;
             overflow-x: hidden !important;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Arial', Helvetica, sans-serif;
         }
 
-        /* TOPBAR */
+        /* =====================
+                           TOPBAR
+                ===================== */
         .topbar {
             width: 100% !important;
             background: #fff;
@@ -58,7 +65,9 @@
                 color: inherit !important;
             }
 
-        /* HEADER CUSTOMIZADO */
+        /* =====================
+                           HEADER CUSTOMIZADO
+                ===================== */
         .custom-header {
             width: 100% !important;
             background: linear-gradient(90deg, #7d2ae8, #0d6efd);
@@ -75,10 +84,12 @@
 
         .logo {
             display: flex;
-            flex-direction: column; /* logo acima, slogan abaixo */
+            flex-direction: column;
             align-items: flex-start;
+            position: relative;
         }
 
+            /* Logo atualizado */
             .logo img {
                 width: 160px;
                 height: 63px;
@@ -87,15 +98,19 @@
             }
 
             .logo .slogan {
-                font-size: 12px;
-                color: #fff;
-                line-height: 1.1;
-                margin-top: 2px; /* colado no logo */
+                font-family: 'Poppins', sans-serif;
+                font-size: 14px;
+                font-weight: 400;
+                color: #ffffff;
+                margin-top: 2px;
+                line-height: 1.2;
             }
 
-        /* MENU */
+        /* =====================
+                           MENU
+                ===================== */
         .menu {
-            margin-left: auto; /* empurra o menu para a direita */
+            margin-left: auto;
         }
 
             .menu ul {
@@ -107,9 +122,11 @@
             }
 
             .menu li a {
+                font-family: 'Poppins', sans-serif;
+                font-size: 14px;
+                font-weight: 600;
                 color: #fff !important;
                 text-decoration: none !important;
-                font-weight: 600 !important;
                 white-space: nowrap !important;
             }
 
@@ -117,7 +134,9 @@
                     opacity: 0.7 !important;
                 }
 
-        /* CONTEÚDO */
+        /* =====================
+                           CONTEÚDO
+                ===================== */
         .conteudo-pagina {
             width: 95% !important;
             max-width: 1300px !important;
@@ -129,7 +148,9 @@
             height: auto !important;
         }
 
-        /* FOOTER */
+        /* =====================
+                           FOOTER
+                ===================== */
         footer {
             width: 100% !important;
             background: #f8f9fa !important;
@@ -137,8 +158,10 @@
             text-align: center !important;
         }
 
-        /* MEDIA QUERIES PARA TELAS PEQUENAS */
-         (max-width: 768px) {
+        /* =====================
+                           MEDIA QUERIES PARA TELAS PEQUENAS
+                ===================== */
+         (max - width: 768px) {
             .topbar ul {
                 justify-content: center !important;
                 gap: 10px !important;
@@ -158,6 +181,7 @@
             }
 
             .logo {
+                margin-left: 0 !important;
                 align-items: center !important;
             }
         }
@@ -190,8 +214,9 @@
     <div class="custom-header">
         <div class="header-content">
             <div class="logo">
-                <img src="https://fieb.edu.br/wp-content/uploads/2024/06/logo-fiebtech-branco.png" alt="FIEBTECH" />
-                <span class="slogan">Educação conectada ao futuro</span>
+                <!-- Logo atualizada via link -->
+                <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH" />
+                <span class="slogan"></span>
             </div>
             <nav class="menu">
                 <ul>
@@ -205,10 +230,8 @@
         </div>
     </div>
 
-    <!-- Conteúdo -->
+    <!-- Conteúdo (removido título e conteúdo) -->
     <div class="conteudo-pagina">
-        <h1></h1>
-        <p></p>
     </div>
 
     <!-- Footer -->
@@ -221,3 +244,4 @@
     <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
