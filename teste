@@ -85,7 +85,7 @@
     .slogan { font-family:'Poppins',sans-serif; font-size:13px; color:rgba(255,255,255,0.95); margin-top:6px; }
 
     .header-inner { display:flex; align-items:center; gap:24px; width:100%; }
-    nav.main-nav { display:flex; flex:1; justify-content:center; }
+    nav.main-nav { display:flex; flex:1; justify-content:flex-end; padding-right: 30px; }
     nav.main-nav ul { display:flex; gap:var(--menu-gap); list-style:none; align-items:center; margin:0; padding:0; }
     nav.main-nav a { color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; text-decoration:none; display:inline-block; padding:6px 0; }
     nav.main-nav a:hover { opacity:0.85; }
