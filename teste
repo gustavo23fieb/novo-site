@@ -231,16 +231,16 @@
             padding: 0 var(--site-gutter);
         }
 
-        /* Responsivo */
-         (max-width: 992px) {
+        /* RESPONSIVO */
+         (max-width: 768px) {
             :root {
-                --site-gutter: 28px;
-                --menu-gap: 20px;
-                --topbar-gap: 14px;
+                --site-gutter: 18px;
+                --menu-gap: 14px;
+                --topbar-gap: 10px;
             }
 
             .logo img {
-                width: 150px;
+                width: 140px;
             }
 
             nav.main-nav {
@@ -288,9 +288,9 @@
     <div class="topbar" role="banner">
         <div class="site-container">
             <ul>
-                <li><a href="#">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
-                <li><a href="#">Sou Colaborador <i class="fas fa-users"></i></a></li>
-                <li><a href="#">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
+                <li><a href="https://fieb.edu.br/soualuno" target="_blank" rel="noopener">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
+                <li><a href="https://fieb.edu.br/soucolaborador" target="_blank" rel="noopener">Sou Colaborador <i class="fas fa-users"></i></a></li>
+                <li><a href="https://fieb.edu.br/souresponsavel" target="_blank" rel="noopener">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
             </ul>
         </div>
     </div>
@@ -333,11 +333,12 @@
     <main class="conteudo-pagina"></main>
 
     <script>
+        // Seleciona apenas itens do menu principal (não afeta topbar)
         const toggleBtn = document.querySelector('.mobile-menu-toggle');
         const nav = document.querySelector('nav.main-nav');
         const menuItems = nav.querySelectorAll('li > a');
 
-        // Abrir menu mobile
+        // Abrir/fechar menu mobile
         toggleBtn.addEventListener('click', () => {
           nav.classList.toggle('mobile-active');
         });
@@ -347,10 +348,8 @@
           item.addEventListener('click', (e) => {
             const parentLi = item.parentElement;
             const submenu = parentLi.querySelector('.submenu');
-
-            // Se tiver submenu, abre/fecha
             if(submenu) {
-              e.preventDefault(); // evita link
+              e.preventDefault(); // só previne se tiver submenu
               // Fecha outros submenus
               nav.querySelectorAll('li.active').forEach(li => {
                 if(li !== parentLi) li.classList.remove('active');
@@ -360,7 +359,7 @@
           });
         });
 
-        // Fecha submenu ao clicar fora
+        // Fecha submenus ao clicar fora
         document.addEventListener('click', (e) => {
           if(!nav.contains(e.target)) {
             nav.querySelectorAll('li.active').forEach(li => li.classList.remove('active'));
