@@ -66,7 +66,8 @@
         /* ===== HEADER ===== */
         .custom-header {
             width: 100%;
-            background: linear-gradient(90deg,#7d2ae8,#0d6efd);
+            height: var(--header-height);
+            background: linear-gradient(90deg, rgba(125,42,232,0.6), rgba(13,110,253,0.6)), url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg') center center / cover no-repeat;
             box-shadow: inset 0 -1px rgba(0,0,0,0.06);
         }
 
@@ -74,7 +75,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                height: var(--header-height);
+                height: 100%;
             }
 
         .logo img {
@@ -97,7 +98,7 @@
                 align-items: center;
                 margin: 0;
                 padding: 0;
-                white-space: nowrap; /* evita quebra de linha */
+                white-space: nowrap;
             }
 
             nav.main-nav li {
@@ -117,8 +118,8 @@
             /* ===== SUBMENU ===== */
             nav.main-nav .submenu {
                 display: none;
-                position: absolute; /* fica fora do fluxo */
-                top: 100%; /* abaixo do item pai */
+                position: absolute;
+                top: 100%;
                 left: 0;
                 background: #0d6efd;
                 list-style: none;
@@ -136,7 +137,6 @@
                     font-size: 14px;
                 }
 
-            /* Ativa submenu ao clicar ou hover */
             nav.main-nav li.active > .submenu {
                 display: block;
             }
@@ -235,13 +235,13 @@
                     <li>
                         <a href="#">Unidades</a>
                         <ul class="submenu">
-                            <li><a href="#">FIEB - Aldeia da Serra</a></li>
-                            <li><a href="#">FIEB - Alphaville</a></li>
-                            <li><a href="#">FIEB - Engenho Novo</a></li>
-                            <li><a href="#">FIEB - Jardim Belval</a></li>
-                            <li><a href="#">FIEB - Jardim Paulista</a></li>
-                            <li><a href="#">FIEB - Maria Cristina</a></li>
-                            <li><a href="#">FIEB - Parque Imperial</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/aldeia-da-serra/">FIEB - Aldeia da Serra</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/alphaville/">FIEB - Alphaville</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/engenho-novo/">FIEB - Engenho Novo</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/jardim-belval/">FIEB - Jardim Belval</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/jardim-paulista/">FIEB - Jardim Paulista</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/maria-cristina/">FIEB - Maria Cristina</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/parque-imperial/">FIEB - Parque Imperial</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Notícias</a></li>
