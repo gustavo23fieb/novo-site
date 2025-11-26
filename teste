@@ -44,7 +44,7 @@
         /* ===== TOPBAR ===== */
         .topbar {
             width: 100%;
-            background: #ffffff;
+            background: #fff;
             border-bottom: 1px solid #e5e5e5;
         }
 
@@ -83,7 +83,7 @@
         /* ===== HEADER ===== */
         .custom-header {
             width: 100%;
-            background: linear-gradient(90deg, #7d2ae8, #0d6efd);
+            background: linear-gradient(90deg,#7d2ae8,#0d6efd);
             box-shadow: inset 0 -1px rgba(0,0,0,0.06);
         }
 
@@ -121,11 +121,13 @@
             width: 100%;
         }
 
+        /* ===== MENU ===== */
         nav.main-nav {
             display: flex;
             flex: 1;
             justify-content: flex-end;
             padding-right: 30px;
+            position: relative;
         }
 
             nav.main-nav ul {
@@ -135,7 +137,7 @@
                 align-items: center;
                 margin: 0;
                 padding: 0;
-                flex-wrap: wrap; /* permite quebrar linha sem sumir */
+                white-space: nowrap; /* não quebra linha */
             }
 
             nav.main-nav a {
@@ -155,6 +157,7 @@
             /* Submenus */
             nav.main-nav ul li {
                 position: relative;
+                cursor: pointer;
             }
 
                 nav.main-nav ul li .submenu {
@@ -181,7 +184,7 @@
                         font-size: 14px;
                     }
 
-                nav.main-nav ul li:hover .submenu {
+                nav.main-nav ul li.active .submenu {
                     display: block;
                 }
 
@@ -195,29 +198,28 @@
             cursor: pointer;
         }
 
-        nav.main-nav.active {
+        nav.main-nav.mobile-active {
             display: flex;
             flex-direction: column;
             gap: 0;
         }
 
-            nav.main-nav.active ul {
+            nav.main-nav.mobile-active ul {
                 flex-direction: column;
                 gap: 0;
             }
 
-                nav.main-nav.active ul li {
+                nav.main-nav.mobile-active ul li {
                     width: 100%;
                 }
 
-                    nav.main-nav.active ul li .submenu {
+                    nav.main-nav.mobile-active ul li .submenu {
                         position: relative;
                         top: 0;
-                        background: #0d6efd;
                         display: none;
                     }
 
-                    nav.main-nav.active ul li.active-submenu .submenu {
+                    nav.main-nav.mobile-active ul li.active .submenu {
                         display: block;
                     }
 
@@ -230,11 +232,6 @@
         }
 
         /* Responsivo */
-         (max-width: 1200px) {
-            nav.main-nav ul {
-                gap: 30px;
-            }
-        }
          (max-width: 992px) {
             :root {
                 --site-gutter: 28px;
@@ -291,9 +288,9 @@
     <div class="topbar" role="banner">
         <div class="site-container">
             <ul>
-                <li><a href="https://fieb.edu.br/soualuno" target="_blank" rel="noopener">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
-                <li><a href="https://fieb.edu.br/soucolaborador" target="_blank" rel="noopener">Sou Colaborador <i class="fas fa-users"></i></a></li>
-                <li><a href="https://fieb.edu.br/souresponsavel" target="_blank" rel="noopener">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
+                <li><a href="#">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
+                <li><a href="#">Sou Colaborador <i class="fas fa-users"></i></a></li>
+                <li><a href="#">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
             </ul>
         </div>
     </div>
@@ -301,17 +298,15 @@
     <!-- Header -->
     <header class="custom-header" role="banner">
         <div class="site-container header-inner">
-            <div class="logo" aria-label="FIEBTECH">
+            <div class="logo">
                 <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH">
                 <div class="slogan"></div>
             </div>
 
             <!-- Botão Mobile -->
-            <button class="mobile-menu-toggle" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
 
-            <nav class="main-nav" role="navigation" aria-label="Menu principal">
+            <nav class="main-nav">
                 <ul>
                     <li>
                         <a href="#">A FIEB</a>
@@ -335,33 +330,41 @@
         </div>
     </header>
 
-    <main class="conteudo-pagina" role="main">
-        <!-- Conteúdo da página -->
-    </main>
-
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <main class="conteudo-pagina"></main>
 
     <script>
-        // Abrir/Fechar menu mobile
         const toggleBtn = document.querySelector('.mobile-menu-toggle');
         const nav = document.querySelector('nav.main-nav');
         const menuItems = nav.querySelectorAll('li > a');
 
+        // Abrir menu mobile
         toggleBtn.addEventListener('click', () => {
-          nav.classList.toggle('active');
+          nav.classList.toggle('mobile-active');
         });
 
-        // Submenu mobile clicável
+        // Submenus clicáveis
         menuItems.forEach(item => {
           item.addEventListener('click', (e) => {
             const parentLi = item.parentElement;
             const submenu = parentLi.querySelector('.submenu');
+
+            // Se tiver submenu, abre/fecha
             if(submenu) {
-              e.preventDefault();
-              parentLi.classList.toggle('active-submenu');
+              e.preventDefault(); // evita link
+              // Fecha outros submenus
+              nav.querySelectorAll('li.active').forEach(li => {
+                if(li !== parentLi) li.classList.remove('active');
+              });
+              parentLi.classList.toggle('active');
             }
           });
+        });
+
+        // Fecha submenu ao clicar fora
+        document.addEventListener('click', (e) => {
+          if(!nav.contains(e.target)) {
+            nav.querySelectorAll('li.active').forEach(li => li.classList.remove('active'));
+          }
         });
     </script>
 
