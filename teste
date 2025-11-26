@@ -1,155 +1,369 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FIEB</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIEB</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Google Fonts (Poppins) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --site-gutter: 48px;
-      --menu-gap: 40px;
-      --topbar-gap: 28px;
-      --header-height: 92px;
-    }
+    <style>
+        :root {
+            --site-gutter: 48px;
+            --menu-gap: 40px;
+            --topbar-gap: 28px;
+            --header-height: 92px;
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html,body { width:100%; font-family: Arial, Helvetica, sans-serif; overflow-x:hidden; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .site-container { max-width:1300px; margin:0 auto; padding:0 var(--site-gutter); width:100%; }
+        html, body {
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
 
-    /* ===== TOPBAR (AJUSTE PARA BAIXAR OS LINKS) ===== */
-    .topbar {
-      width:100%;
-      background:#ffffff;
-      border-bottom:1px solid #e5e5e5;
-      /* sem height fixo */
-    }
+        .site-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 var(--site-gutter);
+            width: 100%;
+        }
 
-    /* aqui o padding vertical controla a "altura visual" e o align-items coloca o conteúdo no final (embaixo) */
-    .topbar .site-container {
-      display:flex;
-      align-items:flex-end;           /* empurra o conteúdo para baixo */
-      justify-content:flex-end;
-      padding: 10px 0 6px 0;          /* 10px top (desce os links), 6px bottom */
-      gap: 0;
-    }
+        /* ===== TOPBAR ===== */
+        .topbar {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+        }
 
-    .topbar ul {
-      display:flex;
-      gap: var(--topbar-gap);
-      list-style:none;
-      align-items:center;
-      margin:0;
-      padding:0;
-    }
+            .topbar .site-container {
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+                padding: 10px 0 6px 0;
+                gap: 0;
+            }
 
-    .topbar a {
-      color:#333;
-      text-decoration:none;
-      font-weight:600;
-      font-size:13px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 4px 6px; /* conforto interno sem alterar alinhamento vertical */
-    }
+            .topbar ul {
+                display: flex;
+                gap: var(--topbar-gap);
+                list-style: none;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
 
-    .topbar i { font-size:13px; }
+            .topbar a {
+                color: #333;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 13px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 4px 6px;
+            }
 
-    /* ===== HEADER ===== */
-    .custom-header {
-      width:100%;
-      background: linear-gradient(90deg, #7d2ae8, #0d6efd);
-      box-shadow: inset 0 -1px rgba(0,0,0,0.06);
-    }
+            .topbar i {
+                font-size: 13px;
+            }
 
-    .custom-header .site-container {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      height: var(--header-height);
-    }
+        /* ===== HEADER ===== */
+        .custom-header {
+            width: 100%;
+            background: linear-gradient(90deg, #7d2ae8, #0d6efd);
+            box-shadow: inset 0 -1px rgba(0,0,0,0.06);
+        }
 
-    .logo { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
-    .logo img { width:170px; height:auto; display:block; }
-    .slogan { font-family:'Poppins',sans-serif; font-size:13px; color:rgba(255,255,255,0.95); margin-top:6px; }
+            .custom-header .site-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: var(--header-height);
+            }
 
-    .header-inner { display:flex; align-items:center; gap:24px; width:100%; }
-    nav.main-nav { display:flex; flex:1; justify-content:flex-end; padding-right: 30px; }
-    nav.main-nav ul { display:flex; gap:var(--menu-gap); list-style:none; align-items:center; margin:0; padding:0; }
-    nav.main-nav a { color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; text-decoration:none; display:inline-block; padding:6px 0; }
-    nav.main-nav a:hover { opacity:0.85; }
+        .logo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
 
-    .conteudo-pagina { width:100%; max-width:1300px; margin:40px auto; padding:0 var(--site-gutter); }
+            .logo img {
+                width: 170px;
+                height: auto;
+                display: block;
+            }
 
-    /* pequenas correções para garantir que topbar e header não fiquem separados por espaço */
-    .topbar { margin-bottom: 0; }
-    .custom-header { margin-top: 0; }
+        .slogan {
+            font-family: 'Poppins',sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 6px;
+        }
 
-    /* RESPONSIVO */
-     (max-width: 992px) {
-      :root { --site-gutter:28px; --menu-gap:26px; }
-      .logo img { width:150px; }
-    }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            width: 100%;
+        }
 
-     (max-width: 768px) {
-      :root { --site-gutter:18px; --menu-gap:18px; --topbar-gap:14px; }
-      .custom-header .site-container { flex-direction:column; height:auto; gap:10px; padding-top:12px; padding-bottom:12px; }
-      nav.main-nav { order:2; width:100%; justify-content:center; }
-      nav.main-nav ul { flex-wrap:wrap; justify-content:center; gap:12px; }
-      .logo { order:1; align-items:center; }
-      .topbar .site-container { justify-content:center; align-items:center; padding:8px 0; }
-    }
-  </style>
+        nav.main-nav {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+            padding-right: 30px;
+        }
+
+            nav.main-nav ul {
+                display: flex;
+                gap: var(--menu-gap);
+                list-style: none;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+                flex-wrap: wrap; /* permite quebrar linha sem sumir */
+            }
+
+            nav.main-nav a {
+                color: #fff;
+                font-family: 'Poppins',sans-serif;
+                font-weight: 600;
+                font-size: 15px;
+                text-decoration: none;
+                display: inline-block;
+                padding: 6px 0;
+            }
+
+                nav.main-nav a:hover {
+                    opacity: 0.85;
+                }
+
+            /* Submenus */
+            nav.main-nav ul li {
+                position: relative;
+            }
+
+                nav.main-nav ul li .submenu {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background: #0d6efd;
+                    list-style: none;
+                    padding: 10px 0;
+                    min-width: 180px;
+                    border-radius: 4px;
+                    z-index: 99;
+                }
+
+                    nav.main-nav ul li .submenu li {
+                        padding: 0;
+                    }
+
+                    nav.main-nav ul li .submenu a {
+                        display: block;
+                        padding: 8px 16px;
+                        color: #fff;
+                        font-size: 14px;
+                    }
+
+                nav.main-nav ul li:hover .submenu {
+                    display: block;
+                }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        nav.main-nav.active {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+            nav.main-nav.active ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+                nav.main-nav.active ul li {
+                    width: 100%;
+                }
+
+                    nav.main-nav.active ul li .submenu {
+                        position: relative;
+                        top: 0;
+                        background: #0d6efd;
+                        display: none;
+                    }
+
+                    nav.main-nav.active ul li.active-submenu .submenu {
+                        display: block;
+                    }
+
+        /* Conteúdo página */
+        .conteudo-pagina {
+            width: 100%;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 var(--site-gutter);
+        }
+
+        /* Responsivo */
+         (max-width: 1200px) {
+            nav.main-nav ul {
+                gap: 30px;
+            }
+        }
+         (max-width: 992px) {
+            :root {
+                --site-gutter: 28px;
+                --menu-gap: 20px;
+                --topbar-gap: 14px;
+            }
+
+            .logo img {
+                width: 150px;
+            }
+
+            nav.main-nav {
+                display: none;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav.main-nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+                nav.main-nav ul li {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                    nav.main-nav ul li .submenu a {
+                        text-align: center;
+                    }
+
+            .topbar .site-container {
+                justify-content: center;
+                align-items: center;
+                padding: 8px 0;
+            }
+
+            .custom-header .site-container {
+                flex-direction: column;
+                height: auto;
+                gap: 10px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Topbar -->
-  <div class="topbar" role="banner">
-    <div class="site-container">
-      <ul>
-        <li><a href="https://fieb.edu.br/soualuno" target="_blank" rel="noopener">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
-        <li><a href="https://fieb.edu.br/soucolaborador" target="_blank" rel="noopener">Sou Colaborador <i class="fas fa-users"></i></a></li>
-        <li><a href="https://fieb.edu.br/souresponsavel" target="_blank" rel="noopener">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
-      </ul>
+    <!-- Topbar -->
+    <div class="topbar" role="banner">
+        <div class="site-container">
+            <ul>
+                <li><a href="https://fieb.edu.br/soualuno" target="_blank" rel="noopener">Sou Aluno <i class="fas fa-book-reader"></i></a></li>
+                <li><a href="https://fieb.edu.br/soucolaborador" target="_blank" rel="noopener">Sou Colaborador <i class="fas fa-users"></i></a></li>
+                <li><a href="https://fieb.edu.br/souresponsavel" target="_blank" rel="noopener">Sou Responsável <i class="fas fa-user-shield"></i></a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 
-  <!-- Header -->
-  <header class="custom-header" role="banner">
-    <div class="site-container header-inner">
-      <div class="logo" aria-label="FIEBTECH">
-        <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH">
-        <div class="slogan"></div>
-      </div>
+    <!-- Header -->
+    <header class="custom-header" role="banner">
+        <div class="site-container header-inner">
+            <div class="logo" aria-label="FIEBTECH">
+                <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH">
+                <div class="slogan"></div>
+            </div>
 
-      <nav class="main-nav" role="navigation" aria-label="Menu principal">
-        <ul>
-          <li><a href="#">A FIEB</a></li>
-          <li><a href="#">Cursos</a></li>
-          <li><a href="#">Unidades</a></li>
-          <li><a href="#">Notícias</a></li>
-          <li><a href="#">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+            <!-- Botão Mobile -->
+            <button class="mobile-menu-toggle" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
 
-  <main class="conteudo-pagina" role="main">
-    <!-- Conteúdo -->
-  </main>
+            <nav class="main-nav" role="navigation" aria-label="Menu principal">
+                <ul>
+                    <li>
+                        <a href="#">A FIEB</a>
+                        <ul class="submenu">
+                            <li><a href="#">História</a></li>
+                            <li><a href="#">Institucional</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Cursos</a>
+                        <ul class="submenu">
+                            <li><a href="#">Técnicos</a></li>
+                            <li><a href="#">Graduação</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Unidades</a></li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <script src="/lib/jquery/dist/jquery.min.js"></script>
-  <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <main class="conteudo-pagina" role="main">
+        <!-- Conteúdo da página -->
+    </main>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Abrir/Fechar menu mobile
+        const toggleBtn = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('nav.main-nav');
+        const menuItems = nav.querySelectorAll('li > a');
+
+        toggleBtn.addEventListener('click', () => {
+          nav.classList.toggle('active');
+        });
+
+        // Submenu mobile clicável
+        menuItems.forEach(item => {
+          item.addEventListener('click', (e) => {
+            const parentLi = item.parentElement;
+            const submenu = parentLi.querySelector('.submenu');
+            if(submenu) {
+              e.preventDefault();
+              parentLi.classList.toggle('active-submenu');
+            }
+          });
+        });
+    </script>
+
 </body>
 </html>
