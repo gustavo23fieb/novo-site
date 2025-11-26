@@ -11,13 +11,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <!-- Google Fonts (exemplo: Poppins para slogan e menu) -->
+    <!-- Google Fonts (Poppins para slogan e menu) -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         /* =====================
-                           RESET E SEGURANÇA
-                ===================== */
+                                   RESET E SEGURANÇA
+                        ===================== */
         * {
             margin: 0 !important;
             padding: 0 !important;
@@ -32,13 +32,13 @@
         }
 
         /* =====================
-                           TOPBAR
-                ===================== */
+                                   TOPBAR
+                        ===================== */
         .topbar {
             width: 100% !important;
             background: #fff;
             border-bottom: 1px solid #e5e5e5;
-            padding: 8px 10px !important;
+            padding: 8px 80px !important;
         }
 
             .topbar ul {
@@ -46,18 +46,21 @@
                 flex-wrap: wrap !important;
                 justify-content: flex-end !important;
                 list-style: none !important;
-                gap: 15px !important;
+                gap: 22px !important;
             }
 
             .topbar li {
+                font-size: 13px !important;
                 font-weight: 600 !important;
                 color: #333 !important;
                 display: flex !important;
                 align-items: center !important;
+                padding-right: 40px !important
             }
 
             .topbar i {
                 margin-left: 6px !important;
+                font-size: 13px !important;
             }
 
             .topbar a {
@@ -66,8 +69,8 @@
             }
 
         /* =====================
-                           HEADER CUSTOMIZADO
-                ===================== */
+                                   HEADER CUSTOMIZADO
+                        ===================== */
         .custom-header {
             width: 100% !important;
             background: linear-gradient(90deg, #7d2ae8, #0d6efd);
@@ -89,7 +92,6 @@
             position: relative;
         }
 
-            /* Logo atualizado */
             .logo img {
                 width: 160px;
                 height: 63px;
@@ -107,8 +109,8 @@
             }
 
         /* =====================
-                           MENU
-                ===================== */
+                                   MENU
+                        ===================== */
         .menu {
             margin-left: auto;
         }
@@ -135,8 +137,8 @@
                 }
 
         /* =====================
-                           CONTEÚDO
-                ===================== */
+                                   CONTEÚDO
+                        ===================== */
         .conteudo-pagina {
             width: 95% !important;
             max-width: 1300px !important;
@@ -149,8 +151,8 @@
         }
 
         /* =====================
-                           FOOTER
-                ===================== */
+                                   FOOTER
+                        ===================== */
         footer {
             width: 100% !important;
             background: #f8f9fa !important;
@@ -159,9 +161,11 @@
         }
 
         /* =====================
-                           MEDIA QUERIES PARA TELAS PEQUENAS
-                ===================== */
-         (max - width: 768px) {
+                                   MEDIA QUERIES PARA TELAS PEQUENAS
+                        ===================== */
+        (max - width: 768px)
+
+        {
             .topbar ul {
                 justify-content: center !important;
                 gap: 10px !important;
@@ -184,6 +188,13 @@
                 margin-left: 0 !important;
                 align-items: center !important;
             }
+        }
+
+        /* =====================
+                                   OCULTAR LINKS INDESEJADOS
+                        ===================== */
+        a[href*="privacy"], a[href*="home"], a[href*="site"] {
+            display: none !important;
         }
     </style>
 </head>
@@ -214,7 +225,6 @@
     <div class="custom-header">
         <div class="header-content">
             <div class="logo">
-                <!-- Logo atualizada via link -->
                 <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH" />
                 <span class="slogan"></span>
             </div>
@@ -230,13 +240,13 @@
         </div>
     </div>
 
-    <!-- Conteúdo (removido título e conteúdo) -->
+    <!-- Conteúdo -->
     <div class="conteudo-pagina">
     </div>
 
     <!-- Footer -->
     <footer>
-        &copy; 2025
+        
     </footer>
 
     <!-- Scripts -->
@@ -244,4 +254,3 @@
     <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
