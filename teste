@@ -97,7 +97,7 @@
             align-items: center;
             justify-content: flex-end;
             gap: var(--menu-gap);
-            flex-wrap: nowrap; /* não quebra linha */
+            flex-wrap: nowrap;
         }
 
             nav.main-nav ul {
@@ -111,7 +111,7 @@
 
             nav.main-nav li {
                 position: relative;
-                flex-shrink: 0; /* não encolhe demais */
+                flex-shrink: 0;
             }
 
             nav.main-nav a {
@@ -160,12 +160,11 @@
             transform: rotate(180deg);
         }
 
-        /* Espaçamento do primeiro item */
         nav.main-nav ul li:first-child {
             margin-left: 40px;
         }
 
-        /* Responsivo simples */
+        /* Responsivo */
          (max-width: 991px) {
             .header-banner {
                 min-height: 450px;
@@ -180,6 +179,25 @@
             max-width: 1300px;
             margin: 0 auto;
             padding: 0 16px;
+        }
+
+        /* ============================= */
+        /* Seta Home (idêntica ao site) */
+        /* ============================= */
+
+        .seta-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: -35px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .seta-home {
+            width: 45px;
+            height: auto;
+            display: block;
         }
 
     </style>
@@ -231,6 +249,12 @@
         </div>
     </header>
 
+    <!-- Seta original FIEB -->
+    <div class="seta-wrapper">
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png"
+             alt="Seta Home" class="seta-home">
+    </div>
+
     <!-- Main -->
     <main class="container" style="padding:40px 16px;">
         <h1></h1>
@@ -239,34 +263,31 @@
 
     <!-- JS Menu -->
     <script>
-        // Submenu clicável
         document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
             link.addEventListener('click', e => {
                 const li = link.parentElement;
                 const submenu = li.querySelector('.submenu');
-                if(!submenu) return;
+                if (!submenu) return;
                 e.preventDefault();
 
                 document.querySelectorAll('nav.main-nav li.active').forEach(activeLi => {
-                    if(activeLi !== li) activeLi.classList.remove('active');
+                    if (activeLi !== li) activeLi.classList.remove('active');
                 });
 
                 li.classList.toggle('active');
             });
         });
 
-        // Fecha submenus ao clicar fora
         document.addEventListener('click', e => {
             const nav = document.querySelector('nav.main-nav');
-            if(!nav.contains(e.target)){
+            if (!nav.contains(e.target)) {
                 document.querySelectorAll('nav.main-nav li.active').forEach(li => li.classList.remove('active'));
             }
         });
 
-        // Banner responsivo
         function ajustarAlturaBanner() {
             const banner = document.querySelector('.header-banner');
-            if(!banner) return;
+            if (!banner) return;
             const altura = window.innerHeight * 0.9;
             banner.style.height = altura + 'px';
         }
@@ -277,4 +298,3 @@
 
 </body>
 </html>
-
