@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Font Awesome 5.5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
 
     <style>
         :root {
@@ -25,7 +25,7 @@
 
         body {
             margin: 0;
-            font-family: Arial,Helvetica,sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #fff;
             color: #222;
         }
@@ -57,8 +57,8 @@
         .header-banner {
             position: relative;
             width: 100%;
-            min-height: 600px; /* altura maior para desktops */
-            max-height: 90vh; /* ocupa até 90% da tela */
+            min-height: 600px;
+            max-height: 90vh;
             background-image: url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg');
             background-size: cover;
             background-position: center;
@@ -95,7 +95,6 @@
         nav.main-nav {
             display: flex;
             align-items: center;
-            gap: 20px;
         }
 
             nav.main-nav ul {
@@ -105,9 +104,12 @@
                 margin: 0;
                 padding: 0;
                 align-items: center;
+                flex-wrap: nowrap; /* NÃO quebra a linha */
+                overflow-x: auto; /* Scroll horizontal se necessário */
             }
 
             nav.main-nav li {
+                white-space: nowrap;
                 position: relative;
             }
 
@@ -262,7 +264,7 @@
                     <li>
                         <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
-                            <li><a href="https://fieb.edu.br/historia">História</a></li>
+                            <li><a href="#">História</a></li>
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
@@ -343,7 +345,6 @@
             const altura = window.innerHeight * 0.9; // 90% da altura da tela
             banner.style.height = altura + 'px';
         }
-
         window.addEventListener('load', ajustarAlturaBanner);
         window.addEventListener('resize', ajustarAlturaBanner);
     </script>
