@@ -7,11 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    <!-- Google Fonts (Poppins) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
@@ -19,6 +17,7 @@
             --site-gutter: 48px;
             --menu-gap: 40px;
             --topbar-gap: 28px;
+            --header-height: 500px; /* altura maior para imagem */
         }
 
         * {
@@ -65,14 +64,15 @@
         /* ===== HEADER ===== */
         .custom-header {
             width: 100%;
-            min-height: 400px; /* altura desktop */
-            background: linear-gradient(90deg, rgba(125,42,232,0.6), rgba(13,110,253,0.6)), url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg') center center / cover no-repeat;
-            position: relative;
+            height: var(--header-height);
+            background: url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg') no-repeat center center;
+            background-size: cover;
+            box-shadow: inset 0 -1px rgba(0,0,0,0.06);
         }
 
             .custom-header .site-container {
                 display: flex;
-                align-items: center;
+                align-items: center; /* centraliza verticalmente */
                 justify-content: space-between;
                 height: 100%;
             }
@@ -97,7 +97,7 @@
                 align-items: center;
                 margin: 0;
                 padding: 0;
-                white-space: nowrap;
+                white-space: nowrap; /* evita quebra de linha */
             }
 
             nav.main-nav li {
@@ -113,6 +113,10 @@
                 display: inline-block;
                 padding: 6px 0;
             }
+
+                nav.main-nav a:hover {
+                    opacity: 0.85;
+                }
 
             /* ===== SUBMENU ===== */
             nav.main-nav .submenu {
@@ -175,13 +179,7 @@
                 }
 
         /* RESPONSIVO */
-        (max - width: 768px)
-
-        {
-            .custom-header {
-                min-height: 250px;
-            }
-
+         (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
             }
@@ -204,7 +202,6 @@
                         text-align: center;
                     }
         }
-
     </style>
 </head>
 <body>
@@ -233,7 +230,7 @@
                     <li>
                         <a href="#">A FIEB</a>
                         <ul class="submenu">
-                            <li><a href="#">História</a></li>
+                            <li><a href="https://fieb.edu.br/historia">História</a></li>
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
