@@ -10,12 +10,12 @@
     <title>@ViewData["Title"]</title>
 
     <!-- Font Awesome 5.5 -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNF5b4/..." crossorigin="anonymous">
 
     <style>
         :root {
             --site-gutter: 48px;
-            --menu-gap: 40px;
+            --menu-gap: 24px;
             --topbar-gap: 28px;
         }
 
@@ -91,26 +91,27 @@
             display: block;
         }
 
-        /* Menu */
+        /* Menu principal */
         nav.main-nav {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
+            gap: var(--menu-gap);
+            flex-wrap: nowrap; /* não quebra linha */
         }
 
             nav.main-nav ul {
-                list-style: none;
                 display: flex;
-                gap: var(--menu-gap);
+                list-style: none;
                 margin: 0;
                 padding: 0;
-                align-items: center;
-                flex-wrap: nowrap; /* NÃO quebra a linha */
-                overflow-x: auto; /* Scroll horizontal se necessário */
+                gap: var(--menu-gap);
+                white-space: nowrap;
             }
 
             nav.main-nav li {
-                white-space: nowrap;
                 position: relative;
+                flex-shrink: 0; /* não encolhe demais */
             }
 
             nav.main-nav a {
@@ -121,13 +122,14 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 6px;
-                padding: 6px 4px;
+                padding: 6px 10px;
             }
 
                 nav.main-nav a:hover {
                     opacity: .9;
                 }
 
+            /* Submenus */
             nav.main-nav .submenu {
                 display: none;
                 position: absolute;
@@ -136,7 +138,6 @@
                 background: #0d6efd;
                 border-radius: 6px;
                 min-width: 200px;
-                overflow: hidden;
                 z-index: 50;
             }
 
@@ -159,77 +160,20 @@
             transform: rotate(180deg);
         }
 
-        /* Mobile toggle */
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: 0;
-            color: #fff;
-            font-size: 26px;
-            cursor: pointer;
+        /* Espaçamento do primeiro item */
+        nav.main-nav ul li:first-child {
+            margin-left: 40px;
         }
 
-        /* Responsivo */
+        /* Responsivo simples */
          (max-width: 991px) {
             .header-banner {
                 min-height: 450px;
             }
 
-            nav.main-nav ul {
-                gap: 18px;
-            }
-
             .logo img {
                 width: 150px;
             }
-        }
-         (max-width: 767px) {
-            .header-banner {
-                min-height: 300px;
-                padding: 12px 16px;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            nav.main-nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0,0,0,0.85);
-                padding: 12px 16px;
-                flex-direction: column;
-            }
-
-                nav.main-nav.open {
-                    display: flex;
-                }
-
-                nav.main-nav ul {
-                    flex-direction: column;
-                    gap: 0;
-                    width: 100%;
-                }
-
-                nav.main-nav li {
-                    width: 100%;
-                }
-
-                nav.main-nav a {
-                    color: #fff;
-                    padding: 12px 10px;
-                }
-
-                nav.main-nav .submenu {
-                    position: relative;
-                    top: 0;
-                    background: #0049b7;
-                    border-radius: 4px;
-                    margin: 8px;
-                }
         }
 
         .container {
@@ -237,6 +181,7 @@
             margin: 0 auto;
             padding: 0 16px;
         }
+
     </style>
 </head>
 <body>
@@ -256,15 +201,13 @@
             <div class="logo">
                 <a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH"></a>
             </div>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="main-nav" id="mainNav" aria-label="Menu principal">
+
+            <nav class="main-nav" aria-label="Menu principal">
                 <ul>
                     <li>
                         <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
-                            <li><a href="#">História</a></li>
+                            <li><a href="">História</a></li>
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
@@ -296,55 +239,38 @@
 
     <!-- JS Menu -->
     <script>
-        (function(){
-            const mobileToggle = document.getElementById('mobileToggle');
-            const mainNav = document.getElementById('mainNav');
+        // Submenu clicável
+        document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
+            link.addEventListener('click', e => {
+                const li = link.parentElement;
+                const submenu = li.querySelector('.submenu');
+                if(!submenu) return;
+                e.preventDefault();
 
-            if(mobileToggle && mainNav){
-                mobileToggle.addEventListener('click', ()=> {
-                    mainNav.classList.toggle('open');
-                    mobileToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+                document.querySelectorAll('nav.main-nav li.active').forEach(activeLi => {
+                    if(activeLi !== li) activeLi.classList.remove('active');
                 });
+
+                li.classList.toggle('active');
+            });
+        });
+
+        // Fecha submenus ao clicar fora
+        document.addEventListener('click', e => {
+            const nav = document.querySelector('nav.main-nav');
+            if(!nav.contains(e.target)){
+                document.querySelectorAll('nav.main-nav li.active').forEach(li => li.classList.remove('active'));
             }
+        });
 
-            const topLevelLinks = document.querySelectorAll('nav.main-nav > ul > li > a.has-sub');
-            topLevelLinks.forEach(link=>{
-                link.addEventListener('click',(e)=>{
-                    const parentLi = link.parentElement;
-                    const submenu = parentLi.querySelector('.submenu');
-                    if(!submenu) return;
-                    e.preventDefault();
-                    document.querySelectorAll('nav.main-nav > ul > li.active').forEach(li=>{
-                        if(li!==parentLi) li.classList.remove('active');
-                    });
-                    parentLi.classList.toggle('active');
-                });
-            });
-
-            document.addEventListener('click',(e)=>{
-                if(!mainNav.contains(e.target) && !mobileToggle.contains(e.target)){
-                    document.querySelectorAll('nav.main-nav li.active').forEach(li=>li.classList.remove('active'));
-                    mainNav.classList.remove('open');
-                    mobileToggle.setAttribute('aria-expanded','false');
-                }
-            });
-
-            document.addEventListener('keydown',(e)=>{
-                if(e.key==='Escape'){
-                    document.querySelectorAll('nav.main-nav li.active').forEach(li=>li.classList.remove('active'));
-                    mainNav.classList.remove('open');
-                    mobileToggle.setAttribute('aria-expanded','false');
-                }
-            });
-        })();
-
-        // Banner responsivo dinâmico
+        // Banner responsivo
         function ajustarAlturaBanner() {
             const banner = document.querySelector('.header-banner');
             if(!banner) return;
-            const altura = window.innerHeight * 0.9; // 90% da altura da tela
+            const altura = window.innerHeight * 0.9;
             banner.style.height = altura + 'px';
         }
+
         window.addEventListener('load', ajustarAlturaBanner);
         window.addEventListener('resize', ajustarAlturaBanner);
     </script>
