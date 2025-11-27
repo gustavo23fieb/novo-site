@@ -192,7 +192,7 @@
                 }
 
         /* RESPONSIVO */
-         (max-width: 768px) {
+         (max-width: 767px) {
             .mobile-menu-toggle {
                 display: block;
             }
