@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "FIEB";
+    ViewData["Title"] = "";
 }
 
 <!DOCTYPE html>
@@ -351,3 +351,4 @@
 
 </body>
 </html>
+
