@@ -17,7 +17,7 @@
             --site-gutter: 48px;
             --menu-gap: 40px;
             --topbar-gap: 28px;
-            --header-height: 500px; /* altura maior para imagem */
+            --header-height: 500px;
         }
 
         * {
@@ -72,7 +72,7 @@
 
             .custom-header .site-container {
                 display: flex;
-                align-items: center; /* centraliza verticalmente */
+                align-items: center;
                 justify-content: space-between;
                 height: 100%;
             }
@@ -97,7 +97,7 @@
                 align-items: center;
                 margin: 0;
                 padding: 0;
-                white-space: nowrap; /* evita quebra de linha */
+                white-space: nowrap;
             }
 
             nav.main-nav li {
@@ -110,8 +110,11 @@
                 font-weight: 600;
                 font-size: 15px;
                 text-decoration: none;
-                display: inline-block;
+                display: inline-flex;
+                align-items: center;
+                gap: 4px; /* espaço entre texto e seta */
                 padding: 6px 0;
+                transition: opacity 0.3s ease;
             }
 
                 nav.main-nav a:hover {
@@ -131,6 +134,7 @@
                 min-width: 200px;
                 border-radius: 4px;
                 z-index: 9999;
+                transition: all 0.3s ease;
             }
 
                 nav.main-nav .submenu li a {
@@ -144,7 +148,16 @@
                 display: block;
             }
 
-        /* Mobile */
+        /* ===== SETAS DROPDOWN ===== */
+        .dropdown-arrow i {
+            transition: transform 0.3s ease;
+        }
+
+        nav.main-nav li.active > a .dropdown-arrow i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== MOBILE ===== */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -228,7 +241,7 @@
             <nav class="main-nav">
                 <ul>
                     <li>
-                        <a href="#">A FIEB</a>
+                        <a href="#">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
                             <li><a href="https://fieb.edu.br/historia">História</a></li>
                             <li><a href="#">Institucional</a></li>
@@ -236,7 +249,7 @@
                     </li>
                     <li><a href="#">Cursos</a></li>
                     <li>
-                        <a href="#">Unidades</a>
+                        <a href="#">Unidades <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
                             <li><a href="https://fieb.edu.br/unidade/aldeia-da-serra/">FIEB - Aldeia da Serra</a></li>
                             <li><a href="https://fieb.edu.br/unidade/alphaville/">FIEB - Alphaville</a></li>
