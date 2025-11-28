@@ -400,28 +400,28 @@ _______________________________________________________
             padding: 8px 0;
         }
 
-        .topbar .container {
-            display: flex;
-            justify-content: flex-end;
-            gap: var(--topbar-gap);
-            flex-wrap: wrap;
-        }
+            .topbar .container {
+                display: flex;
+                justify-content: flex-end;
+                gap: var(--topbar-gap);
+                flex-wrap: wrap;
+            }
 
-        .topbar a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: transform 0.2s ease, color 0.2s ease;
-        }
+            .topbar a {
+                color: #333;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 13px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: transform 0.2s ease, color 0.2s ease;
+            }
 
-        .topbar a:hover {
-            transform: translateY(-2px);
-            color: #0d6efd;
-        }
+                .topbar a:hover {
+                    transform: translateY(-2px);
+                    color: #0d6efd;
+                }
 
         /* Header / Banner */
         .header-banner {
@@ -438,14 +438,14 @@ _______________________________________________________
             transition: height 0.3s ease;
         }
 
-        .header-banner::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(124,45,255,0.55) 0%, rgba(0,123,255,0.45) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
+            .header-banner::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, rgba(124,45,255,0.55) 0%, rgba(0,123,255,0.45) 100%);
+                pointer-events: none;
+                z-index: 1;
+            }
 
         .header-inner {
             position: relative;
@@ -470,61 +470,61 @@ _______________________________________________________
             gap: var(--menu-gap);
         }
 
-        nav.main-nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: var(--menu-gap);
-            white-space: nowrap;
-        }
+            nav.main-nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: var(--menu-gap);
+                white-space: nowrap;
+            }
 
-        nav.main-nav li {
-            position: relative;
-        }
+            nav.main-nav li {
+                position: relative;
+            }
 
-        nav.main-nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
+            nav.main-nav a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 15px;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 10px;
+                transition: transform 0.2s ease, opacity 0.2s ease;
+            }
 
-        nav.main-nav a:hover {
-            transform: translateY(-3px);
-            opacity: 0.9;
-        }
+                nav.main-nav a:hover {
+                    transform: translateY(-3px);
+                    opacity: 0.9;
+                }
 
-        nav.main-nav .submenu {
-            display: none;
-            position: absolute;
-            top: calc(100% + 6px);
-            left: 0;
-            background: #0d6efd;
-            border-radius: 6px;
-            min-width: 200px;
-            z-index: 50;
-        }
+            nav.main-nav .submenu {
+                display: none;
+                position: absolute;
+                top: calc(100% + 6px);
+                left: 0;
+                background: #0d6efd;
+                border-radius: 6px;
+                min-width: 200px;
+                z-index: 50;
+            }
 
-        nav.main-nav .submenu li a {
-            display: block;
-            padding: 10px 14px;
-            color: #fff;
-            font-size: 14px;
-        }
+                nav.main-nav .submenu li a {
+                    display: block;
+                    padding: 10px 14px;
+                    color: #fff;
+                    font-size: 14px;
+                }
 
-        nav.main-nav li.active > .submenu {
-            display: block;
-        }
+            nav.main-nav li.active > .submenu {
+                display: block;
+            }
 
-        nav.main-nav li.active > a .dropdown-arrow i {
-            transform: rotate(180deg);
-        }
+            nav.main-nav li.active > a .dropdown-arrow i {
+                transform: rotate(180deg);
+            }
 
         /* Seta Home */
         .seta-wrapper {
@@ -551,17 +551,17 @@ _______________________________________________________
             z-index: 3;
         }
 
-        .links-animados a {
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 16px;
-            transition: transform .3s, color .3s;
-        }
+            .links-animados a {
+                color: #fff;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 16px;
+                transition: transform .3s, color .3s;
+            }
 
-        .links-animados a:hover {
-            transform: translateY(-5px);
-        }
+                .links-animados a:hover {
+                    transform: translateY(-5px);
+                }
 
         /* Menu Mobile */
         .menu-toggle {
@@ -575,13 +575,13 @@ _______________________________________________________
             z-index: 150;
         }
 
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            background: #fff;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
+            .menu-toggle span {
+                display: block;
+                height: 3px;
+                background: #fff;
+                border-radius: 2px;
+                transition: all 0.3s ease;
+            }
 
         nav.main-nav[data-mobile="true"] {
             display: flex;
@@ -589,7 +589,6 @@ _______________________________________________________
             background: #0d6efd;
             width: 100%;
             position: absolute;
-            top: 100%;
             left: 0;
             z-index: 120;
             max-height: 0;
@@ -597,52 +596,52 @@ _______________________________________________________
             transition: max-height 0.4s ease;
         }
 
-        nav.main-nav[data-mobile="true"].open {
-            max-height: 1000px;
-        }
+            nav.main-nav[data-mobile="true"].open {
+                max-height: 1000px;
+            }
 
-        nav.main-nav[data-mobile="true"] ul {
-            flex-direction: column;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+            nav.main-nav[data-mobile="true"] ul {
+                flex-direction: column;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
 
-        nav.main-nav[data-mobile="true"] li {
-            width: 100%;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
+            nav.main-nav[data-mobile="true"] li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
 
-        nav.main-nav[data-mobile="true"] li a {
-            display: block;
-            padding: 12px 16px;
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.3s ease;
-        }
+                nav.main-nav[data-mobile="true"] li a {
+                    display: block;
+                    padding: 12px 16px;
+                    color: #fff;
+                    font-weight: 600;
+                    text-decoration: none;
+                    transition: background 0.3s ease;
+                }
 
-        nav.main-nav[data-mobile="true"] li a:hover {
-            background: rgba(255,255,255,0.1);
-        }
+                    nav.main-nav[data-mobile="true"] li a:hover {
+                        background: rgba(255,255,255,0.1);
+                    }
 
-        nav.main-nav[data-mobile="true"] li .submenu {
-            display: flex;
-            flex-direction: column;
-            background: #007bff;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
+                nav.main-nav[data-mobile="true"] li .submenu {
+                    display: flex;
+                    flex-direction: column;
+                    background: #007bff;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.3s ease;
+                }
 
-        nav.main-nav[data-mobile="true"] li.active > .submenu {
-            max-height: 500px;
-        }
+                nav.main-nav[data-mobile="true"] li.active > .submenu {
+                    max-height: 500px;
+                }
 
-        nav.main-nav[data-mobile="true"] li .submenu li a {
-            padding: 10px 20px;
-            font-size: 14px;
-        }
+                nav.main-nav[data-mobile="true"] li .submenu li a {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                }
     </style>
 </head>
 <body>
@@ -722,7 +721,6 @@ _______________________________________________________
 
     <!-- JS Final -->
     <script>
-        /* Ajuste de menu mobile */
         const mobileMenu = document.getElementById('mobile-menu');
         const mainNav = document.getElementById('main-nav');
 
@@ -739,6 +737,13 @@ _______________________________________________________
                 mainNav.classList.remove('open');
                 document.querySelectorAll('#main-nav li.active').forEach(li => li.classList.remove('active'));
             }
+            posicionarMenuMobile();
+        }
+
+        function posicionarMenuMobile() {
+            const headerInner = document.querySelector('.header-inner');
+            const altura = headerInner.offsetHeight;
+            mainNav.style.top = altura + 'px';
         }
 
         window.addEventListener('load', ajustarMenuMobile);
@@ -746,8 +751,10 @@ _______________________________________________________
 
         mobileMenu.addEventListener('click', () => {
             mainNav.classList.toggle('open');
+            posicionarMenuMobile();
         });
 
+        // Submenus mobile
         document.querySelectorAll('#main-nav li > a.has-sub').forEach(link => {
             link.addEventListener('click', e => {
                 if (window.innerWidth <= 767) {
@@ -758,7 +765,7 @@ _______________________________________________________
             });
         });
 
-        /* Submenus Desktop */
+        // Submenus Desktop
         document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
             link.addEventListener('click', e => {
                 const li = link.parentElement;
@@ -781,7 +788,7 @@ _______________________________________________________
             }
         });
 
-        /* Ajuste de altura do banner */
+        // Ajuste de altura do banner
         function ajustarAlturaBanner() {
             const banner = document.querySelector('.header-banner');
             banner.style.height = (window.innerHeight * 0.9) + 'px';
@@ -793,4 +800,3 @@ _______________________________________________________
 
 </body>
 </html>
-
