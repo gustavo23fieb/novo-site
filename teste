@@ -572,7 +572,7 @@ _______________________________________________________
             height: 22px;
             cursor: pointer;
             position: relative;
-            z-index: 100;
+            z-index: 150;
         }
 
         .menu-toggle span {
@@ -580,18 +580,25 @@ _______________________________________________________
             height: 3px;
             background: #fff;
             border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
-        /* Mobile nav via JS */
         nav.main-nav[data-mobile="true"] {
-            display: none;
+            display: flex;
             flex-direction: column;
             background: #0d6efd;
             width: 100%;
             position: absolute;
-            top: 60px; /* abaixo do header-inner */
+            top: 100%;
             left: 0;
-            z-index: 99;
+            z-index: 120;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        nav.main-nav[data-mobile="true"].open {
+            max-height: 1000px;
         }
 
         nav.main-nav[data-mobile="true"] ul {
@@ -603,8 +610,6 @@ _______________________________________________________
 
         nav.main-nav[data-mobile="true"] li {
             width: 100%;
-            text-align: left;
-            position: relative;
             border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
@@ -614,21 +619,28 @@ _______________________________________________________
             color: #fff;
             font-weight: 600;
             text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        nav.main-nav[data-mobile="true"] li a:hover {
+            background: rgba(255,255,255,0.1);
         }
 
         nav.main-nav[data-mobile="true"] li .submenu {
-            display: none;
+            display: flex;
             flex-direction: column;
             background: #007bff;
-            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
         }
 
         nav.main-nav[data-mobile="true"] li.active > .submenu {
-            display: flex;
+            max-height: 500px;
         }
 
         nav.main-nav[data-mobile="true"] li .submenu li a {
-            padding: 10px 16px;
+            padding: 10px 20px;
             font-size: 14px;
         }
     </style>
@@ -658,12 +670,13 @@ _______________________________________________________
                 <span></span>
             </div>
 
+            <!-- Menu Principal -->
             <nav class="main-nav" id="main-nav">
                 <ul>
                     <li>
                         <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
-                            <li><a href="">História</a></li>
+                            <li><a href="#">História</a></li>
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
@@ -697,7 +710,7 @@ _______________________________________________________
         </div>
     </header>
 
-    <!-- Seta -->
+    <!-- Seta Home -->
     <div class="seta-wrapper">
         <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home" alt="Seta">
     </div>
@@ -707,15 +720,50 @@ _______________________________________________________
         <p></p>
     </main>
 
-    <!-- JS FINAL -->
+    <!-- JS Final -->
     <script>
+        /* Ajuste de menu mobile */
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mainNav = document.getElementById('main-nav');
+
+        function ajustarMenuMobile() {
+            if (window.innerWidth <= 767) {
+                mobileMenu.style.display = 'flex';
+                mainNav.setAttribute('data-mobile', 'true');
+                mainNav.classList.remove('open');
+            } else {
+                mobileMenu.style.display = 'none';
+                mainNav.removeAttribute('data-mobile');
+                mainNav.style.display = 'flex';
+                mainNav.style.flexDirection = 'row';
+                mainNav.classList.remove('open');
+                document.querySelectorAll('#main-nav li.active').forEach(li => li.classList.remove('active'));
+            }
+        }
+
+        window.addEventListener('load', ajustarMenuMobile);
+        window.addEventListener('resize', ajustarMenuMobile);
+
+        mobileMenu.addEventListener('click', () => {
+            mainNav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('#main-nav li > a.has-sub').forEach(link => {
+            link.addEventListener('click', e => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const li = link.parentElement;
+                    li.classList.toggle('active');
+                }
+            });
+        });
+
         /* Submenus Desktop */
         document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
             link.addEventListener('click', e => {
                 const li = link.parentElement;
                 const submenu = li.querySelector('.submenu');
                 if (!submenu) return;
-
                 if (window.innerWidth > 767) {
                     e.preventDefault();
                     document.querySelectorAll('nav.main-nav li.active').forEach(activeLi => {
@@ -733,51 +781,6 @@ _______________________________________________________
             }
         });
 
-        /* Menu Mobile */
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mainNav = document.getElementById('main-nav');
-
-        function ajustarMenuMobile() {
-            if (window.innerWidth <= 767) {
-                mobileMenu.style.display = 'flex';
-                mainNav.setAttribute('data-mobile', 'true');
-                mainNav.style.display = 'none';
-            } else {
-                mobileMenu.style.display = 'none';
-                mainNav.removeAttribute('data-mobile');
-                mainNav.style.display = 'flex';
-                mainNav.style.flexDirection = 'row';
-                document.querySelectorAll('#main-nav li.active').forEach(li => li.classList.remove('active'));
-            }
-        }
-
-        window.addEventListener('load', ajustarMenuMobile);
-        window.addEventListener('resize', ajustarMenuMobile);
-
-        mobileMenu.addEventListener('click', () => {
-            if (mainNav.style.display === 'flex') {
-                mainNav.style.display = 'none';
-            } else {
-                mainNav.style.display = 'flex';
-                mainNav.style.flexDirection = 'column';
-                mainNav.style.top = document.querySelector('.header-inner').offsetHeight + 'px';
-            }
-        });
-
-        // Submenus mobile
-        document.querySelectorAll('#main-nav li > a.has-sub').forEach(link => {
-            link.addEventListener('click', e => {
-                if (window.innerWidth <= 767) {
-                    e.preventDefault();
-                    const li = link.parentElement;
-                    document.querySelectorAll('#main-nav li.active').forEach(activeLi => {
-                        if (activeLi !== li) activeLi.classList.remove('active');
-                    });
-                    li.classList.toggle('active');
-                }
-            });
-        });
-
         /* Ajuste de altura do banner */
         function ajustarAlturaBanner() {
             const banner = document.querySelector('.header-banner');
@@ -790,3 +793,4 @@ _______________________________________________________
 
 </body>
 </html>
+
