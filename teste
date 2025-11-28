@@ -527,18 +527,6 @@ _______________________________________________________
                 transition: all 0.3s ease;
             }
 
-            .menu-toggle.open span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .menu-toggle.open span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.open span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
-
         /* Mobile Menu */
         #mobile-nav {
             display: none;
@@ -546,11 +534,11 @@ _______________________________________________________
             top: 100%;
             left: 0;
             width: 100%;
-            background: #0d6efd;
             flex-direction: column;
             z-index: 120;
             max-height: 500px;
             overflow-y: auto;
+            background: linear-gradient(180deg, #7C2DFF, #4B00B0); /* degradê roxo da logo */
         }
 
             #mobile-nav ul {
@@ -575,7 +563,7 @@ _______________________________________________________
                 #mobile-nav li .submenu {
                     display: none;
                     flex-direction: column;
-                    background: #007bff;
+                    background: #7C2DFF;
                 }
 
                 #mobile-nav li.active > .submenu {
@@ -692,15 +680,14 @@ _______________________________________________________
         const desktopNav = document.getElementById('desktop-nav');
         const mobileNav = document.getElementById('mobile-nav');
         const hamburger = document.getElementById('mobile-menu');
-        let mobileMenuCreated = false; // Flag para não recriar toda hora
+        let mobileMenuCreated = false;
 
         function criarMenuMobile() {
-            if (!mobileMenuCreated) {
+            if(!mobileMenuCreated){
                 const clone = desktopNav.querySelector('ul').cloneNode(true);
                 mobileNav.appendChild(clone);
                 mobileMenuCreated = true;
 
-                // Submenus accordion
                 mobileNav.querySelectorAll('li > a.has-sub').forEach(link => {
                     link.addEventListener('click', e => {
                         e.preventDefault();
@@ -712,30 +699,25 @@ _______________________________________________________
             }
         }
 
-        function ajustarMenu() {
+        function ajustarMenu(){
             if(window.innerWidth <= 767){
                 desktopNav.style.display = 'none';
                 hamburger.style.display = 'flex';
                 criarMenuMobile();
-                // Se já estava aberto, manter visível
-                if(hamburger.classList.contains('open')) mobileNav.style.display = 'flex';
+                if(mobileNav.style.display === 'flex') mobileNav.style.display = 'flex';
             } else {
                 desktopNav.style.display = 'flex';
                 hamburger.style.display = 'none';
                 mobileNav.style.display = 'none';
-                hamburger.classList.remove('open');
             }
         }
 
-        // Toggle menu mobile
         hamburger.addEventListener('click', () => {
             const isOpen = mobileNav.style.display === 'flex';
             mobileNav.style.display = isOpen ? 'none' : 'flex';
             mobileNav.style.flexDirection = 'column';
-            hamburger.classList.toggle('open');
         });
 
-        // Dropdown desktop
         desktopNav.querySelectorAll('li > a.has-sub').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
@@ -751,3 +733,4 @@ _______________________________________________________
 
 </body>
 </html>
+
