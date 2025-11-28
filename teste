@@ -97,7 +97,6 @@
             width: 100%;
             max-width: 1300px;
             margin: 0 auto;
-            padding: 0 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -113,7 +112,6 @@
             align-items: center;
             justify-content: flex-end;
             gap: var(--menu-gap);
-            flex-wrap: nowrap;
         }
 
             nav.main-nav ul {
@@ -127,7 +125,6 @@
 
             nav.main-nav li {
                 position: relative;
-                flex-shrink: 0;
             }
 
             nav.main-nav a {
@@ -156,9 +153,6 @@
                 background: #0d6efd;
                 border-radius: 6px;
                 min-width: 200px;
-                max-width: 300px; /* evita scroll horizontal */
-                white-space: nowrap;
-                overflow: visible; /* submenu sobreposto */
                 z-index: 50;
             }
 
@@ -177,24 +171,6 @@
                 transform: rotate(180deg);
             }
 
-        /* Responsivo */
-         (max-width: 991px) {
-            .header-banner {
-                min-height: 500px;
-            }
-
-            .logo img {
-                width: 150px;
-            }
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 16px;
-            width: 100%;
-        }
-
         /* Seta Home */
         .seta-wrapper {
             width: 100%;
@@ -206,11 +182,10 @@
         }
 
         .seta-home {
-            width: 75px; /* seta maior */
-            height: auto;
+            width: 75px;
         }
 
-        /* Links animados sobre o banner */
+        /* Links animados */
         .links-animados {
             position: absolute;
             top: 50%;
@@ -227,28 +202,12 @@
                 font-weight: 600;
                 text-decoration: none;
                 font-size: 16px;
-                transition: transform 0.3s ease, color 0.3s ease;
+                transition: transform .3s, color .3s;
             }
 
                 .links-animados a:hover {
-                    color: #f0f0f0;
                     transform: translateY(-5px);
                 }
-
-         floatLinks {
-            0% {
-                transform: translate(-50%, -50%) translateX(0);
-            }
-
-            50% {
-                transform: translate(-50%, -50%) translateX(15px);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) translateX(0);
-            }
-        }
-
     </style>
 </head>
 <body>
@@ -300,7 +259,7 @@
             </nav>
         </div>
 
-        <!-- Links animados sobre o banner -->
+        <!-- Links animados -->
         <div class="links-animados">
             <a href="#">Criatividade</a>
             <a href="#">Inovação</a>
@@ -313,7 +272,7 @@
 
     <!-- Seta -->
     <div class="seta-wrapper">
-        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home">
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home" alt="Seta">
     </div>
 
     <main class="container" style="padding:40px 16px;">
@@ -321,8 +280,9 @@
         <p></p>
     </main>
 
-    <!-- JS Menu -->
+    <!-- JS FINAL -->
     <script>
+        /* SUBMENUS */
         document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
             link.addEventListener('click', e => {
                 const li = link.parentElement;
@@ -345,6 +305,7 @@
             }
         });
 
+        /* Ajuste de altura do banner */
         function ajustarAlturaBanner() {
             const banner = document.querySelector('.header-banner');
             banner.style.height = (window.innerHeight * 0.9) + 'px';
@@ -352,6 +313,39 @@
 
         window.addEventListener('load', ajustarAlturaBanner);
         window.addEventListener('resize', ajustarAlturaBanner);
+
+        /* RESPONSIVO + KEYFRAMES via Javascript (com \u0040 para evitar Razor) */
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const css = `
+            \\u0040keyframes floatLinks {
+                0%   { transform: translate(-50%, -50%) translateX(0); }
+                50%  { transform: translate(-50%, -50%) translateX(15px); }
+                100% { transform: translate(-50%, -50%) translateX(0); }
+            }
+
+            \\u0040media (max-width: 991px) {
+                .header-banner { min-height: 500px !important; }
+                .logo img { width: 150px !important; }
+                nav.main-nav ul { gap: 14px !important; }
+            }
+
+            \\u0040media (max-width: 768px) {
+                .links-animados { flex-wrap: wrap; gap: 20px; top: 58%; }
+                .links-animados a { font-size: 14px; }
+                .header-banner { min-height: 450px !important; }
+            }
+
+            \\u0040media (max-width: 576px) {
+                .logo img { width: 120px !important; }
+                nav.main-nav { display: none !important; }
+            }
+            `;
+
+            const style = document.createElement("style");
+            style.innerHTML = css;
+            document.head.appendChild(style);
+        });
     </script>
 
 </body>
