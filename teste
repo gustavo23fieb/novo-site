@@ -10,7 +10,7 @@
     <title>@ViewData["Title"]</title>
 
     <!-- Font Awesome 5.5 -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNF5b4/..." crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
     <style>
         :root {
@@ -19,12 +19,19 @@
             --topbar-gap: 28px;
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden !important;
+            width: 100%;
+            max-width: 100%;
+        }
+
         * {
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             background: #fff;
             color: #222;
@@ -41,6 +48,7 @@
                 display: flex;
                 justify-content: flex-end;
                 gap: var(--topbar-gap);
+                flex-wrap: wrap;
             }
 
             .topbar a {
@@ -51,14 +59,20 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
+                transition: transform 0.2s ease, color 0.2s ease;
             }
+
+                .topbar a:hover {
+                    transform: translateY(-2px);
+                    color: #0d6efd;
+                }
 
         /* Header / Banner */
         .header-banner {
             position: relative;
             width: 100%;
-            min-height: 600px;
-            max-height: 90vh;
+            min-height: 750px; /* banner maior */
+            max-height: 100vh;
             background-image: url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg');
             background-size: cover;
             background-position: center;
@@ -81,6 +95,9 @@
             position: relative;
             z-index: 2;
             width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -88,7 +105,6 @@
 
         .logo img {
             width: 170px;
-            display: block;
         }
 
         /* Menu principal */
@@ -123,10 +139,12 @@
                 align-items: center;
                 gap: 6px;
                 padding: 6px 10px;
+                transition: transform 0.2s ease, opacity 0.2s ease;
             }
 
                 nav.main-nav a:hover {
-                    opacity: .9;
+                    transform: translateY(-3px);
+                    opacity: 0.9;
                 }
 
             /* Submenus */
@@ -138,6 +156,9 @@
                 background: #0d6efd;
                 border-radius: 6px;
                 min-width: 200px;
+                max-width: 300px; /* evita scroll horizontal */
+                white-space: nowrap;
+                overflow: visible; /* submenu sobreposto */
                 z-index: 50;
             }
 
@@ -152,22 +173,14 @@
                 display: block;
             }
 
-        .dropdown-arrow i {
-            transition: transform .28s ease;
-        }
-
-        nav.main-nav li.active > a .dropdown-arrow i {
-            transform: rotate(180deg);
-        }
-
-        nav.main-nav ul li:first-child {
-            margin-left: 40px;
-        }
+            nav.main-nav li.active > a .dropdown-arrow i {
+                transform: rotate(180deg);
+            }
 
         /* Responsivo */
          (max-width: 991px) {
             .header-banner {
-                min-height: 450px;
+                min-height: 500px;
             }
 
             .logo img {
@@ -179,25 +192,61 @@
             max-width: 1300px;
             margin: 0 auto;
             padding: 0 16px;
+            width: 100%;
         }
 
-        /* ============================= */
-        /* Seta Home (idêntica ao site) */
-        /* ============================= */
-
+        /* Seta Home */
         .seta-wrapper {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-top: -35px;
+            margin-top: -30px;
             position: relative;
             z-index: 5;
         }
 
         .seta-home {
-            width: 45px;
+            width: 75px; /* seta maior */
             height: auto;
-            display: block;
+        }
+
+        /* Links animados sobre o banner */
+        .links-animados {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 40px;
+            z-index: 3;
+            animation: floatLinks 6s ease-in-out infinite alternate;
+        }
+
+            .links-animados a {
+                color: #fff;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 16px;
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+
+                .links-animados a:hover {
+                    color: #f0f0f0;
+                    transform: translateY(-5px);
+                }
+
+         floatLinks {
+            0% {
+                transform: translate(-50%, -50%) translateX(0);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateX(15px);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) translateX(0);
+            }
         }
 
     </style>
@@ -215,12 +264,12 @@
 
     <!-- Header / Banner -->
     <header class="header-banner">
-        <div class="header-inner container">
+        <div class="header-inner">
             <div class="logo">
                 <a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH"></a>
             </div>
 
-            <nav class="main-nav" aria-label="Menu principal">
+            <nav class="main-nav">
                 <ul>
                     <li>
                         <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
@@ -229,33 +278,44 @@
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
+
                     <li><a href="#">Cursos</a></li>
+
                     <li>
                         <a href="#" class="has-sub">Unidades <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
-                            <li><a href="https://fieb.edu.br/unidade/aldeia-da-serra/">Aldeia da Serra</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/alphaville/">Alphaville</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/engenho-novo/">Engenho Novo</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/jardim-belval/">Jardim Belval</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/jardim-paulista/">Jardim Paulista</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/maria-cristina/">Maria Cristina</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/parque-imperial/">Parque Imperial</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/aldeia-da-serra/">FIEB - Aldeia da Serra</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/alphaville/">FIEB - Alphaville</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/engenho-novo/">FIEB - Engenho Novo</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/jardim-belval/">FIEB - Jardim Belval</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/jardim-paulista/">FIEB - Jardim Paulista</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/maria-cristina/">FIEB - Maria Cristina</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/parque-imperial/">FIEB - Parque Imperial</a></li>
                         </ul>
                     </li>
+
                     <li><a href="#">Notícias</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
             </nav>
         </div>
+
+        <!-- Links animados sobre o banner -->
+        <div class="links-animados">
+            <a href="#">Criatividade</a>
+            <a href="#">Inovação</a>
+            <a href="#">Negócios</a>
+            <a href="#">Produção</a>
+            <a href="#">Bem-Estar</a>
+            <a href="#">Ensino Regular</a>
+        </div>
     </header>
 
-    <!-- Seta original FIEB -->
+    <!-- Seta -->
     <div class="seta-wrapper">
-        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png"
-             alt="Seta Home" class="seta-home">
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home">
     </div>
 
-    <!-- Main -->
     <main class="container" style="padding:40px 16px;">
         <h1></h1>
         <p></p>
@@ -287,9 +347,7 @@
 
         function ajustarAlturaBanner() {
             const banner = document.querySelector('.header-banner');
-            if (!banner) return;
-            const altura = window.innerHeight * 0.9;
-            banner.style.height = altura + 'px';
+            banner.style.height = (window.innerHeight * 0.9) + 'px';
         }
 
         window.addEventListener('load', ajustarAlturaBanner);
