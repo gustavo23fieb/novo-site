@@ -349,3 +349,437 @@
 
 </body>
 </html>
+
+
+
+_______________________________________________________
+
+
+
+
+
+   @{
+    ViewData["Title"] = "";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <!-- Font Awesome 5.5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
+    <style>
+        :root {
+            --site-gutter: 48px;
+            --menu-gap: 24px;
+            --topbar-gap: 28px;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden !important;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
+            color: #222;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 8px 0;
+        }
+
+            .topbar .container {
+                display: flex;
+                justify-content: flex-end;
+                gap: var(--topbar-gap);
+                flex-wrap: wrap;
+            }
+
+            .topbar a {
+                color: #333;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 13px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: transform 0.2s ease, color 0.2s ease;
+            }
+
+                .topbar a:hover {
+                    transform: translateY(-2px);
+                    color: #0d6efd;
+                }
+
+        /* Header / Banner */
+        .header-banner {
+            position: relative;
+            width: 100%;
+            min-height: 750px;
+            max-height: 100vh;
+            background-image: url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-start;
+            padding: 18px var(--site-gutter);
+            transition: height 0.3s ease;
+        }
+
+            .header-banner::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, rgba(124,45,255,0.55) 0%, rgba(0,123,255,0.45) 100%);
+                pointer-events: none;
+                z-index: 1;
+            }
+
+        .header-inner {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 170px;
+        }
+
+        /* Menu principal */
+        nav.main-nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: var(--menu-gap);
+        }
+
+            nav.main-nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: var(--menu-gap);
+                white-space: nowrap;
+            }
+
+            nav.main-nav li {
+                position: relative;
+            }
+
+            nav.main-nav a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 15px;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 10px;
+                transition: transform 0.2s ease, opacity 0.2s ease;
+            }
+
+                nav.main-nav a:hover {
+                    transform: translateY(-3px);
+                    opacity: 0.9;
+                }
+
+            /* Submenus */
+            nav.main-nav .submenu {
+                display: none;
+                position: absolute;
+                top: calc(100% + 6px);
+                left: 0;
+                background: #0d6efd;
+                border-radius: 6px;
+                min-width: 200px;
+                z-index: 50;
+            }
+
+                nav.main-nav .submenu li a {
+                    display: block;
+                    padding: 10px 14px;
+                    color: #fff;
+                    font-size: 14px;
+                }
+
+            nav.main-nav li.active > .submenu {
+                display: block;
+            }
+
+            nav.main-nav li.active > a .dropdown-arrow i {
+                transform: rotate(180deg);
+            }
+
+        /* Seta Home */
+        .seta-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: -30px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .seta-home {
+            width: 75px;
+        }
+
+        /* Links animados */
+        .links-animados {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 40px;
+            z-index: 3;
+        }
+
+            .links-animados a {
+                color: #fff;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 16px;
+                transition: transform .3s, color .3s;
+            }
+
+                .links-animados a:hover {
+                    transform: translateY(-5px);
+                }
+
+        /* Menu Mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+            .menu-toggle span {
+                display: block;
+                height: 3px;
+                background: #fff;
+                border-radius: 2px;
+            }
+
+        /* Mobile nav via JS */
+        nav.main-nav[data-mobile="true"] {
+            display: none;
+            flex-direction: column;
+            background: #0d6efd;
+            width: 100%;
+            padding: 0;
+        }
+
+            nav.main-nav[data-mobile="true"] ul {
+                flex-direction: column;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            nav.main-nav[data-mobile="true"] li {
+                width: 100%;
+                text-align: center;
+                position: relative;
+            }
+
+                nav.main-nav[data-mobile="true"] li a {
+                    display: block;
+                    padding: 12px 16px;
+                    color: #fff;
+                    font-weight: 600;
+                    text-decoration: none;
+                }
+
+                nav.main-nav[data-mobile="true"] li .submenu {
+                    display: none;
+                    flex-direction: column;
+                    background: #007bff;
+                    width: 100%;
+                }
+
+                nav.main-nav[data-mobile="true"] li.active > .submenu {
+                    display: flex;
+                }
+
+                nav.main-nav[data-mobile="true"] li .submenu li a {
+                    padding: 10px 16px;
+                    font-size: 14px;
+                }
+    </style>
+</head>
+<body>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container">
+            <a href="https://fieb.edu.br/soualuno" target="_blank">Sou Aluno <i class="fas fa-book-reader"></i></a>
+            <a href="https://fieb.edu.br/soucolaborador" target="_blank">Sou Colaborador <i class="fas fa-users"></i></a>
+            <a href="https://fieb.edu.br/souresponsavel" target="_blank">Sou Responsável <i class="fas fa-user-shield"></i></a>
+        </div>
+    </div>
+
+    <!-- Header / Banner -->
+    <header class="header-banner">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH"></a>
+            </div>
+
+            <!-- Menu Mobile -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li>
+                        <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="">História</a></li>
+                            <li><a href="#">Institucional</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Cursos</a></li>
+                    <li>
+                        <a href="#" class="has-sub">Unidades <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                        <ul class="submenu">
+                            <li><a href="https://fieb.edu.br/unidade/aldeia-da-serra/">FIEB - Aldeia da Serra</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/alphaville/">FIEB - Alphaville</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/engenho-novo/">FIEB - Engenho Novo</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/jardim-belval/">FIEB - Jardim Belval</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/jardim-paulista/">FIEB - Jardim Paulista</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/maria-cristina/">FIEB - Maria Cristina</a></li>
+                            <li><a href="https://fieb.edu.br/unidade/parque-imperial/">FIEB - Parque Imperial</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Links animados -->
+        <div class="links-animados">
+            <a href="#">Criatividade</a>
+            <a href="#">Inovação</a>
+            <a href="#">Negócios</a>
+            <a href="#">Produção</a>
+            <a href="#">Bem-Estar</a>
+            <a href="#">Ensino Regular</a>
+        </div>
+    </header>
+
+    <!-- Seta -->
+    <div class="seta-wrapper">
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home" alt="Seta">
+    </div>
+
+    <main class="container" style="padding:40px 16px;">
+        <h1></h1>
+        <p></p>
+    </main>
+
+    <!-- JS FINAL -->
+    <script>
+        /* Submenus Desktop */
+        document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
+            link.addEventListener('click', e => {
+                const li = link.parentElement;
+                const submenu = li.querySelector('.submenu');
+                if (!submenu) return;
+                e.preventDefault();
+
+                document.querySelectorAll('nav.main-nav li.active').forEach(activeLi => {
+                    if (activeLi !== li) activeLi.classList.remove('active');
+                });
+
+                li.classList.toggle('active');
+            });
+        });
+
+        document.addEventListener('click', e => {
+            const nav = document.querySelector('nav.main-nav');
+            if (!nav.contains(e.target)) {
+                document.querySelectorAll('nav.main-nav li.active').forEach(li => li.classList.remove('active'));
+            }
+        });
+
+        /* Menu Mobile */
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mainNav = document.getElementById('main-nav');
+
+        function ajustarMenuMobile() {
+            if (window.innerWidth <= 767) {
+                mobileMenu.style.display = 'flex';
+                mainNav.setAttribute('data-mobile', 'true');
+                mainNav.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'none';
+                mainNav.removeAttribute('data-mobile');
+                mainNav.style.display = 'flex';
+                mainNav.style.flexDirection = 'row';
+                document.querySelectorAll('#main-nav li.active').forEach(li => li.classList.remove('active'));
+            }
+        }
+
+        window.addEventListener('load', ajustarMenuMobile);
+        window.addEventListener('resize', ajustarMenuMobile);
+
+        mobileMenu.addEventListener('click', () => {
+            mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Submenus mobile
+        document.querySelectorAll('#main-nav li > a.has-sub').forEach(link => {
+            link.addEventListener('click', e => {
+                if (window.innerWidth <= 767) {
+                    e.preventDefault();
+                    const li = link.parentElement;
+                    // fecha outros submenus
+                    document.querySelectorAll('#main-nav li.active').forEach(activeLi => {
+                        if (activeLi !== li) activeLi.classList.remove('active');
+                    });
+                    li.classList.toggle('active');
+                }
+            });
+        });
+
+        /* Ajuste de altura do banner */
+        function ajustarAlturaBanner() {
+            const banner = document.querySelector('.header-banner');
+            banner.style.height = (window.innerHeight * 0.9) + 'px';
+        }
+
+        window.addEventListener('load', ajustarAlturaBanner);
+        window.addEventListener('resize', ajustarAlturaBanner);
+    </script>
+
+</body>
+</html>
