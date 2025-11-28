@@ -194,7 +194,6 @@
             display: flex;
             gap: 40px;
             z-index: 3;
-            animation: floatLinks 6s ease-in-out infinite alternate;
         }
 
             .links-animados a {
@@ -208,6 +207,23 @@
                 .links-animados a:hover {
                     transform: translateY(-5px);
                 }
+
+        /* Menu Mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+            .menu-toggle span {
+                display: block;
+                height: 3px;
+                background: #fff;
+                border-radius: 2px;
+            }
     </style>
 </head>
 <body>
@@ -226,6 +242,13 @@
         <div class="header-inner">
             <div class="logo">
                 <a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH"></a>
+            </div>
+
+            <!-- Menu Mobile -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
 
             <nav class="main-nav">
@@ -305,6 +328,15 @@
             }
         });
 
+        /* Mobile Menu Toggle */
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mainNav = document.querySelector('nav.main-nav');
+
+        mobileMenu.addEventListener('click', () => {
+            mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
+            mainNav.style.flexDirection = 'column';
+        });
+
         /* Ajuste de altura do banner */
         function ajustarAlturaBanner() {
             const banner = document.querySelector('.header-banner');
@@ -313,41 +345,7 @@
 
         window.addEventListener('load', ajustarAlturaBanner);
         window.addEventListener('resize', ajustarAlturaBanner);
-
-        /* RESPONSIVO + KEYFRAMES via Javascript (com \u0040 para evitar Razor) */
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const css = `
-            \\u0040keyframes floatLinks {
-                0%   { transform: translate(-50%, -50%) translateX(0); }
-                50%  { transform: translate(-50%, -50%) translateX(15px); }
-                100% { transform: translate(-50%, -50%) translateX(0); }
-            }
-
-            \\u0040media (max-width: 991px) {
-                .header-banner { min-height: 500px !important; }
-                .logo img { width: 150px !important; }
-                nav.main-nav ul { gap: 14px !important; }
-            }
-
-            \\u0040media (max-width: 768px) {
-                .links-animados { flex-wrap: wrap; gap: 20px; top: 58%; }
-                .links-animados a { font-size: 14px; }
-                .header-banner { min-height: 450px !important; }
-            }
-
-            \\u0040media (max-width: 576px) {
-                .logo img { width: 120px !important; }
-                nav.main-nav { display: none !important; }
-            }
-            `;
-
-            const style = document.createElement("style");
-            style.innerHTML = css;
-            document.head.appendChild(style);
-        });
     </script>
 
 </body>
 </html>
-
