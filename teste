@@ -549,6 +549,8 @@ _______________________________________________________
             background: #0d6efd;
             flex-direction: column;
             z-index: 120;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
             #mobile-nav ul {
@@ -625,7 +627,6 @@ _______________________________________________________
 </head>
 <body>
 
-    <!-- Topbar -->
     <div class="topbar">
         <div class="container">
             <a href="https://fieb.edu.br/soualuno" target="_blank">Sou Aluno <i class="fas fa-book-reader"></i></a>
@@ -634,7 +635,6 @@ _______________________________________________________
         </div>
     </div>
 
-    <!-- Header -->
     <header class="header-banner">
         <div class="header-inner">
             <div class="logo">
@@ -647,15 +647,11 @@ _______________________________________________________
                 <span></span>
             </div>
 
-            <!-- Desktop Menu -->
             <nav class="main-nav" id="desktop-nav">
                 <ul>
                     <li>
                         <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
-                        <ul class="submenu">
-                            <li><a href="#">História</a></li>
-                            <li><a href="#">Institucional</a></li>
-                        </ul>
+                        <ul class="submenu"><li><a href="#">História</a></li><li><a href="#">Institucional</a></li></ul>
                     </li>
                     <li><a href="#">Cursos</a></li>
                     <li>
@@ -675,12 +671,9 @@ _______________________________________________________
                 </ul>
             </nav>
 
-            <!-- Mobile Menu (gerado via JS) -->
             <nav id="mobile-nav"></nav>
-
         </div>
 
-        <!-- Links animados -->
         <div class="links-animados">
             <a href="#">Criatividade</a>
             <a href="#">Inovação</a>
@@ -691,75 +684,69 @@ _______________________________________________________
         </div>
     </header>
 
-    <!-- Seta -->
     <div class="seta-wrapper">
         <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home" alt="Seta">
     </div>
 
     <script>
-        // Elementos
         const desktopNav = document.getElementById('desktop-nav');
         const mobileNav = document.getElementById('mobile-nav');
         const hamburger = document.getElementById('mobile-menu');
+        let mobileMenuCreated = false; // Flag para não recriar toda hora
 
-        // Cria menu mobile clonando desktop
         function criarMenuMobile() {
-            mobileNav.innerHTML = '';
-            const clone = desktopNav.querySelector('ul').cloneNode(true);
-            mobileNav.appendChild(clone);
+            if (!mobileMenuCreated) {
+                const clone = desktopNav.querySelector('ul').cloneNode(true);
+                mobileNav.appendChild(clone);
+                mobileMenuCreated = true;
+
+                // Submenus accordion
+                mobileNav.querySelectorAll('li > a.has-sub').forEach(link => {
+                    link.addEventListener('click', e => {
+                        e.preventDefault();
+                        const li = link.parentElement;
+                        li.classList.toggle('active');
+                        mobileNav.querySelectorAll('li').forEach(other => { if(other!==li) other.classList.remove('active'); });
+                    });
+                });
+            }
         }
 
-        // Ajusta visibilidade
         function ajustarMenu() {
             if(window.innerWidth <= 767){
                 desktopNav.style.display = 'none';
                 hamburger.style.display = 'flex';
-                mobileNav.style.display = 'none';
                 criarMenuMobile();
+                // Se já estava aberto, manter visível
+                if(hamburger.classList.contains('open')) mobileNav.style.display = 'flex';
             } else {
                 desktopNav.style.display = 'flex';
                 hamburger.style.display = 'none';
                 mobileNav.style.display = 'none';
+                hamburger.classList.remove('open');
             }
         }
 
         // Toggle menu mobile
         hamburger.addEventListener('click', () => {
-            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+            const isOpen = mobileNav.style.display === 'flex';
+            mobileNav.style.display = isOpen ? 'none' : 'flex';
             mobileNav.style.flexDirection = 'column';
             hamburger.classList.toggle('open');
         });
-
-        // Accordion submenus mobile
-        function ativarAccordion() {
-            mobileNav.querySelectorAll('li > a.has-sub').forEach(link => {
-                link.addEventListener('click', e => {
-                    e.preventDefault();
-                    const li = link.parentElement;
-                    li.classList.toggle('active');
-                    // fecha outros
-                    mobileNav.querySelectorAll('li').forEach(other => {
-                        if(other !== li) other.classList.remove('active');
-                    });
-                });
-            });
-        }
 
         // Dropdown desktop
         desktopNav.querySelectorAll('li > a.has-sub').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
                 const li = link.parentElement;
-                desktopNav.querySelectorAll('li.active').forEach(other => {
-                    if(other !== li) other.classList.remove('active');
-                });
+                desktopNav.querySelectorAll('li.active').forEach(other => { if(other!==li) other.classList.remove('active'); });
                 li.classList.toggle('active');
             });
         });
 
-        // Atualiza menu ao carregar e redimensionar
-        window.addEventListener('load', () => { ajustarMenu(); ativarAccordion(); });
-        window.addEventListener('resize', () => { ajustarMenu(); ativarAccordion(); });
+        window.addEventListener('load', ajustarMenu);
+        window.addEventListener('resize', ajustarMenu);
     </script>
 
 </body>
