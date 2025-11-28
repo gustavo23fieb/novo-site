@@ -365,7 +365,6 @@ _______________________________________________________
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
 
-    <!-- Font Awesome 5.5 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
     <style>
@@ -380,7 +379,6 @@ _______________________________________________________
             padding: 0;
             overflow-x: hidden !important;
             width: 100%;
-            max-width: 100%;
         }
 
         * {
@@ -423,7 +421,7 @@ _______________________________________________________
                     color: #0d6efd;
                 }
 
-        /* Header / Banner */
+        /* Header */
         .header-banner {
             position: relative;
             width: 100%;
@@ -435,7 +433,6 @@ _______________________________________________________
             display: flex;
             align-items: flex-start;
             padding: 18px var(--site-gutter);
-            transition: height 0.3s ease;
         }
 
             .header-banner::after {
@@ -462,11 +459,10 @@ _______________________________________________________
             width: 170px;
         }
 
-        /* Menu principal */
+        /* Desktop Menu */
         nav.main-nav {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
             gap: var(--menu-gap);
         }
 
@@ -476,7 +472,6 @@ _______________________________________________________
                 margin: 0;
                 padding: 0;
                 gap: var(--menu-gap);
-                white-space: nowrap;
             }
 
             nav.main-nav li {
@@ -492,13 +487,7 @@ _______________________________________________________
                 align-items: center;
                 gap: 6px;
                 padding: 6px 10px;
-                transition: transform 0.2s ease, opacity 0.2s ease;
             }
-
-                nav.main-nav a:hover {
-                    transform: translateY(-3px);
-                    opacity: 0.9;
-                }
 
             nav.main-nav .submenu {
                 display: none;
@@ -511,13 +500,6 @@ _______________________________________________________
                 z-index: 50;
             }
 
-                nav.main-nav .submenu li a {
-                    display: block;
-                    padding: 10px 14px;
-                    color: #fff;
-                    font-size: 14px;
-                }
-
             nav.main-nav li.active > .submenu {
                 display: block;
             }
@@ -526,19 +508,82 @@ _______________________________________________________
                 transform: rotate(180deg);
             }
 
-        /* Seta Home */
-        .seta-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: -30px;
-            position: relative;
-            z-index: 5;
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 22px;
+            cursor: pointer;
+            z-index: 150;
         }
 
-        .seta-home {
-            width: 75px;
+            .menu-toggle span {
+                display: block;
+                height: 3px;
+                background: #fff;
+                border-radius: 2px;
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle.open span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+        /* Mobile Menu */
+        #mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #0d6efd;
+            flex-direction: column;
+            z-index: 120;
         }
+
+            #mobile-nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                flex-direction: column;
+            }
+
+            #mobile-nav li {
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+
+                #mobile-nav li a {
+                    display: block;
+                    padding: 12px 16px;
+                    color: #fff;
+                    font-weight: 600;
+                    text-decoration: none;
+                }
+
+                #mobile-nav li .submenu {
+                    display: none;
+                    flex-direction: column;
+                    background: #007bff;
+                }
+
+                #mobile-nav li.active > .submenu {
+                    display: flex;
+                }
+
+                #mobile-nav li .submenu li a {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                }
 
         /* Links animados */
         .links-animados {
@@ -563,85 +608,19 @@ _______________________________________________________
                     transform: translateY(-5px);
                 }
 
-        /* Menu Mobile */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 22px;
-            cursor: pointer;
-            position: relative;
-            z-index: 150;
-        }
-
-            .menu-toggle span {
-                display: block;
-                height: 3px;
-                background: #fff;
-                border-radius: 2px;
-                transition: all 0.3s ease;
-            }
-
-        nav.main-nav[data-mobile="true"] {
-            display: flex;
-            flex-direction: column;
-            background: #0d6efd;
+        .seta-wrapper {
             width: 100%;
-            position: absolute;
-            left: 0;
-            z-index: 120;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
+            display: flex;
+            justify-content: center;
+            margin-top: -30px;
+            position: relative;
+            z-index: 5;
         }
 
-            nav.main-nav[data-mobile="true"].open {
-                max-height: 1000px;
-            }
+        .seta-home {
+            width: 75px;
+        }
 
-            nav.main-nav[data-mobile="true"] ul {
-                flex-direction: column;
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            nav.main-nav[data-mobile="true"] li {
-                width: 100%;
-                border-bottom: 1px solid rgba(255,255,255,0.2);
-            }
-
-                nav.main-nav[data-mobile="true"] li a {
-                    display: block;
-                    padding: 12px 16px;
-                    color: #fff;
-                    font-weight: 600;
-                    text-decoration: none;
-                    transition: background 0.3s ease;
-                }
-
-                    nav.main-nav[data-mobile="true"] li a:hover {
-                        background: rgba(255,255,255,0.1);
-                    }
-
-                nav.main-nav[data-mobile="true"] li .submenu {
-                    display: flex;
-                    flex-direction: column;
-                    background: #007bff;
-                    max-height: 0;
-                    overflow: hidden;
-                    transition: max-height 0.3s ease;
-                }
-
-                nav.main-nav[data-mobile="true"] li.active > .submenu {
-                    max-height: 500px;
-                }
-
-                nav.main-nav[data-mobile="true"] li .submenu li a {
-                    padding: 10px 20px;
-                    font-size: 14px;
-                }
     </style>
 </head>
 <body>
@@ -655,22 +634,21 @@ _______________________________________________________
         </div>
     </div>
 
-    <!-- Header / Banner -->
+    <!-- Header -->
     <header class="header-banner">
         <div class="header-inner">
             <div class="logo">
                 <a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH"></a>
             </div>
 
-            <!-- Menu Mobile -->
             <div class="menu-toggle" id="mobile-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
 
-            <!-- Menu Principal -->
-            <nav class="main-nav" id="main-nav">
+            <!-- Desktop Menu -->
+            <nav class="main-nav" id="desktop-nav">
                 <ul>
                     <li>
                         <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
@@ -696,6 +674,10 @@ _______________________________________________________
                     <li><a href="#">Contato</a></li>
                 </ul>
             </nav>
+
+            <!-- Mobile Menu (gerado via JS) -->
+            <nav id="mobile-nav"></nav>
+
         </div>
 
         <!-- Links animados -->
@@ -709,93 +691,75 @@ _______________________________________________________
         </div>
     </header>
 
-    <!-- Seta Home -->
+    <!-- Seta -->
     <div class="seta-wrapper">
         <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home" alt="Seta">
     </div>
 
-    <main class="container" style="padding:40px 16px;">
-        <h1></h1>
-        <p></p>
-    </main>
-
-    <!-- JS Final -->
     <script>
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mainNav = document.getElementById('main-nav');
+        // Elementos
+        const desktopNav = document.getElementById('desktop-nav');
+        const mobileNav = document.getElementById('mobile-nav');
+        const hamburger = document.getElementById('mobile-menu');
 
-        function ajustarMenuMobile() {
-            if (window.innerWidth <= 767) {
-                mobileMenu.style.display = 'flex';
-                mainNav.setAttribute('data-mobile', 'true');
-                mainNav.classList.remove('open');
+        // Cria menu mobile clonando desktop
+        function criarMenuMobile() {
+            mobileNav.innerHTML = '';
+            const clone = desktopNav.querySelector('ul').cloneNode(true);
+            mobileNav.appendChild(clone);
+        }
+
+        // Ajusta visibilidade
+        function ajustarMenu() {
+            if(window.innerWidth <= 767){
+                desktopNav.style.display = 'none';
+                hamburger.style.display = 'flex';
+                mobileNav.style.display = 'none';
+                criarMenuMobile();
             } else {
-                mobileMenu.style.display = 'none';
-                mainNav.removeAttribute('data-mobile');
-                mainNav.style.display = 'flex';
-                mainNav.style.flexDirection = 'row';
-                mainNav.classList.remove('open');
-                document.querySelectorAll('#main-nav li.active').forEach(li => li.classList.remove('active'));
+                desktopNav.style.display = 'flex';
+                hamburger.style.display = 'none';
+                mobileNav.style.display = 'none';
             }
-            posicionarMenuMobile();
         }
 
-        function posicionarMenuMobile() {
-            const headerInner = document.querySelector('.header-inner');
-            const altura = headerInner.offsetHeight;
-            mainNav.style.top = altura + 'px';
-        }
-
-        window.addEventListener('load', ajustarMenuMobile);
-        window.addEventListener('resize', ajustarMenuMobile);
-
-        mobileMenu.addEventListener('click', () => {
-            mainNav.classList.toggle('open');
-            posicionarMenuMobile();
+        // Toggle menu mobile
+        hamburger.addEventListener('click', () => {
+            mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+            mobileNav.style.flexDirection = 'column';
+            hamburger.classList.toggle('open');
         });
 
-        // Submenus mobile
-        document.querySelectorAll('#main-nav li > a.has-sub').forEach(link => {
-            link.addEventListener('click', e => {
-                if (window.innerWidth <= 767) {
+        // Accordion submenus mobile
+        function ativarAccordion() {
+            mobileNav.querySelectorAll('li > a.has-sub').forEach(link => {
+                link.addEventListener('click', e => {
                     e.preventDefault();
                     const li = link.parentElement;
                     li.classList.toggle('active');
-                }
-            });
-        });
-
-        // Submenus Desktop
-        document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
-            link.addEventListener('click', e => {
-                const li = link.parentElement;
-                const submenu = li.querySelector('.submenu');
-                if (!submenu) return;
-                if (window.innerWidth > 767) {
-                    e.preventDefault();
-                    document.querySelectorAll('nav.main-nav li.active').forEach(activeLi => {
-                        if (activeLi !== li) activeLi.classList.remove('active');
+                    // fecha outros
+                    mobileNav.querySelectorAll('li').forEach(other => {
+                        if(other !== li) other.classList.remove('active');
                     });
-                    li.classList.toggle('active');
-                }
+                });
             });
-        });
-
-        document.addEventListener('click', e => {
-            const nav = document.querySelector('nav.main-nav');
-            if (!nav.contains(e.target)) {
-                document.querySelectorAll('nav.main-nav li.active').forEach(li => li.classList.remove('active'));
-            }
-        });
-
-        // Ajuste de altura do banner
-        function ajustarAlturaBanner() {
-            const banner = document.querySelector('.header-banner');
-            banner.style.height = (window.innerHeight * 0.9) + 'px';
         }
 
-        window.addEventListener('load', ajustarAlturaBanner);
-        window.addEventListener('resize', ajustarAlturaBanner);
+        // Dropdown desktop
+        desktopNav.querySelectorAll('li > a.has-sub').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const li = link.parentElement;
+                desktopNav.querySelectorAll('li.active').forEach(other => {
+                    if(other !== li) other.classList.remove('active');
+                });
+                li.classList.toggle('active');
+            });
+        });
+
+        // Atualiza menu ao carregar e redimensionar
+        window.addEventListener('load', () => { ajustarMenu(); ativarAccordion(); });
+        window.addEventListener('resize', () => { ajustarMenu(); ativarAccordion(); });
     </script>
 
 </body>
