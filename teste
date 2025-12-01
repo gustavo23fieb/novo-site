@@ -375,7 +375,7 @@ _______________________________________________________
 
         /* reset */
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
         html, body {
@@ -383,7 +383,7 @@ _______________________________________________________
             padding: 0;
             overflow-x: hidden;
             width: 100%;
-            font-family: Arial,Helvetica,sans-serif
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         /* TOPBAR */
@@ -391,7 +391,7 @@ _______________________________________________________
             background: #fff;
             border-bottom: 1px solid #e5e5e5;
             position: relative;
-            z-index: 12050
+            z-index: 12050;
         }
 
             .topbar .container {
@@ -401,7 +401,7 @@ _______________________________________________________
                 justify-content: flex-end;
                 gap: 20px;
                 padding: 6px 18px;
-                align-items: center
+                align-items: center;
             }
 
                 .topbar .container a {
@@ -411,38 +411,37 @@ _______________________________________________________
                     font-size: 13px;
                     display: inline-flex;
                     align-items: center;
-                    gap: 8px
+                    gap: 8px;
                 }
 
-        /* topbar-mobile lock sits inside the same container for correct alignment */
+        /* MOBILE TOPBAR LOCK */
         .topbar-mobile {
             display: none;
-            margin-left: 8px
         }
 
             .topbar-mobile button {
-                background: transparent;
-                border: 0;
+                background: none;
+                border: none;
                 cursor: pointer;
-                padding: 6px
+                padding: 6px;
             }
 
             .topbar-mobile .lock-icon {
                 font-size: 18px;
-                color: #000
+                color: #000;
             }
-        /* black */
 
         /* HEADER / BANNER */
         .header-banner {
             position: relative;
             width: 100%;
             min-height: 650px;
-            max-height: 100vh;
             background-image: url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg');
             background-size: cover;
             background-position: center;
-            padding: 18px var(--site-gutter)
+            padding: 18px var(--site-gutter);
+            transition: margin-top 0.4s ease;
+            margin-top: 0; /* banner normal */
         }
 
             .header-banner::after {
@@ -451,10 +450,8 @@ _______________________________________________________
                 inset: 0;
                 background: linear-gradient(90deg, rgba(124,45,255,0.55) 0%, rgba(0,123,255,0.45) 100%);
                 z-index: 1;
-                pointer-events: none
             }
 
-        /* header-inner */
         .header-inner {
             position: relative;
             z-index: 2;
@@ -463,38 +460,35 @@ _______________________________________________________
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            padding: 0 8px
         }
 
         .logo img {
             width: 170px;
-            display: block
+            display: block;
         }
 
-        /* centered links */
+        /* LINKS ANIMADOS */
         .links-animados {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
+            z-index: 3;
             display: flex;
             gap: 40px;
-            z-index: 2
         }
 
             .links-animados a {
                 color: #fff;
-                font-weight: 600;
                 text-decoration: none;
-                font-size: 16px
+                font-weight: 600;
             }
 
         /* DESKTOP NAV */
         nav.main-nav {
             display: flex;
             align-items: center;
-            gap: var(--menu-gap)
+            gap: var(--menu-gap);
         }
 
             nav.main-nav ul {
@@ -502,24 +496,22 @@ _______________________________________________________
                 list-style: none;
                 margin: 0;
                 padding: 0;
-                gap: var(--menu-gap)
+                gap: var(--menu-gap);
             }
 
             nav.main-nav a {
                 color: #fff;
                 text-decoration: none;
                 font-weight: 600;
-                font-size: 15px;
                 padding: 6px 10px;
                 display: flex;
-                align-items: center
+                align-items: center;
             }
 
             nav.main-nav li {
-                position: relative
+                position: relative;
             }
 
-            /* desktop submenu: absolute by default */
             nav.main-nav .submenu {
                 display: none;
                 position: absolute;
@@ -529,63 +521,47 @@ _______________________________________________________
                 min-width: 230px;
                 padding: 6px 0;
                 border-radius: 0 0 6px 6px;
-                z-index: 999
+                z-index: 999;
             }
 
             nav.main-nav li.active > .submenu {
-                display: block
-            }
-
-            nav.main-nav .submenu li a {
                 display: block;
-                color: #fff;
-                padding: 10px 14px;
-                font-size: 14px;
-                font-weight: 600
             }
 
-        /* HAMBURGER (shown on mobile via JS) */
+        /* HAMBURGER */
         .menu-toggle {
             display: none;
             width: 36px;
             height: 30px;
             flex-direction: column;
             justify-content: space-between;
-            border: 0;
-            background: transparent;
+            border: none;
+            background: none;
             cursor: pointer;
-            z-index: 12000
+            z-index: 20000;
         }
 
             .menu-toggle span {
                 height: 4px;
                 background: #fff;
                 border-radius: 3px;
-                display: block
             }
 
-        /* MOBILE NAV (in-flow) */
-        .mobile-wrap {
-            width: 100%;
-            display: block;
-            position: relative;
-            z-index: 1100;
-        }
-
+        /* MOBILE NAV */
         #mobile-nav {
             display: none;
             width: 100%;
+            z-index: 15000;
         }
 
             #mobile-nav.open {
                 display: block;
             }
 
-            /* CARTÃO ESTREITO IGUAL AO SITE ORIGINAL */
             #mobile-nav .mobile-inner {
                 max-width: 320px;
+                margin-left: 16px;
                 margin-top: 8px;
-                margin-left: 16px; /* alinha à esquerda, mas com respiro */
                 background: linear-gradient(180deg,#A335FF 0%,#7A1EDC 50%,#5100B8 100%);
                 padding: 6px 0 10px;
                 border-radius: 8px;
@@ -599,14 +575,9 @@ _______________________________________________________
                 padding: 0;
             }
 
-            /* só os itens de primeiro nível têm borda */
             #mobile-nav .mobile-inner > ul > li {
                 border-bottom: 1px solid rgba(255,255,255,0.15);
             }
-
-                #mobile-nav .mobile-inner > ul > li:last-child {
-                    border-bottom: none;
-                }
 
             #mobile-nav a {
                 display: block;
@@ -614,10 +585,8 @@ _______________________________________________________
                 color: #fff;
                 font-weight: 600;
                 text-decoration: none;
-                font-size: 15px;
             }
 
-            /* bloco de submenu em formato de caixinha */
             #mobile-nav .submenu {
                 display: none;
                 background: rgba(255,255,255,0.04);
@@ -631,312 +600,216 @@ _______________________________________________________
                 display: block;
             }
 
-            #mobile-nav .submenu li {
-                border-bottom: none;
-            }
-
-            #mobile-nav .submenu a {
-                padding: 7px 18px;
-                color: #fff;
-                font-size: 14px;
-                font-weight: 500;
-            }
-
-            #mobile-nav a:hover {
-                background: rgba(255,255,255,0.08);
-            }
-
-        /* When JS marks mobile: convert desktop submenu to static/in-flow only visually */
-        body.is-mobile nav.main-nav .submenu {
-            /* não mostra o submenu absoluto no mobile */
-            display: none !important;
-            position: static !important;
-            background: transparent !important;
-            padding: 0 !important;
-            min-width: 0 !important;
-            border-radius: 0 !important;
-        }
-
-        /* lock popup (white) - anchored to topbar container */
-        .lock-popup {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 18px;
-            width: 200px;
-            background: #fff;
-            border-radius: 6px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-            z-index: 12010
-        }
-
-            .lock-popup.open {
-                display: block
-            }
-
-            .lock-popup a {
-                display: block;
-                padding: 10px 12px;
-                color: #000;
-                text-decoration: none;
-                font-weight: 600;
-                border-bottom: 1px solid rgba(0,0,0,0.06)
-            }
-
-                .lock-popup a:last-child {
-                    border-bottom: none
-                }
-
-        /* helpers */
-        .seta-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: -30px;
-            z-index: 5
-        }
-
-        .seta-home {
-            width: 75px
-        }
-
         body.menu-open {
-            overflow: hidden
+            overflow: hidden;
         }
     </style>
 </head>
+
 <body>
 
-    <!-- TOPBAR: desktop and mobile lock placed inside same container to preserve alignment -->
-    <div class="topbar" id="topbar">
+    <!-- TOPBAR -->
+    <div class="topbar">
         <div class="container">
-            <!-- desktop links (visible in desktop) -->
-            <a href="https://fieb.edu.br/soualuno" id="link-sou-aluno"><i class="fas fa-book-reader"></i>&nbsp;Sou Aluno</a>
-            <a href="https://fieb.edu.br/soucolaborador" id="link-sou-colaborador"><i class="fas fa-users"></i>&nbsp;Sou Colaborador</a>
-            <a href="https://fieb.edu.br/souresponsavel" id="link-sou-responsavel"><i class="fas fa-user-shield"></i>&nbsp;Sou Responsável</a>
+            <a href="https://fieb.edu.br/soualuno"><i class="fas fa-book-reader"></i> Sou Aluno</a>
+            <a href="https://fieb.edu.br/soucolaborador"><i class="fas fa-users"></i> Sou Colaborador</a>
+            <a href="https://fieb.edu.br/souresponsavel"><i class="fas fa-user-shield"></i> Sou Responsável</a>
 
-            <!-- topbar-mobile (lock) — JS will toggle its display so it only appears on mobile -->
             <div class="topbar-mobile" id="topbar-mobile">
-                <button id="lockButton" aria-haspopup="true" aria-expanded="false" title="Acessos">
-                    <i class="fas fa-lock lock-icon" aria-hidden="true"></i>
-                </button>
-                <div class="lock-popup" id="lockPopup" role="menu" aria-hidden="true">
-                    <a href="https://fieb.edu.br/soualuno" role="menuitem">Sou Aluno</a>
-                    <a href="https://fieb.edu.br/soucolaborador" role="menuitem">Sou Colaborador</a>
-                    <a href="https://fieb.edu.br/souresponsavel" role="menuitem">Sou Responsável</a>
+                <button id="lockButton"><i class="fas fa-lock lock-icon"></i></button>
+                <div class="lock-popup" id="lockPopup">
+                    <a href="https://fieb.edu.br/soualuno">Sou Aluno</a>
+                    <a href="https://fieb.edu.br/soucolaborador">Sou Colaborador</a>
+                    <a href="https://fieb.edu.br/souresponsavel">Sou Responsável</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- HEADER -->
     <header class="header-banner" id="headerBanner">
-        <div class="header-inner" id="headerInner">
-            <div class="logo" id="logoWrap"><a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH"></a></div>
+        <div class="header-inner">
 
-            <!-- hamburger (JS shows when mobile) -->
-            <button class="menu-toggle" id="mobileMenuButton" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav" title="Menu">
+            <div class="logo">
+                <a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg"></a>
+            </div>
+
+            <button class="menu-toggle" id="mobileMenuButton">
                 <span></span><span></span><span></span>
             </button>
 
-            <!-- desktop nav -->
             <nav class="main-nav" id="desktop-nav">
                 <ul>
                     <li>
-                        <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                        <a href="#" class="has-sub">A FIEB <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
                             <li><a href="#">História</a></li>
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
+
                     <li><a href="#">Cursos</a></li>
+
                     <li>
-                        <a href="#" class="has-sub">Unidades <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
+                        <a href="#" class="has-sub">Unidades <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
-                            <li><a href="https://fieb.edu.br/unidade/aldeia-da-serra/">FIEB - Aldeia da Serra</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/alphaville/">FIEB - Alphaville</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/engenho-novo/">FIEB - Engenho Novo</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/jardim-belval/">FIEB - Jardim Belval</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/jardim-paulista/">FIEB - Jardim Paulista</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/maria-cristina/">FIEB - Maria Cristina</a></li>
-                            <li><a href="https://fieb.edu.br/unidade/parque-imperial/">FIEB - Parque Imperial</a></li>
+                            <li><a href="#">FIEB - Aldeia da Serra</a></li>
+                            <li><a href="#">FIEB - Alphaville</a></li>
+                            <li><a href="#">FIEB - Engenho Novo</a></li>
+                            <li><a href="#">FIEB - Jardim Belval</a></li>
+                            <li><a href="#">FIEB - Jardim Paulista</a></li>
+                            <li><a href="#">FIEB - Maria Cristina</a></li>
+                            <li><a href="#">FIEB - Parque Imperial</a></li>
                         </ul>
                     </li>
+
                     <li><a href="#">Notícias</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
             </nav>
         </div>
 
-        <!-- mobile nav in-flow below header-inner -->
-        <div class="mobile-wrap">
-            <nav id="mobile-nav" aria-hidden="true">
-                <!-- JS will append .mobile-inner (clone of desktop UL) here -->
-            </nav>
-        </div>
+        <!-- MOBILE NAV (abaixo do header) -->
+        <nav id="mobile-nav"></nav>
 
-        <div class="links-animados" id="linksAnimados">
-            <a href="https://fieb.edu.br/curso/criatividade/">Criatividade</a>
-            <a href="https://fieb.edu.br/curso/inovacao/">Inovação</a>
-            <a href="https://fieb.edu.br/curso/negocios/">Negócios</a>
-            <a href="https://fieb.edu.br/curso/producao/">Produção</a>
-            <a href="https://fieb.edu.br/curso/bem-estar/">Bem-Estar</a>
-            <a href="https://fieb.edu.br/curso/educacao-basica-ensino-fundamental/">Ensino Regular</a>
+        <div class="links-animados">
+            <a href="#">Criatividade</a>
+            <a href="#">Inovação</a>
+            <a href="#">Negócios</a>
+            <a href="#">Produção</a>
+            <a href="#">Bem-Estar</a>
+            <a href="#">Ensino Regular</a>
         </div>
     </header>
 
-    <div class="seta-wrapper"><img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home" alt="Seta"></div>
-
     <main class="container" style="padding:40px 16px;">
         <h1>Conteúdo de teste</h1>
-        <p>Testes: desktop — dropdowns devem abrir abaixo do item (não abaixo do logo). Mobile — cadeado aparece no topbar, hambúrguer no canto direito, menu abre abaixo do header.</p>
     </main>
 
     <script>
-        /* ---------- Config ---------- */
         const BREAKPOINT = 767;
 
-        /* Elements */
         const bodyEl = document.body;
-        const topbar = document.getElementById('topbar');
-        const topbarDesktop = document.querySelector('.topbar .container'); // desktop links container
-        const topbarMobile = document.getElementById('topbar-mobile');
-        const lockButton = document.getElementById('lockButton');
-        const lockPopup = document.getElementById('lockPopup');
-
-        const desktopNav = document.getElementById('desktop-nav');
-        const mobileNav = document.getElementById('mobile-nav');
-        const mobileBtn = document.getElementById('mobileMenuButton');
+        const desktopNav = document.getElementById("desktop-nav");
+        const mobileNav = document.getElementById("mobile-nav");
+        const mobileBtn = document.getElementById("mobileMenuButton");
+        const headerBanner = document.getElementById("headerBanner");
 
         let mobileCreated = false;
 
-        /* create mobile clone once */
-        function createMobileMenu(){
-          if(mobileCreated) return;
-          const desktopUL = desktopNav.querySelector('ul');
-          if(!desktopUL) return;
-          const clone = desktopUL.cloneNode(true);
+        /* CLONA MENU */
+        function createMobileMenu() {
+            if (mobileCreated) return;
 
-          const inner = document.createElement('div');
-          inner.className = 'mobile-inner';
-          inner.appendChild(clone);
-          mobileNav.appendChild(inner);
+            const ul = desktopNav.querySelector("ul").cloneNode(true);
 
-          // mobile accordion behavior
-          inner.querySelectorAll('li').forEach(li => {
-            const a = li.querySelector('a');
-            const submenu = li.querySelector('.submenu');
-            if(!a) return;
-            a.addEventListener('click', function(e){
-              const isMobile = window.innerWidth <= BREAKPOINT;
-              if(isMobile && submenu){
-                e.preventDefault();
-                li.classList.toggle('active');
-                // close others
-                inner.querySelectorAll('li').forEach(other => { if(other !== li) other.classList.remove('active'); });
-                return;
-              }
-              if(!submenu){
-                closeMobileMenu();
-              }
+            const inner = document.createElement("div");
+            inner.classList.add("mobile-inner");
+            inner.appendChild(ul);
+
+            mobileNav.appendChild(inner);
+
+            inner.querySelectorAll("li").forEach(li => {
+                const a = li.querySelector("a");
+                const submenu = li.querySelector(".submenu");
+
+                if (!a) return;
+
+                a.addEventListener("click", e => {
+                    const isMobile = window.innerWidth <= BREAKPOINT;
+
+                    if (isMobile && submenu) {
+                        e.preventDefault();
+                        li.classList.toggle("active");
+
+                        inner.querySelectorAll("li")
+                            .forEach(other => { if (other !== li) other.classList.remove("active") });
+
+                        refreshBannerOffset();
+                        return;
+                    }
+                });
             });
-          });
 
-          mobileCreated = true;
+            mobileCreated = true;
         }
 
-        /* update layout by JS () */
-        function updateLayout(){
-          const isMobile = window.innerWidth <= BREAKPOINT;
-          if(isMobile){
-            // hide desktop links area and show lock icon and hamburger
-            topbarDesktop.querySelectorAll('a').forEach(a => a.style.display = 'none');
-            topbarMobile.style.display = 'block';
-            mobileBtn.style.display = 'flex';
-            desktopNav.style.display = 'none';
-            bodyEl.classList.add('is-mobile');
+        /* CALCULA DESLOCAMENTO (banner desce) */
+        function refreshBannerOffset() {
+            const isMobile = window.innerWidth <= BREAKPOINT;
+
+            if (!isMobile || !mobileNav.classList.contains("open")) {
+                headerBanner.style.marginTop = "0px";
+                return;
+            }
+
+            const inner = mobileNav.querySelector(".mobile-inner");
+            if (!inner) return;
+
+            const extraGap = 20;
+            const total = inner.offsetHeight + extraGap;
+
+            headerBanner.style.marginTop = total + "px";
+        }
+
+        /* ABRIR MENU */
+        function openMobileMenu() {
             createMobileMenu();
-          } else {
-            // restore desktop view
-            topbarDesktop.querySelectorAll('a').forEach(a => a.style.display = '');
-            topbarMobile.style.display = 'none';
-            mobileBtn.style.display = 'none';
-            desktopNav.style.display = 'flex';
-            closeMobileMenu();
-            closeLock();
-            bodyEl.classList.remove('is-mobile');
-          }
+            mobileNav.classList.add("open");
+            bodyEl.classList.add("menu-open");
+            refreshBannerOffset();
         }
 
-        /* open/close mobile nav */
-        function openMobileMenu(){
-          createMobileMenu();
-          mobileNav.classList.add('open');
-          mobileNav.setAttribute('aria-hidden','false');
-          mobileBtn.setAttribute('aria-expanded','true');
-          bodyEl.classList.add('menu-open');
-        }
-        function closeMobileMenu(){
-          mobileNav.classList.remove('open');
-          mobileNav.setAttribute('aria-hidden','true');
-          mobileBtn.setAttribute('aria-expanded','false');
-          bodyEl.classList.remove('menu-open');
-          mobileNav.querySelectorAll('li.active').forEach(li => li.classList.remove('active'));
+        /* FECHAR MENU */
+        function closeMobileMenu() {
+            mobileNav.classList.remove("open");
+            bodyEl.classList.remove("menu-open");
+
+            mobileNav.querySelectorAll("li.active")
+                .forEach(li => li.classList.remove("active"));
+
+            refreshBannerOffset();
         }
 
-        /* lock popup open/close */
-        function toggleLockPopup(e){
-          const open = lockPopup.classList.toggle('open');
-          lockPopup.setAttribute('aria-hidden', open ? 'false' : 'true');
-          lockButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+        /* UPDATE LAYOUT */
+        function updateLayout() {
+            const isMobile = window.innerWidth <= BREAKPOINT;
+
+            if (isMobile) {
+                document.querySelectorAll(".topbar .container a")
+                    .forEach(a => a.style.display = "none");
+
+                document.getElementById("topbar-mobile").style.display = "block";
+                mobileBtn.style.display = "flex";
+                desktopNav.style.display = "none";
+
+                createMobileMenu();
+                refreshBannerOffset();
+
+            } else {
+                document.querySelectorAll(".topbar .container a")
+                    .forEach(a => a.style.display = "");
+
+                document.getElementById("topbar-mobile").style.display = "none";
+                mobileBtn.style.display = "none";
+                desktopNav.style.display = "flex";
+
+                closeMobileMenu();
+            }
         }
-        function closeLock(){
-          lockPopup.classList.remove('open');
-          lockPopup.setAttribute('aria-hidden','true');
-          lockButton.setAttribute('aria-expanded','false');
-        }
 
-        /* click outside closes things */
-        document.addEventListener('click', function(e){
-          const t = e.target;
-          if(mobileNav.classList.contains('open')){
-            if(!mobileNav.contains(t) && !mobileBtn.contains(t)) closeMobileMenu();
-          }
-          if(lockPopup.classList.contains('open')){
-            if(!lockPopup.contains(t) && !lockButton.contains(t)) closeLock();
-          }
+        /* EVENTOS */
+        mobileBtn.addEventListener("click", () => {
+            if (mobileNav.classList.contains("open")) closeMobileMenu();
+            else openMobileMenu();
         });
 
-        /* Esc key closes */
-        document.addEventListener('keydown', function(e){
-          if(e.key === 'Escape'){
-            if(mobileNav.classList.contains('open')) closeMobileMenu();
-            if(lockPopup.classList.contains('open')) closeLock();
-          }
+        window.addEventListener("resize", () => {
+            updateLayout();
+            refreshBannerOffset();
         });
 
-        /* button events */
-        mobileBtn.addEventListener('click', function(e){
-          if(mobileNav.classList.contains('open')) closeMobileMenu(); else openMobileMenu();
-        });
-        lockButton.addEventListener('click', function(e){
-          e.stopPropagation();
-          toggleLockPopup();
-        });
-
-        /* desktop submenu click behavior: dropdown under the clicked item */
-        desktopNav.querySelectorAll('li > a.has-sub').forEach(link => {
-          link.addEventListener('click', function(e){
-            e.preventDefault();
-            const li = link.parentElement;
-            desktopNav.querySelectorAll('li.active').forEach(other => { if(other !== li) other.classList.remove('active'); });
-            li.classList.toggle('active');
-          });
-        });
-
-        /* init and resize handling */
-        window.addEventListener('load', updateLayout);
-        window.addEventListener('resize', updateLayout);
-        window.addEventListener('orientationchange', () => setTimeout(updateLayout,200));
+        window.addEventListener("load", updateLayout);
     </script>
 
 </body>
