@@ -1,85 +1,91 @@
 @{
     ViewData["Title"] = "";
 }
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>@ViewData["Title"]</title>
 
-    <!-- Font Awesome 5.5 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
     <style>
         :root {
             --site-gutter: 48px;
             --menu-gap: 24px;
-            --topbar-gap: 28px;
+            --breakpoint: 767px;
+        }
+
+        /* RESET */
+        * {
+            box-sizing: border-box;
         }
 
         html, body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden !important;
+            overflow-x: hidden;
             width: 100%;
-            max-width: 100%;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #fff;
-            color: #222;
         }
 
-        /* Topbar */
+        /* TOPBAR */
         .topbar {
             background: #fff;
             border-bottom: 1px solid #e5e5e5;
-            padding: 8px 0;
+            position: relative;
+            z-index: 12050;
         }
 
             .topbar .container {
+                max-width: 1300px;
+                margin: 0 auto;
                 display: flex;
                 justify-content: flex-end;
-                gap: var(--topbar-gap);
-                flex-wrap: wrap;
-            }
-
-            .topbar a {
-                color: #333;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 13px;
-                display: inline-flex;
+                gap: 20px;
+                padding: 6px 18px;
                 align-items: center;
-                gap: 8px;
-                transition: transform 0.2s ease, color 0.2s ease;
             }
 
-                .topbar a:hover {
-                    transform: translateY(-2px);
-                    color: #0d6efd;
+                .topbar .container a {
+                    color: #000;
+                    text-decoration: none;
+                    font-weight: 600;
+                    font-size: 13px;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
                 }
 
-        /* Header / Banner */
+        /* TOPBAR MOBILE (CADEADO) */
+        .topbar-mobile {
+            display: none;
+            margin-left: 8px;
+        }
+
+            .topbar-mobile button {
+                background: transparent;
+                border: 0;
+                cursor: pointer;
+                padding: 6px;
+            }
+
+            .topbar-mobile .lock-icon {
+                font-size: 18px;
+                color: #000;
+            }
+
+        /* HEADER / BANNER (GRADIENTE + IMAGEM) */
         .header-banner {
             position: relative;
             width: 100%;
-            min-height: 750px; /* banner maior */
-            max-height: 100vh;
+            min-height: 650px;
             background-image: url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg');
             background-size: cover;
             background-position: center;
-            display: flex;
-            align-items: flex-start;
             padding: 18px var(--site-gutter);
-            transition: height 0.3s ease;
+            transition: min-height 0.35s ease; /* animação do "dropdown" */
         }
 
             .header-banner::after {
@@ -87,31 +93,53 @@
                 position: absolute;
                 inset: 0;
                 background: linear-gradient(90deg, rgba(124,45,255,0.55) 0%, rgba(0,123,255,0.45) 100%);
-                pointer-events: none;
                 z-index: 1;
+                pointer-events: none;
             }
 
         .header-inner {
             position: relative;
             z-index: 2;
-            width: 100%;
             max-width: 1300px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 8px;
         }
 
         .logo img {
             width: 170px;
+            display: block;
         }
 
-        /* Menu principal */
+        /* LINKS ANIMADOS NO MEIO DO BANNER */
+        .links-animados {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+            z-index: 2;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+            .links-animados a {
+                color: #fff;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+        /* DESKTOP NAV */
         nav.main-nav {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
             gap: var(--menu-gap);
+            z-index: 3;
         }
 
             nav.main-nav ul {
@@ -120,11 +148,6 @@
                 margin: 0;
                 padding: 0;
                 gap: var(--menu-gap);
-                white-space: nowrap;
-            }
-
-            nav.main-nav li {
-                position: relative;
             }
 
             nav.main-nav a {
@@ -132,52 +155,190 @@
                 text-decoration: none;
                 font-weight: 600;
                 font-size: 15px;
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
                 padding: 6px 10px;
-                transition: transform 0.2s ease, opacity 0.2s ease;
+                display: flex;
+                align-items: center;
             }
 
-                nav.main-nav a:hover {
-                    transform: translateY(-3px);
-                    opacity: 0.9;
-                }
+            nav.main-nav li {
+                position: relative;
+            }
 
-            /* Submenus */
+            /* submenu desktop (dropdown) */
             nav.main-nav .submenu {
                 display: none;
                 position: absolute;
-                top: calc(100% + 6px);
+                top: 100%;
                 left: 0;
                 background: #0d6efd;
-                border-radius: 6px;
-                min-width: 200px;
-                z-index: 50;
+                min-width: 230px;
+                padding: 6px 0;
+                border-radius: 0 0 6px 6px;
+                z-index: 999;
             }
-
-                nav.main-nav .submenu li a {
-                    display: block;
-                    padding: 10px 14px;
-                    color: #fff;
-                    font-size: 14px;
-                }
 
             nav.main-nav li.active > .submenu {
                 display: block;
             }
 
-            nav.main-nav li.active > a .dropdown-arrow i {
-                transform: rotate(180deg);
+            nav.main-nav .submenu li a {
+                display: block;
+                color: #fff;
+                padding: 10px 14px;
+                font-size: 14px;
+                font-weight: 600;
             }
 
-        /* Seta Home */
+        /* HAMBURGUER (MOBILE) */
+        .menu-toggle {
+            display: none;
+            width: 36px;
+            height: 30px;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            z-index: 12000;
+        }
+
+            .menu-toggle span {
+                height: 4px;
+                background: #fff;
+                border-radius: 3px;
+                display: block;
+            }
+
+        /* MOBILE NAV (CARD ROXO) */
+        .mobile-wrap {
+            width: 100%;
+            display: block;
+            position: relative;
+            z-index: 1100;
+        }
+
+        #mobile-nav {
+            display: none;
+            width: 100%;
+        }
+
+            #mobile-nav.open {
+                display: block;
+            }
+
+            /* card estreito */
+            #mobile-nav .mobile-inner {
+                max-width: 320px;
+                margin-top: 8px;
+                margin-left: 16px;
+                background: linear-gradient(180deg,#A335FF 0%,#7A1EDC 50%,#5100B8 100%);
+                padding: 6px 0 10px;
+                border-radius: 8px;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+                overflow: hidden;
+            }
+
+            #mobile-nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* apenas nível 1 com borda */
+            #mobile-nav .mobile-inner > ul > li {
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+            }
+
+                #mobile-nav .mobile-inner > ul > li:last-child {
+                    border-bottom: none;
+                }
+
+            #mobile-nav a {
+                display: block;
+                padding: 9px 16px;
+                color: #fff;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 15px;
+            }
+
+            /* SUBMENU MOBILE – COM ANIMAÇÃO */
+            #mobile-nav .submenu {
+                background: rgba(255,255,255,0.04);
+                margin: 4px 10px 8px;
+                padding: 0;
+                border-radius: 6px;
+                border: 1px solid rgba(255,255,255,0.18);
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.25s ease;
+            }
+
+            #mobile-nav li.active > .submenu {
+                max-height: 1000px; /* grande o suficiente para todos os itens */
+            }
+
+            #mobile-nav .submenu li {
+                border-bottom: none;
+            }
+
+            #mobile-nav .submenu a {
+                padding: 7px 18px;
+                color: #fff;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            #mobile-nav a:hover {
+                background: rgba(255,255,255,0.08);
+            }
+
+        /* DESABILITA SUBMENU ABSOLUTO NO MOBILE (USAMOS APENAS O CLONE) */
+        body.is-mobile nav.main-nav .submenu {
+            display: none !important;
+            position: static !important;
+            background: transparent !important;
+            padding: 0 !important;
+            min-width: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        /* POPUP DO CADEADO */
+        .lock-popup {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 18px;
+            width: 200px;
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            z-index: 12010;
+        }
+
+            .lock-popup.open {
+                display: block;
+            }
+
+            .lock-popup a {
+                display: block;
+                padding: 10px 12px;
+                color: #000;
+                text-decoration: none;
+                font-weight: 600;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+            }
+
+                .lock-popup a:last-child {
+                    border-bottom: none;
+                }
+
+        /* SETA */
         .seta-wrapper {
             width: 100%;
             display: flex;
             justify-content: center;
             margin-top: -30px;
-            position: relative;
             z-index: 5;
         }
 
@@ -185,84 +346,79 @@
             width: 75px;
         }
 
-        /* Links animados */
-        .links-animados {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            gap: 40px;
-            z-index: 3;
+        body.menu-open {
+            overflow: hidden;
         }
 
-            .links-animados a {
-                color: #fff;
-                font-weight: 600;
-                text-decoration: none;
-                font-size: 16px;
-                transition: transform .3s, color .3s;
+        /* RESPONSIVO BÁSICO */
+         (max-width: 900px) {
+            .links-animados {
+                bottom: 60px;
+                gap: 24px;
             }
 
-                .links-animados a:hover {
-                    transform: translateY(-5px);
+                .links-animados a {
+                    font-size: 14px;
                 }
-
-        /* Menu Mobile */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 22px;
-            cursor: pointer;
         }
 
-            .menu-toggle span {
-                display: block;
-                height: 3px;
-                background: #fff;
-                border-radius: 2px;
+         (max-width: 767px) {
+            .header-banner {
+                padding: 18px 18px 40px;
             }
+
+            .links-animados {
+                bottom: 40px;
+                padding: 0 16px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Topbar -->
-    <div class="topbar">
+    <!-- TOPBAR -->
+    <div class="topbar" id="topbar">
         <div class="container">
-            <a href="https://fieb.edu.br/soualuno" target="_blank">Sou Aluno <i class="fas fa-book-reader"></i></a>
-            <a href="https://fieb.edu.br/soucolaborador" target="_blank">Sou Colaborador <i class="fas fa-users"></i></a>
-            <a href="https://fieb.edu.br/souresponsavel" target="_blank">Sou Responsável <i class="fas fa-user-shield"></i></a>
+            <a href="https://fieb.edu.br/soualuno" id="link-sou-aluno"><i class="fas fa-book-reader"></i>&nbsp;Sou Aluno</a>
+            <a href="https://fieb.edu.br/soucolaborador" id="link-sou-colaborador"><i class="fas fa-users"></i>&nbsp;Sou Colaborador</a>
+            <a href="https://fieb.edu.br/souresponsavel" id="link-sou-responsavel"><i class="fas fa-user-shield"></i>&nbsp;Sou Responsável</a>
+
+            <div class="topbar-mobile" id="topbar-mobile">
+                <button id="lockButton" aria-haspopup="true" aria-expanded="false" title="Acessos">
+                    <i class="fas fa-lock lock-icon" aria-hidden="true"></i>
+                </button>
+                <div class="lock-popup" id="lockPopup" role="menu" aria-hidden="true">
+                    <a href="https://fieb.edu.br/soualuno" role="menuitem">Sou Aluno</a>
+                    <a href="https://fieb.edu.br/soucolaborador" role="menuitem">Sou Colaborador</a>
+                    <a href="https://fieb.edu.br/souresponsavel" role="menuitem">Sou Responsável</a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Header / Banner -->
-    <header class="header-banner">
-        <div class="header-inner">
-            <div class="logo">
+    <!-- HEADER / BANNER -->
+    <header class="header-banner" id="headerBanner">
+        <div class="header-inner" id="headerInner">
+            <div class="logo" id="logoWrap">
                 <a href="/"><img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg" alt="FIEBTECH"></a>
             </div>
 
-            <!-- Menu Mobile -->
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <!-- HAMBURGER -->
+            <button class="menu-toggle" id="mobileMenuButton" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav" title="Menu">
+                <span></span><span></span><span></span>
+            </button>
 
-            <nav class="main-nav">
+            <!-- MENU DESKTOP -->
+            <nav class="main-nav" id="desktop-nav">
                 <ul>
                     <li>
                         <a href="#" class="has-sub">A FIEB <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
-                            <li><a href="">História</a></li>
+                            <li><a href="#">História</a></li>
                             <li><a href="#">Institucional</a></li>
                         </ul>
                     </li>
-
                     <li><a href="#">Cursos</a></li>
-
                     <li>
                         <a href="#" class="has-sub">Unidades <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span></a>
                         <ul class="submenu">
@@ -275,76 +431,271 @@
                             <li><a href="https://fieb.edu.br/unidade/parque-imperial/">FIEB - Parque Imperial</a></li>
                         </ul>
                     </li>
-
                     <li><a href="#">Notícias</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
             </nav>
         </div>
 
-        <!-- Links animados -->
-        <div class="links-animados">
-            <a href="#">Criatividade</a>
-            <a href="#">Inovação</a>
-            <a href="#">Negócios</a>
-            <a href="#">Produção</a>
-            <a href="#">Bem-Estar</a>
-            <a href="#">Ensino Regular</a>
+        <!-- MOBILE NAV (CLONE) -->
+        <div class="mobile-wrap">
+            <nav id="mobile-nav" aria-hidden="true">
+                <!-- preenchido via JS -->
+            </nav>
+        </div>
+
+        <!-- LINKS NO MEIO DO BANNER -->
+        <div class="links-animados" id="linksAnimados">
+            <a href="https://fieb.edu.br/curso/criatividade/">Criatividade</a>
+            <a href="https://fieb.edu.br/curso/inovacao/">Inovação</a>
+            <a href="https://fieb.edu.br/curso/negocios/">Negócios</a>
+            <a href="https://fieb.edu.br/curso/producao/">Produção</a>
+            <a href="https://fieb.edu.br/curso/bem-estar/">Bem-Estar</a>
+            <a href="https://fieb.edu.br/curso/educacao-basica-ensino-fundamental/">Ensino Regular</a>
         </div>
     </header>
 
-    <!-- Seta -->
     <div class="seta-wrapper">
         <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="seta-home" alt="Seta">
     </div>
 
     <main class="container" style="padding:40px 16px;">
-        <h1></h1>
-        <p></p>
+        <h1>Conteúdo de teste</h1>
+        <p>Testes: desktop — dropdowns devem abrir abaixo do item. Mobile — cadeado no topbar, hambúrguer à direita, menu abre abaixo do header e o banner desce.</p>
     </main>
 
-    <!-- JS FINAL -->
     <script>
-        /* SUBMENUS */
-        document.querySelectorAll('nav.main-nav > ul > li > a.has-sub').forEach(link => {
-            link.addEventListener('click', e => {
-                const li = link.parentElement;
+        const BREAKPOINT = 767;
+
+        const bodyEl = document.body;
+        const topbarDesktop = document.querySelector('.topbar .container');
+        const topbarMobile = document.getElementById('topbar-mobile');
+        const lockButton = document.getElementById('lockButton');
+        const lockPopup = document.getElementById('lockPopup');
+
+        const desktopNav = document.getElementById('desktop-nav');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileBtn = document.getElementById('mobileMenuButton');
+        const headerBanner = document.getElementById('headerBanner');
+
+        let mobileCreated = false;
+        let baseHeaderHeight = null;
+
+        function captureBaseHeaderHeight() {
+            if (!headerBanner) return;
+            baseHeaderHeight = headerBanner.offsetHeight;
+            headerBanner.style.minHeight = baseHeaderHeight + 'px';
+        }
+
+        /* Ajusta somente o necessário para o card caber acima da imagem */
+        function adjustHeaderForMobileMenu() {
+            const isMobile = window.innerWidth <= BREAKPOINT;
+            if (!headerBanner) return;
+
+            if (!isMobile || !mobileNav.classList.contains('open')) {
+                // volta ao tamanho base
+                if (baseHeaderHeight) {
+                    headerBanner.style.minHeight = baseHeaderHeight + 'px';
+                } else {
+                    headerBanner.style.minHeight = '';
+                }
+                return;
+            }
+
+            const inner = mobileNav.querySelector('.mobile-inner');
+            if (!inner) return;
+
+            const headerRect = headerBanner.getBoundingClientRect();
+            const menuRect = inner.getBoundingClientRect();
+            const overflow = menuRect.bottom - headerRect.bottom;
+
+            if (overflow > 0) {
+                headerBanner.style.minHeight = (headerBanner.offsetHeight + overflow + 16) + 'px';
+            }
+        }
+
+        /* Clona o menu para o mobile uma única vez */
+        function createMobileMenu() {
+            if (mobileCreated) return;
+            if (!desktopNav) return;
+
+            const desktopUL = desktopNav.querySelector('ul');
+            if (!desktopUL) return;
+
+            const clone = desktopUL.cloneNode(true);
+
+            const inner = document.createElement('div');
+            inner.className = 'mobile-inner';
+            inner.appendChild(clone);
+            mobileNav.appendChild(inner);
+
+            // comportamento accordion no mobile
+            inner.querySelectorAll('li').forEach(li => {
+                const a = li.querySelector('a');
                 const submenu = li.querySelector('.submenu');
-                if (!submenu) return;
-                e.preventDefault();
+                if (!a) return;
 
-                document.querySelectorAll('nav.main-nav li.active').forEach(activeLi => {
-                    if (activeLi !== li) activeLi.classList.remove('active');
+                a.addEventListener('click', function (e) {
+                    const isMobile = window.innerWidth <= BREAKPOINT;
+
+                    if (isMobile && submenu) {
+                        e.preventDefault();
+                        const isActive = li.classList.contains('active');
+
+                        // fecha todos
+                        inner.querySelectorAll('li.active').forEach(other => {
+                            other.classList.remove('active');
+                        });
+
+                        // reabre só o clicado, se não estava ativo
+                        if (!isActive) {
+                            li.classList.add('active');
+                        }
+
+                        // submenu mudou -> ajusta banner
+                        adjustHeaderForMobileMenu();
+                        return;
+                    }
+
+                    // link simples: fecha menu
+                    if (!submenu) {
+                        closeMobileMenu();
+                    }
                 });
-
-                li.classList.toggle('active');
             });
-        });
 
-        document.addEventListener('click', e => {
-            const nav = document.querySelector('nav.main-nav');
-            if (!nav.contains(e.target)) {
-                document.querySelectorAll('nav.main-nav li.active').forEach(li => li.classList.remove('active'));
+            mobileCreated = true;
+        }
+
+        /* Layout responsivo */
+        function updateLayout() {
+            const isMobile = window.innerWidth <= BREAKPOINT;
+
+            if (isMobile) {
+                topbarDesktop.querySelectorAll('a').forEach(a => a.style.display = 'none');
+                topbarMobile.style.display = 'block';
+                mobileBtn.style.display = 'flex';
+                desktopNav.style.display = 'none';
+                bodyEl.classList.add('is-mobile');
+                createMobileMenu();
+                adjustHeaderForMobileMenu();
+            } else {
+                topbarDesktop.querySelectorAll('a').forEach(a => a.style.display = '');
+                topbarMobile.style.display = 'none';
+                mobileBtn.style.display = 'none';
+                desktopNav.style.display = 'flex';
+                closeMobileMenu();
+                closeLock();
+                bodyEl.classList.remove('is-mobile');
+                if (baseHeaderHeight) {
+                    headerBanner.style.minHeight = baseHeaderHeight + 'px';
+                } else {
+                    headerBanner.style.minHeight = '';
+                }
+            }
+        }
+
+        /* Abrir / fechar menu mobile */
+        function openMobileMenu() {
+            createMobileMenu();
+            mobileNav.classList.add('open');
+            mobileNav.setAttribute('aria-hidden', 'false');
+            mobileBtn.setAttribute('aria-expanded', 'true');
+            bodyEl.classList.add('menu-open');
+            adjustHeaderForMobileMenu();
+        }
+
+        function closeMobileMenu() {
+            mobileNav.classList.remove('open');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            mobileBtn.setAttribute('aria-expanded', 'false');
+            bodyEl.classList.remove('menu-open');
+            mobileNav.querySelectorAll('li.active').forEach(li => li.classList.remove('active'));
+            adjustHeaderForMobileMenu();
+        }
+
+        /* Lock popup */
+        function toggleLockPopup() {
+            const open = lockPopup.classList.toggle('open');
+            lockPopup.setAttribute('aria-hidden', open ? 'false' : 'true');
+            lockButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        function closeLock() {
+            lockPopup.classList.remove('open');
+            lockPopup.setAttribute('aria-hidden', 'true');
+            lockButton.setAttribute('aria-expanded', 'false');
+        }
+
+        // click fora fecha coisas
+        document.addEventListener('click', function (e) {
+            const t = e.target;
+            if (mobileNav.classList.contains('open')) {
+                if (!mobileNav.contains(t) && !mobileBtn.contains(t)) closeMobileMenu();
+            }
+            if (lockPopup.classList.contains('open')) {
+                if (!lockPopup.contains(t) && !lockButton.contains(t)) closeLock();
             }
         });
 
-        /* Mobile Menu Toggle */
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mainNav = document.querySelector('nav.main-nav');
-
-        mobileMenu.addEventListener('click', () => {
-            mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
-            mainNav.style.flexDirection = 'column';
+        // ESC fecha
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                if (mobileNav.classList.contains('open')) closeMobileMenu();
+                if (lockPopup.classList.contains('open')) closeLock();
+            }
         });
 
-        /* Ajuste de altura do banner */
-        function ajustarAlturaBanner() {
-            const banner = document.querySelector('.header-banner');
-            banner.style.height = (window.innerHeight * 0.9) + 'px';
-        }
+        // botões
+        mobileBtn.addEventListener('click', function () {
+            if (mobileNav.classList.contains('open')) closeMobileMenu();
+            else openMobileMenu();
+        });
 
-        window.addEventListener('load', ajustarAlturaBanner);
-        window.addEventListener('resize', ajustarAlturaBanner);
+        lockButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleLockPopup();
+        });
+
+        // submenu desktop (clique)
+        desktopNav.querySelectorAll('li > a.has-sub').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const isMobile = window.innerWidth <= BREAKPOINT;
+                if (isMobile) return; // no desktop only
+
+                e.preventDefault();
+                const li = link.parentElement;
+                const already = li.classList.contains('active');
+
+                desktopNav.querySelectorAll('li.active').forEach(other => {
+                    other.classList.remove('active');
+                });
+
+                if (!already) {
+                    li.classList.add('active');
+                }
+            });
+        });
+
+        // init
+        window.addEventListener('load', function () {
+            captureBaseHeaderHeight();
+            updateLayout();
+        });
+
+        window.addEventListener('resize', function () {
+            captureBaseHeaderHeight();
+            updateLayout();
+            adjustHeaderForMobileMenu();
+        });
+
+        window.addEventListener('orientationchange', function () {
+            setTimeout(function () {
+                captureBaseHeaderHeight();
+                updateLayout();
+                adjustHeaderForMobileMenu();
+            }, 200);
+        });
     </script>
 
 </body>
