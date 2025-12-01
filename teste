@@ -32,9 +32,9 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-            body.menu-open {
-                overflow: hidden;
-            }
+        body.menu-open {
+            overflow: hidden;
+        }
 
         /* ------------------------------ TOPBAR ------------------------------ */
 
@@ -87,18 +87,12 @@
         .header-banner {
             position: relative;
             width: 100%;
-            min-height: var(--banner-desktop);
+            min-height: var(--banner-desktop); /* valor padrão, JS troca no mobile */
             background-image: url('https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg');
             background-size: cover;
             background-position: center;
             padding: 18px var(--site-gutter);
             transition: transform 0.35s ease;
-        }
-
-         (max-width: 767px) {
-            .header-banner {
-                min-height: var(--banner-mobile);
-            }
         }
 
         .header-banner::after {
@@ -202,7 +196,7 @@
         /* ------------------------------ HAMBURGER ------------------------------ */
 
         .menu-toggle {
-            display: none;
+            display: none; /* JS vai mostrar só no mobile */
             flex-direction: column;
             width: 36px;
             height: 28px;
@@ -219,12 +213,6 @@
                 border-radius: 4px;
                 display: block;
             }
-
-         (max-width: 767px) {
-            .menu-toggle {
-                display: flex;
-            }
-        }
 
         /* ------------------------------ MOBILE NAV ------------------------------ */
 
@@ -471,6 +459,9 @@
         const mobileBtn = document.getElementById("mobileMenuButton");
         const headerBanner = document.getElementById("headerBanner");
 
+        const BANNER_DESKTOP = 650;
+        const BANNER_MOBILE = 340;
+
         let mobileCreated = false;
 
         function createMobileMenu() {
@@ -557,6 +548,10 @@
 
                 bodyEl.classList.add("is-mobile");
                 createMobileMenu();
+
+                // altura menor no mobile
+                headerBanner.style.minHeight = BANNER_MOBILE + "px";
+
                 refreshBannerOffset();
             } else {
                 topbarDesktop.querySelectorAll("a").forEach(a => a.style.display = "");
@@ -567,13 +562,16 @@
 
                 closeMobileMenu();
                 bodyEl.classList.remove("is-mobile");
+
+                // altura padrão do desktop
+                headerBanner.style.minHeight = BANNER_DESKTOP + "px";
                 headerBanner.style.transform = "translateY(0)";
             }
         }
 
         function toggleLockPopup() {
             const open = lockPopup.classList.toggle("open");
-            lockPopup.setAttribute("aria-hidden", !open);
+            lockPopup.setAttribute("aria-hidden", (!open).toString());
         }
 
         function closeLock() {
