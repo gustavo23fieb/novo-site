@@ -1,0 +1,124 @@
+@{
+    ViewData["Title"] = "Início";
+}
+
+@section Styles {
+    <style>
+        /* HERO FIEBTECH */
+        .ft-hero {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 76px); /* tela cheia considerando altura do header */
+            min-height: 520px;
+            background-image: url("https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+            /* camada opcional se quiser dar um leve escurecido (bem suave) */
+            .ft-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(90deg, rgba(0,0,0,0.12), rgba(0,0,0,0.02));
+                pointer-events: none;
+            }
+
+        .ft-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 40px 24px 72px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        /* não precisamos de textos aqui – tudo já está na própria imagem */
+
+        /* SETA LARANJA NO RODAPÉ DO BANNER */
+        .ft-hero-arrow {
+            position: absolute;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: #ff7b22;
+            animation: ft-arrow-bounce 1.4s infinite;
+        }
+
+         ft-arrow-bounce {
+            0%, 100% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, 8px);
+            }
+        }
+
+        /* RESPONSIVO */
+         (max-width: 768px) {
+            .ft-hero {
+                height: calc(100vh - 64px);
+                min-height: 460px;
+                background-position: center top;
+            }
+
+            .ft-hero-inner {
+                padding: 32px 16px 64px;
+            }
+        }
+
+         (max-width: 480px) {
+            .ft-hero {
+                min-height: 420px;
+            }
+        }
+
+        /* Seções abaixo do banner (placeholder por enquanto) */
+        .ft-section {
+            padding: 48px 0;
+        }
+
+        .ft-section-title {
+            font-size: 24px;
+            color: #003366;
+            margin-bottom: 8px;
+        }
+
+        .ft-section-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 24px;
+        }
+    </style>
+}
+
+<!-- HERO FIEBTECH (tela cheia) -->
+<section class="ft-hero">
+    <div class="ft-hero-inner">
+        <!-- Não precisamos de conteúdo textual aqui, a arte já está na imagem -->
+    </div>
+
+    <!-- Seta laranja indicando rolagem -->
+    <div class="ft-hero-arrow">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- EXEMPLO DE SEÇÃO ABAIXO (você pode customizar depois) -->
+<section class="ft-section">
+    <div class="container">
+        <h2 class="ft-section-title">Bem-vindo à FIEBTECH</h2>
+        <p class="ft-section-subtitle">
+            Aqui você pode colocar os textos e blocos de conteúdo que vêm logo abaixo do banner,
+            como destaques, notícias, cursos, etc.
+        </p>
+    </div>
+</section>
