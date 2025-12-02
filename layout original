@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] FIEB </title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="https://stgwebfiebbrs001.blob.core.windows.net/web/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/site.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <!-- HEADER -->
+    @RenderSection("Header", required: false)
+
+    <!-- CONTEÚDO -->
+    <div class="container-fluid p-0 m-0">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-3" style=>
+        
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
