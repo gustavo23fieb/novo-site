@@ -4,7 +4,7 @@
 
 @section Styles {
     <style>
-      
+
         .ft-hero {
             position: relative;
             width: 100%;
@@ -18,13 +18,13 @@
         }
 
 
-        ft-hero::before {
+        .ft-hero::before {
             content: "";
             position: absolute;
             inset: 0;
             pointer-events: none;
             background: linear-gradient(90deg, rgba(150, 0, 200, 0.05) 0%, rgba(0, 120, 255, 0.07) 100% );
-            opacity: 1; 
+            opacity: 1;
         }
 
         .ft-hero-inner {
@@ -39,8 +39,8 @@
         }
 
         /* ============================
-                   SETA LARANJA
-                ============================ */
+                           SETA LARANJA
+                        ============================ */
         .ft-hero-arrow {
             position: absolute;
             left: 50%;
@@ -57,7 +57,7 @@
             filter: brightness(1.25);
         }
 
-         ft-arrow-bounce {
+        @@keyframes.ft-arrow-bounce {
             0%, 100% {
                 transform: translate(-50%, 0);
             }
@@ -68,9 +68,9 @@
         }
 
         /* ============================
-                   RESPONSIVO
-                ============================ */
-         (max-width: 768px) {
+                           RESPONSIVO
+                        ============================ */
+        @@media(max-width: 768px) {
             .ft-hero {
                 height: calc(100vh - 64px);
                 min-height: 420px;
@@ -85,7 +85,7 @@
             }
         }
 
-         (max-width: 480px) {
+        @@media(max-width: 480px) {
             .ft-hero {
                 min-height: 420px;
             }
@@ -97,8 +97,8 @@
         }
 
         /* ============================
-                   SEÇÕES ABAIXO
-                ============================ */
+                           SEÇÕES ABAIXO
+                        ============================ */
         .ft-section {
             padding: 48px 0;
         }
@@ -138,4 +138,3 @@
         <p class="ft-section-subtitle"></p>
     </div>
 </section>
-
