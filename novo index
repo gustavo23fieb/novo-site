@@ -8,86 +8,65 @@
         .ft-hero {
             position: relative;
             width: 100%;
-            height: calc(100vh - 76px);
-            min-height: 520px;
+            height: 700px;
             background-image: url("https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg");
-            background-size: 165% auto;
-            background-position: center -40px;
+            background-size: cover;
+            background-position: center top;
             background-repeat: no-repeat;
-            filter: none !important;
+            overflow: hidden;
         }
 
+            /* GRADIENTE*/
+            .ft-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background: linear-gradient(90deg, rgba(150, 0, 200, 0.05) 0%, rgba(0, 120, 255, 0.07) 100%);
+                z-index: 1;
+            }
 
-        .ft-hero::before {
-            content: "";
+        /* ANIMAÇÃO */
+        .ft-svg-anim {
             position: absolute;
             inset: 0;
-            pointer-events: none;
-            background: linear-gradient(90deg, rgba(150, 0, 200, 0.05) 0%, rgba(0, 120, 255, 0.07) 100% );
-            opacity: 1;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            opacity: 0;
+            animation: fadeSvg .8s ease forwards;
+            animation-delay: .4s;
         }
 
-        .ft-hero-inner {
-            position: relative;
-            z-index: 2;
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 40px 24px 72px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+        @@keyframes fadeSvg {
+            0% {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
-        /* ============================
-                           SETA LARANJA
-                        ============================ */
+        /* SETA */
         .ft-hero-arrow {
             position: absolute;
             left: 50%;
-            bottom: 18px;
+            bottom: 30px;
             transform: translateX(-50%);
-            animation: ft-arrow-bounce 1.4s infinite;
-            z-index: 5;
+            z-index: 6;
         }
 
         .ft-hero-arrow-img {
-            width: 95px;
-            height: 95px;
-            display: block;
-            filter: brightness(1.25);
+            width: 85px;
+            height: 85px;
         }
 
-        @@keyframes.ft-arrow-bounce {
-            0%, 100% {
-                transform: translate(-50%, 0);
-            }
-
-            50% {
-                transform: translate(-50%, 8px);
-            }
-        }
-
-        /* ============================
-                           RESPONSIVO
-                        ============================ */
-        @@media(max-width: 768px) {
+        @@media (max-width: 768px) {
             .ft-hero {
-                height: calc(100vh - 64px);
-                min-height: 420px;
-                /* Zoom maior no mobile */
-                background-size: 200%;
-                background-position: center -20px;
-            }
-
-            .ft-hero-arrow-img {
-                width: 80px;
-                height: 80px;
-            }
-        }
-
-        @@media(max-width: 480px) {
-            .ft-hero {
-                min-height: 420px;
+                height: 500px;
             }
 
             .ft-hero-arrow-img {
@@ -96,42 +75,115 @@
             }
         }
 
-        /* ============================
-                           SEÇÕES ABAIXO
-                        ============================ */
-        .ft-section {
-            padding: 48px 0;
+        @@media (max-width: 480px) {
+            .ft-hero {
+                height: 420px;
+            }
+
+            .ft-hero-arrow-img {
+                width: 60px;
+                height: 60px;
+            }
         }
 
-        .ft-section-title {
-            font-size: 24px;
-            color: #003366;
-            margin-bottom: 8px;
-        }
-
-        .ft-section-subtitle {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 24px;
-        }
     </style>
 }
 
-<!-- ============================
-     HERO FIEBTECH (Banner)
-============================ -->
-<section class="ft-hero">
-    <div class="ft-hero-inner"></div>
+<!-- =========================================================================
+     🔵 BANNER 
+============================================================================ -->
 
-    <!-- Seta oficial -->
+<section class="ft-hero">
+
+    <!-- ===== SVG OFICIAL CORRIGIDO ===== -->
+    <svg class="ft-svg-anim" viewBox="0 0 1152 590" xmlns="http://www.w3.org/2000/svg">
+
+        <g fill="none" fill-rule="evenodd">
+            <polygon stroke="#fff" stroke-width="1"
+                     points="89.07775968,229.84810592 545.85623216,35.33091648 854.67720976,440.24140528 396.71971488,551.80922608">
+            </polygon>
+
+            <polygon stroke="#fff" stroke-width="1"
+                     points="430.4066584032061,348.8367544946947
+                        914.1036050808779,47.06158090450381
+                        961.5699039085115,358.61289832492366
+                        909.937448855458,521.1212213289313">
+            </polygon>
+        </g>
+
+        <!-- Criatividade -->
+        <g transform="translate(84.0778,-41.3698)">
+            <g transform="translate(0 264)">
+                <circle cx="10" cy="10" r="10" fill="#c65f16" />
+            </g>
+            <text x="28" y="285" fill="#fff" font-size="24"
+                  font-family="CeraPro-Medium, sans-serif">
+                Criatividade
+            </text>
+        </g>
+
+        <!-- Inovação -->
+        <g transform="translate(-113.015,25.4204)">
+            <g transform="translate(650 0)">
+                <circle cx="10" cy="10" r="10" fill="#c65f16" />
+            </g>
+            <text x="680" y="20" fill="#fff" font-size="24">
+                Inovação
+            </text>
+        </g>
+
+        <!-- Negócios -->
+        <g transform="translate(-39.8056,23.4629)">
+            <g transform="translate(428 518)">
+                <circle cx="10" cy="10" r="10" fill="#c65f16" />
+            </g>
+            <text x="458" y="538" fill="#fff" font-size="24">
+                Negócios
+            </text>
+        </g>
+
+        <!-- Produção -->
+        <g transform="translate(-62.7566,0)">
+            <g transform="translate(485 340)">
+                <circle cx="10" cy="10" r="10" fill="#c65f16" />
+            </g>
+            <text x="510" y="355" fill="#fff" font-size="24">
+                Produção
+            </text>
+        </g>
+
+        <!-- Bem-Estar -->
+        <g transform="translate(-62.7566,25.1026)">
+            <g transform="translate(1016 321)">
+                <circle cx="10" cy="10" r="10" fill="#c65f16" />
+            </g>
+            <text x="1040" y="340" fill="#fff" font-size="24">
+                Bem-Estar
+            </text>
+        </g>
+
+        <!-- Ensino Regular -->
+        <g transform="translate(-58.5728,-54.389)">
+            <g transform="translate(956 563)">
+                <circle cx="10" cy="10" r="10" fill="#c65f16" />
+            </g>
+            <text x="980" y="580" fill="#fff" font-size="24">
+                Ensino Regular
+            </text>
+        </g>
+
+    </svg>
+
+    <!-- SETA -->
     <div class="ft-hero-arrow">
         <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png"
-             alt="Role a página"
              class="ft-hero-arrow-img" />
     </div>
+
 </section>
 
-<!-- Seção abaixo do banner -->
+<!-- ============================================================ -->
+
 <section class="ft-section">
     <div class="container">
         <h2 class="ft-section-title"></h2>
