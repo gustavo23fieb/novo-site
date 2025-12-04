@@ -134,11 +134,19 @@
 @section Scripts {
     <script>
 
-        const ampX = 5.4;   
-        const ampY = 3.8;   
-        const speed = 0.036; 
-
         let t = 0;
+
+        const speed = 0.015;
+
+        // Amplitudes iguais ao site oficial
+        const A1 = 22;
+        const A2 = 9;
+        const A3 = 3.8;
+
+        // Frequências
+        const F1 = 0.55;
+        const F2 = 1.45;
+        const F3 = 2.35;
 
         const leftBase = [
             [21.5419,260.3272],
@@ -154,60 +162,65 @@
             [868.2518,554.5373]
         ];
 
-        // fases suavizadas porém independentes (mantêm a organicidade)
-        const phasePoly = [0.0, 1.4, 2.9, 4.5];
-        const phaseDots =  [0.3, 1.0, 1.9, 2.6, 3.4, 4.3];
+        const phaseLeft  = [0.2, 1.8, 3.7, 5.4];
+        const phaseRight = [1.1, 2.6, 4.2, 6.0];
 
-        const dots = {
-            dotCriatividade : leftBase[0],
-            dotInovacao     : leftBase[1],
-            dotNegocios     : leftBase[3],
+        const dotLinks = {
+            dotCriatividade: { base: leftBase[0], phase: phaseLeft[0] },
+            dotInovacao:     { base: leftBase[1], phase: phaseLeft[1] },
+            dotNegocios:     { base: leftBase[3], phase: phaseLeft[3] },
 
-            dotProducao     : rightBase[0],
-            dotBemEstar     : rightBase[2],
-            dotEnsinoReg    : rightBase[3]
+            dotProducao:     { base: rightBase[0], phase: phaseRight[0] },
+            dotBemEstar:     { base: rightBase[2], phase: phaseRight[2] },
+            dotEnsinoReg:    { base: rightBase[3], phase: phaseRight[3] }
         };
 
-        function drift(t, phase){
-            return [
-                Math.cos(t + phase) * ampX * 1.1 +
-                Math.sin((t + phase) * 0.55) * ampX * 0.45,
+        function drift(t, phase) {
 
-                Math.sin(t + phase) * ampY * 1.15 +
-                Math.cos((t + phase) * 0.32) * ampY * 0.33
-            ];
+            const dx =
+                  Math.cos(t * F1 + phase) * A1
+                + Math.sin(t * F2 + phase * 1.4) * A2
+                + Math.sin(t * F3 + phase * 0.7) * A3;
+
+            const dy =
+                  Math.sin(t * F1 + phase) * A1 * 0.8
+                + Math.cos(t * F2 + phase * 1.2) * A2 * 0.9
+                + Math.sin(t * F3 + phase * 0.5) * A3 * 0.7;
+
+            return [dx, dy];
         }
 
-        function animate(){
+        function animate() {
+
             t += speed;
 
-            const leftPts = leftBase.map(([x,y], i)=>{
-                const [dx,dy] = drift(t, phasePoly[i]);
-                return `${x+dx},${y+dy}`;
+            // Left polygon
+            const leftPts = leftBase.map(([x,y], i) => {
+                const [dx, dy] = drift(t, phaseLeft[i]);
+                return `${x + dx},${y + dy}`;
             }).join(" ");
+            document.getElementById("polyLeft").setAttribute("points", leftPts);
 
-            const rightPts = rightBase.map(([x,y], i)=>{
-                const [dx,dy] = drift(t, phasePoly[i]);
-                return `${x+dx},${y+dy}`;
+            // Right polygon
+            const rightPts = rightBase.map(([x,y], i) => {
+                const [dx, dy] = drift(t, phaseRight[i]);
+                return `${x + dx},${y + dy}`;
             }).join(" ");
+            document.getElementById("polyRight").setAttribute("points", rightPts);
 
-            polyLeft.setAttribute("points", leftPts);
-            polyRight.setAttribute("points", rightPts);
-
-            let index = 0;
-            Object.entries(dots).forEach(([id, base])=>{
-                const dot = document.getElementById(id);
-                const [dx,dy] = drift(t, phaseDots[index]);
-                dot.setAttribute("transform",
-                    `translate(${base[0] + dx}, ${base[1] + dy})`
-                );
-                index++;
+            // Bolinhas + textos
+            Object.entries(dotLinks).forEach(([id, cfg]) => {
+                const el = document.getElementById(id);
+                const [bx, by] = cfg.base;
+                const [dx, dy] = drift(t, cfg.phase);
+                el.setAttribute("transform", `translate(${bx + dx}, ${by + dy})`);
             });
 
             requestAnimationFrame(animate);
         }
 
-        animate();
+        // GARANTE QUE O SVG EXISTE NO DOM
+        window.onload = animate;
 
     </script>
 }
