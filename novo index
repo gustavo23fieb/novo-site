@@ -85,22 +85,42 @@
             868.2518,554.5373
         " />
 
-        <!-- BOLINHAS CORRETAS -->
-        <g id="dotCriatividade"><circle r="10" fill="#c65f16" /></g>
-        <g id="dotInovacao"><circle r="10" fill="#c65f16" /></g>
-        <g id="dotProducao"><circle r="10" fill="#c65f16" /></g>
-        <g id="dotNegocios"><circle r="10" fill="#c65f16" /></g>
+        <!-- BOLINHAS + TEXTOS AGRUPADOS (animam juntos) -->
+        <!-- Criatividade (vértice 0 do polígono esquerdo) -->
+        <g id="dotCriatividade">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Criatividade</text>
+        </g>
 
-        <g id="dotBemEstar"><circle r="10" fill="#c65f16" /></g>
-        <g id="dotEnsinoReg"><circle r="10" fill="#c65f16" /></g>
+        <!-- Inovação (vértice 1 do polígono esquerdo) -->
+        <g id="dotInovacao">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Inovação</text>
+        </g>
 
-        <!-- TEXTOS -->
-        <text x="42" y="255" fill="#fff" font-size="24">Criatividade</text>
-        <text x="618" y="10" fill="#fff" font-size="24">Inovação</text>
-        <text x="840" y="420" fill="#fff" font-size="24">Produção</text>
-        <text x="430" y="570" fill="#fff" font-size="24">Negócios</text>
-        <text x="1015" y="355" fill="#fff" font-size="24">Bem-Estar</text>
-        <text x="890" y="585" fill="#fff" font-size="24">Ensino Regular</text>
+        <!-- Produção (segue polígono direito, junto com Bem-Estar / Ensino Regular) -->
+        <g id="dotProducao">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Produção</text>
+        </g>
+
+        <!-- Negócios (vértice 3 do polígono esquerdo) -->
+        <g id="dotNegocios">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Negócios</text>
+        </g>
+
+        <!-- Bem-Estar (vértice 2 do polígono direito) -->
+        <g id="dotBemEstar">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Bem-Estar</text>
+        </g>
+
+        <!-- Ensino Regular (vértice 3 do polígono direito) -->
+        <g id="dotEnsinoReg">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Ensino Regular</text>
+        </g>
 
     </svg>
 
@@ -113,11 +133,11 @@
 
 @section Scripts {
     <script>
+        // Mesma animação que você já tinha (ajustando apenas o mapeamento)
 
-        // Movimentos REALISTAS como no banner original
         const ampX = 3.2;     // amplitude perceptível, porém suave
         const ampY = 2.1;
-        const speed = 0.035;  // velocidade real do site — suave porém constante
+        const speed = 0.035;  // velocidade suave porém constante
 
         let t = 0;
 
@@ -140,18 +160,20 @@
         const phaseL = [0.0, 1.9, 3.8, 5.4];
         const phaseR = [1.2, 2.7, 4.3, 6.1];
 
-        // Bolinhas mapeadas aos vértices reais
+        // Bolinhas mapeadas aos vértices corretos
         const dotLinks = {
-            dotCriatividade : leftBase[0],
-            dotInovacao     : leftBase[1],
-            dotProducao     : leftBase[2],
-            dotNegocios     : leftBase[3],
+            dotCriatividade : leftBase[0], // vértice 0 esquerdo
+            dotInovacao     : leftBase[1], // vértice 1 esquerdo
+            dotNegocios     : leftBase[3], // vértice 3 esquerdo
 
-            dotBemEstar     : rightBase[2],
-            dotEnsinoReg    : rightBase[3]
+            // Produção agora segue o polígono direito
+            dotProducao     : rightBase[0], // vértice 0 direito
+
+            dotBemEstar     : rightBase[2], // vértice 2 direito
+            dotEnsinoReg    : rightBase[3]  // vértice 3 direito
         };
 
-        // Função de movimento orgânico real
+        // Função de movimento orgânico
         function drift(t, phase) {
             return [
                 Math.cos(t + phase) * ampX +
@@ -163,7 +185,6 @@
         }
 
         function animate() {
-
             t += speed;
 
             // --- POLÍGONO ESQUERDO ---
@@ -171,25 +192,26 @@
                 const [dx, dy] = drift(t, phaseL[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
-
-            polyLeft.setAttribute("points", leftPts);
+            document.getElementById("polyLeft").setAttribute("points", leftPts);
 
             // --- POLÍGONO DIREITO ---
             const rightPts = rightBase.map(([x,y], i) => {
                 const [dx, dy] = drift(t, phaseR[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
+            document.getElementById("polyRight").setAttribute("points", rightPts);
 
-            polyRight.setAttribute("points", rightPts);
-
-            // --- BOLINHAS GRUDADAS NOS VÉRTICES CERTOS ---
+            // --- BOLINHAS + TEXTOS (todo o grupo <g> se move) ---
             let index = 0;
             Object.entries(dotLinks).forEach(([id, base]) => {
                 const dot = document.getElementById(id);
                 const [dx, dy] = drift(t, index * 1.65);
-                dot.setAttribute("transform",
+
+                dot.setAttribute(
+                    "transform",
                     `translate(${base[0] + dx}, ${base[1] + dy})`
                 );
+
                 index++;
             });
 
@@ -197,8 +219,5 @@
         }
 
         animate();
-
     </script>
 }
-
-
