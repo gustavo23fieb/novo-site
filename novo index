@@ -8,7 +8,7 @@
         .ft-hero {
             position: relative;
             width: 100%;
-            height: 700px;
+            height: 820px;
             background-image: url("https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg");
             background-size: cover;
             background-position: center top;
@@ -133,15 +133,23 @@
 
 @section Scripts {
     <script>
-        // Mesma animação que você já tinha (ajustando apenas o mapeamento)
-
-        const ampX = 3.2;     // amplitude perceptível, porém suave
-        const ampY = 2.1;
-        const speed = 0.035;  // velocidade suave porém constante
 
         let t = 0;
 
-        // Pontos exatos dos vértices
+        // Velocidade do banner original
+        const speed = 0.035;
+
+        // Amplitudes melhoradas 
+        const A1 = 28;   // onda principal grande
+        const A2 = 11;   // micro-onda
+        const A3 = 4.2;  // vibração fina
+
+        // Frequências — mantêm fluidez orgânica
+        const F1 = 0.48;
+        const F2 = 1.32;
+        const F3 = 2.20;
+
+        // Pontos originais dos polígonos
         const leftBase = [
             [21.5419,260.3272],
             [598.1857,24],
@@ -156,68 +164,70 @@
             [868.2518,554.5373]
         ];
 
-        // Fases independentes — ESSENCIAL para movimento orgânico
-        const phaseL = [0.0, 1.9, 3.8, 5.4];
-        const phaseR = [1.2, 2.7, 4.3, 6.1];
+        // Fases ajustadas → colam bolinhas exatamente nos vértices
+        const phaseLeft  = [0.25, 2.15, 4.10, 5.65];
+        const phaseRight = [1.35, 3.05, 4.90, 6.50];
 
-        // Bolinhas mapeadas aos vértices corretos
+        // Mapeamento bolinhas ↔ vértices
         const dotLinks = {
-            dotCriatividade : leftBase[0], // vértice 0 esquerdo
-            dotInovacao     : leftBase[1], // vértice 1 esquerdo
-            dotNegocios     : leftBase[3], // vértice 3 esquerdo
+            dotCriatividade: { base: leftBase[0], phase: phaseLeft[0] },
+            dotInovacao:     { base: leftBase[1], phase: phaseLeft[1] },
+            dotNegocios:     { base: leftBase[3], phase: phaseLeft[3] },
 
-            // Produção agora segue o polígono direito
-            dotProducao     : rightBase[0], // vértice 0 direito
-
-            dotBemEstar     : rightBase[2], // vértice 2 direito
-            dotEnsinoReg    : rightBase[3]  // vértice 3 direito
+            dotProducao:     { base: rightBase[0], phase: phaseRight[0] },
+            dotBemEstar:     { base: rightBase[2], phase: phaseRight[2] },
+            dotEnsinoReg:    { base: rightBase[3], phase: phaseRight[3] }
         };
 
-        // Função de movimento orgânico
+        // Movimento refinado — totalmente orgânico
         function drift(t, phase) {
-            return [
-                Math.cos(t + phase) * ampX +
-                Math.sin((t + phase) * 0.6) * (ampX * 0.35),
 
-                Math.sin(t + phase) * ampY +
-                Math.cos((t + phase) * 0.35) * (ampY * 0.28)
-            ];
+            const dx =
+                  Math.cos(t * F1 + phase) * A1
+                + Math.sin(t * F2 + phase * 1.4) * A2
+                + Math.sin(t * F3 + phase * 0.7) * A3;
+
+            const dy =
+                  Math.sin(t * F1 + phase) * (A1 * 0.92)
+                + Math.cos(t * F2 + phase * 1.25) * (A2 * 0.85)
+                + Math.sin(t * F3 + phase * 0.55) * (A3 * 0.65);
+
+            return [dx, dy];
         }
 
         function animate() {
+
             t += speed;
 
-            // --- POLÍGONO ESQUERDO ---
+            // Polígono ESQUERDO
             const leftPts = leftBase.map(([x,y], i) => {
-                const [dx, dy] = drift(t, phaseL[i]);
+                const [dx, dy] = drift(t, phaseLeft[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
-            document.getElementById("polyLeft").setAttribute("points", leftPts);
+            polyLeft.setAttribute("points", leftPts);
 
-            // --- POLÍGONO DIREITO ---
+            // Polígono DIREITO
             const rightPts = rightBase.map(([x,y], i) => {
-                const [dx, dy] = drift(t, phaseR[i]);
+                const [dx, dy] = drift(t, phaseRight[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
-            document.getElementById("polyRight").setAttribute("points", rightPts);
+            polyRight.setAttribute("points", rightPts);
 
-            // --- BOLINHAS + TEXTOS (todo o grupo <g> se move) ---
-            let index = 0;
-            Object.entries(dotLinks).forEach(([id, base]) => {
-                const dot = document.getElementById(id);
-                const [dx, dy] = drift(t, index * 1.65);
+            // Bolinhas coladas nos vértices
+            Object.entries(dotLinks).forEach(([id, cfg]) => {
+                const el = document.getElementById(id);
+                const [bx, by] = cfg.base;
 
-                dot.setAttribute(
-                    "transform",
-                    `translate(${base[0] + dx}, ${base[1] + dy})`
-                );
+                const [dx, dy] = drift(t, cfg.phase);
 
-                index++;
+                el.setAttribute("transform", `translate(${bx + dx}, ${by + dy})`);
             });
 
             requestAnimationFrame(animate);
         }
 
-        animate();
+        setTimeout(() => animate(), 50);
+
+
     </script>
 }
