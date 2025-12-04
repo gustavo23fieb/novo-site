@@ -13,7 +13,7 @@
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
-            overflow: visible !important;
+            overflow: hidden;
         }
 
             .ft-hero::before {
@@ -22,7 +22,7 @@
                 inset: 0;
                 background: linear-gradient(90deg, rgba(150,0,200,0.05), rgba(0,120,255,0.07));
                 pointer-events: none;
-                z-index: 1;
+                z-index: 2;
             }
 
         .ft-svg-anim {
@@ -61,6 +61,42 @@
             height: 85px;
         }
 
+
+        /* ============================================================
+                      BANNER MOBILE — IGUAL AO SITE OFICIAL (<= 768px)
+                      CORRIGIDO PARA NÃO DAR ZOOM EXAGERADO
+                   ============================================================ */
+        @@media (max-width: 768px) {
+            /* --- BANNER --- */
+            .ft-hero {
+                height: 760px; /* altura real aproximada do site */
+                background-position: center top; /* sem deslocar a imagem */
+                background-size: cover;
+            }
+            /* --- ANIMAÇÃO SVG --- */
+            .ft-svg-anim {
+                transform: scale(0.85); /* reduz ligeiramente, igual ao oficial */
+                transform-origin: top center;
+                top: 130px;
+                left: 50%;
+                translate: -50% 0;
+                opacity: 1 !important;
+            }
+            /* --- SETA --- */
+            .ft-hero-arrow {
+                bottom: 60px;
+            }
+
+            .ft-hero-arrow-img {
+                width: 70px;
+                height: 70px;
+            }
+            /* --- TAMANHO DOS TEXTOS NAS BOLINHAS --- */
+            svg text {
+                font-size: 18px !important;
+            }
+        }
+
     </style>
 }
 
@@ -85,38 +121,32 @@
             868.2518,554.5373
         " />
 
-        <!-- BOLINHAS + TEXTOS AGRUPADOS (animam juntos) -->
-        <!-- Criatividade (vértice 0 do polígono esquerdo) -->
+        <!-- BOLINHAS + TEXTOS -->
         <g id="dotCriatividade">
             <circle r="10" fill="#c65f16" />
             <text x="20" y="8" fill="#fff" font-size="24">Criatividade</text>
         </g>
 
-        <!-- Inovação (vértice 1 do polígono esquerdo) -->
         <g id="dotInovacao">
             <circle r="10" fill="#c65f16" />
             <text x="20" y="8" fill="#fff" font-size="24">Inovação</text>
         </g>
 
-        <!-- Produção (segue polígono direito, junto com Bem-Estar / Ensino Regular) -->
         <g id="dotProducao">
             <circle r="10" fill="#c65f16" />
             <text x="20" y="8" fill="#fff" font-size="24">Produção</text>
         </g>
 
-        <!-- Negócios (vértice 3 do polígono esquerdo) -->
         <g id="dotNegocios">
             <circle r="10" fill="#c65f16" />
             <text x="20" y="8" fill="#fff" font-size="24">Negócios</text>
         </g>
 
-        <!-- Bem-Estar (vértice 2 do polígono direito) -->
         <g id="dotBemEstar">
             <circle r="10" fill="#c65f16" />
             <text x="20" y="8" fill="#fff" font-size="24">Bem-Estar</text>
         </g>
 
-        <!-- Ensino Regular (vértice 3 do polígono direito) -->
         <g id="dotEnsinoReg">
             <circle r="10" fill="#c65f16" />
             <text x="20" y="8" fill="#fff" font-size="24">Ensino Regular</text>
@@ -136,20 +166,16 @@
 
         let t = 0;
 
-        // Velocidade do banner original
         const speed = 0.035;
 
-        // Amplitudes melhoradas 
-        const A1 = 28;   // onda principal grande
-        const A2 = 11;   // micro-onda
-        const A3 = 4.2;  // vibração fina
+        const A1 = 28;
+        const A2 = 11;
+        const A3 = 4.2;
 
-        // Frequências — mantêm fluidez orgânica
         const F1 = 0.48;
         const F2 = 1.32;
         const F3 = 2.20;
 
-        // Pontos originais dos polígonos
         const leftBase = [
             [21.5419,260.3272],
             [598.1857,24],
@@ -164,11 +190,9 @@
             [868.2518,554.5373]
         ];
 
-        // Fases ajustadas → colam bolinhas exatamente nos vértices
         const phaseLeft  = [0.25, 2.15, 4.10, 5.65];
         const phaseRight = [1.35, 3.05, 4.90, 6.50];
 
-        // Mapeamento bolinhas ↔ vértices
         const dotLinks = {
             dotCriatividade: { base: leftBase[0], phase: phaseLeft[0] },
             dotInovacao:     { base: leftBase[1], phase: phaseLeft[1] },
@@ -179,7 +203,6 @@
             dotEnsinoReg:    { base: rightBase[3], phase: phaseRight[3] }
         };
 
-        // Movimento refinado — totalmente orgânico
         function drift(t, phase) {
 
             const dx =
@@ -199,21 +222,18 @@
 
             t += speed;
 
-            // Polígono ESQUERDO
             const leftPts = leftBase.map(([x,y], i) => {
                 const [dx, dy] = drift(t, phaseLeft[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
             polyLeft.setAttribute("points", leftPts);
 
-            // Polígono DIREITO
             const rightPts = rightBase.map(([x,y], i) => {
                 const [dx, dy] = drift(t, phaseRight[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
             polyRight.setAttribute("points", rightPts);
 
-            // Bolinhas coladas nos vértices
             Object.entries(dotLinks).forEach(([id, cfg]) => {
                 const el = document.getElementById(id);
                 const [bx, by] = cfg.base;
@@ -227,7 +247,6 @@
         }
 
         setTimeout(() => animate(), 50);
-
 
     </script>
 }
