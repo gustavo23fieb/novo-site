@@ -13,44 +13,41 @@
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
-            overflow: hidden;
+            overflow: visible !important;
         }
 
-            /* GRADIENTE IGUAL AO OFICIAL */
             .ft-hero::before {
                 content: "";
                 position: absolute;
                 inset: 0;
+                background: linear-gradient(90deg, rgba(150,0,200,0.05), rgba(0,120,255,0.07));
                 pointer-events: none;
-                background: linear-gradient(90deg, rgba(150, 0, 200, 0.05) 0%, rgba(0, 120, 255, 0.07) 100%);
                 z-index: 1;
             }
 
-        /* ANIMAÇÃO EXACTA DO SITE */
         .ft-svg-anim {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            z-index: 3;
             opacity: 0;
-            animation: fadeSvg .8s ease forwards;
-            animation-delay: .4s;
+            animation: fadeSvg 0.7s ease forwards;
+            animation-delay: 0.3s;
+            z-index: 3;
         }
 
         @@keyframes fadeSvg {
-            0% {
+            from {
                 opacity: 0;
                 transform: scale(0.98);
             }
 
-            100% {
+            to {
                 opacity: 1;
                 transform: scale(1);
             }
         }
 
-        /* SETA */
         .ft-hero-arrow {
             position: absolute;
             left: 50%;
@@ -64,117 +61,69 @@
             height: 85px;
         }
 
-        @@media (max-width: 768px) {
-            .ft-hero {
-                height: 500px;
-            }
-
-            .ft-hero-arrow-img {
-                width: 70px;
-                height: 70px;
-            }
-        }
-
-        @@media (max-width: 480px) {
-            .ft-hero {
-                height: 420px;
-            }
-
-            .ft-hero-arrow-img {
-                width: 60px;
-                height: 60px;
-            }
-        }
-
     </style>
 }
 
-<!-- =========================================================================
-     🔵 BANNER COMPLETO — FIDELIDADE 100% AO SITE OFICIAL FIEB
-============================================================================ -->
-
 <section class="ft-hero">
 
-    <!-- ===== SVG OFICIAL CORRIGIDO ===== -->
     <svg class="ft-svg-anim" viewBox="0 0 1152 590" xmlns="http://www.w3.org/2000/svg">
 
-        <g fill="none" fill-rule="evenodd">
-            <polygon stroke="#fff" stroke-width="1"
-                     points="89.07775968,229.84810592 545.85623216,35.33091648 854.67720976,440.24140528 396.71971488,551.80922608">
-            </polygon>
+        <!-- POLÍGONOS -->
+        <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="1"
+                 points="
+            21.5419,260.3272
+            598.1857,24
+            864.3267,390.7483
+            453.3636,535.8695
+        " />
 
-            <polygon stroke="#fff" stroke-width="1"
-                     points="430.4066584032061,348.8367544946947
-                        914.1036050808779,47.06158090450381
-                        961.5699039085115,358.61289832492366
-                        909.937448855458,521.1212213289313">
-            </polygon>
+        <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="1"
+                 points="
+            459.6691,320.6032
+            845,76
+            993.7913,331.2108
+            868.2518,554.5373
+        " />
+
+        <!-- BOLINHAS + TEXTOS AGRUPADOS (animam juntos) -->
+        <!-- Criatividade (vértice 0 do polígono esquerdo) -->
+        <g id="dotCriatividade">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Criatividade</text>
         </g>
 
-        <!-- Criatividade -->
-        <g transform="translate(84.0778,-41.3698)">
-            <g transform="translate(0 264)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16" />
-            </g>
-            <text x="28" y="285" fill="#fff" font-size="24"
-                  font-family="CeraPro-Medium, sans-serif">
-                Criatividade
-            </text>
+        <!-- Inovação (vértice 1 do polígono esquerdo) -->
+        <g id="dotInovacao">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Inovação</text>
         </g>
 
-        <!-- Inovação -->
-        <g transform="translate(-113.015,25.4204)">
-            <g transform="translate(650 0)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16" />
-            </g>
-            <text x="680" y="20" fill="#fff" font-size="24">
-                Inovação
-            </text>
+        <!-- Produção (segue polígono direito, junto com Bem-Estar / Ensino Regular) -->
+        <g id="dotProducao">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Produção</text>
         </g>
 
-        <!-- Negócios -->
-        <g transform="translate(-39.8056,23.4629)">
-            <g transform="translate(428 518)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16" />
-            </g>
-            <text x="458" y="538" fill="#fff" font-size="24">
-                Negócios
-            </text>
+        <!-- Negócios (vértice 3 do polígono esquerdo) -->
+        <g id="dotNegocios">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Negócios</text>
         </g>
 
-        <!-- Produção -->
-        <g transform="translate(-62.7566,0)">
-            <g transform="translate(485 340)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16" />
-            </g>
-            <text x="510" y="355" fill="#fff" font-size="24">
-                Produção
-            </text>
+        <!-- Bem-Estar (vértice 2 do polígono direito) -->
+        <g id="dotBemEstar">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Bem-Estar</text>
         </g>
 
-        <!-- Bem-Estar -->
-        <g transform="translate(-62.7566,25.1026)">
-            <g transform="translate(1016 321)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16" />
-            </g>
-            <text x="1040" y="340" fill="#fff" font-size="24">
-                Bem-Estar
-            </text>
-        </g>
-
-        <!-- Ensino Regular -->
-        <g transform="translate(-58.5728,-54.389)">
-            <g transform="translate(956 563)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16" />
-            </g>
-            <text x="980" y="580" fill="#fff" font-size="24">
-                Ensino Regular
-            </text>
+        <!-- Ensino Regular (vértice 3 do polígono direito) -->
+        <g id="dotEnsinoReg">
+            <circle r="10" fill="#c65f16" />
+            <text x="20" y="8" fill="#fff" font-size="24">Ensino Regular</text>
         </g>
 
     </svg>
 
-    <!-- SETA -->
     <div class="ft-hero-arrow">
         <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png"
              class="ft-hero-arrow-img" />
@@ -182,11 +131,83 @@
 
 </section>
 
-<!-- ============================================================ -->
+@section Scripts {
+    <script>
 
-<section class="ft-section">
-    <div class="container">
-        <h2 class="ft-section-title"></h2>
-        <p class="ft-section-subtitle"></p>
-    </div>
-</section>
+        const ampX = 5.4;   
+        const ampY = 3.8;   
+        const speed = 0.036; 
+
+        let t = 0;
+
+        const leftBase = [
+            [21.5419,260.3272],
+            [598.1857,24],
+            [864.3267,390.7483],
+            [453.3636,535.8695]
+        ];
+
+        const rightBase = [
+            [459.6691,320.6032],
+            [845,76],
+            [993.7913,331.2108],
+            [868.2518,554.5373]
+        ];
+
+        // fases suavizadas porém independentes (mantêm a organicidade)
+        const phasePoly = [0.0, 1.4, 2.9, 4.5];
+        const phaseDots =  [0.3, 1.0, 1.9, 2.6, 3.4, 4.3];
+
+        const dots = {
+            dotCriatividade : leftBase[0],
+            dotInovacao     : leftBase[1],
+            dotNegocios     : leftBase[3],
+
+            dotProducao     : rightBase[0],
+            dotBemEstar     : rightBase[2],
+            dotEnsinoReg    : rightBase[3]
+        };
+
+        function drift(t, phase){
+            return [
+                Math.cos(t + phase) * ampX * 1.1 +
+                Math.sin((t + phase) * 0.55) * ampX * 0.45,
+
+                Math.sin(t + phase) * ampY * 1.15 +
+                Math.cos((t + phase) * 0.32) * ampY * 0.33
+            ];
+        }
+
+        function animate(){
+            t += speed;
+
+            const leftPts = leftBase.map(([x,y], i)=>{
+                const [dx,dy] = drift(t, phasePoly[i]);
+                return `${x+dx},${y+dy}`;
+            }).join(" ");
+
+            const rightPts = rightBase.map(([x,y], i)=>{
+                const [dx,dy] = drift(t, phasePoly[i]);
+                return `${x+dx},${y+dy}`;
+            }).join(" ");
+
+            polyLeft.setAttribute("points", leftPts);
+            polyRight.setAttribute("points", rightPts);
+
+            let index = 0;
+            Object.entries(dots).forEach(([id, base])=>{
+                const dot = document.getElementById(id);
+                const [dx,dy] = drift(t, phaseDots[index]);
+                dot.setAttribute("transform",
+                    `translate(${base[0] + dx}, ${base[1] + dy})`
+                );
+                index++;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+    </script>
+}
