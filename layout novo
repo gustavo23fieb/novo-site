@@ -35,7 +35,8 @@
             padding: 0;
             width: 100%;
             overflow-x: hidden;
-            font-family: Arial, Helvetica, sans-serif;z
+            font-family: Arial, Helvetica, sans-serif;
+            z
         }
 
         a {
@@ -177,13 +178,13 @@
         /* RESPONSIVO                */
         /* ========================== */
 
-         (max-width: 992px) {
+        (max-width: 992px) {
             .ft-header-inner {
                 gap: 16px;
             }
         }
 
-         (max-width: 768px) {
+        (max-width: 768px) {
 
             .ft-menu-toggle {
                 display: block;
