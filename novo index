@@ -25,6 +25,7 @@
                 z-index: 2;
             }
 
+        /* SVG agora segue o corte da imagem como no site FIEB */
         .ft-svg-anim {
             position: absolute;
             inset: 0;
@@ -34,6 +35,8 @@
             animation: fadeSvg 0.7s ease forwards;
             animation-delay: 0.3s;
             z-index: 3;
+            /* ESSENCIAL – idêntico ao site oficial */
+            preserveAspectRatio: xMidYMid slice;
         }
 
         @@keyframes fadeSvg {
@@ -61,42 +64,43 @@
             height: 95px;
         }
 
-        /* ---------------------------------------------
-                   RESPONSIVE FIX – MOBILE SVG ALIGNED CORRECTLY
-                ----------------------------------------------*/
+        /* ======================== MOBILE MODE ======================= */
         @@media (max-width: 768px) {
 
             .ft-hero {
-                height: 640px;
-                background-position: center -60px;
-                background-size: 170% auto;
+                height: 520px; /* igual ao banner real mobile */
+                background-size: 200% auto;
+                background-position: center -40px;
             }
-            /* Reduz SVG sem distorcer coordenadas */
+            /* SVG RESPONSIVO E CENTRALIZADO */
             .ft-svg-anim {
-                top: 145px;
                 width: 100%;
                 height: auto;
-                transform: scale(0.78);
-                transform-origin: top center;
+                top: 90px; /* posição correta do SVG no mobile */
+                left: 0;
+                transform: none !important;
                 opacity: 1 !important;
             }
 
-            .ft-hero-arrow {
-                bottom: 22px;
+            svg {
+                width: 100%;
+                height: auto;
+                preserveAspectRatio: xMidYMid meet;
             }
-
+                /* Textos menores */
+                svg text {
+                    font-size: 15px !important;
+                }
+            /* Seta */
             .ft-hero-arrow-img {
-                width: 115px;
-                height: 115px;
-            }
-
-            svg text {
-                font-size: 16px !important;
+                width: 90px;
+                height: 90px;
             }
         }
 
     </style>
 }
+
 
 <section class="ft-hero">
 
