@@ -61,25 +61,26 @@
             height: 95px;
         }
 
-
+        /* ---------------------------------------------
+                   RESPONSIVE FIX – MOBILE SVG ALIGNED CORRECTLY
+                ----------------------------------------------*/
         @@media (max-width: 768px) {
-          
+
             .ft-hero {
-                height: 640px; 
-                background-position: center -60px; /* move a imagem para BAIXO */
-                background-size: 175% auto;
+                height: 640px;
+                background-position: center -60px;
+                background-size: 170% auto;
             }
-            /* ===== ANIMAÇÃO ===== */
+            /* Reduz SVG sem distorcer coordenadas */
             .ft-svg-anim {
-                width: 115%;
+                top: 145px;
+                width: 100%;
                 height: auto;
-                top: 150px;
-                left: 50%;
-                transform: translateX(-50%) scale(0.82);
-                transform-origin: center top;
+                transform: scale(0.78);
+                transform-origin: top center;
                 opacity: 1 !important;
             }
-            /* ===== SETA ===== */
+
             .ft-hero-arrow {
                 bottom: 22px;
             }
@@ -88,7 +89,7 @@
                 width: 115px;
                 height: 115px;
             }
-            /* ===== TEXTOS ===== */
+
             svg text {
                 font-size: 16px !important;
             }
@@ -103,50 +104,40 @@
 
         <!-- POLÍGONOS -->
         <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="1"
-                 points="
-            21.5419,260.3272
-            598.1857,24
-            864.3267,390.7483
-            453.3636,535.8695
-        " />
+                 points="21.5419,260.3272 598.1857,24 864.3267,390.7483 453.3636,535.8695" />
 
         <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="1"
-                 points="
-            459.6691,320.6032
-            845,76
-            993.7913,331.2108
-            868.2518,554.5373
-        " />
+                 points="459.6691,320.6032 845,76 993.7913,331.2108 868.2518,554.5373" />
 
         <!-- BOLINHAS + TEXTOS -->
         <g id="dotCriatividade">
             <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff" font-size="24">Criatividade</text>
+            <text x="20" y="8" fill="#fff">Criatividade</text>
         </g>
 
         <g id="dotInovacao">
             <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff" font-size="24">Inovação</text>
+            <text x="20" y="8" fill="#fff">Inovação</text>
         </g>
 
         <g id="dotProducao">
             <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff" font-size="24">Produção</text>
+            <text x="20" y="8" fill="#fff">Produção</text>
         </g>
 
         <g id="dotNegocios">
             <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff" font-size="24">Negócios</text>
+            <text x="20" y="8" fill="#fff">Negócios</text>
         </g>
 
         <g id="dotBemEstar">
             <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff" font-size="24">Bem-Estar</text>
+            <text x="20" y="8" fill="#fff">Bem-Estar</text>
         </g>
 
         <g id="dotEnsinoReg">
             <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff" font-size="24">Ensino Regular</text>
+            <text x="20" y="8" fill="#fff">Ensino Regular</text>
         </g>
 
     </svg>
@@ -162,33 +153,57 @@
     <script>
 
         let t = 0;
-
         const speed = 0.035;
 
-        const A1 = 28;
-        const A2 = 11;
-        const A3 = 4.2;
-
-        const F1 = 0.48;
-        const F2 = 1.32;
-        const F3 = 2.20;
-
-        const leftBase = [
+        /* ---------------
+           DESKTOP BASE
+        ----------------*/
+        const leftBaseDesktop = [
             [21.5419,260.3272],
             [598.1857,24],
             [864.3267,390.7483],
             [453.3636,535.8695]
         ];
 
-        const rightBase = [
+        const rightBaseDesktop = [
             [459.6691,320.6032],
             [845,76],
             [993.7913,331.2108],
             [868.2518,554.5373]
         ];
 
+        /* -------------------------------------
+           MOBILE COORDINATES (REDUZIDAS)
+           → valores ajustados proporcionalmente
+        --------------------------------------*/
+        const leftBaseMobile = [
+            [21.5, 240],
+            [545, 40],
+            [805, 360],
+            [430, 500]
+        ];
+
+        const rightBaseMobile = [
+            [430, 300],
+            [780, 95],
+            [945, 305],
+            [830, 525]
+        ];
+
+        // Detecta mobile
+        const isMobile = window.innerWidth < 768;
+
+        const leftBase  = isMobile ? leftBaseMobile : leftBaseDesktop;
+        const rightBase = isMobile ? rightBaseMobile : rightBaseDesktop;
+
         const phaseLeft  = [0.25, 2.15, 4.10, 5.65];
         const phaseRight = [1.35, 3.05, 4.90, 6.50];
+
+        const A1 = isMobile ? 18 : 28;
+        const A2 = isMobile ?  8 : 11;
+        const A3 = isMobile ?  3 : 4.2;
+
+        const F1 = 0.48, F2 = 1.32, F3 = 2.20;
 
         const dotLinks = {
             dotCriatividade: { base: leftBase[0], phase: phaseLeft[0] },
@@ -201,31 +216,29 @@
         };
 
         function drift(t, phase) {
-
             const dx =
-                  Math.cos(t * F1 + phase) * A1
-                + Math.sin(t * F2 + phase * 1.4) * A2
-                + Math.sin(t * F3 + phase * 0.7) * A3;
+                Math.cos(t * F1 + phase) * A1 +
+                Math.sin(t * F2 + phase * 1.4) * A2 +
+                Math.sin(t * F3 + phase * 0.7) * A3;
 
             const dy =
-                  Math.sin(t * F1 + phase) * (A1 * 0.92)
-                + Math.cos(t * F2 + phase * 1.25) * (A2 * 0.85)
-                + Math.sin(t * F3 + phase * 0.55) * (A3 * 0.65);
+                Math.sin(t * F1 + phase) * (A1 * 0.92) +
+                Math.cos(t * F2 + phase * 1.25) * (A2 * 0.85) +
+                Math.sin(t * F3 + phase * 0.55) * (A3 * 0.65);
 
             return [dx, dy];
         }
 
         function animate() {
-
             t += speed;
 
-            const leftPts = leftBase.map(([x,y], i) => {
+            const leftPts = leftBase.map(([x, y], i) => {
                 const [dx, dy] = drift(t, phaseLeft[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
             polyLeft.setAttribute("points", leftPts);
 
-            const rightPts = rightBase.map(([x,y], i) => {
+            const rightPts = rightBase.map(([x, y], i) => {
                 const [dx, dy] = drift(t, phaseRight[i]);
                 return `${x + dx},${y + dy}`;
             }).join(" ");
@@ -234,7 +247,6 @@
             Object.entries(dotLinks).forEach(([id, cfg]) => {
                 const el = document.getElementById(id);
                 const [bx, by] = cfg.base;
-
                 const [dx, dy] = drift(t, cfg.phase);
 
                 el.setAttribute("transform", `translate(${bx + dx}, ${by + dy})`);
