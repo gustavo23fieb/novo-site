@@ -25,7 +25,6 @@
                 z-index: 2;
             }
 
-        /* SVG sobre o banner */
         .ft-svg-anim {
             position: absolute;
             inset: 0;
@@ -53,7 +52,7 @@
         .ft-hero-arrow {
             position: absolute;
             left: 50%;
-            bottom: 12px; 
+            bottom: 12px;
             transform: translateX(-50%);
             z-index: 6;
         }
@@ -63,28 +62,24 @@
             height: 100px;
         }
 
-        /* ======================== MOBILE MODE ======================= */
+        /* ----------------------- MOBILE ----------------------- */
         @@media (max-width: 768px) {
-            /* Banner no corte que você aprovou */
             .ft-hero {
                 height: 500px;
                 background-size: 1306px auto;
                 background-position: center -15px;
             }
-            /* SVG alinhado ao recorte do banner */
+
             .ft-svg-anim {
                 width: 100%;
                 height: 300px;
                 top: 60px;
-                left: 0;
-                right: 0;
-                margin: 0 auto;
                 opacity: 1 !important;
                 preserveAspectRatio: xMidYMid meet !important;
             }
-            /* AJUSTE DA SETA */
+
             .ft-hero-arrow {
-                bottom: 28px; 
+                bottom: 28px;
             }
 
             svg {
@@ -97,62 +92,198 @@
                 }
         }
 
+        /* ===========================================================
+                               ESTILOS DO CARROSSEL FIEB
+           ===========================================================*/
+        .carousel-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto 80px auto;
+            position: relative;
+        }
+
+        /* ----- TRANSIÇÃO SUAVE (FADE) + SOBREPOSIÇÃO ----- */
+        .carousel-slide {
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
+
+            .carousel-slide.active {
+                opacity: 1;
+                position: relative;
+            }
+
+            /* Imagens */
+            .carousel-slide img {
+                width: 100%;
+                height: auto;
+                border-radius: 6px;
+            }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: #7CBB29;
+            cursor: pointer;
+            z-index: 10;
+            padding: 10px;
+        }
+
+            .carousel-arrow.left {
+                left: -40px;
+            }
+
+            .carousel-arrow.right {
+                right: -40px;
+            }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+            .carousel-dots span {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                background: #bbb;
+                border-radius: 50%;
+                margin: 0 4px;
+                cursor: pointer;
+            }
+
+            .carousel-dots .active {
+                background: #7CBB29;
+            }
+
+        /* MOBILE */
+        @@media(max-width: 768px) {
+            .carousel-arrow.left {
+                left: 5px;
+            }
+
+            .carousel-arrow.right {
+                right: 5px;
+            }
+        }
+
     </style>
 }
 
+<!-- ===================== BANNER ===================== -->
+
 <section class="ft-hero">
+    <svg class="ft-svg-anim" viewBox="0 0 1152 590">
 
-    <svg class="ft-svg-anim" viewBox="0 0 1152 590" xmlns="http://www.w3.org/2000/svg">
-
-        <!-- POLÍGONOS -->
         <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="1"
                  points="21.5419,260.3272 598.1857,24 864.3267,390.7483 453.3636,535.8695" />
 
         <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="1"
                  points="459.6691,320.6032 845,76 993.7913,331.2108 868.2518,554.5373" />
 
-        <!-- BOLINHAS + TEXTOS -->
         <g id="dotCriatividade">
-            <circle r="10" fill="#c65f16" />
+            <circle r="10" fill="#c65f16"></circle>
             <text x="20" y="8" fill="#fff">Criatividade</text>
         </g>
 
         <g id="dotInovacao">
-            <circle r="10" fill="#c65f16" />
+            <circle r="10" fill="#c65f16"></circle>
             <text x="20" y="8" fill="#fff">Inovação</text>
         </g>
 
         <g id="dotProducao">
-            <circle r="10" fill="#c65f16" />
+            <circle r="10" fill="#c65f16"></circle>
             <text x="20" y="8" fill="#fff">Produção</text>
         </g>
 
         <g id="dotNegocios">
-            <circle r="10" fill="#c65f16" />
+            <circle r="10" fill="#c65f16"></circle>
             <text x="20" y="8" fill="#fff">Negócios</text>
         </g>
 
         <g id="dotBemEstar">
-            <circle r="10" fill="#c65f16" />
+            <circle r="10" fill="#c65f16"></circle>
             <text x="20" y="8" fill="#fff">Bem-Estar</text>
         </g>
 
         <g id="dotEnsinoReg">
-            <circle r="10" fill="#c65f16" />
+            <circle r="10" fill="#c65f16"></circle>
             <text x="20" y="8" fill="#fff">Ensino Regular</text>
         </g>
 
     </svg>
 
     <div class="ft-hero-arrow">
-        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png"
-             class="ft-hero-arrow-img" />
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
+    </div>
+</section>
+
+<!-- =====================================================
+                      CARROSSEL AQUI
+     ===================================================== -->
+
+<div class="carousel-container">
+
+    <span class="carousel-arrow left">&#10094;</span>
+    <span class="carousel-arrow right">&#10095;</span>
+
+    <!-- BANNER 1 -->
+    <div class="carousel-slide">
+        <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+        </a>
     </div>
 
-</section>
+    <!-- BANNER 2 -->
+    <div class="carousel-slide">
+        <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+        </a>
+    </div>
+
+    <!-- BANNER 3 -->
+    <div class="carousel-slide">
+        <a href="https://reservadevagas.fieb.edu.br/" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_mobile.png">
+        </a>
+    </div>
+
+    <!-- BANNER 4 -->
+    <div class="carousel-slide">
+        <a href="https://fieb.edu.br/nexus" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+        </a>
+    </div>
+
+    <!-- BANNER 5 -->
+    <div class="carousel-slide">
+        <a href="https://whatsapp.com/channel/0029VakGwrSCMY0ENunPA72u" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+        </a>
+    </div>
+
+    <!-- BANNER 6 -->
+    <div class="carousel-slide">
+        <a href="https://estagio.fieb.edu.br/" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_mobile.jpg">
+        </a>
+    </div>
+
+    <div class="carousel-dots"></div>
+</div>
+
+
 
 @section Scripts {
     <script>
+        /* ========================================
+                 ANIMAÇÃO DO BANNER (SEU CÓDIGO)
+           ======================================== */
+
         let t = 0;
         const speed = 0.035;
 
@@ -249,5 +380,71 @@
         }
 
         setTimeout(() => animate(), 50);
+
+               /* ========================================
+                 SCRIPT DO CARROSSEL FIEB
+           ======================================== */
+
+        const slides = document.querySelectorAll(".carousel-slide");
+        const dotsContainer = document.querySelector(".carousel-dots");
+        const prev = document.querySelector(".carousel-arrow.left");
+        const next = document.querySelector(".carousel-arrow.right");
+
+        let index = 0;
+        let autoplayInterval = null;
+
+        // Criar dots dinamicamente
+        slides.forEach((_, i) => {
+            const dot = document.createElement("span");
+            dot.addEventListener("click", () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll("span");
+
+        function showSlide(i) {
+            slides.forEach(s => s.classList.remove("active"));
+            dots.forEach(d => d.classList.remove("active"));
+
+            slides[i].classList.add("active");
+            dots[i].classList.add("active");
+        }
+
+        function goToSlide(i) {
+            index = i;
+            showSlide(index);
+            resetAutoplay();
+        }
+
+        prev.addEventListener("click", () => {
+            index = (index === 0) ? slides.length - 1 : index - 1;
+            showSlide(index);
+            resetAutoplay();
+        });
+
+        next.addEventListener("click", () => {
+            index = (index === slides.length - 1) ? 0 : index + 1;
+            showSlide(index);
+            resetAutoplay();
+        });
+
+        // ------------------ AUTOPLAY ------------------
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                index = (index + 1) % slides.length;
+                showSlide(index);
+            }, 4000); // 4 segundos
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        // Iniciar
+        showSlide(index);
+        startAutoplay();
+
+
     </script>
 }
