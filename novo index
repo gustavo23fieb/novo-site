@@ -65,32 +65,30 @@
         }
 
         /* ======================== MOBILE MODE ======================= */
+        /* ======================== MOBILE MODE ======================= */
         @@media (max-width: 768px) {
 
             .ft-hero {
-                height: 520px; /* igual ao banner real mobile */
+                height: 520px; 
                 background-size: 200% auto;
                 background-position: center -40px;
             }
-            /* SVG RESPONSIVO E CENTRALIZADO */
-            .ft-svg-anim {
+            /* SVG corrigido: segue exatamente o recorte do banner */
+            .ft-svg-anim,
+            .ft-svg-anim svg {
+                position: absolute;
+                inset: 0;
                 width: 100%;
-                height: auto;
-                top: 90px; /* posição correta do SVG no mobile */
+                height: 100%;
+                top: 0;
                 left: 0;
-                transform: none !important;
-                opacity: 1 !important;
+                
+                preserveAspectRatio: xMidYMid slice !important;
             }
-
-            svg {
-                width: 100%;
-                height: auto;
-                preserveAspectRatio: xMidYMid meet;
+            /* Textos menores */
+            svg text {
+                font-size: 15px !important;
             }
-                /* Textos menores */
-                svg text {
-                    font-size: 15px !important;
-                }
             /* Seta */
             .ft-hero-arrow-img {
                 width: 90px;
