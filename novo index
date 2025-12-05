@@ -63,33 +63,34 @@
 
 
         @@media (max-width: 768px) {
-            /* ===== BANNER CORRIGIDO FINAL ===== */
+          
             .ft-hero {
-                height: 580px; /* altura FINAL igual ao site oficial */
-                background-position: center 40px; /* move a imagem para BAIXO */
-                background-size: cover;
+                height: 640px; 
+                background-position: center -60px; /* move a imagem para BAIXO */
+                background-size: 175% auto;
             }
             /* ===== ANIMAÇÃO ===== */
             .ft-svg-anim {
-                transform: scale(0.83);
-                transform-origin: top center;
-                top: 120px;
+                width: 115%;
+                height: auto;
+                top: 150px;
                 left: 50%;
-                translate: -50% 0;
+                transform: translateX(-50%) scale(0.82);
+                transform-origin: center top;
                 opacity: 1 !important;
             }
             /* ===== SETA ===== */
             .ft-hero-arrow {
-                bottom: 40px;
+                bottom: 22px;
             }
 
             .ft-hero-arrow-img {
-                width: 100px;
-                height: 100px;
+                width: 115px;
+                height: 115px;
             }
             /* ===== TEXTOS ===== */
             svg text {
-                font-size: 18px !important;
+                font-size: 16px !important;
             }
         }
 
