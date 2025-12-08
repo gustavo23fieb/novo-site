@@ -13,7 +13,6 @@
             overflow: hidden;
         }
 
-
         /* ===================== BANNER ===================== */
 
         .ft-hero {
@@ -32,7 +31,7 @@
                 content: "";
                 position: absolute;
                 inset: 0;
-                background: linear-gradient( 90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07) );
+                background: linear-gradient(90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07));
                 pointer-events: none;
                 z-index: 2;
             }
@@ -75,7 +74,7 @@
 
         /* ===================== MOBILE ===================== */
 
-        @@media (max-width: 768px) {
+        @@media (max-width: 769px) {
             .ft-hero {
                 height: 500px;
                 background-size: 1306px auto;
@@ -104,8 +103,8 @@
         }
 
         /* ===================================================
-                                          CARROSSEL
-                        =================================================== */
+                               CARROSSEL
+           =================================================== */
 
         .carousel-container {
             width: 100%;
@@ -132,23 +131,26 @@
                 border-radius: 6px;
             }
 
+        /* >>> SETAS VERDES AJUSTADAS (DUAS, FORA DO BANNER) <<< */
         .carousel-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 40px;
+            font-size: 40px;          /* tamanho confortável */
             color: #7cbb29;
             cursor: pointer;
-            z-index: 10;
-            padding: 10px;
+            z-index: 20;
+            padding: 0;
+            background: transparent;
+            line-height: 1;
         }
 
             .carousel-arrow.left {
-                left: -40px;
+                left: -40px;          /* um pouco pra fora do banner */
             }
 
             .carousel-arrow.right {
-                right: -40px;
+                right: -40px;         /* um pouco pra fora do banner */
             }
 
         .carousel-dots {
@@ -170,7 +172,7 @@
                 background: #7cbb29;
             }
 
-        @@media (max-width: 768px) {
+        @@media (max-width: 769px) {
             .carousel-arrow.left {
                 left: 5px;
             }
@@ -180,32 +182,27 @@
             }
         }
 
-       
         .ft-full-bleed {
             position: relative;
             top: -22px;
         }
 
-       
+        /* Faixa que bugava entre 992px e 901px */
         @@media (max-width: 992px) and (min-width: 901px) {
             .ft-full-bleed {
-                top: -46px; 
+                top: -46px;
             }
         }
 
-        /* ================================
-           TRANSIÇÃO PARA TABLET
-        ================================ */
+        /* Transição tablet */
         @@media (max-width: 900px) {
             .ft-full-bleed {
                 top: -18px;
             }
         }
 
-        /* ================================
-           MOBILE
-        ================================ */
-        @@media (max-width: 768px) {
+        /* Mobile */
+        @@media (max-width: 769px) {
             .ft-full-bleed {
                 top: -16px;
             }
@@ -243,8 +240,9 @@
 
     <div class="carousel-container">
 
-        <span class="carousel-arrow left">&#10094;</span>
-        <span class="carousel-arrow right">&#10095;</span>
+        <!-- setas duplicadas apenas no HTML, JS continua igual -->
+        <span class="carousel-arrow left">&#10094;&#10094;</span>
+        <span class="carousel-arrow right">&#10095;&#10095;</span>
 
         <div class="carousel-slide active">
             <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
@@ -296,33 +294,33 @@
         let t = 0;
         const speed = 0.035;
 
-        const leftBaseDesktop = [[21.5419,260.3272],[598.1857,24],[864.3267,390.7483],[453.3636,535.8695]];
-        const rightBaseDesktop = [[459.6691,320.6032],[845,76],[993.7913,331.2108],[868.2518,554.5373]];
+        const leftBaseDesktop = [[21.5419, 260.3272], [598.1857, 24], [864.3267, 390.7483], [453.3636, 535.8695]];
+        const rightBaseDesktop = [[459.6691, 320.6032], [845, 76], [993.7913, 331.2108], [868.2518, 554.5373]];
 
-        const leftBaseMobile = [[21.5,240],[545,40],[805,360],[430,500]];
-        const rightBaseMobile = [[430,300],[780,95],[945,305],[830,525]];
+        const leftBaseMobile = [[21.5, 240], [545, 40], [805, 360], [430, 500]];
+        const rightBaseMobile = [[430, 300], [780, 95], [945, 305], [830, 525]];
 
         const isMobile = window.innerWidth < 768;
 
-        const leftBase  = isMobile ? leftBaseMobile  : leftBaseDesktop;
+        const leftBase = isMobile ? leftBaseMobile : leftBaseDesktop;
         const rightBase = isMobile ? rightBaseMobile : rightBaseDesktop;
 
-        const phaseLeft  = [0.25, 2.15, 4.10, 5.65];
+        const phaseLeft = [0.25, 2.15, 4.10, 5.65];
         const phaseRight = [1.35, 3.05, 4.90, 6.50];
 
         const A1 = isMobile ? 18 : 28;
-        const A2 = isMobile ?  8 : 11;
-        const A3 = isMobile ?  3 : 4.2;
+        const A2 = isMobile ? 8 : 11;
+        const A3 = isMobile ? 3 : 4.2;
 
         const F1 = 0.48, F2 = 1.32, F3 = 2.20;
 
         const dotLinks = {
             dotCriatividade: { base: leftBase[0], phase: phaseLeft[0] },
-            dotInovacao:     { base: leftBase[1], phase: phaseLeft[1] },
-            dotNegocios:     { base: leftBase[3], phase: phaseLeft[3] },
-            dotProducao:     { base: rightBase[0], phase: phaseRight[0] },
-            dotBemEstar:     { base: rightBase[2], phase: phaseRight[2] },
-            dotEnsinoReg:    { base: rightBase[3], phase: phaseRight[3] }
+            dotInovacao: { base: leftBase[1], phase: phaseLeft[1] },
+            dotNegocios: { base: leftBase[3], phase: phaseLeft[3] },
+            dotProducao: { base: rightBase[0], phase: phaseRight[0] },
+            dotBemEstar: { base: rightBase[2], phase: phaseRight[2] },
+            dotEnsinoReg: { base: rightBase[3], phase: phaseRight[3] }
         };
 
         function drift(t, phase) {
@@ -340,18 +338,18 @@
         function animate() {
             t += speed;
 
-            polyLeft.setAttribute("points", leftBase.map(([x,y],i)=>{
-                const [dx,dy]=drift(t,phaseLeft[i]); return `${x+dx},${y+dy}`;
+            polyLeft.setAttribute("points", leftBase.map(([x, y], i) => {
+                const [dx, dy] = drift(t, phaseLeft[i]); return `${x + dx},${y + dy}`;
             }).join(" "));
 
-            polyRight.setAttribute("points", rightBase.map(([x,y],i)=>{
-                const [dx,dy]=drift(t,phaseRight[i]); return `${x+dx},${y+dy}`;
+            polyRight.setAttribute("points", rightBase.map(([x, y], i) => {
+                const [dx, dy] = drift(t, phaseRight[i]); return `${x + dx},${y + dy}`;
             }).join(" "));
 
-            Object.entries(dotLinks).forEach(([id,cfg])=>{
-                const el=document.getElementById(id);
-                const [dx,dy]=drift(t,cfg.phase);
-                el.setAttribute("transform",`translate(${cfg.base[0]+dx},${cfg.base[1]+dy})`);
+            Object.entries(dotLinks).forEach(([id, cfg]) => {
+                const el = document.getElementById(id);
+                const [dx, dy] = drift(t, cfg.phase);
+                el.setAttribute("transform", `translate(${cfg.base[0] + dx},${cfg.base[1] + dy})`);
             });
 
             requestAnimationFrame(animate);
@@ -360,7 +358,7 @@
         setTimeout(animate, 50);
 
         /* ========================================
-                 SCRIPT DO CARROSSEL
+                 SCRIPT DO CARROSSEL (SEU ORIGINAL)
         ======================================== */
 
         const slides = document.querySelectorAll(".carousel-slide");
