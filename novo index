@@ -1,9 +1,20 @@
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "FIEB";
 }
 
 @section Styles {
     <style>
+
+        .ft-full-bleed {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        /* ===================== BANNER ===================== */
 
         .ft-hero {
             position: relative;
@@ -14,18 +25,18 @@
             background-position: center top;
             background-repeat: no-repeat;
             overflow: hidden;
+            margin: 0;
         }
 
             .ft-hero::before {
                 content: "";
                 position: absolute;
                 inset: 0;
-                background: linear-gradient(90deg, rgba(150,0,200,0.05), rgba(0,120,255,0.07));
+                background: linear-gradient( 90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07) );
                 pointer-events: none;
                 z-index: 2;
             }
 
-        /* SVG agora segue o corte da imagem como no site FIEB */
         .ft-svg-anim {
             position: absolute;
             inset: 0;
@@ -35,8 +46,6 @@
             animation: fadeSvg 0.7s ease forwards;
             animation-delay: 0.3s;
             z-index: 3;
-            /* ESSENCIAL – idêntico ao site oficial */
-            preserveAspectRatio: xMidYMid slice;
         }
 
         @@keyframes fadeSvg {
@@ -54,148 +63,217 @@
         .ft-hero-arrow {
             position: absolute;
             left: 50%;
-            bottom: 40px;
+            bottom: 42px;
             transform: translateX(-50%);
             z-index: 6;
         }
 
         .ft-hero-arrow-img {
-            width: 95px;
-            height: 95px;
+            width: 100px;
+            height: 100px;
         }
 
-        /* ======================== MOBILE MODE ======================= */
-        /* ======================== MOBILE MODE ======================= */
-        @@media (max-width: 768px) {
+        /* ===================== MOBILE ===================== */
 
+        @@media (max-width: 768px) {
             .ft-hero {
-                height: 520px; 
-                background-size: 200% auto;
-                background-position: center -40px;
+                height: 500px;
+                background-size: 1306px auto;
+                background-position: center -15px;
             }
-            /* SVG corrigido: segue exatamente o recorte do banner */
-            .ft-svg-anim,
-            .ft-svg-anim svg {
-                position: absolute;
-                inset: 0;
+
+            .ft-svg-anim {
+                width: 100%;
+                height: 300px;
+                top: 60px;
+                opacity: 1 !important;
+            }
+
+            .ft-hero-arrow {
+                bottom: 32px;
+            }
+
+            svg {
                 width: 100%;
                 height: 100%;
-                top: 0;
-                left: 0;
-                
-                preserveAspectRatio: xMidYMid slice !important;
             }
-            /* Textos menores */
-            svg text {
-                font-size: 15px !important;
+
+                svg text {
+                    font-size: 14px !important;
+                }
+        }
+
+        /* ===================================================
+                                  CARROSSEL
+                =================================================== */
+
+        .carousel-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            position: relative;
+        }
+
+        .carousel-slide {
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
+
+            .carousel-slide.active {
+                opacity: 1;
+                position: relative;
             }
-            /* Seta */
-            .ft-hero-arrow-img {
-                width: 90px;
-                height: 90px;
+
+            .carousel-slide img {
+                width: 100%;
+                height: auto;
+                border-radius: 6px;
+            }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: #7cbb29;
+            cursor: pointer;
+            z-index: 10;
+            padding: 10px;
+        }
+
+            .carousel-arrow.left {
+                left: -40px;
+            }
+
+            .carousel-arrow.right {
+                right: -40px;
+            }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+            .carousel-dots span {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                background: #bbb;
+                border-radius: 50%;
+                margin: 0 4px;
+                cursor: pointer;
+            }
+
+            .carousel-dots .active {
+                background: #7cbb29;
+            }
+
+        @@media (max-width: 768px) {
+            .carousel-arrow.left {
+                left: 5px;
+            }
+
+            .carousel-arrow.right {
+                right: 5px;
             }
         }
 
     </style>
 }
 
+<!-- ===================== BANNER + CARROSSEL ===================== -->
 
-<section class="ft-hero">
+<div class="ft-full-bleed">
 
-    <svg class="ft-svg-anim" viewBox="0 0 1152 590" xmlns="http://www.w3.org/2000/svg">
+    <section class="ft-hero">
+        <svg class="ft-svg-anim" viewBox="0 0 1152 590">
 
-        <!-- POLÍGONOS -->
-        <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="1"
-                 points="21.5419,260.3272 598.1857,24 864.3267,390.7483 453.3636,535.8695" />
+            <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="1"
+                     points="21.5419,260.3272 598.1857,24 864.3267,390.7483 453.3636,535.8695" />
 
-        <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="1"
-                 points="459.6691,320.6032 845,76 993.7913,331.2108 868.2518,554.5373" />
+            <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="1"
+                     points="459.6691,320.6032 845,76 993.7913,331.2108 868.2518,554.5373" />
 
-        <!-- BOLINHAS + TEXTOS -->
-        <g id="dotCriatividade">
-            <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff">Criatividade</text>
-        </g>
+            <g id="dotCriatividade"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Criatividade</text></g>
+            <g id="dotInovacao"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Inovação</text></g>
+            <g id="dotProducao"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Produção</text></g>
+            <g id="dotNegocios"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Negócios</text></g>
+            <g id="dotBemEstar"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Bem-Estar</text></g>
+            <g id="dotEnsinoReg"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Ensino Regular</text></g>
 
-        <g id="dotInovacao">
-            <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff">Inovação</text>
-        </g>
+        </svg>
 
-        <g id="dotProducao">
-            <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff">Produção</text>
-        </g>
+        <div class="ft-hero-arrow">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
+        </div>
+    </section>
 
-        <g id="dotNegocios">
-            <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff">Negócios</text>
-        </g>
+    <div class="carousel-container">
 
-        <g id="dotBemEstar">
-            <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff">Bem-Estar</text>
-        </g>
+        <span class="carousel-arrow left">&#10094;</span>
+        <span class="carousel-arrow right">&#10095;</span>
 
-        <g id="dotEnsinoReg">
-            <circle r="10" fill="#c65f16" />
-            <text x="20" y="8" fill="#fff">Ensino Regular</text>
-        </g>
+        <div class="carousel-slide active">
+            <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+            </a>
+        </div>
 
-    </svg>
+        <div class="carousel-slide">
+            <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+            </a>
+        </div>
 
-    <div class="ft-hero-arrow">
-        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png"
-             class="ft-hero-arrow-img" />
+        <div class="carousel-slide">
+            <a href="https://reservadevagas.fieb.edu.br/" target="_blank">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_mobile.png">
+            </a>
+        </div>
+
+        <div class="carousel-slide">
+            <a href="https://fieb.edu.br/nexus" target="_blank">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+            </a>
+        </div>
+
+        <div class="carousel-slide">
+            <a href="https://whatsapp.com/channel/0029VakGwrSCMY0ENunPA72u" target="_blank">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+            </a>
+        </div>
+
+        <div class="carousel-slide">
+            <a href="https://estagio.fieb.edu.br/" target="_blank">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_mobile.jpg">
+            </a>
+        </div>
+
+        <div class="carousel-dots"></div>
     </div>
 
-</section>
+</div>
 
 @section Scripts {
     <script>
+        /* ========================================
+                 ANIMAÇÃO DO BANNER
+        ======================================== */
 
         let t = 0;
         const speed = 0.035;
 
-        /* ---------------
-           DESKTOP BASE
-        ----------------*/
-        const leftBaseDesktop = [
-            [21.5419,260.3272],
-            [598.1857,24],
-            [864.3267,390.7483],
-            [453.3636,535.8695]
-        ];
+        const leftBaseDesktop = [[21.5419,260.3272],[598.1857,24],[864.3267,390.7483],[453.3636,535.8695]];
+        const rightBaseDesktop = [[459.6691,320.6032],[845,76],[993.7913,331.2108],[868.2518,554.5373]];
 
-        const rightBaseDesktop = [
-            [459.6691,320.6032],
-            [845,76],
-            [993.7913,331.2108],
-            [868.2518,554.5373]
-        ];
+        const leftBaseMobile = [[21.5,240],[545,40],[805,360],[430,500]];
+        const rightBaseMobile = [[430,300],[780,95],[945,305],[830,525]];
 
-        /* -------------------------------------
-           MOBILE COORDINATES (REDUZIDAS)
-           → valores ajustados proporcionalmente
-        --------------------------------------*/
-        const leftBaseMobile = [
-            [21.5, 240],
-            [545, 40],
-            [805, 360],
-            [430, 500]
-        ];
-
-        const rightBaseMobile = [
-            [430, 300],
-            [780, 95],
-            [945, 305],
-            [830, 525]
-        ];
-
-        // Detecta mobile
         const isMobile = window.innerWidth < 768;
 
-        const leftBase  = isMobile ? leftBaseMobile : leftBaseDesktop;
+        const leftBase  = isMobile ? leftBaseMobile  : leftBaseDesktop;
         const rightBase = isMobile ? rightBaseMobile : rightBaseDesktop;
 
         const phaseLeft  = [0.25, 2.15, 4.10, 5.65];
@@ -211,53 +289,79 @@
             dotCriatividade: { base: leftBase[0], phase: phaseLeft[0] },
             dotInovacao:     { base: leftBase[1], phase: phaseLeft[1] },
             dotNegocios:     { base: leftBase[3], phase: phaseLeft[3] },
-
             dotProducao:     { base: rightBase[0], phase: phaseRight[0] },
             dotBemEstar:     { base: rightBase[2], phase: phaseRight[2] },
             dotEnsinoReg:    { base: rightBase[3], phase: phaseRight[3] }
         };
 
         function drift(t, phase) {
-            const dx =
+            return [
                 Math.cos(t * F1 + phase) * A1 +
                 Math.sin(t * F2 + phase * 1.4) * A2 +
-                Math.sin(t * F3 + phase * 0.7) * A3;
+                Math.sin(t * F3 + phase * 0.7) * A3,
 
-            const dy =
                 Math.sin(t * F1 + phase) * (A1 * 0.92) +
                 Math.cos(t * F2 + phase * 1.25) * (A2 * 0.85) +
-                Math.sin(t * F3 + phase * 0.55) * (A3 * 0.65);
-
-            return [dx, dy];
+                Math.sin(t * F3 + phase * 0.55) * (A3 * 0.65)
+            ];
         }
 
         function animate() {
             t += speed;
 
-            const leftPts = leftBase.map(([x, y], i) => {
-                const [dx, dy] = drift(t, phaseLeft[i]);
-                return `${x + dx},${y + dy}`;
-            }).join(" ");
-            polyLeft.setAttribute("points", leftPts);
+            polyLeft.setAttribute("points", leftBase.map(([x,y],i)=>{
+                const [dx,dy]=drift(t,phaseLeft[i]); return `${x+dx},${y+dy}`;
+            }).join(" "));
 
-            const rightPts = rightBase.map(([x, y], i) => {
-                const [dx, dy] = drift(t, phaseRight[i]);
-                return `${x + dx},${y + dy}`;
-            }).join(" ");
-            polyRight.setAttribute("points", rightPts);
+            polyRight.setAttribute("points", rightBase.map(([x,y],i)=>{
+                const [dx,dy]=drift(t,phaseRight[i]); return `${x+dx},${y+dy}`;
+            }).join(" "));
 
-            Object.entries(dotLinks).forEach(([id, cfg]) => {
-                const el = document.getElementById(id);
-                const [bx, by] = cfg.base;
-                const [dx, dy] = drift(t, cfg.phase);
-
-                el.setAttribute("transform", `translate(${bx + dx}, ${by + dy})`);
+            Object.entries(dotLinks).forEach(([id,cfg])=>{
+                const el=document.getElementById(id);
+                const [dx,dy]=drift(t,cfg.phase);
+                el.setAttribute("transform",`translate(${cfg.base[0]+dx},${cfg.base[1]+dy})`);
             });
 
             requestAnimationFrame(animate);
         }
 
-        setTimeout(() => animate(), 50);
+        setTimeout(animate, 50);
 
+        /* ========================================
+                 SCRIPT DO CARROSSEL
+        ======================================== */
+
+        const slides = document.querySelectorAll(".carousel-slide");
+        const dotsContainer = document.querySelector(".carousel-dots");
+        const prev = document.querySelector(".carousel-arrow.left");
+        const next = document.querySelector(".carousel-arrow.right");
+
+        let index = 0;
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement("span");
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll("span");
+
+        function showSlide(i) {
+            slides.forEach(s => s.classList.remove("active"));
+            dots.forEach(d => d.classList.remove("active"));
+            slides[i].classList.add("active");
+            dots[i].classList.add("active");
+        }
+
+        function goToSlide(i) {
+            index = i;
+            showSlide(index);
+        }
+
+        prev.onclick = () => showSlide(index = (index === 0 ? slides.length - 1 : index - 1));
+        next.onclick = () => showSlide(index = (index === slides.length - 1 ? 0 : index + 1));
+
+        showSlide(index);
     </script>
 }
