@@ -104,8 +104,8 @@
         }
 
         /* ===================================================
-                                  CARROSSEL
-                =================================================== */
+                                          CARROSSEL
+                        =================================================== */
 
         .carousel-container {
             width: 100%;
@@ -177,6 +177,37 @@
 
             .carousel-arrow.right {
                 right: 5px;
+            }
+        }
+
+       
+        .ft-full-bleed {
+            position: relative;
+            top: -22px;
+        }
+
+       
+        @@media (max-width: 992px) and (min-width: 901px) {
+            .ft-full-bleed {
+                top: -46px; 
+            }
+        }
+
+        /* ================================
+           TRANSIÇÃO PARA TABLET
+        ================================ */
+        @@media (max-width: 900px) {
+            .ft-full-bleed {
+                top: -18px;
+            }
+        }
+
+        /* ================================
+           MOBILE
+        ================================ */
+        @@media (max-width: 768px) {
+            .ft-full-bleed {
+                top: -16px;
             }
         }
 
