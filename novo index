@@ -4,7 +4,6 @@
 
 @section Styles {
     <style>
-
         .ft-full-bleed {
             width: 100vw;
             margin-left: calc(50% - 50vw);
@@ -72,7 +71,7 @@
             height: 100px;
         }
 
-        /* ===================== MOBILE ===================== */
+        /* ===================== MOBILE BANNER ===================== */
 
         @@media (max-width: 769px) {
             .ft-hero {
@@ -131,26 +130,32 @@
                 border-radius: 6px;
             }
 
-        /* >>> SETAS VERDES AJUSTADAS (DUAS, FORA DO BANNER) <<< */
+        /* ===== SETAS VERDES – DUPLAS, FORA DO BANNER ===== */
         .carousel-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 40px; /* tamanho confortável */
+            font-size: 32px; /* tamanho confortável */
             color: #7cbb29;
             cursor: pointer;
             z-index: 20;
             padding: 0;
             background: transparent;
             line-height: 1;
+            letter-spacing: -6px; /* aproxima as duas setas, parecido com o original */
+            font-weight: 700;
         }
 
             .carousel-arrow.left {
-                left: -40px; /* um pouco pra fora do banner */
+                left: -55px; /* um pouco pra fora do banner */
             }
 
             .carousel-arrow.right {
-                right: -40px; /* um pouco pra fora do banner */
+                right: -55px; /* um pouco pra fora do banner */
+            }
+
+            .carousel-arrow:hover {
+                filter: brightness(1.25);
             }
 
         .carousel-dots {
@@ -174,13 +179,15 @@
 
         @@media (max-width: 769px) {
             .carousel-arrow.left {
-                left: 5px;
+                left: 8px;
             }
 
             .carousel-arrow.right {
-                right: 5px;
+                right: 8px;
             }
         }
+
+        /* ===================== AJUSTES FT-FULL-BLEED ===================== */
 
         .ft-full-bleed {
             position: relative;
@@ -188,7 +195,7 @@
         }
 
         /* Faixa que bugava entre 992px e 901px */
-        @@media (max-width: 992px) and (min-width: 901px) {
+        @@media (max-width: 992px) && (min-width: 901px) {
             .ft-full-bleed {
                 top: -46px;
             }
@@ -207,7 +214,35 @@
                 top: -16px;
             }
         }
+        /* ==============================
+           PADRONIZAÇÃO REAL DOS BANNERS
+           SEM CORTAR CONTEÚDO
+        ============================== */
 
+        .carousel-container {
+            max-width: 1080px; /* bem próximo do original */
+        }
+
+        /* Altura padrão real */
+        .carousel-slide {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            /* NUNCA corta o banner */
+            .carousel-slide img {
+                max-height: 100%;
+                max-width: 100%;
+                object-fit: contain;
+            }
+
+        @@media (max-width: 992px) and (min-width: 901px) {
+            .ft-full-bleed {
+                top: -46px !important;
+            }
+        }
     </style>
 }
 
@@ -240,7 +275,7 @@
 
     <div class="carousel-container">
 
-        <!-- setas duplicadas apenas no HTML, JS continua igual -->
+        <!-- SETAS DUPLAS: mantém JS original, só muda visual -->
         <span class="carousel-arrow left">&#10094;&#10094;</span>
         <span class="carousel-arrow right">&#10095;&#10095;</span>
 
@@ -357,7 +392,7 @@
 
         setTimeout(animate, 50);
 
-                /* ========================================
+        /* ========================================
                  SCRIPT DO CARROSSEL (COM AUTOPLAY)
         ======================================== */
 
@@ -415,6 +450,5 @@
 
         showSlide(index);
         startAutoplay();
-
     </script>
 }
