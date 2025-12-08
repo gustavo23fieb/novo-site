@@ -1,0 +1,54 @@
+@use '../variaveis' as *;
+@use 'header-site';
+@use 'unidade-details-site';
+@use 'noticia-site';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    padding-top: 150px;
+    padding-bottom: 80px;
+    font-family: 'Inter', sans-serif;
+
+
+    .container {
+        padding: 0;
+    }
+}
+
+.nav-breadcrumb {
+    
+    ul {
+        list-style: none;
+        margin-bottom: 1.5rem;
+        font-size: 16px;
+
+        li:not(:first-child) {
+            padding-left: 0.7rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: $c-roxo-escuro-site;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    html {
+        overflow-x: hidden;
+    }
+
+    body {
+        padding-top: 120px;
+    }
+}
