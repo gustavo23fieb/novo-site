@@ -103,8 +103,8 @@
         }
 
         /* ===================================================
-                               CARROSSEL
-           =================================================== */
+                                       CARROSSEL
+                   =================================================== */
 
         .carousel-container {
             width: 100%;
@@ -136,7 +136,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 40px;          /* tamanho confortável */
+            font-size: 40px; /* tamanho confortável */
             color: #7cbb29;
             cursor: pointer;
             z-index: 20;
@@ -146,11 +146,11 @@
         }
 
             .carousel-arrow.left {
-                left: -40px;          /* um pouco pra fora do banner */
+                left: -40px; /* um pouco pra fora do banner */
             }
 
             .carousel-arrow.right {
-                right: -40px;         /* um pouco pra fora do banner */
+                right: -40px; /* um pouco pra fora do banner */
             }
 
         .carousel-dots {
@@ -357,8 +357,8 @@
 
         setTimeout(animate, 50);
 
-        /* ========================================
-                 SCRIPT DO CARROSSEL (SEU ORIGINAL)
+                /* ========================================
+                 SCRIPT DO CARROSSEL (COM AUTOPLAY)
         ======================================== */
 
         const slides = document.querySelectorAll(".carousel-slide");
@@ -367,10 +367,14 @@
         const next = document.querySelector(".carousel-arrow.right");
 
         let index = 0;
+        let autoplay = null;
 
         slides.forEach((_, i) => {
             const dot = document.createElement("span");
-            dot.onclick = () => goToSlide(i);
+            dot.onclick = () => {
+                goToSlide(i);
+                resetAutoplay();
+            };
             dotsContainer.appendChild(dot);
         });
 
@@ -384,13 +388,33 @@
         }
 
         function goToSlide(i) {
-            index = i;
+            index = (i + slides.length) % slides.length;
             showSlide(index);
         }
 
-        prev.onclick = () => showSlide(index = (index === 0 ? slides.length - 1 : index - 1));
-        next.onclick = () => showSlide(index = (index === slides.length - 1 ? 0 : index + 1));
+        prev.onclick = () => {
+            goToSlide(index - 1);
+            resetAutoplay();
+        };
+
+        next.onclick = () => {
+            goToSlide(index + 1);
+            resetAutoplay();
+        };
+
+        function startAutoplay() {
+            autoplay = setInterval(() => {
+                goToSlide(index + 1);
+            }, 5000); // 5 segundos
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplay);
+            startAutoplay();
+        }
 
         showSlide(index);
+        startAutoplay();
+
     </script>
 }
