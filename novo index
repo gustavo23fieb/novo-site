@@ -184,14 +184,23 @@
 
         /* Mobile */
         @@media (max-width: 769px) {
-            .carousel-arrow.left {
-                left: 8px;
+
+            .carousel-arrow {
+                top: 50%;
+                transform: translateY(-50%);
+                width: 44px; 
+                height: 44px;
             }
 
-            .carousel-arrow.right {
-                right: 8px;
-            }
+                .carousel-arrow.left {
+                    left: -4px; 
+                }
+
+                .carousel-arrow.right {
+                    right: -4px; 
+                }
         }
+
 
 
         /* ===================== AJUSTES FT-FULL-BLEED ===================== */
