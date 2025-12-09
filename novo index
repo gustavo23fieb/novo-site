@@ -102,8 +102,8 @@
         }
 
         /* ===================================================
-                                               CARROSSEL
-                           =================================================== */
+                                                       CARROSSEL
+                                   =================================================== */
 
         .carousel-container {
             width: 100%;
@@ -130,29 +130,31 @@
                 border-radius: 6px;
             }
 
-        /* ===== SETAS VERDES – DUPLAS, FORA DO BANNER ===== */
         .carousel-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 32px; 
+            font-size: 34px;
             color: #7cbb29;
             cursor: pointer;
             z-index: 20;
             padding: 0;
             background: transparent;
             line-height: 1;
-            letter-spacing: -6px; 
+            letter-spacing: -6px;
             font-weight: 700;
+            opacity: 0.9;
         }
 
+            /* ✅ DESKTOP → SETAS FORA DO BANNER (IGUAL AO OFICIAL) */
             .carousel-arrow.left {
-                left: -55px; 
+                left: -48px;
             }
 
             .carousel-arrow.right {
-                right: -55px; 
+                right: -48px;
             }
+
 
             .carousel-arrow:hover {
                 filter: brightness(1.25);
@@ -215,10 +217,10 @@
             }
         }
 
-        
+
 
         .carousel-container {
-            max-width: 1080px; 
+            max-width: 1080px;
         }
 
         /* Altura padrão real */
@@ -229,7 +231,7 @@
             justify-content: center;
         }
 
-            
+
             .carousel-slide img {
                 max-height: 100%;
                 max-width: 100%;
@@ -268,6 +270,23 @@
                 max-width: 100%;
             }
         }
+
+        html, body {
+            overflow-x: hidden !important;
+        }
+        /* ===============================
+           REDUÇÃO ESPECÍFICA DOS BANNERS GRANDES
+           Estágio + Reserva de Vagas
+        ================================ */
+
+        .carousel-slide img[src*="estagio"] {
+            max-height: 220px !important;
+        }
+
+        .carousel-slide img[src*="reservadevagas"] {
+            max-height: 250px !important;
+        }
+
     </style>
 }
 
@@ -276,13 +295,14 @@
 <div class="ft-full-bleed">
 
     <section class="ft-hero">
-        <svg class="ft-svg-anim" viewBox="0 0 1152 590">
+        <svg class="ft-svg-anim" viewBox="0 0 1152 590" style="transform: scale(0.9); transform-origin: center;">
 
-            <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="1"
+            <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="0.7" stroke-opacity="0.85"
                      points="21.5419,260.3272 598.1857,24 864.3267,390.7483 453.3636,535.8695" />
 
-            <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="1"
+            <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="0.7" stroke-opacity="0.85"
                      points="459.6691,320.6032 845,76 993.7913,331.2108 868.2518,554.5373" />
+
 
             <g id="dotCriatividade"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Criatividade</text></g>
             <g id="dotInovacao"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Inovação</text></g>
@@ -300,14 +320,14 @@
 
     <!-- ✅ MINI BANNER FIXO ACIMA DO CARROSSEL -->
     <div class="mini-banner-fixo">
-        <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
+        <a href="https://matricula.fieb.edu.br/" target="_blank">
             <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png" alt="Vestibulinho 2026">
         </a>
     </div>
 
     <div class="carousel-container">
 
-        
+
         <span class="carousel-arrow left">&#10094;&#10094;</span>
         <span class="carousel-arrow right">&#10095;&#10095;</span>
 
@@ -402,21 +422,42 @@
             ];
         }
 
+        function clamp(value, min, max) {
+            return Math.min(Math.max(value, min), max);
+        }
+
         function animate() {
             t += speed;
 
-            polyLeft.setAttribute("points", leftBase.map(([x, y], i) => {
-                const [dx, dy] = drift(t, phaseLeft[i]); return `${x + dx},${y + dy}`;
-            }).join(" "));
+                   polyLeft.setAttribute("points", leftBase.map(([x, y], i) => {
+            const [dx, dy] = drift(t, phaseLeft[i]);
 
-            polyRight.setAttribute("points", rightBase.map(([x, y], i) => {
-                const [dx, dy] = drift(t, phaseRight[i]); return `${x + dx},${y + dy}`;
-            }).join(" "));
+            const safeX = clamp(x + dx, 40, 1110);
+            const safeY = clamp(y + dy, 40, 550);
+
+            return `${safeX},${safeY}`;
+        }).join(" "));
+
+
+                    polyRight.setAttribute("points", rightBase.map(([x, y], i) => {
+            const [dx, dy] = drift(t, phaseRight[i]);
+
+            const safeX = clamp(x + dx, 40, 1110);
+            const safeY = clamp(y + dy, 40, 550);
+
+            return `${safeX},${safeY}`;
+        }).join(" "));
+
 
             Object.entries(dotLinks).forEach(([id, cfg]) => {
                 const el = document.getElementById(id);
                 const [dx, dy] = drift(t, cfg.phase);
-                el.setAttribute("transform", `translate(${cfg.base[0] + dx},${cfg.base[1] + dy})`);
+
+   
+                const safeX = clamp(cfg.base[0] + dx, 40, 1110);
+                const safeY = clamp(cfg.base[1] + dy, 40, 550);
+
+                el.setAttribute("transform", `translate(${safeX},${safeY})`);
             });
 
             requestAnimationFrame(animate);
@@ -472,7 +513,7 @@
         function startAutoplay() {
             autoplay = setInterval(() => {
                 goToSlide(index + 1);
-            }, 5000); // 5 segundos
+            }, 5000);
         }
 
         function resetAutoplay() {
