@@ -102,8 +102,8 @@
         }
 
         /* ===================================================
-                                       CARROSSEL
-                   =================================================== */
+                                               CARROSSEL
+                           =================================================== */
 
         .carousel-container {
             width: 100%;
@@ -135,23 +135,23 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 32px; /* tamanho confortável */
+            font-size: 32px; 
             color: #7cbb29;
             cursor: pointer;
             z-index: 20;
             padding: 0;
             background: transparent;
             line-height: 1;
-            letter-spacing: -6px; /* aproxima as duas setas, parecido com o original */
+            letter-spacing: -6px; 
             font-weight: 700;
         }
 
             .carousel-arrow.left {
-                left: -55px; /* um pouco pra fora do banner */
+                left: -55px; 
             }
 
             .carousel-arrow.right {
-                right: -55px; /* um pouco pra fora do banner */
+                right: -55px; 
             }
 
             .carousel-arrow:hover {
@@ -214,13 +214,11 @@
                 top: -16px;
             }
         }
-        /* ==============================
-           PADRONIZAÇÃO REAL DOS BANNERS
-           SEM CORTAR CONTEÚDO
-        ============================== */
+
+        
 
         .carousel-container {
-            max-width: 1080px; /* bem próximo do original */
+            max-width: 1080px; 
         }
 
         /* Altura padrão real */
@@ -231,7 +229,7 @@
             justify-content: center;
         }
 
-            /* NUNCA corta o banner */
+            
             .carousel-slide img {
                 max-height: 100%;
                 max-width: 100%;
@@ -241,6 +239,33 @@
         @@media (max-width: 992px) and (min-width: 901px) {
             .ft-full-bleed {
                 top: -46px !important;
+            }
+        }
+
+        .carousel-arrow {
+            top: 56% !important;
+        }
+
+        /* ===================== MINI BANNER FIXO ===================== */
+
+        .mini-banner-fixo {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 24px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+            .mini-banner-fixo img {
+                width: 100%;
+                max-width: 860px;
+                height: auto;
+                border-radius: 8px;
+            }
+
+        @@media (max-width: 769px) {
+            .mini-banner-fixo img {
+                max-width: 100%;
             }
         }
     </style>
@@ -273,9 +298,16 @@
         </div>
     </section>
 
+    <!-- ✅ MINI BANNER FIXO ACIMA DO CARROSSEL -->
+    <div class="mini-banner-fixo">
+        <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png" alt="Vestibulinho 2026">
+        </a>
+    </div>
+
     <div class="carousel-container">
 
-        <!-- SETAS DUPLAS: mantém JS original, só muda visual -->
+        
         <span class="carousel-arrow left">&#10094;&#10094;</span>
         <span class="carousel-arrow right">&#10095;&#10095;</span>
 
