@@ -237,20 +237,23 @@
             max-width: 1080px;
         }
 
-        /* Altura padrão real */
         .carousel-slide {
-            height: 300px;
+            height: 320px; /* ALTURA PADRÃO PARA TODOS */
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #fff; /* Fundo branco limpo (igual ao oficial) */
         }
 
 
             .carousel-slide img {
+                width: auto;
+                height: 100%;
                 max-height: 100%;
                 max-width: 100%;
-                object-fit: contain;
+                object-fit: contain; /* Nunca corta, nunca estica */
             }
+
 
         @@media (max-width: 992px) and (min-width: 901px) {
             .ft-full-bleed {
@@ -290,17 +293,10 @@
             overflow-x: hidden !important;
         }
 
-        /* ===============================
-                           REDUÇÃO ESPECÍFICA DOS BANNERS GRANDES
-                           Estágio + Reserva de Vagas
-                        ================================ */
-
-        .carousel-slide img[src*="estagio"] {
-            max-height: 220px !important;
-        }
-
-        .carousel-slide img[src*="reservadevagas"] {
-            max-height: 250px !important;
+        @@media (max-width: 769px) {
+            .carousel-slide {
+                height: 220px; /* Altura padrão no mobile */
+            }
         }
 
     </style>
@@ -362,37 +358,55 @@
 
         <div class="carousel-slide active">
             <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
-                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+                </picture>
             </a>
         </div>
 
         <div class="carousel-slide">
             <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
-                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+                </picture>
             </a>
         </div>
 
         <div class="carousel-slide">
             <a href="https://reservadevagas.fieb.edu.br/" target="_blank">
-                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_mobile.png">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
+                </picture>
             </a>
         </div>
 
         <div class="carousel-slide">
             <a href="https://fieb.edu.br/nexus" target="_blank">
-                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+                </picture>
             </a>
         </div>
 
         <div class="carousel-slide">
             <a href="https://whatsapp.com/channel/0029VakGwrSCMY0ENunPA72u" target="_blank">
-                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+                </picture>
             </a>
         </div>
 
         <div class="carousel-slide">
             <a href="https://estagio.fieb.edu.br/" target="_blank">
-                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_mobile.jpg">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
+                </picture>
             </a>
         </div>
 
