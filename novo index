@@ -2,383 +2,396 @@
     ViewData["Title"] = "FIEB";
 }
 
+<style>
+    .ft-full-bleed {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        position: relative;
+        overflow: hidden;
+    }
 
-    <style>
-        .ft-full-bleed {
-            width: 100vw;
-            margin-left: calc(50% - 50vw);
-            margin-right: calc(50% - 50vw);
-            position: relative;
-            overflow: hidden;
-        }
+    /* ===================== BANNER ===================== */
 
-        /* ===================== BANNER ===================== */
+    .ft-hero {
+        position: relative;
+        width: 100%;
+        height: 840px;
+        background-image: url("https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg");
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        margin: 0;
+    }
 
-        .ft-hero {
-            position: relative;
-            width: 100%;
-            height: 840px;
-            background-image: url("https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg");
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            overflow: hidden;
-            margin: 0;
-        }
-
-            .ft-hero::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07));
-                pointer-events: none;
-                z-index: 2;
-            }
-
-        .ft-svg-anim {
+        .ft-hero::before {
+            content: "";
             position: absolute;
             inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            animation: fadeSvg 0.7s ease forwards;
-            animation-delay: 0.3s;
-            z-index: 3;
+            background: linear-gradient(90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07));
+            pointer-events: none;
+            z-index: 2;
         }
 
-        @@keyframes fadeSvg {
-            from {
-                opacity: 0;
-                transform: scale(0.98);
-            }
+    .ft-svg-anim {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        animation: fadeSvg 0.9s ease forwards;
+        animation-delay: 0.2s;
+        will-change: transform, opacity;
+        z-index: 3;
+    }
 
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+    @@keyframes fadeSvg {
+        from {
+            opacity: 0;
+            transform: scale(0.98);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .ft-hero-arrow {
+        position: absolute;
+        left: 50%;
+        bottom: 42px;
+        transform: translateX(-50%);
+        z-index: 6;
+    }
+
+    .ft-hero-arrow-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* ===================== MOBILE BANNER ===================== */
+
+    @@media (max-width: 769px) {
+        .ft-hero {
+            height: 500px;
+            background-size: 1306px auto;
+            background-position: center -15px;
+        }
+
+        .ft-svg-anim {
+            width: 100%;
+            height: 300px;
+            top: 60px;
+            opacity: 1 !important;
         }
 
         .ft-hero-arrow {
-            position: absolute;
-            left: 50%;
-            bottom: 42px;
-            transform: translateX(-50%);
-            z-index: 6;
+            bottom: 32px;
         }
 
-        .ft-hero-arrow-img {
-            width: 100px;
-            height: 100px;
-        }
-
-        /* ===================== MOBILE BANNER ===================== */
-
-        @@media (max-width: 769px) {
-            .ft-hero {
-                height: 500px;
-                background-size: 1306px auto;
-                background-position: center -15px;
-            }
-
-            .ft-svg-anim {
-                width: 100%;
-                height: 300px;
-                top: 60px;
-                opacity: 1 !important;
-            }
-
-            .ft-hero-arrow {
-                bottom: 32px;
-            }
-
-            svg {
-                width: 100%;
-                height: 100%;
-            }
-
-                svg text {
-                    font-size: 14px !important;
-                }
-        }
-
-        /* ===================================================
-                                                                               CARROSSEL
-                                                           =================================================== */
-
-        .carousel-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto 80px auto;
-            position: relative;
-        }
-
-        .carousel-slide {
-            width: 100%;
-            position: absolute;
-            opacity: 0;
-            transition: opacity 0.7s ease-in-out;
-        }
-
-            .carousel-slide.active {
-                opacity: 1;
-                position: relative;
-            }
-
-            .carousel-slide img {
-                width: 100%;
-                height: auto;
-                border-radius: 6px;
-            }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 56px;
-            height: 56px;
-            border: none;
-            background: transparent;
-            padding: 0;
-            cursor: pointer;
-            z-index: 20;
-        }
-
-            .carousel-arrow.left {
-                left: -28px;
-            }
-
-            .carousel-arrow.right {
-                right: -28px;
-            }
-
-        .arrow-svg {
+        svg {
             width: 100%;
             height: 100%;
         }
 
-        .arrow-double {
-            fill: none;
-            stroke: #7cbb29; /* VERDE OFICIAL */
-            stroke-width: 5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.2s ease, transform 0.2s ease;
-        }
-
-        /* Hover sutil igual ao oficial */
-        .carousel-arrow:hover .arrow-double {
-            stroke: #5fa01f;
-            transform: scale(1.05);
-        }
-
-        /* Tablet */
-        @@media (max-width: 1100px) and (min-width: 770px) {
-            .carousel-arrow.left {
-                left: -10px;
+            svg text {
+                font-size: 14px !important;
             }
+    }
 
-            .carousel-arrow.right {
-                right: -10px;
-            }
-        }
+    /* ===================================================
+                                           CARROSSEL
+           =================================================== */
 
-        /* Mobile */
-        @@media (max-width: 769px) {
+    .carousel-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 80px auto;
+        position: relative;
+    }
 
-            .carousel-arrow {
-                top: 50%;
-                transform: translateY(-50%);
-                width: 44px;
-                height: 44px;
-            }
+    .carousel-slide {
+        width: 100%;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.7s ease-in-out;
+    }
 
-                .carousel-arrow.left {
-                    left: -4px;
-                }
-
-                .carousel-arrow.right {
-                    right: -4px;
-                }
-        }
-
-
-
-        /* ===================== AJUSTES FT-FULL-BLEED ===================== */
-
-        .ft-full-bleed {
+        .carousel-slide.active {
+            opacity: 1;
             position: relative;
-            top: -22px;
         }
 
-        /* Faixa que bugava entre 992px e 901px */
-        @@media (max-width: 992px) && (min-width: 901px) {
-            .ft-full-bleed {
-                top: -46px;
-            }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
         }
 
-        /* Transição tablet */
-        @@media (max-width: 900px) {
-            .ft-full-bleed {
-                top: -18px;
-            }
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 56px;
+        height: 56px;
+        border: none;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        z-index: 20;
+    }
+
+        .carousel-arrow.left {
+            left: -28px;
         }
 
-        /* Mobile */
-        @@media (max-width: 769px) {
-            .ft-full-bleed {
-                top: -16px;
-            }
+        .carousel-arrow.right {
+            right: -28px;
         }
 
+    .arrow-svg {
+        width: 100%;
+        height: 100%;
+    }
 
+    .arrow-double {
+        fill: none;
+        stroke: #7cbb29; /* VERDE OFICIAL */
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: stroke 0.2s ease, transform 0.2s ease;
+    }
 
-        .carousel-container {
-            max-width: 1080px;
+    .carousel-arrow:hover .arrow-double {
+        stroke: #5fa01f;
+        transform: scale(1.05);
+    }
+
+    /* Tablet */
+    @@media (max-width: 1100px) and (min-width: 770px) {
+        .carousel-arrow.left {
+            left: -10px;
         }
 
-        .carousel-slide {
-            height: 320px; /* ALTURA PADRÃO PARA TODOS */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fff; /* Fundo branco limpo (igual ao oficial) */
+        .carousel-arrow.right {
+            right: -10px;
         }
+    }
 
-
-            .carousel-slide img {
-                width: auto;
-                height: 100%;
-                max-height: 100%;
-                max-width: 100%;
-                object-fit: contain; /* Nunca corta, nunca estica */
-            }
-
-
-        @@media (max-width: 992px) and (min-width: 901px) {
-            .ft-full-bleed {
-                top: -46px !important;
-            }
-        }
+    /* Mobile */
+    @@media (max-width: 769px) {
 
         .carousel-arrow {
             top: 50%;
             transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
         }
 
-        /* ===================== MINI BANNER FIXO ===================== */
-
-        .mini-banner-fixo {
-            margin: 0 auto 48px auto;
-            display: flex;
-            justify-content: center;
-        }
-
-
-            .mini-banner-fixo img {
-                width: 100%;
-                max-width: 860px;
-                height: 180px;
-                border-radius: 8px;
-                object-fit: cover;
+            .carousel-arrow.left {
+                left: -4px;
             }
 
-        @@media (max-width: 769px) {
-            .mini-banner-fixo img {
-                max-width: 100%;
+            .carousel-arrow.right {
+                right: -4px;
             }
+    }
+
+    /* ===================== AJUSTES FT-FULL-BLEED ===================== */
+
+    .ft-full-bleed {
+        position: relative;
+        top: -22px;
+    }
+
+    @@media (max-width: 992px) && (min-width: 901px) {
+        .ft-full-bleed {
+            top: -46px;
+        }
+    }
+
+    @@media (max-width: 900px) {
+        .ft-full-bleed {
+            top: -18px;
+        }
+    }
+
+    @@media (max-width: 769px) {
+        .ft-full-bleed {
+            top: -16px;
+        }
+    }
+
+    .carousel-container {
+        max-width: 1080px;
+    }
+
+    .carousel-slide {
+        height: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+    }
+
+        .carousel-slide img {
+            width: auto;
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
         }
 
-        html, body {
-            overflow-x: hidden !important;
+    @@media (max-width: 992px) and (min-width: 901px) {
+        .ft-full-bleed {
+            top: -46px !important;
+        }
+    }
+
+    .carousel-arrow {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* ===================== MINI BANNER FIXO ===================== */
+
+    .mini-banner-fixo {
+        margin: 0 auto 48px auto;
+        display: flex;
+        justify-content: center;
+    }
+
+        .mini-banner-fixo img {
+            width: 100%;
+            max-width: 860px;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
         }
 
-        @@media (max-width: 769px) {
-            .carousel-slide {
-                height: 220px; /* Altura padrão no mobile */
-            }
+    @@media (max-width: 769px) {
+        .mini-banner-fixo img {
+            max-width: 100%;
         }
+    }
 
-        .ft-hero {
-            margin-top: 0 !important;
-            padding-top: 0 !important;
+    html, body {
+        overflow-x: hidden !important;
+    }
+
+    @@media (max-width: 769px) {
+        .carousel-slide {
+            height: 220px;
         }
+    }
 
-        .mini-banner-fixo {
-            margin-top: 120px !important;
-            position: relative;
-            z-index: 10;
-        }
+    .ft-hero {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
 
-        body, html {
-            background: #fff;
-        }
+    .mini-banner-fixo {
+        margin-top: 120px !important;
+        position: relative;
+        z-index: 10;
+    }
 
-    </style>
-
+    body, html {
+        background: #fff;
+    }
+</style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
 
 <div class="ft-full-bleed">
 
     <section class="ft-hero">
-        <svg class="ft-svg-anim" viewBox="0 0 1152 590" style="transform: scale(0.9); transform-origin: center;">
-
-            <!-- POLÍGONO ESQUERDO OFICIAL -->
-            <polygon class="polymorph-left" fill="none" stroke="#fff" stroke-width="1"
-                     points="10,274 660,9 934,382 434,526"></polygon>
-
-            <!-- POLÍGONO DIREITO OFICIAL -->
-            <polygon class="polymorph-right" fill="none" stroke="#fff" stroke-width="1"
-                     points="450,319 845,76 995,334 861,559"></polygon>
-
-            <!-- DOTS OFICIAIS COM COORDENADAS REAIS -->
-
-            <g id="Criatividade" transform="translate(0 264)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Criatividade</text>
+        <!-- SVG OFICIAL QUE VOCÊ COPIOU DO SITE -->
+        <svg class="ft-svg-anim" viewBox="0 0 1152 590">
+            <g fill="none" fill-rule="evenodd">
+                <polygon class="polymorph-left" stroke="#fff" stroke-width="1"
+                         points="77.95938846720004,256.18927032319993 582.9563168767999,24 859.5777762304,399.9187769344001 442.0643641343999,541.2735649792 "></polygon>
+                <polygon class="polymorph-right" stroke="#fff" stroke-width="1"
+                         points="466.60872249469395,348.36041154612246 876.4725121436734,38.48740783020406 998.2483109485715,342.8935810220408 941.852426409796,550.6544841404083 "></polygon>
             </g>
 
-            <g id="Inovacao" transform="translate(650 0)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Inovação</text>
+            <g id="Criatividade" style="transform: translateX(72.9594px) translateY(-14.8107px);">
+                <g transform="translate(0 264)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
+                    <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                    <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                </g>
+                <text transform="translate(28 285)" fill="#fff" font-size="24">
+                    <tspan x="0" y="0">Criatividade</tspan>
+                </text>
             </g>
 
-            <g id="Negocios" transform="translate(428 518)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Negócios</text>
+            <g id="Inovacao" style="transform: translateX(-76.6552px) translateY(11.3885px);">
+                <g transform="translate(650 0)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
+                    <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                    <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                </g>
+                <text transform="translate(680 20)" fill="#fff" font-size="24">
+                    <tspan x="0" y="0">Inovação</tspan>
+                </text>
             </g>
 
-            <g id="Producao" transform="translate(485 340)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Produção</text>
+            <g id="Negocios" style="transform: translateX(4.91571px) translateY(13.8851px);">
+                <g transform="translate(428 518)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
+                    <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                    <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                </g>
+                <text transform="translate(458 538)" fill="#fff" font-size="24">
+                    <tspan x="0" y="0">Negócios</tspan>
+                </text>
             </g>
 
-            <g id="BemEstar" transform="translate(1016 321)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Bem-Estar</text>
+            <g id="Producao" style="transform: translateX(-27.0309px) translateY(0px);">
+                <g transform="translate(485 340)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
+                    <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                    <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                </g>
+                <text transform="translate(510 355)" fill="#fff" font-size="24">
+                    <tspan x="0" y="0">Produção</tspan>
+                </text>
             </g>
 
-            <g id="EnsinoRegular" transform="translate(956 563)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Ensino Regular</text>
+            <g id="BemEstar" style="transform: translateX(-27.0309px) translateY(10.8123px);">
+                <g transform="translate(1016 321)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
+                    <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                    <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                </g>
+                <text transform="translate(1040 340)" fill="#fff" font-size="24">
+                    <tspan x="0" y="0">Bem-Estar</tspan>
+                </text>
             </g>
 
+            <g id="EnsinoRegular" style="transform: translateX(-25.2288px) translateY(-23.4268px);">
+                <g transform="translate(956 563)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
+                    <circle cx="10" cy="10" r="10" stroke="none"></circle>
+                    <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                </g>
+                <text transform="translate(980 580)" fill="#fff" font-size="24">
+                    <tspan x="0" y="0">Ensino Regular</tspan>
+                </text>
+            </g>
         </svg>
-
 
         <div class="ft-hero-arrow">
             <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
         </div>
     </section>
 
-    <!-- ✅ MINI BANNER FIXO ACIMA DO CARROSSEL -->
+    <!-- MINI BANNER FIXO ACIMA DO CARROSSEL -->
     <div class="mini-banner-fixo">
         <a href="https://matricula.fieb.edu.br/" target="_blank">
             <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_matricula.jpg" alt="Vestibulinho 2026">
         </a>
     </div>
 
+    <!-- SEU CARROSSEL ORIGINAL MANTIDO -->
     <div class="carousel-container">
 
         <button class="carousel-arrow left" aria-label="Anterior">
@@ -388,15 +401,12 @@
             </svg>
         </button>
 
-
         <button class="carousel-arrow right" aria-label="Próximo">
             <svg viewBox="0 0 70 70" class="arrow-svg">
                 <polyline points="28,18 44,35 28,52" class="arrow-double" />
                 <polyline points="18,18 34,35 18,52" class="arrow-double" />
             </svg>
         </button>
-
-
 
         <div class="carousel-slide active">
             <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
@@ -463,97 +473,156 @@
     <script>
         const loop = true;
 
-        /* ================= DOTS ================= */
+        // ============ DOTS (CÓDIGO QUE VOCÊ TROUXE DO SITE OFICIAL) ============
 
         anime({
-          targets:'#Criatividade',
-          translateX:[0,70,88,60,0],
-          translateY:[0,-75,-32,0],
-          easing:'easeOutQuad',
-          duration:5000,
-          loop
+            targets: '#Criatividade',
+            translateX: [
+                { value: 0, duration: 0 },
+                { value: 70, duration: 1250 },
+                { value: 88, duration: 1250 },
+                { value: 60, duration: 1250 },
+                { value: 0, duration: 1250 },
+            ],
+            translateY: [
+                { value: 0, duration: 0 },
+                { value: -75, duration: 1250 },
+                { value: -32, duration: 1250 },
+                { value: 0, duration: 1250 },
+            ],
+            easing: 'easeOutQuad',
+            loop: loop
         });
 
         anime({
-          targets:'#Inovacao',
-          translateX:[0,-70,-125,-35,0],
-          translateY:[0,70,13,10,0],
-          easing:'easeOutQuad',
-          duration:5000,
-          loop
+            targets: '#Inovacao',
+            translateX: [
+                { value: 0, duration: 0 },
+                { value: -70, duration: 1250 },
+                { value: -125, duration: 1250 },
+                { value: -35, duration: 1250 },
+                { value: 0, duration: 1250 },
+            ],
+            translateY: [
+                { value: 0, duration: 0 },
+                { value: 70, duration: 1250 },
+                { value: 13, duration: 1250 },
+                { value: 10, duration: 1250 },
+                { value: 0, duration: 1250 },
+            ],
+            easing: 'easeOutQuad',
+            loop: loop
         });
 
         anime({
-          targets:'#Negocios',
-          translateX:[0,-75,-30,35,0],
-          translateY:[0,0,30,0,0],
-          easing:'easeOutQuad',
-          duration:5000,
-          loop
+            targets: '#Negocios',
+            translateX: [
+                { value: 0, duration: 0 },
+                { value: -75, duration: 1250 },
+                { value: -30, duration: 1250 },
+                { value: 35, duration: 1250 },
+                { value: 0, duration: 1250 },
+            ],
+            translateY: [
+                { value: 0, duration: 0 },
+                { value: 0, duration: 1250 },
+                { value: 30, duration: 1250 },
+                { value: 0, duration: 1250 },
+                { value: 0, duration: 1250 },
+            ],
+            easing: 'easeOutQuad',
+            loop: loop
         });
 
         anime({
-          targets:'#Producao',
-          translateX:[0,65,-40,-75,0],
-          translateY:[0,-2,-30,0,0],
-          easing:'easeOutQuad',
-          duration:7000,
-          loop
+            targets: '#Producao',
+            translateX: [
+                { value: 0, duration: 0 },
+                { value: 65, duration: 1750 },
+                { value: -40, duration: 1750 },
+                { value: -75, duration: 1750 },
+                { value: 0, duration: 1750 },
+            ],
+            translateY: [
+                { value: 0, duration: 0 },
+                { value: -2, duration: 1750 },
+                { value: -30, duration: 1750 },
+                { value: 0, duration: 1750 },
+                { value: 0, duration: 1750 },
+            ],
+            easing: 'easeOutQuad',
+            loop: loop
         });
 
         anime({
-          targets:'#BemEstar',
-          translateX:[0,-40,-30,-75,0],
-          translateY:[0,-25,3,30,0],
-          easing:'easeOutQuad',
-          duration:7000,
-          loop
+            targets: '#BemEstar',
+            translateX: [
+                { value: 0, duration: 0 },
+                { value: -40, duration: 1750 },
+                { value: -30, duration: 1750 },
+                { value: -75, duration: 1750 },
+                { value: 0, duration: 1750 },
+            ],
+            translateY: [
+                { value: 0, duration: 0 },
+                { value: -25, duration: 1750 },
+                { value: 3, duration: 1750 },
+                { value: 30, duration: 1750 },
+                { value: 0, duration: 1750 },
+            ],
+            easing: 'easeOutQuad',
+            loop: loop
         });
 
         anime({
-          targets:'#EnsinoRegular',
-          translateX:[0,-25,-108,-70,0],
-          translateY:[0,-65,-18,-65,0],
-          easing:'easeOutQuad',
-          duration:7000,
-          loop
+            targets: '#EnsinoRegular',
+            translateX: [
+                { value: 0, duration: 0 },
+                { value: -25, duration: 1750 },
+                { value: -108, duration: 1750 },
+                { value: -70, duration: 1750 },
+                { value: 0, duration: 1750 },
+            ],
+            translateY: [
+                { value: 0, duration: 0 },
+                { value: -65, duration: 1750 },
+                { value: -18, duration: 1750 },
+                { value: -65, duration: 1750 },
+                { value: 0, duration: 1750 },
+            ],
+            easing: 'easeOutQuad',
+            loop: loop
         });
 
-        /* ================= POLYGONS ================= */
+        // ============ POLÍGONOS (CÓDIGO OFICIAL) ============
 
         anime({
-          targets: '.polymorph-left',
-          points: [
-            { value: '75,197 592,76 893,477 367,526'},
-            { value: '93,239 533,24 844,430 405,559'},
-            { value: '65,271 626,24 873,374 474,526'},
-            { value: '10,274 660,9 934,382 434,526'}
-          ],
-          easing: 'easeOutQuad',
-          duration: 5000,
-          loop
+            targets: '.polymorph-left',
+            points: [
+                { value: '75,197 592,76 893,477 367,526' },
+                { value: '93,239 533,24 844,430 405,559' },
+                { value: '65,271 626,24 873,374 474,526' },
+                { value: '10,274 660,9 934,382 434,526' },
+            ],
+            easing: 'easeOutQuad',
+            duration: 5000,
+            loop: loop
         });
 
         anime({
-          targets: '.polymorph-right',
-          points: [
-            { value: '554,346 845,76 982,304 939,511'},
-            { value: '450,318 845,76 995,334 861,559'},
-            { value: '418,349 927,50 949,364 899,511'},
-            { value: '494,348 848,32 1026,331 966,573'}
-          ],
-          easing: 'easeOutQuad',
-          duration: 7000,
-          loop
+            targets: '.polymorph-right',
+            points: [
+                { value: '554,346 845,76 982,304 939,511' },
+                { value: '450,318 845,76 995,334 861,559' },
+                { value: '418,349 927,50 949,364 899,511' },
+                { value: '494,348 848,32 1026,331 966,573' },
+            ],
+            easing: 'easeOutQuad',
+            duration: 7000,
+            loop: loop
         });
-    
 
-
-        setTimeout(animate, 50);
-
-        /* ========================================
-                 SCRIPT DO CARROSSEL (COM AUTOPLAY)
-        ======================================== */
+        // ============ SEU SCRIPT DO CARROSSEL (SEM MUDANÇAS) ============
 
         const slides = document.querySelectorAll(".carousel-slide");
         const dotsContainer = document.querySelector(".carousel-dots");
