@@ -1,399 +1,354 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FIEBTECH</title>
+@{
+    ViewData["Title"] = "FIEB";
+}
 
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="https://stgwebfiebbrs001.blob.core.windows.net/web/favicon.png" />
+@section Styles {
+<style>
+.ft-full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    position: relative;
+    overflow: hidden;
+}
 
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+/* ===================== BANNER ===================== */
 
-    <!-- FONT AWESOME -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+.ft-hero {
+    position: relative;
+    width: 100%;
+    height: 840px;
+    background-image: url("https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin: 0;
+}
 
-    <!-- CSS GLOBAL DO PROJETO -->
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/site.styles.css" asp-append-version="true" />
+.ft-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07));
+    pointer-events: none;
+    z-index: 2;
+}
 
-    <!-- ESTILOS GERAIS DO LAYOUT FIEBTECH -->
-    <style>
-        :root {
-            --ft-purple: #6b1c86; /* faixa do topo */
-            --ft-purple-dark: #501567;
-            --ft-blue: #0075c9;
-            --ft-text-light: #ffffff;
-            --ft-menu-text: #ffffff;
-            --ft-orange: #ff7b22;
-            --max-width: 1180px;
-            --header-height: 76px;
-            --menu-mobile-max: 520px;
-        }
+.ft-svg-anim {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fadeSvg 0.7s ease forwards;
+    animation-delay: 0.3s;
+    z-index: 3;
+}
 
-        * {
-            box-sizing: border-box;
-        }
+@keyframes fadeSvg {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden;
-            background: #ffffff;
-        }
+.ft-hero-arrow {
+    position: absolute;
+    left: 50%;
+    bottom: 42px;
+    transform: translateX(-50%);
+    z-index: 6;
+}
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+.ft-hero-arrow-img {
+    width: 100px;
+    height: 100px;
+}
 
-        img {
-            max-width: 100%;
-            display: block;
-        }
+/* ===================== MOBILE BANNER ===================== */
 
-        /* ==========================
-                   HEADER FIEBTECH
-                =========================== */
-        .ft-header {
-            position: relative;
-            z-index: 50;
-            background: linear-gradient(to right, var(--ft-purple), var(--ft-purple-dark));
-            color: var(--ft-text-light);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
-        }
+@media (max-width: 769px) {
+    .ft-hero {
+        height: 500px;
+        background-size: 1306px auto;
+        background-position: center -15px;
+    }
 
-        .ft-header-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 10px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 32px;
-            height: var(--header-height);
-        }
+    .ft-svg-anim {
+        width: 100%;
+        height: 300px;
+        top: 60px;
+        opacity: 1 !important;
+    }
 
-        /* LOGO FIEBTECH (texto estilizado) */
-        .ft-logo {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
+    .ft-hero-arrow {
+        bottom: 32px;
+    }
 
-        .ft-logo-main {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            line-height: 1;
-        }
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 
-            .ft-logo-main span:first-child {
-                color: #ffffff;
-            }
+    svg text {
+        font-size: 14px !important;
+    }
+}
 
-            .ft-logo-main span:last-child {
-                color: transparent;
-                -webkit-text-stroke: 1px #ffffff;
-                text-stroke: 1px #ffffff;
-            }
+/* ===================== CARROSSEL ===================== */
 
-        .ft-logo-sub {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: .15em;
-            opacity: .9;
-        }
+.carousel-container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto 80px auto;
+    position: relative;
+}
 
-        /* MENU DESKTOP */
-        .ft-nav {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 14px;
-            font-weight: 600;
-        }
+.carousel-slide {
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
 
-            .ft-nav > li {
-                position: relative;
-            }
+.carousel-slide.active {
+    opacity: 1;
+    position: relative;
+}
 
-                .ft-nav > li > a,
-                .ft-nav > li > button {
-                    background: none;
-                    border: none;
-                    color: var(--ft-menu-text);
-                    cursor: pointer;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 6px;
-                    padding: 4px 0;
-                    white-space: nowrap;
-                }
+.carousel-slide {
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
 
-                    .ft-nav > li > a:hover,
-                    .ft-nav > li > button:hover {
-                        opacity: .8;
-                    }
+.carousel-slide img {
+    width: auto;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+}
 
-                    .ft-nav > li > button i {
-                        font-size: 10px;
-                    }
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    z-index: 20;
+}
 
-        /* Submenu desktop */
-        .ft-submenu {
-            position: absolute;
-            top: 130%;
-            left: 0;
-            min-width: 190px;
-            background: #ffffff;
-            color: #333;
-            border-radius: 4px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
-            padding: 6px 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(6px);
-            transition: all .15s ease-out;
-            list-style: none;
-            z-index: 60;
-        }
+.carousel-arrow.left { left: -28px; }
+.carousel-arrow.right { right: -28px; }
 
-            .ft-submenu li a {
-                display: block;
-                padding: 8px 14px;
-                font-size: 13px;
-                color: #444;
-            }
+.arrow-svg { width: 100%; height: 100%; }
 
-                .ft-submenu li a:hover {
-                    background: #f3f3f3;
-                    color: var(--ft-blue);
-                }
+.arrow-double {
+    fill: none;
+    stroke: #7cbb29;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.2s ease, transform 0.2s ease;
+}
 
-        .ft-nav > li:hover > .ft-submenu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+.carousel-arrow:hover .arrow-double {
+    stroke: #5fa01f;
+    transform: scale(1.05);
+}
 
-        /* BOTÃO PROCESSO SELETIVO (se precisar depois) */
-        .ft-nav-highlight {
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: var(--ft-orange);
-            color: #fff !important;
-            text-transform: uppercase;
-            font-size: 13px;
-        }
+@media (max-width: 1100px) and (min-width: 770px) {
+    .carousel-arrow.left { left: -10px; }
+    .carousel-arrow.right { right: -10px; }
+}
 
-        /* BOTÃO MOBILE */
-        .ft-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 22px;
-            cursor: pointer;
-        }
+@media (max-width: 769px) {
+    .carousel-arrow { width: 44px; height: 44px; }
+    .carousel-arrow.left { left: -4px; }
+    .carousel-arrow.right { right: -4px; }
 
-        /* ==========================
-                   LAYOUT DO CORPO
-                =========================== */
-        .ft-main {
-            width: 100%;
-        }
+    .carousel-slide { height: 220px; }
+}
 
-        footer {
-            margin-top: 40px;
-        }
+/* ===================== MINI BANNER ===================== */
 
-        /* ==========================
-                   RESPONSIVO
-                =========================== */
-         (max-width: 992px) {
-            .ft-header-inner {
-                gap: 16px;
-            }
-        }
+.mini-banner-fixo {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 24px auto;
+    display: flex;
+    justify-content: center;
+}
 
-         (max-width: 768px) {
-            .ft-menu-toggle {
-                display: block;
-            }
+.mini-banner-fixo img {
+    width: 100%;
+    max-width: 860px;
+    height: auto;
+    border-radius: 8px;
+}
 
-            .ft-nav {
-                position: absolute;
-                top: var(--header-height);
-                right: 0;
-                left: 0;
-                flex-direction: column;
-                align-items: flex-start;
-                background: linear-gradient(to right, var(--ft-purple), var(--ft-purple-dark));
-                padding: 8px 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height .2s ease-out;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, .25);
-            }
+@media (max-width: 769px) {
+    .mini-banner-fixo img { max-width: 100%; }
+}
 
-                .ft-nav.open {
-                    max-height: var(--menu-mobile-max);
-                }
+html, body { overflow-x: hidden !important; }
 
-                .ft-nav > li {
-                    width: 100%;
-                }
+</style>
+}
 
-                    .ft-nav > li > a,
-                    .ft-nav > li > button {
-                        width: 100%;
-                        padding: 10px 18px;
-                        justify-content: space-between;
-                    }
+<div class="ft-full-bleed">
 
-            .ft-submenu {
-                position: static;
-                box-shadow: none;
-                border-radius: 0;
-                background: rgba(0, 0, 0, .15);
-                color: #fff;
-                margin-top: 0;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                transition: max-height .2s ease-out;
-            }
+    <section class="ft-hero">
 
-                .ft-submenu.open {
-                    max-height: 260px;
-                }
+        <svg class="ft-svg-anim" viewBox="0 0 1152 590" style="transform: scale(0.9); transform-origin: center;">
 
-                .ft-submenu li a {
-                    padding: 8px 32px;
-                    color: #fff;
-                }
+            <polygon id="polyLeft" fill="none" stroke="#fff" stroke-width="0.7" stroke-opacity="0.85"
+                     points="21.5419,260.3272 598.1857,24 864.3267,390.7483 453.3636,535.8695" />
 
-                    .ft-submenu li a:hover {
-                        background: rgba(0, 0, 0, .18);
-                        color: #fff;
-                    }
-        }
-    </style>
+            <polygon id="polyRight" fill="none" stroke="#fff" stroke-width="0.7" stroke-opacity="0.85"
+                     points="459.6691,320.6032 845,76 993.7913,331.2108 868.2518,554.5373" />
 
-    @RenderSection("Styles", required: false)
-</head>
-<body>
+            <g id="dotCriatividade"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Criatividade</text></g>
+            <g id="dotInovacao"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Inovação</text></g>
+            <g id="dotProducao"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Produção</text></g>
+            <g id="dotNegocios"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Negócios</text></g>
+            <g id="dotBemEstar"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Bem-Estar</text></g>
+            <g id="dotEnsinoReg"><circle r="10" fill="#c65f16"></circle><text x="20" y="8" fill="#fff">Ensino Regular</text></g>
 
-    <!-- HEADER FIEBTECH -->
-    <header class="ft-header">
-        <div class="ft-header-inner">
-            <!-- LOGO -->
-            <div class="ft-logo">
-                <div class="ft-logo-main">
-                    <span>FIEB</span><span>TECH</span>
-                </div>
-                <div class="ft-logo-sub">
-                    Educação conectada ao futuro
-                </div>
-            </div>
+        </svg>
 
-            <!-- BOTÃO MOBILE -->
-            <button class="ft-menu-toggle" id="ftMenuToggle" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- MENU -->
-            <ul class="ft-nav" id="ftMainNav">
-                <li class="ft-has-submenu">
-                    <button type="button">
-                        A FIEB <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <ul class="ft-submenu">
-                        <li><a href="#">História</a></li>
-                        <li><a href="#">Institucional</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="#">Cursos</a></li>
-
-                <li class="ft-has-submenu">
-                    <button type="button">
-                        Unidades <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <ul class="ft-submenu">
-                        <li><a href="#">FIEB - Aldeia da Serra</a></li>
-                        <li><a href="#">FIEB - Alphaville</a></li>
-                        <li><a href="#">FIEB - Engenho Novo</a></li>
-                        <li><a href="#">FIEB - Jardim Belval</a></li>
-                        <li><a href="#">FIEB - Jardim Paulista</a></li>
-                        <li><a href="#">FIEB - Maria Cristina</a></li>
-                        <li><a href="#">FIEB - Parque Imperial</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="#">Notícias</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
+        <div class="ft-hero-arrow">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
         </div>
-    </header>
 
-    <!-- CONTEÚDO -->
-    <div class="ft-main">
-        @RenderBody()
+    </section>
+
+    <div class="mini-banner-fixo">
+        <a href="https://matricula.fieb.edu.br/" target="_blank">
+            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png" alt="Vestibulinho">
+        </a>
     </div>
 
-    <!-- FOOTER (pode customizar depois) -->
-    <footer class="text-center py-3">
-    </footer>
+    <div class="carousel-container">
 
-    <!-- SCRIPTS GLOBAIS -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+        <button class="carousel-arrow left">
+            <svg viewBox="0 0 70 70" class="arrow-svg">
+                <polyline points="42,18 26,35 42,52" class="arrow-double" />
+                <polyline points="52,18 36,35 52,52" class="arrow-double" />
+            </svg>
+        </button>
 
-    <script>
-        (function () {
-            const toggle = document.getElementById("ftMenuToggle");
-            const nav = document.getElementById("ftMainNav");
-            const submenuBtns = document.querySelectorAll(".ft-has-submenu > button");
+        <button class="carousel-arrow right">
+            <svg viewBox="0 0 70 70" class="arrow-svg">
+                <polyline points="28,18 44,35 28,52" class="arrow-double" />
+                <polyline points="18,18 34,35 18,52" class="arrow-double" />
+            </svg>
+        </button>
 
-            if (toggle && nav) {
-                toggle.addEventListener("click", function () {
-                    nav.classList.toggle("open");
-                });
-            }
+        <div class="carousel-slide active">
+            <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+                </picture>
+            </a>
+        </div>
 
-            submenuBtns.forEach(btn => {
-                btn.addEventListener("click", function (e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        const submenu = btn.parentElement.querySelector(".ft-submenu");
-                        submenu.classList.toggle("open");
-                    }
-                });
-            });
+        <div class="carousel-slide">
+            <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+                </picture>
+            </a>
+        </div>
 
-            // ao voltar pro desktop, garante reset
-            window.addEventListener("resize", function () {
-                if (window.innerWidth > 768 && nav) {
-                    nav.classList.remove("open");
-                    document.querySelectorAll(".ft-submenu").forEach(sm => sm.classList.remove("open"));
-                }
-            });
-        })();
-    </script>
+        <div class="carousel-slide">
+            <a href="https://reservadevagas.fieb.edu.br/" target="_blank">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
+                </picture>
+            </a>
+        </div>
 
-    @RenderSection("Scripts", required: false)
-</body>
-</html>
+        <div class="carousel-slide">
+            <a href="https://fieb.edu.br/nexus" target="_blank">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+                </picture>
+            </a>
+        </div>
+
+        <div class="carousel-slide">
+            <a href="https://whatsapp.com/channel/0029VakGwrSCMY0ENunPA72u" target="_blank">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+                </picture>
+            </a>
+        </div>
+
+        <div class="carousel-slide">
+            <a href="https://estagio.fieb.edu.br/" target="_blank">
+                <picture>
+                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
+                </picture>
+            </a>
+        </div>
+
+        <div class="carousel-dots"></div>
+    </div>
+
+</div>
+
+@section Scripts {
+<script>
+const slides = document.querySelectorAll(".carousel-slide");
+const dotsContainer = document.querySelector(".carousel-dots");
+const prev = document.querySelector(".carousel-arrow.left");
+const next = document.querySelector(".carousel-arrow.right");
+
+let index = 0;
+let autoplay = null;
+
+slides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+});
+
+const dots = dotsContainer.querySelectorAll("span");
+
+function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+}
+
+function goToSlide(i) {
+    index = (i + slides.length) % slides.length;
+    showSlide(index);
+}
+
+prev.onclick = () => goToSlide(index - 1);
+next.onclick = () => goToSlide(index + 1);
+
+function startAutoplay() {
+    autoplay = setInterval(() => goToSlide(index + 1), 5000);
+}
+
+showSlide(index);
+startAutoplay();
+</script>
+}
