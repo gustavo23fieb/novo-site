@@ -204,24 +204,24 @@
 
     .ft-full-bleed {
         position: relative;
-        top: -22px;
+        top: -30px;
     }
 
     @@media (max-width: 992px) && (min-width: 901px) {
         .ft-full-bleed {
-            top: -46px;
+            top: -55px;
         }
     }
 
     @@media (max-width: 900px) {
         .ft-full-bleed {
-            top: -18px;
+            top: -26px;
         }
     }
 
     @@media (max-width: 769px) {
         .ft-full-bleed {
-            top: -16px;
+            top: -26px;
         }
     }
 
@@ -309,7 +309,7 @@
 <div class="ft-full-bleed">
 
     <section class="ft-hero">
-        <!-- SVG OFICIAL QUE VOCÊ COPIOU DO SITE -->
+        
         <svg class="ft-svg-anim" viewBox="0 0 1152 590">
             <g fill="none" fill-rule="evenodd">
                 <polygon class="polymorph-left" stroke="#fff" stroke-width="1"
@@ -391,7 +391,7 @@
         </a>
     </div>
 
-    <!-- SEU CARROSSEL ORIGINAL MANTIDO -->
+    <!-- CARROSSEL -->
     <div class="carousel-container">
 
         <button class="carousel-arrow left" aria-label="Anterior">
@@ -473,7 +473,7 @@
     <script>
         const loop = true;
 
-        // ============ DOTS (CÓDIGO QUE VOCÊ TROUXE DO SITE OFICIAL) ============
+        // ============ DOTS ============
 
         anime({
             targets: '#Criatividade',
