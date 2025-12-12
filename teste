@@ -483,6 +483,116 @@
             opacity: 1;
         }
 
+    /* ==================== COMO INGRESSAR NA FIEB =================== */
+
+    .ft-ingresso {
+        background-color: #5e2a7f; /* roxo institucional */
+        padding: 48px 0;
+        color: #ffffff;
+    }
+
+    .ft-ingresso-header {
+        text-align: center;
+        max-width: 820px;
+        margin: 0 auto 64px;
+    }
+
+        .ft-ingresso-header h2 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .ft-ingresso-header p {
+            font-size: 18px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+    /* layout em duas colunas */
+    .ft-ingresso-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+    }
+
+    /* COLUNA ESQUERDA */
+    .ft-ingresso-left h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .ft-ingresso-left ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 32px;
+    }
+
+        .ft-ingresso-left ul li {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+    .ft-ingresso-left h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    .ft-ingresso-link {
+        font-size: 18px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* COLUNA DIREITA */
+    .ft-ingresso-right h3 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    .ft-ingresso-right p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    /* BOTÃO */
+    .ft-btn-acompanhe {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 12px 32px;
+        background-color: #b7d957; /* verde */
+        color: #4b1f66;
+        font-weight: 700;
+        border-radius: 24px;
+        text-decoration: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+        .ft-btn-acompanhe:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+    @@media (max-width: 991px) {
+        .ft-ingresso-content {
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        .ft-ingresso {
+            padding: 72px 0;
+        }
+
+        .ft-ingresso-header h2 {
+            font-size: 36px;
+        }
+    }
+
 </style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
@@ -767,6 +877,61 @@
     </div>
 </section>
 
+
+<section class="ft-ingresso">
+    <div class="container">
+
+        <div class="ft-ingresso-header">
+            <h2>Como Ingressar na FIEB</h2>
+            <p>
+                Tem dúvidas sobre como estudar na FIEB? Então confira como funciona o processo
+                para cada modalidade de ingresso da Fundação
+            </p>
+        </div>
+
+        <div class="ft-ingresso-content">
+
+            <!-- COLUNA ESQUERDA -->
+            <div class="ft-ingresso-left">
+                <h3>1º Ano – Ensino Fundamental</h3>
+
+                <ul>
+                    <li>Educação Básica</li>
+                    <li>Ensino Fundamental – 2º ao 9º ano</li>
+                    <li>Ensino Médio – 1ª a 3ª série</li>
+                </ul>
+
+                <h4>Educação Técnica (Modular)</h4>
+
+                <div class="ft-ingresso-link">
+                    Reserva de Vagas
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA -->
+            <div class="ft-ingresso-right">
+                <h3>Quem pode?</h3>
+
+                <p>
+                    Vagas abertas ao público geral
+                </p>
+                <p>
+                    Forma concomitante: para alunos cursando a 2ª ou 3ª série do Ensino Médio,
+                    conforme data estabelecida em edital
+                </p>
+                <p>
+                    Forma subsequente: para alunos que já concluíram o Ensino Médio
+                </p>
+
+                <a href="#" class="ft-btn-acompanhe">
+                    ACOMPANHE
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
 
 
