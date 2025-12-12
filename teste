@@ -593,6 +593,70 @@
         }
     }
 
+    /* ==================== INGRESSO (MENU + CONTEÚDO DINÂMICO) =================== */
+
+    .ft-ingresso-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-width: 520px;
+    }
+
+        .ft-ingresso-menu li {
+            position: relative;
+            padding: 10px 0 10px 26px; /* espaço pro quadradinho */
+            font-size: 18px;
+            line-height: 1.3;
+            cursor: pointer;
+            opacity: 0.95;
+        }
+
+            .ft-ingresso-menu li:hover {
+                opacity: 1;
+            }
+
+            /* item “principal” (mais forte) */
+            .ft-ingresso-menu li.ft-ingresso-item-main {
+                font-weight: 700;
+            }
+
+            /* subitens (Educação Básica / Fundamental / Médio) */
+            .ft-ingresso-menu li.ft-ingresso-item-sub {
+                font-weight: 500;
+                padding-left: 26px;
+            }
+
+            /* separadores (linhas como no oficial) */
+            .ft-ingresso-menu li.ft-ingresso-divider {
+                cursor: default;
+                padding: 0;
+                margin: 6px 0 10px;
+                height: 1px;
+                background: rgba(255,255,255,0.35);
+                opacity: 1;
+            }
+
+            /* quadradinho verde do item ativo */
+            .ft-ingresso-menu li.active::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 14px;
+                width: 9px;
+                height: 9px;
+                background: #b7d957;
+            }
+
+    /* bloco da direita */
+    .ft-ingresso-right {
+        max-width: 520px;
+    }
+
+    .ft-ingresso-dyn p {
+        margin-bottom: 14px;
+    }
+
+
 </style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
@@ -891,39 +955,51 @@
 
         <div class="ft-ingresso-content">
 
-            <!-- COLUNA ESQUERDA -->
+            <!-- COLUNA ESQUERDA (MENU) -->
             <div class="ft-ingresso-left">
-                <h3>1º Ano – Ensino Fundamental</h3>
+                <ul class="ft-ingresso-menu" id="ftIngressoMenu">
 
-                <ul>
-                    <li>Educação Básica</li>
-                    <li>Ensino Fundamental – 2º ao 9º ano</li>
-                    <li>Ensino Médio – 1ª a 3ª série</li>
+                    <li class="ft-ingresso-item-main active" data-key="fundamental1">
+                        1º Ano – Ensino Fundamental
+                    </li>
+
+                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
+
+                    <li class="ft-ingresso-item-sub" data-key="basica">
+                        Educação Básica
+                    </li>
+                    <li class="ft-ingresso-item-sub" data-key="basica">
+                        Ensino Fundamental – 2º ao 9º ano
+                    </li>
+                    <li class="ft-ingresso-item-sub" data-key="basica">
+                        Ensino Médio – 1ª a 3ª série
+                    </li>
+
+                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
+
+                    <li class="ft-ingresso-item-main" data-key="tecnica">
+                        Educação Técnica (Modular)
+                    </li>
+
+                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
+
+                    <li class="ft-ingresso-item-main" data-key="reserva">
+                        Reserva de Vagas
+                    </li>
+
+                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
                 </ul>
-
-                <h4>Educação Técnica (Modular)</h4>
-
-                <div class="ft-ingresso-link">
-                    Reserva de Vagas
-                </div>
             </div>
 
-            <!-- COLUNA DIREITA -->
+            <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
             <div class="ft-ingresso-right">
                 <h3>Quem pode?</h3>
 
-                <p>
-                    Vagas abertas ao público geral
-                </p>
-                <p>
-                    Forma concomitante: para alunos cursando a 2ª ou 3ª série do Ensino Médio,
-                    conforme data estabelecida em edital
-                </p>
-                <p>
-                    Forma subsequente: para alunos que já concluíram o Ensino Médio
-                </p>
+                <div class="ft-ingresso-dyn" id="ftIngressoDyn">
+                    <!-- JS injeta os <p> aqui -->
+                </div>
 
-                <a href="#" class="ft-btn-acompanhe">
+                <a href="#" class="ft-btn-acompanhe" id="ftIngressoBtn">
                     ACOMPANHE
                 </a>
             </div>
@@ -932,6 +1008,7 @@
 
     </div>
 </section>
+
 
 
 
@@ -1172,6 +1249,55 @@
                     nextEl: '.mySwiperCursos .swiper-button-next',
                     prevEl: '.mySwiperCursos .swiper-button-prev',
                 },
+            });
+
+        });
+
+
+                // ============ COMO INGRESSAR (IGUAL AO OFICIAL: 1 CONTEÚDO POR VEZ) ============
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const data = {
+                fundamental1: [
+                    "Vagas exclusivas a moradores de Barueri",
+                    "Para candidatos com 6 anos completos ou a completar, conforme data estabelecida em edital"
+                ],
+                basica: [
+                    "Vagas exclusivas a moradores de Barueri",
+                    "Sujeito à disponibilidade de vagas remanescentes"
+                ],
+                tecnica: [
+                    "Vagas abertas ao público geral",
+                    "Forma concomitante: para alunos cursando a 2ª ou 3ª série do Ensino Médio, conforme data estabelecida em edital",
+                    "Forma subsequente: para alunos que já concluíram o Ensino Médio"
+                ],
+                reserva: [
+                    "Destinado exclusivamente aos alunos dos 9º anos do Ensino Fundamental da FIEB e da Rede Municipal de Educação de Barueri"
+                ]
+            };
+
+            const menu = document.getElementById('ftIngressoMenu');
+            const dyn = document.getElementById('ftIngressoDyn');
+
+            function render(key) {
+                const lines = data[key] || [];
+                dyn.innerHTML = lines.map(t => `<p>${t}</p>`).join('');
+            }
+
+            // Inicial (1º Ano)
+            render('fundamental1');
+
+            // Clique no menu (delegação)
+            menu.addEventListener('click', function (e) {
+                const li = e.target.closest('li[data-key]');
+                if (!li) return;
+
+                // remove active dos itens clicáveis
+                menu.querySelectorAll('li[data-key]').forEach(x => x.classList.remove('active'));
+                li.classList.add('active');
+
+                render(li.getAttribute('data-key'));
             });
 
         });
