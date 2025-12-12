@@ -382,6 +382,91 @@
         }
 
 
+        <!-- ==================== SEÇÃO CURSOS =================== -->
+
+        .ft-cursos{
+            position: relative;
+            background-color: #ffffff;
+            padding: 96px 0 120px;
+            overflow: hidden;
+        }
+
+        .ft-cursos-header{
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+
+        .ft-cursos-header h2{
+            font-size: 48px;
+            font-weight: 700;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+        }
+
+        .ft-cursos-header p{
+            font-size: 20px;
+            color: #777;
+        }
+
+    .mySwiperCursos {
+        width: 100%;
+        height: 460px;
+        position: relative;
+    }
+
+        .mySwiperCursos .swiper-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .mySwiperCursos .swiper-slide {
+            width: 340px;
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    .curso-slide-img {
+        width: 100%;
+        height: 100%;
+        max-height: 420px;
+        object-fit: contain;
+        border-radius: 16px;
+        background: #fff;
+    }
+   
+   /* largura base */
+.mySwiperCursos .swiper-slide {
+    width: 340px;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* slides distantes */
+.mySwiperCursos .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next) {
+    width: 240px;
+    opacity: 0.25;
+    transform: scale(0.6);
+}
+
+/* slide anterior e próximo */
+.mySwiperCursos .swiper-slide-prev,
+.mySwiperCursos .swiper-slide-next {
+    width: 280px;
+    opacity: 0.45;
+    transform: scale(0.75);
+}
+
+/* slide ativo */
+.mySwiperCursos .swiper-slide-active {
+    width: 360px;
+    opacity: 1;
+    transform: scale(1);
+    z-index: 5;
+}
+
+
 </style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
@@ -550,8 +635,130 @@
 
 </div>
 
+
+
+
+<!-- ===================== CURSOS ===================== -->
+
+<section class="ft-cursos" id="cursos">
+    <div class="container">
+
+        <header class="ft-cursos-header">
+            <h2>Cursos</h2>
+            <p>Há 31 anos formando profissionais para o mercado de trabalho</p>
+        </header>
+
+        <div class="swiper mySwiperCursos">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/adm.png" alt="Administração" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/analisesclinicas.png" alt="Análises Clínicas" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/contabilidade.png" alt="Contabilidade" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/designdeinteriores.png" alt="Design de Interiores" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/edificacoes.png" alt="Edificações" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/eletroeletronica.png" alt="Eletroeletrônica" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/enfermagem.png" alt="Enfermagem" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/farmacia.png" alt="Farmácia" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/financas.png" alt="Finanças" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/hospedagem.png" alt="Hospedagem" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/informatica.png" alt="Informática" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/informaticaparainternet.png" alt="Informática para Internet" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/jogosdigitais.png" alt="Jogos Digitais" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/logistica.png" alt="Logística" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/manutencaosupo.png" alt="Manutenção e Suporte" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/publicidade.png" alt="Publicidade" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/quimica.png" alt="Química" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/recursoshumanos.png" alt="Recursos Humanos" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/redesdecomputadores.png" alt="Redes de Computadores" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/segurancadotrabalho.png" alt="Segurança do Trabalho" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/servicosjuridicos.png" alt="Serviços Jurídicos" class="curso-slide-img">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/telecomunicacoes.png" alt="Telecomunicações" class="curso-slide-img">
+                </div>
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 
     <script>
         const loop = true;
@@ -701,7 +908,7 @@
             loop: true
         });
 
-        // ============ SEU SCRIPT DO CARROSSEL (SEM MUDANÇAS) ============
+        // ============ SCRIPT DO CARROSSEL ============
 
         const slides = document.querySelectorAll(".carousel-slide");
         const dotsContainer = document.querySelector(".carousel-dots");
@@ -758,5 +965,44 @@
 
         showSlide(index);
         startAutoplay();
+
+                // ============ SWIPER CURSOS ============
+
+               document.addEventListener('DOMContentLoaded', function () {
+
+            new Swiper('.mySwiperCursos', {
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                loop: true,
+                spaceBetween: 64,
+
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 120,
+                    modifier: 1,
+                    slideShadows: false,
+                },
+
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false,
+                },
+
+                pagination: {
+                    el: '.mySwiperCursos .swiper-pagination',
+                    clickable: true,
+                },
+
+                navigation: {
+                    nextEl: '.mySwiperCursos .swiper-button-next',
+                    prevEl: '.mySwiperCursos .swiper-button-prev',
+                },
+            });
+
+        });
+
     </script>
 }
