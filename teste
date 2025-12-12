@@ -408,13 +408,13 @@
             color: #777;
         }
 
-    /* ==================== SWIPER =================== */
+    /* ==================== SWIPER CURSOS =================== */
 
     .mySwiperCursos {
         width: 100%;
         height: 460px;
         position: relative;
-        overflow: hidden; /* CORTE CORRETO DO SCALE */
+        overflow: hidden; 
     }
 
         .mySwiperCursos .swiper-wrapper {
@@ -422,17 +422,16 @@
             align-items: center;
         }
 
+
         .mySwiperCursos .swiper-slide {
-            width: 340px; /* largura base FIXA */
+            width: 340px;
             height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            transform-origin: center center; /* cresce para o centro */
+            transform-origin: center center;
         }
 
-    /* imagem */
     .curso-slide-img {
         width: 100%;
         height: 100%;
@@ -442,26 +441,27 @@
         background: #fff;
     }
 
-    /* slides distantes */
     .mySwiperCursos
     .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next) {
-        opacity: 0.25;
         transform: scale(0.6);
+        opacity: 0.25;
+        transition: none;
     }
 
-    /* slide anterior e próximo */
     .mySwiperCursos .swiper-slide-prev,
     .mySwiperCursos .swiper-slide-next {
-        opacity: 0.45;
         transform: scale(0.75);
+        opacity: 0.45;
+        transition: opacity 0.3s ease;
     }
 
-    /* slide ativo */
     .mySwiperCursos .swiper-slide-active {
-        opacity: 1;
         transform: scale(1);
+        opacity: 1;
         z-index: 5;
+        transition: transform 0.45s ease, opacity 0.45s ease;
     }
+
 
 </style>
 
