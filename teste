@@ -41,33 +41,24 @@
 
 
 
-        .ft-hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07));
-            pointer-events: none;
-            z-index: 2;
-        }
+    .ft-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07));
+        pointer-events: none;
+        z-index: 2;
+    }
 
 
-        .ft-hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 3; /* acima da imagem e abaixo da seta */
-            background: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0) 58%,
-           rgba(255, 255, 255, 0.07) 70%,
-           rgba(255, 255, 255, 0.22) 80%,
-           rgba(255, 255, 255, 0.50) 88%,
-           rgba(255, 255, 255, 0.80) 94%,
-           rgba(255, 255, 255, 1) 100%
-            );
-        }
+    .ft-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 3; /* acima da imagem e abaixo da seta */
+        background: linear-gradient( to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0.07) 70%, rgba(255, 255, 255, 0.22) 80%, rgba(255, 255, 255, 0.50) 88%, rgba(255, 255, 255, 0.80) 94%, rgba(255, 255, 255, 1) 100% );
+    }
 
     .ft-svg-anim {
         position: absolute;
@@ -113,7 +104,7 @@
     @@media (max-width: 769px) {
 
         .ft-hero {
-            height: 520px; 
+            height: 520px;
             background-size: cover;
             background-position: center top;
         }
@@ -123,11 +114,11 @@
             height: 260px;
             top: -20px;
             opacity: 1 !important;
-            position: absolute; 
+            position: absolute;
         }
 
         .ft-hero-arrow {
-            bottom: 22px; 
+            bottom: 22px;
         }
 
         svg {
@@ -144,8 +135,8 @@
 
 
     /* ===================================================
-                                               CARROSSEL
-               =================================================== */
+                                                   CARROSSEL
+                   =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -365,7 +356,7 @@
         }
 
             .carousel-dots span.active {
-                background-color: #6a1b9a; 
+                background-color: #6a1b9a;
             }
 
         .carousel-dots span {
@@ -376,9 +367,9 @@
             display: inline-block;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            pointer-events: auto; 
-            position: relative; 
-            z-index: 999; 
+            pointer-events: auto;
+            position: relative;
+            z-index: 999;
         }
 
 
@@ -411,10 +402,10 @@
 
     .mySwiperCursos {
         width: 100%;
-        height: 500px; 
+        height: 500px;
         position: relative;
         overflow: hidden;
-        padding-bottom: 80px; 
+        padding-bottom: 80px;
     }
 
         .mySwiperCursos .swiper-wrapper {
@@ -466,7 +457,7 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0px; 
+        bottom: 0px;
         z-index: 20;
     }
 
@@ -578,6 +569,7 @@
             transform: translateY(-2px);
             opacity: 0.9;
         }
+
     @@media (max-width: 991px) {
         .ft-ingresso-content {
             grid-template-columns: 1fr;
@@ -656,6 +648,17 @@
         margin-bottom: 14px;
     }
 
+    .ft-ingresso-group {
+        display: block;
+    }
+
+        .ft-ingresso-group span {
+            display: block;
+            font-weight: 400;
+            margin-top: 6px;
+            padding-left: 0;
+            opacity: 0.95;
+        }
 
 </style>
 
@@ -664,7 +667,7 @@
 <div class="ft-full-bleed">
 
     <section class="ft-hero">
-        
+
         <div class="ft-svg-wrapper">
             <svg class="ft-svg-anim"
                  viewBox="0 0 1152 590"
@@ -965,15 +968,12 @@
 
                     <li class="ft-ingresso-divider" aria-hidden="true"></li>
 
-                    <li class="ft-ingresso-item-sub" data-key="basica">
+                    <li class="ft-ingresso-item-main ft-ingresso-group active" data-key="basica">
                         Educação Básica
+                        <span>Ensino Fundamental – 2º ao 9º ano</span>
+                        <span>Ensino Médio – 1ª a 3ª série</span>
                     </li>
-                    <li class="ft-ingresso-item-sub" data-key="basica">
-                        Ensino Fundamental – 2º ao 9º ano
-                    </li>
-                    <li class="ft-ingresso-item-sub" data-key="basica">
-                        Ensino Médio – 1ª a 3ª série
-                    </li>
+
 
                     <li class="ft-ingresso-divider" aria-hidden="true"></li>
 
