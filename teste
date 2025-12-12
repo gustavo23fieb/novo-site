@@ -390,7 +390,6 @@
         padding: 96px 0 120px;
     }
 
-    /* Header */
     .ft-cursos-header {
         text-align: center;
         margin-bottom: 64px;
@@ -462,6 +461,22 @@
         transition: transform 0.45s ease, opacity 0.45s ease;
     }
 
+    .mySwiperCursos .swiper-pagination {
+        bottom: 20px;
+    }
+
+    .mySwiperCursos .swiper-pagination-bullet {
+        background-color: #cfcfcf;
+        width: 10px;
+        height: 10px;
+        opacity: 0.6;
+        transition: background-color 0.3s ease;
+    }
+
+        .mySwiperCursos .swiper-pagination-bullet.swiper-pagination-bullet-active {
+            background-color: #6a1b9a;
+            opacity: 1;
+        }
 
 </style>
 
