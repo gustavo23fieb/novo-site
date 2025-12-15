@@ -701,7 +701,7 @@
         z-index: 1;
     }
 
-    /* ==================== PONTILHADO SUPERIOR (OFICIAL) ==================== */
+    /* ==================== PONTILHADO SUPERIOR ==================== */
 
     .ft-ingresso-dots-img {
         position: absolute;
@@ -711,7 +711,7 @@
        
     }
 
-    /* ==================== PONTILHADO LARANJA (OFICIAL) ==================== */
+    /* ==================== PONTILHADO LARANJA ==================== */
 
     .ft-ingresso-dots-orange {
         position: absolute;
@@ -728,6 +728,15 @@
         background: #ffffff;
         padding: 96px 0 120px;
         position: relative;
+    }
+
+    .ft-noticias-deco-img{
+        position: absolute;
+        top: 32px;
+        right: calc(50% - 600px);
+        width: 120px;
+        pointer-events: none;
+        z-index: 1;
     }
 
     .ft-noticias-header {
@@ -1190,6 +1199,11 @@
 </section>
 
 <section class="ft-noticias">
+
+    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_formas_amarelo_laranja.png"
+         alt=""
+         class="ft-noticias-deco-img" />
+
     <div class="container">
 
         <header class="ft-noticias-header">
