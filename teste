@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                               CARROSSEL
-                               =================================================== */
+                                                                   CARROSSEL
+                                   =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -705,7 +705,7 @@
 
     .ft-ingresso-dots-img {
         position: absolute;
-        top: -48px;
+        top: -110px;
         right: calc(50% - 620px);
         width: 180px;
     }
@@ -714,7 +714,7 @@
 
     .ft-ingresso-dots-orange {
         position: absolute;
-        left: calc(50% - 620px); /* alinhado à coluna esquerda */
+        left: calc(50% - 800px); /* alinhado à coluna esquerda */
         bottom: -110px; /* invade a área branca */
         width: 220px;
         pointer-events: none;
