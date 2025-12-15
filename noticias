@@ -1,0 +1,175 @@
+/* ==================== SEÇÃO NOTÍCIAS ==================== */
+
+.ft-noticias {
+    background: #ffffff;
+    padding: 96px 0 120px;
+    position: relative;
+}
+
+.ft-noticias-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.ft-noticias-header h2 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #6a1b9a;
+    margin-bottom: 12px;
+}
+
+.ft-noticias-header p {
+    font-size: 20px;
+    color: #777;
+}
+
+/* GRID DE NOTÍCIAS */
+.ft-noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* CARD */
+.ft-noticia-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ft-noticia-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+}
+
+.ft-noticia-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.ft-noticia-content {
+    padding: 20px 22px 26px;
+    flex: 1;
+}
+
+.ft-noticia-date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.ft-noticia-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4b1f66;
+    line-height: 1.3;
+}
+
+/* BOTÃO VER TODAS */
+.ft-noticias-footer {
+    text-align: center;
+    margin-top: 56px;
+}
+
+.ft-btn-noticias {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #b7d957;
+    color: #4b1f66;
+    font-weight: 700;
+    border-radius: 28px;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.ft-btn-noticias:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* RESPONSIVO */
+@media (max-width: 991px) {
+    .ft-noticias-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .ft-noticias-header h2 {
+        font-size: 36px;
+    }
+}
+
+
+
+
+
+
+
+
+
+<!-- ===================== NOTÍCIAS ===================== -->
+
+<section class="ft-noticias" id="noticias">
+    <div class="container">
+
+        <header class="ft-noticias-header">
+            <h2>Notícias</h2>
+            <p>Fique por dentro das novidades da FIEB</p>
+        </header>
+
+        <div class="ft-noticias-grid">
+
+            <a href="#" class="ft-noticia-card">
+                <img src="https://fieb.edu.br/wp-content/uploads/2024/11/noticia1.jpg"
+                     alt="Notícia FIEB"
+                     class="ft-noticia-img" />
+
+                <div class="ft-noticia-content">
+                    <div class="ft-noticia-date">20 de novembro de 2025</div>
+                    <div class="ft-noticia-title">
+                        FIEB abre inscrições para novos cursos técnicos em 2026
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="ft-noticia-card">
+                <img src="https://fieb.edu.br/wp-content/uploads/2024/10/noticia2.jpg"
+                     alt="Notícia FIEB"
+                     class="ft-noticia-img" />
+
+                <div class="ft-noticia-content">
+                    <div class="ft-noticia-date">12 de novembro de 2025</div>
+                    <div class="ft-noticia-title">
+                        Alunos da FIEB se destacam em olimpíadas educacionais
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="ft-noticia-card">
+                <img src="https://fieb.edu.br/wp-content/uploads/2024/09/noticia3.jpg"
+                     alt="Notícia FIEB"
+                     class="ft-noticia-img" />
+
+                <div class="ft-noticia-content">
+                    <div class="ft-noticia-date">05 de novembro de 2025</div>
+                    <div class="ft-noticia-title">
+                        FIEB investe em novos laboratórios e infraestrutura
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="ft-noticias-footer">
+            <a href="https://fieb.edu.br/noticias" class="ft-btn-noticias">
+                VER TODAS AS NOTÍCIAS
+            </a>
+        </div>
+
+    </div>
+</section>
