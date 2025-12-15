@@ -69,11 +69,6 @@
         z-index: 4;
     }
 
-
-
-
-
-
     @@keyframes fadeSvg {
         from {
             opacity: 0;
@@ -686,6 +681,17 @@
        
     }
 
+    /* ==================== PONTILHADO LARANJA (OFICIAL) ==================== */
+
+    .ft-ingresso-dots-orange {
+        position: absolute;
+        left: calc(50% - 620px); /* alinhado à coluna esquerda */
+        bottom: -110px; /* invade a área branca */
+        width: 220px;
+        pointer-events: none;
+        z-index: 0; /* abaixo do conteúdo */
+    }
+
 </style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
@@ -980,6 +986,9 @@
          alt=""
          class="ft-ingresso-dots-img" />
 
+    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_pontilhado_laranja.png"
+         alt=""
+         class="ft-ingresso-dots-orange" />
 
     <div class="container">
 
