@@ -714,8 +714,8 @@
 
     .ft-ingresso-dots-orange {
         position: absolute;
-        left: calc(50% - 800px); /* alinhado à coluna esquerda */
-        bottom: -110px; /* invade a área branca */
+        left: calc(50% - 720px); /* alinhado à coluna esquerda */
+        bottom: -140px; /* invade a área branca */
         width: 220px;
         pointer-events: none;
         z-index: 0; /* abaixo do conteúdo */
