@@ -2,6 +2,36 @@
     ViewData["Title"] = "FIEB";
 }
 
+@model site.Models.Noticia
+
+@{
+    var noticiasHome = new List<Noticia>
+    {
+        new Noticia
+        {
+            Titulo = "titulo pequeno teste",
+            Data = "19 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2025/02/Fotos-not%C3%ADcias-do-site-7.png",
+            TextoNoticia = "Lorena é atleta de patinação..."
+        },
+        new Noticia
+        {
+            Titulo = "Evento de Tecnologia reúne alunos e profissionais em Alphaville",
+            Data = "21 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2023/04/capa.jpg",
+            TextoNoticia = "A FIEBTECH promoveu um evento..."
+        },
+        new Noticia
+        {
+            Titulo = "FIEBTECH participa de cerimônia na Câmara Municipal de Barueri",
+            Data = "19 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2025/05/capa-mat%C3%A9ria.png",
+            TextoNoticia = "Lorena é atleta de patinação..."
+        }
+    };
+}
+
+
 <style>
     .ft-full-bleed {
         width: 100vw;
@@ -692,6 +722,112 @@
         z-index: 0; /* abaixo do conteúdo */
     }
 
+    /* ==================== SEÇÃO NOTÍCIAS ==================== */
+
+    .ft-noticias {
+        background: #ffffff;
+        padding: 96px 0 120px;
+        position: relative;
+    }
+
+    .ft-noticias-header {
+        text-align: center;
+        margin-bottom: 64px;
+    }
+
+        .ft-noticias-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+        }
+
+        .ft-noticias-header p {
+            font-size: 20px;
+            color: #777;
+        }
+
+    /* GRID DE NOTÍCIAS */
+    .ft-noticias-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+    }
+
+    /* CARD */
+    .ft-noticia-card {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+        .ft-noticia-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+        }
+
+    .ft-noticia-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .ft-noticia-content {
+        padding: 20px 22px 26px;
+        flex: 1;
+    }
+
+    .ft-noticia-date {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 8px;
+    }
+
+    .ft-noticia-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #4b1f66;
+        line-height: 1.3;
+    }
+
+    /* BOTÃO VER TODAS */
+    .ft-noticias-footer {
+        text-align: center;
+        margin-top: 56px;
+    }
+
+    .ft-btn-noticias {
+        display: inline-block;
+        padding: 14px 40px;
+        background: #b7d957;
+        color: #4b1f66;
+        font-weight: 700;
+        border-radius: 28px;
+        text-decoration: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+        .ft-btn-noticias:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+    /* RESPONSIVO */
+    @@media (max-width: 991px) {
+        .ft-noticias-grid {
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        .ft-noticias-header h2 {
+            font-size: 36px;
+        }
+    }
+
 </style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
@@ -1053,6 +1189,53 @@
     </div>
 </section>
 
+<section class="ft-noticias">
+    <div class="container">
+
+        <header class="ft-noticias-header">
+            <h2>Notícias</h2>
+            <p>Fique por dentro das novidades da FIEB</p>
+        </header>
+
+        <div class="swiper mySwiperNoticiasHome">
+            <div class="swiper-wrapper">
+
+                @foreach (var noti in noticiasHome)
+                {
+                    <div class="swiper-slide">
+                        <a href="#" class="ft-noticia-card">
+
+                            <img src="@noti.ImagemUrl"
+                                 alt="@noti.Titulo"
+                                 class="ft-noticia-img" />
+
+                            <div class="ft-noticia-content">
+                                <div class="ft-noticia-date">
+                                    @noti.Data
+                                </div>
+
+                                <div class="ft-noticia-title">
+                                    @noti.Titulo
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="ft-noticias-footer">
+            <a href="/noticia" class="ft-btn-noticias">
+                VER TODAS AS NOTÍCIAS
+            </a>
+        </div>
+
+    </div>
+</section>
 
 
 
@@ -1345,6 +1528,28 @@
             });
 
         });
+
+
+            // ==================== NOTICIAS =============
+        new Swiper('.mySwiperNoticiasHome', {
+            spaceBetween: 32,
+            pagination: {
+                el: '.mySwiperNoticiasHome .swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1100: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    
 
 
     </script>
