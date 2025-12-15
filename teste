@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                       CARROSSEL
-                       =================================================== */
+                                                           CARROSSEL
+                           =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -429,7 +429,7 @@
         width: 100%;
         height: 500px;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         padding-bottom: 80px;
     }
 
@@ -516,12 +516,12 @@
         .ft-ingresso-header h2 {
             font-size: 44px;
             font-weight: 700;
-            margin-bottom: 8px; 
+            margin-bottom: 8px;
         }
 
         .ft-ingresso-header p {
             font-size: 18px;
-            line-height: 1.45; 
+            line-height: 1.45;
             opacity: 0.9;
         }
 
@@ -705,10 +705,9 @@
 
     .ft-ingresso-dots-img {
         position: absolute;
-        top: -48px; 
+        top: -48px;
         right: calc(50% - 620px);
         width: 180px;
-       
     }
 
     /* ==================== PONTILHADO LARANJA ==================== */
@@ -730,7 +729,7 @@
         position: relative;
     }
 
-    .ft-noticias-deco-img{
+    .ft-noticias-deco-img {
         position: absolute;
         top: 32px;
         right: calc(50% - 600px);
@@ -836,6 +835,52 @@
             font-size: 36px;
         }
     }
+    /* ===== SETAS CURSOS – CSS PURO (OFICIAL-LIKE) ===== */
+
+    .mySwiperCursos .swiper-button-next,
+    .mySwiperCursos .swiper-button-prev {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 999;
+        background: transparent;
+    }
+
+        /* seta esquerda */
+        .mySwiperCursos .swiper-button-prev::before,
+        .mySwiperCursos .swiper-button-prev::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-left: 4px solid #7cbb29;
+            border-bottom: 4px solid #7cbb29;
+            transform: rotate(45deg);
+            left: 22px;
+            top: 19px;
+        }
+
+        /* seta direita */
+        .mySwiperCursos .swiper-button-next::before,
+        .mySwiperCursos .swiper-button-next::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-right: 4px solid #7cbb29;
+            border-top: 4px solid #7cbb29;
+            transform: rotate(45deg);
+            left: 16px;
+            top: 19px;
+        }
+
+        /* remove ícone padrão do Swiper */
+        .mySwiperCursos .swiper-button-next::after,
+        .mySwiperCursos .swiper-button-prev::after {
+            content: none;
+        }
 
 </style>
 
@@ -1563,7 +1608,7 @@
                 }
             }
         });
-    
+
 
 
     </script>
