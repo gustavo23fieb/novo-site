@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                           CARROSSEL
-                           =================================================== */
+                                                               CARROSSEL
+                               =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -881,6 +881,21 @@
         .mySwiperCursos .swiper-button-prev::after {
             content: none;
         }
+    /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS (igual ao oficial) ====== */
+    @@media (max-width: 769px) {
+        .mySwiperCursos {
+            overflow: hidden !important;
+        }
+
+            .mySwiperCursos .swiper-wrapper {
+                transform: none;
+            }
+
+            .mySwiperCursos .swiper-slide {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+    }
 
 </style>
 
@@ -1512,32 +1527,44 @@
 
                 // ============ SWIPER CURSOS ============
 
-                     document.addEventListener('DOMContentLoaded', function () {
+                   document.addEventListener('DOMContentLoaded', function () {
+            try {
+                new Swiper('.mySwiperCursos', {
+                    grabCursor: true,
+                    loop: true,
+                    spaceBetween: 0,
 
-            new Swiper('.mySwiperCursos', {
-                grabCursor: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                loop: true,
-                spaceBetween: 0,
+                    autoplay: {
+                        delay: 3500,
+                        disableOnInteraction: false,
+                    },
 
-                autoplay: {
-                    delay: 3500,
-                    disableOnInteraction: false,
-                },
+                    pagination: {
+                        el: '.mySwiperCursos .swiper-pagination',
+                        clickable: true,
+                    },
 
-                pagination: {
-                    el: '.mySwiperCursos .swiper-pagination',
-                    clickable: true,
-                },
+                    navigation: {
+                        nextEl: '.mySwiperCursos .swiper-button-next',
+                        prevEl: '.mySwiperCursos .swiper-button-prev',
+                    },
 
-                navigation: {
-                    nextEl: '.mySwiperCursos .swiper-button-next',
-                    prevEl: '.mySwiperCursos .swiper-button-prev',
-                },
-            });
-
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 1,
+                            centeredSlides: false
+                        },
+                        770: {
+                            slidesPerView: 'auto',
+                            centeredSlides: true
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error('Erro ao iniciar Swiper Cursos:', e);
+            }
         });
+
 
 
                 // ============ COMO INGRESSAR (IGUAL AO OFICIAL: 1 CONTEÚDO POR VEZ) ============
