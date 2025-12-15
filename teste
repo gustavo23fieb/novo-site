@@ -690,6 +690,8 @@
 
     .ft-ingresso {
         position: relative; /* referência para o absoluto */
+        overflow: visible;
+   
     }
 
     .ft-ingresso-deco-img {
@@ -715,10 +717,10 @@
     .ft-ingresso-dots-orange {
         position: absolute;
         left: calc(50% - 720px); /* alinhado à coluna esquerda */
-        bottom: -140px; /* invade a área branca */
-        width: 220px;
+        bottom: -160px; /* invade a área branca */
+        width: 240px;
         pointer-events: none;
-        z-index: 0; /* abaixo do conteúdo */
+        z-index: 5; /* abaixo do conteúdo */
     }
 
     /* ==================== SEÇÃO NOTÍCIAS ==================== */
@@ -727,6 +729,7 @@
         background: #ffffff;
         padding: 96px 0 120px;
         position: relative;
+        z-index: 1;
     }
 
     .ft-noticias-deco-img {
