@@ -499,6 +499,72 @@
             opacity: 1;
         }
 
+        .mySwiperCursos .swiper-button-next,
+        .mySwiperCursos .swiper-button-prev{
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color :#6a1b9a;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background-color 0.2s ease;
+            z-index: 999;
+        }
+
+        /* hover */
+        .mySwiperCursos .swiper-button-next:hover,
+        .mySwiperCursos .swiper-button-prev:hover {
+            background-color: #5a1584;
+        }
+
+        /* remove ícone padrão do Swiper */
+        .mySwiperCursos .swiper-button-next::after,
+        .mySwiperCursos .swiper-button-prev::after {
+            content: none;
+        }
+
+        /* seta esquerda (verde) */
+        .mySwiperCursos .swiper-button-prev::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-left: 4px solid #7cbb29;
+            border-bottom: 4px solid #7cbb29;
+            transform: rotate(45deg);
+            left: 22px;
+            top: 19px;
+        }
+
+        /* seta direita (verde) */
+        .mySwiperCursos .swiper-button-next::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-right: 4px solid #7cbb29;
+            border-top: 4px solid #7cbb29;
+            transform: rotate(45deg);
+            left: 16px;
+            top: 19px;
+        }
+
+    /* mobile */
+    @@media (max-width: 769px) {
+        .mySwiperCursos .swiper-button-next,
+        .mySwiperCursos .swiper-button-prev {
+            width: 44px;
+            height: 44px;
+        }
+
+            .mySwiperCursos .swiper-button-prev::before,
+            .mySwiperCursos .swiper-button-next::before {
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+    }
+
     /* ==================== COMO INGRESSAR NA FIEB =================== */
 
     .ft-ingresso {
