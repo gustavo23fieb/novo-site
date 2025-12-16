@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                           CARROSSEL
-                                           =================================================== */
+                                                                               CARROSSEL
+                                               =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -1017,6 +1017,54 @@
         }
     }
 
+    @@media (max-width: 769px) {
+        .ft-ingresso-mobile-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .ft-ingresso-mobile-subtitle {
+            font-size: 15px;
+            margin-top: 6px;
+            opacity: 0.9;
+        }
+    }
+
+    @@media (max-width: 769px){
+
+        .ft-ingresso-mobile-nav{
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .ft-ingresso-arrow{
+            font-size: 32px;
+        }
+    
+    }
+
+   @@media (max-width: 769px) {
+        /* espaço abaixo do cabeçalho (título + setas) */
+        .ft-ingresso-divider-mobile {
+            margin: 16px 0 24px;
+        }
+        /* título "Quem pode?" */
+        .ft-ingresso-right h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+        /* textos */
+        .ft-ingresso-dyn p {
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        /* botão no final */
+        .ft-btn-acompanhe {
+            margin-top: 24px;
+        }
+    }
+
 </style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
@@ -1369,7 +1417,11 @@
 
                     <div class="ft-ingresso-mobile-header">
                         <span class="ft-ingresso-square"></span>
-                        <h3 class="ft-ingresso-mobile-title"></h3>
+                        <div class="ft-ingresso-mobile-texts">
+                            <h3 class="ft-ingresso-mobile-title"></h3>
+                            <p class="ft-ingresso-mobile-subtitle"></p>
+                        </div>
+
                     </div>
 
                     <span class="ft-ingresso-arrow ft-ingresso-arrow-next">&#10095;</span>
@@ -1761,6 +1813,7 @@
           },
           {
             title: 'Educação Básica',
+            subtitle: 'Ensino Fundamental – 2º ao 9º ano<br>Ensino Médio – 1ª a 3ª série',
             lines: [
               'Vagas exclusivas a moradores de Barueri',
               'Sujeito à disponibilidade de vagas remanescentes'
@@ -1790,6 +1843,8 @@
           const step = mobileSteps[mobileIndex];
 
           document.querySelector('.ft-ingresso-mobile-title').innerText = step.title;
+          document.querySelector('.ft-ingresso-mobile-subtitle').innerHTML = step.subtitle || '';
+
 
           document.getElementById('ftIngressoDyn').innerHTML =
             step.lines.map(t => `<p>${t}</p>`).join('');
