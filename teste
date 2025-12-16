@@ -975,8 +975,8 @@
         .ft-ingresso-deco-img {
             display: block;
             top: 20px; /* desce o quadrado para ficar 100% no roxo */
-            left: 24px; /* alinhamento igual ao oficial */
-            width: 128px; /* tamanho equivalente ao site oficial */
+            left: 24px; 
+            width: 128px; 
             z-index: 1;
         }
     }
@@ -985,6 +985,26 @@
 
         .ft-ingresso-header{
             margin-top: 64px;
+        }
+    }
+
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-left {
+            padding-top: 56px; 
+        }
+    }
+
+    @@media (max-width: 769px){
+        .ft-ingresso-dots-img{
+            display: block;
+            top: 250px;
+            left: 120px;
+            right: auto;
+            transform: none;
+            width: 140px;
+            z-index: 0;
+            opacity: 0.9;
         }
     }
 
