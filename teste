@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                           CARROSSEL
-                                           =================================================== */
+                                                                               CARROSSEL
+                                               =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -975,15 +975,15 @@
         .ft-ingresso-deco-img {
             display: block;
             top: 20px; /* desce o quadrado para ficar 100% no roxo */
-            left: 24px; 
-            width: 128px; 
+            left: 24px;
+            width: 128px;
             z-index: 1;
         }
     }
 
-    @@media (max-width: 769px){
+    @@media (max-width: 769px) {
 
-        .ft-ingresso-header{
+        .ft-ingresso-header {
             margin-top: 64px;
         }
     }
@@ -991,12 +991,12 @@
     @@media (max-width: 769px) {
 
         .ft-ingresso-left {
-            padding-top: 56px; 
+            padding-top: 56px;
         }
     }
 
-    @@media (max-width: 769px){
-        .ft-ingresso-dots-img{
+    @@media (max-width: 769px) {
+        .ft-ingresso-dots-img {
             display: block;
             top: 250px;
             left: 120px;
@@ -1005,6 +1005,22 @@
             width: 140px;
             z-index: 0;
             opacity: 0.9;
+        }
+    }
+
+    /* ==================== COMO INGRESSAR – PONTOS LARANJA (MOBILE) ==================== */
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-dots-orange {
+            display: block;
+            position: absolute;
+            left: 18%;
+            transform: translateX(-50%);
+            bottom: -42px; /* invade a área branca */
+            width: 90px;
+            opacity: 1;
+            z-index: 4; /* acima do branco, abaixo do conteúdo */
+            pointer-events: none;
         }
     }
 
