@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                       CARROSSEL
-                                       =================================================== */
+                                                                           CARROSSEL
+                                           =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -755,7 +755,7 @@
     /* ==================== DECORAÇÃO COMO INGRESSAR (OFICIAL) ==================== */
 
     .ft-ingresso {
-        position: relative; /* referência para o absoluto */
+        position: relative;
         overflow: visible;
     }
 
@@ -903,7 +903,7 @@
             font-size: 36px;
         }
     }
-    /* ===== SETAS CURSOS – CSS PURO (OFICIAL-LIKE) ===== */
+    /* ===== SETAS CURSOS  ===== */
 
     .mySwiperCursos .swiper-button-next,
     .mySwiperCursos .swiper-button-prev {
@@ -949,7 +949,7 @@
         .mySwiperCursos .swiper-button-prev::after {
             content: none;
         }
-    /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS (igual ao oficial) ====== */
+    /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS ====== */
     @@media (max-width: 769px) {
         .mySwiperCursos {
             overflow: hidden !important;
@@ -963,6 +963,29 @@
                 opacity: 1 !important;
                 transform: none !important;
             }
+    }
+
+    /* ==================== COMO INGRESSAR – QUADRADO VERDE (MOBILE) ==================== */
+    @@media (max-width: 769px) {
+
+        .ft-ingresso {
+            padding-top: 140px; /* espaço correto acima do título */
+        }
+
+        .ft-ingresso-deco-img {
+            display: block;
+            top: 20px; /* desce o quadrado para ficar 100% no roxo */
+            left: 24px; /* alinhamento igual ao oficial */
+            width: 128px; /* tamanho equivalente ao site oficial */
+            z-index: 1;
+        }
+    }
+
+    @@media (max-width: 769px){
+
+        .ft-ingresso-header{
+            margin-top: 64px;
+        }
     }
 
 </style>
