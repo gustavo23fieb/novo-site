@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                   CARROSSEL
-                                   =================================================== */
+                                                                       CARROSSEL
+                                       =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -499,17 +499,17 @@
             opacity: 1;
         }
 
-        .mySwiperCursos .swiper-button-next,
-        .mySwiperCursos .swiper-button-prev{
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background-color :#6a1b9a;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: background-color 0.2s ease;
-            z-index: 999;
-        }
+    .mySwiperCursos .swiper-button-next,
+    .mySwiperCursos .swiper-button-prev {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background-color: #6a1b9a;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: background-color 0.2s ease;
+        z-index: 999;
+    }
 
         /* hover */
         .mySwiperCursos .swiper-button-next:hover,
@@ -757,7 +757,6 @@
     .ft-ingresso {
         position: relative; /* referência para o absoluto */
         overflow: visible;
-   
     }
 
     .ft-ingresso-deco-img {
@@ -1286,7 +1285,7 @@
 
                     <li class="ft-ingresso-divider" aria-hidden="true"></li>
 
-                    <li class="ft-ingresso-item-main ft-ingresso-group active" data-key="basica">
+                    <li class="ft-ingresso-item-main ft-ingresso-group" data-key="basica">
                         Educação Básica
                         <span>Ensino Fundamental – 2º ao 9º ano</span>
                         <span>Ensino Médio – 1ª a 3ª série</span>
