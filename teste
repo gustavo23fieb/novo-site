@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                                   CARROSSEL
-                                                   =================================================== */
+                                                                                       CARROSSEL
+                                                       =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -1027,6 +1027,118 @@
         }
     }
 
+    /* ==================== COMO INGRESSAR – MOBILE (ETAPA 1) ==================== */
+    @@media (max-width: 769px) {
+        /* Esconde completamente o menu no mobile */
+        .ft-ingresso-left {
+            display: none !important;
+        }
+        /* Garante que o conteúdo vire coluna única */
+        .ft-ingresso-content {
+            display: block;
+        }
+        /* Conteúdo ocupa 100% da largura */
+        .ft-ingresso-right {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    /* ==================== COMO INGRESSAR – HEADER DO SLIDE (MOBILE) ==================== */
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-slide-header {
+            margin-bottom: 20px;
+        }
+
+        .ft-ingresso-slide-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ft-ingresso-slide-dot {
+            width: 10px;
+            height: 10px;
+            background: #b7d957;
+            flex-shrink: 0;
+        }
+
+        .ft-ingresso-slide-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .ft-ingresso-slide-line {
+            width: 100%;
+            max-width: 260px;
+            height: 1px;
+            background: rgba(255,255,255,0.35);
+        }
+    }
+
+    /* ==================== COMO INGRESSAR – SETAS MOBILE ==================== */
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-mobile-arrows {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0 8px;
+            max-width: 260px;
+        }
+
+        .ft-ingresso-arrow {
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+            .ft-ingresso-arrow::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 14px;
+                height: 14px;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+            /* esquerda */
+            .ft-ingresso-arrow.prev::before {
+                border-left: 4px solid #b7d957;
+                border-bottom: 4px solid #b7d957;
+            }
+            /* direita */
+            .ft-ingresso-arrow.next::before {
+                border-right: 4px solid #b7d957;
+                border-top: 4px solid #b7d957;
+            }
+    }
+
+    /* ==================== CORREÇÃO: HEADER DO SLIDE SOMENTE MOBILE ==================== */
+
+    /* Por padrão (desktop / tablet), NÃO aparece */
+    .ft-ingresso-slide-header,
+    .ft-ingresso-mobile-arrows {
+        display: none;
+    }
+
+    /* Apenas no mobile */
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-slide-header,
+        .ft-ingresso-mobile-arrows {
+            display: block;
+        }
+    }
+
+
 </style>
 
 <!-- ===================== BANNER + CARROSSEL ===================== -->
@@ -1372,6 +1484,25 @@
 
             <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
             <div class="ft-ingresso-right">
+
+                <div class="ft-ingresso-slide-header">
+                    <div class="ft-ingresso-slide-title-row">
+                        <span class="ft-ingresso-slide-dot"></span>
+                        
+                        <h4 class="ft-ingresso-slide-title">
+                            1º Ano – Ensino Fundamental
+                        </h4>
+                    </div>
+                    <div class="ft-ingresso-slide-line"></div>
+                </div>
+
+                <!-- MOBILE – SETAS DO SLIDE -->
+                <div class="ft-ingresso-mobile-arrows">
+                    <button type="button" class="ft-ingresso-arrow prev" aria-label="Anterior"></button>
+                    <button type="button" class="ft-ingresso-arrow next" aria-label="Próximo"></button>
+                </div>
+
+
                 <h3>Quem pode?</h3>
 
                 <div class="ft-ingresso-dyn" id="ftIngressoDyn">
@@ -1699,6 +1830,8 @@
 
                 // ============ COMO INGRESSAR (IGUAL AO OFICIAL: 1 CONTEÚDO POR VEZ) ============
 
+                // ============ COMO INGRESSAR — ESTADO ÚNICO ============
+
         document.addEventListener('DOMContentLoaded', function () {
 
             const data = {
@@ -1720,30 +1853,160 @@
                 ]
             };
 
+            const titles = {
+                fundamental1: '1º Ano – Ensino Fundamental',
+                basica: 'Educação Básica',
+                tecnica: 'Educação Técnica (Modular)',
+                reserva: 'Reserva de Vagas'
+            };
+
+            const order = ['fundamental1', 'basica', 'tecnica', 'reserva'];
+
+            let currentKey = 'fundamental1';
+
             const menu = document.getElementById('ftIngressoMenu');
             const dyn = document.getElementById('ftIngressoDyn');
+            const titleEl = document.getElementById('ftIngressoSlideTitle');
 
-            function render(key) {
-                const lines = data[key] || [];
-                dyn.innerHTML = lines.map(t => `<p>${t}</p>`).join('');
+            const prevBtn = document.querySelector('.ft-ingresso-arrow.prev');
+            const nextBtn = document.querySelector('.ft-ingresso-arrow.next');
+            const swipeArea = document.querySelector('.ft-ingresso-right');
+
+            function setActiveIngresso(key) {
+                if (!data[key]) return;
+
+                currentKey = key;
+
+                // conteúdo
+                dyn.innerHTML = data[key].map(t => `<p>${t}</p>`).join('');
+
+                       // título (mobile) 
+            const mobileTitle = document.querySelector('.ft-ingresso-slide-header .ft-ingresso-slide-title');
+            if (mobileTitle && titles[key]) {
+            mobileTitle.textContent = titles[key];
+           }
+
+
+                // menu (desktop / fonte da verdade)
+                if (menu) {
+                    menu.querySelectorAll('li[data-key]').forEach(li => {
+                        li.classList.toggle('active', li.getAttribute('data-key') === key);
+                    });
+                }
             }
 
-            // Inicial (1º Ano)
-            render('fundamental1');
+            function goNext() {
+                const i = order.indexOf(currentKey);
+                setActiveIngresso(order[(i + 1) % order.length]);
+            }
 
-            // Clique no menu (delegação)
-            menu.addEventListener('click', function (e) {
-                const li = e.target.closest('li[data-key]');
-                if (!li) return;
+            function goPrev() {
+                const i = order.indexOf(currentKey);
+                setActiveIngresso(order[(i - 1 + order.length) % order.length]);
+            }
 
-                // remove active dos itens clicáveis
-                menu.querySelectorAll('li[data-key]').forEach(x => x.classList.remove('active'));
-                li.classList.add('active');
+            // menu desktop
+            if (menu) {
+                menu.addEventListener('click', function (e) {
+                    const li = e.target.closest('li[data-key]');
+                    if (!li) return;
+                    setActiveIngresso(li.getAttribute('data-key'));
+                });
+            }
 
-                render(li.getAttribute('data-key'));
-            });
+            // setas mobile
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', goPrev);
+                nextBtn.addEventListener('click', goNext);
+            }
+
+            // swipe mobile
+            let startX = 0;
+
+            if (swipeArea) {
+                swipeArea.addEventListener('touchstart', e => {
+                    startX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                swipeArea.addEventListener('touchend', e => {
+                    const delta = e.changedTouches[0].screenX - startX;
+                    if (Math.abs(delta) < 50) return;
+                    delta > 0 ? goPrev() : goNext();
+                }, { passive: true });
+            }
+
+            // inicial
+            setActiveIngresso(currentKey);
 
         });
+
+
+                // ============ SETAS MOBILE ============
+        const keys = ['fundamental1', 'basica', 'tecnica', 'reserva'];
+        let currentIndex = 0;
+
+        const prevBtn = document.querySelector('.ft-ingresso-arrow.prev');
+        const nextBtn = document.querySelector('.ft-ingresso-arrow.next');
+
+        function goToByIndex(i) {
+            currentIndex = (i + keys.length) % keys.length;
+            const key = keys[currentIndex];
+
+            // atualiza menu oculto (fonte da verdade)
+            menu.querySelectorAll('li[data-key]').forEach(x => x.classList.remove('active'));
+            const activeItem = menu.querySelector(`li[data-key="${key}"]`);
+            if (activeItem) activeItem.classList.add('active');
+
+            render(key);
+        }
+
+        // sincroniza índice inicial
+        currentIndex = keys.indexOf('fundamental1');
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                goToByIndex(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                goToByIndex(currentIndex + 1);
+            });
+        }
+
+                // ============ SWIPE MOBILE (COMO INGRESSAR) ============
+        const ingressoArea = document.querySelector('.ft-ingresso-right');
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        if (ingressoArea) {
+
+            ingressoArea.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            ingressoArea.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+        }
+
+        function handleSwipe() {
+            const deltaX = touchEndX - touchStartX;
+
+            // ignora movimentos pequenos (evita conflito com scroll)
+            if (Math.abs(deltaX) < 50) return;
+
+            if (deltaX > 0) {
+                // swipe para direita → item anterior
+                goToByIndex(currentIndex - 1);
+            } else {
+                // swipe para esquerda → próximo item
+                goToByIndex(currentIndex + 1);
+            }
+        }
+
 
 
             // ==================== NOTICIAS =============
