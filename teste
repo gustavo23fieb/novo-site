@@ -951,43 +951,32 @@
         }
     }
 
-    /* ==================== COMO INGRESSAR – PONTOS LARANJA (MOBILE) ==================== */
+    /* ==================== COMO INGRESSAR – MOBILE (SLIDE) ==================== */
     @@media (max-width: 769px) {
-
-        .ft-ingresso-dots-orange {
-            display: block;
-            position: absolute;
-            left: 18%;
-            transform: translateX(-50%);
-            bottom: -42px;
-            width: 90px;
-            opacity: 1;
-            z-index: 4;
-            pointer-events: none;
+        /* seção */
+        .ft-ingresso {
+            padding: 140px 0 96px;
+            position: relative;
+            overflow: visible;
         }
-    }
-
-    /* ==================== COMO INGRESSAR – MOBILE (ETAPA 1) ==================== */
-    @@media (max-width: 769px) {
-        /* Esconde completamente o menu no mobile */
-        .ft-ingresso-left {
-            display: none !important;
-        }
-        /* Garante que o conteúdo vire coluna única */
+        /* conteúdo vira coluna única */
         .ft-ingresso-content {
             display: block;
         }
-        /* Conteúdo ocupa 100% da largura */
-        .ft-ingresso-right {
-            max-width: 100%;
-            width: 100%;
+        /* esconde menu desktop */
+        .ft-ingresso-left {
+            display: none !important;
         }
-    }
-
-    /* ==================== COMO INGRESSAR – HEADER DO SLIDE (MOBILE) ==================== */
-    @@media (max-width: 769px) {
-
+        /* coluna direita vira viewport */
+        .ft-ingresso-right {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        /* header do slide */
         .ft-ingresso-slide-header {
+            display: block;
             margin-bottom: 20px;
         }
 
@@ -1009,7 +998,6 @@
             font-size: 18px;
             font-weight: 700;
             margin: 0;
-            line-height: 1.3;
         }
 
         .ft-ingresso-slide-line {
@@ -1018,17 +1006,12 @@
             height: 1px;
             background: rgba(255,255,255,0.35);
         }
-    }
-
-    /* ==================== COMO INGRESSAR – SETAS MOBILE ==================== */
-    @@media (max-width: 769px) {
-
+        /* setas */
         .ft-ingresso-mobile-arrows {
-            position: relative;
             display: flex;
             justify-content: space-between;
-            margin: 16px 0 8px;
             max-width: 260px;
+            margin: 16px 0 8px;
         }
 
         .ft-ingresso-arrow {
@@ -1049,32 +1032,70 @@
                 height: 14px;
                 transform: translate(-50%, -50%) rotate(45deg);
             }
-            /* esquerda */
+
             .ft-ingresso-arrow.prev::before {
                 border-left: 4px solid #b7d957;
                 border-bottom: 4px solid #b7d957;
             }
-            /* direita */
+
             .ft-ingresso-arrow.next::before {
                 border-right: 4px solid #b7d957;
                 border-top: 4px solid #b7d957;
             }
-    }
+        /* ===== SLIDE ===== */
 
-    /* ==================== CORREÇÃO: HEADER DO SLIDE SOMENTE MOBILE ==================== */
+        #ftIngressoDyn {
+            position: relative;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            will-change: transform, opacity;
+        }
 
-    /* Por padrão (desktop / tablet), NÃO aparece */
-    .ft-ingresso-slide-header,
-    .ft-ingresso-mobile-arrows {
-        display: none;
-    }
+            #ftIngressoDyn.is-exit-left {
+                transform: translateX(-40px);
+                opacity: 0;
+            }
 
-    /* Apenas no mobile */
-    @@media (max-width: 769px) {
+            #ftIngressoDyn.is-exit-right {
+                transform: translateX(40px);
+                opacity: 0;
+            }
 
-        .ft-ingresso-slide-header,
-        .ft-ingresso-mobile-arrows {
-            display: block;
+            #ftIngressoDyn.is-enter {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            /* textos */
+            #ftIngressoDyn p {
+                font-size: 18px;
+                line-height: 1.5;
+                margin-bottom: 14px;
+            }
+        /* botão */
+        .ft-btn-acompanhe {
+            margin-top: 24px;
+        }
+        /* decorações */
+        .ft-ingresso-deco-img {
+            top: 20px;
+            left: 24px;
+            width: 128px;
+            z-index: 1;
+        }
+
+        .ft-ingresso-dots-img {
+            top: 250px;
+            left: 120px;
+            width: 140px;
+            opacity: 0.9;
+        }
+
+        .ft-ingresso-dots-orange {
+            position: absolute;
+            left: 15%;
+            bottom: -45px;
+            width: 90px;
+            z-index: 10;
+            pointer-events: none;
         }
     }
 
@@ -1823,8 +1844,18 @@
 
                 currentKey = key;
 
-                // conteúdo
-                dyn.innerHTML = data[key].map(t => `<p>${t}</p>`).join('');
+                        const direction = key === currentKey ? 0 : order.indexOf(key) > order.indexOf(currentKey) ? 1 : -1;
+
+        dyn.classList.remove('is-enter');
+        dyn.classList.add(direction > 0 ? 'is-exit-left' : 'is-exit-right');
+
+        setTimeout(() => {
+            dyn.innerHTML = data[key].map(t => `<p>${t}</p>`).join('');
+
+            dyn.classList.remove('is-exit-left', 'is-exit-right');
+            dyn.classList.add('is-enter');
+        }, 200);
+
 
                        // título (mobile)
             const mobileTitle = document.querySelector('.ft-ingresso-slide-header .ft-ingresso-slide-title');
