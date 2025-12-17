@@ -770,6 +770,13 @@
         z-index: 5; /* abaixo do conteúdo */
     }
 
+    /* ==================== COMO INGRESSAR – ELEMENTOS EXCLUSIVOS MOBILE ==================== */
+    .ft-ingresso-slide-header,
+    .ft-ingresso-mobile-arrows {
+        display: none;
+    }
+
+
     /* ==================== SEÇÃO NOTÍCIAS ==================== */
 
     .ft-noticias {
