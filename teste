@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                               CARROSSEL
-                                               =================================================== */
+                                                                                   CARROSSEL
+                                                   =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -477,12 +477,12 @@
         transition: transform 0.45s ease, opacity 0.45s ease;
     }
 
-
+    /* PAGINAÇÃO */
     .mySwiperCursos .swiper-pagination {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0px;
+        bottom: 0;
         z-index: 20;
     }
 
@@ -498,72 +498,75 @@
             background-color: #6a1b9a;
             opacity: 1;
         }
+    /* ==================== SETAS CURSOS – BLOCO FINAL ==================== */
 
     .mySwiperCursos .swiper-button-next,
     .mySwiperCursos .swiper-button-prev {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background-color: #6a1b9a;
+        width: 63px;
+        height: 109px;
+        position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        transition: background-color 0.2s ease;
-        z-index: 999;
+        background-color: transparent !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: contain !important;
+        opacity: 1 !important;
+        filter: none !important;
+        z-index: 10;
     }
-
-        /* hover */
-        .mySwiperCursos .swiper-button-next:hover,
-        .mySwiperCursos .swiper-button-prev:hover {
-            background-color: #5a1584;
-        }
 
         /* remove ícone padrão do Swiper */
         .mySwiperCursos .swiper-button-next::after,
         .mySwiperCursos .swiper-button-prev::after {
-            content: none;
+            content: none !important;
         }
 
-        /* seta esquerda (verde) */
-        .mySwiperCursos .swiper-button-prev::before {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-left: 4px solid #7cbb29;
-            border-bottom: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 22px;
-            top: 19px;
-        }
-
-        /* seta direita (verde) */
+        /* seta verde centralizada */
+        .mySwiperCursos .swiper-button-prev::before,
         .mySwiperCursos .swiper-button-next::before {
             content: "";
             position: absolute;
+            top: 50%;
+            left: 50%;
             width: 18px;
             height: 18px;
-            border-right: 4px solid #7cbb29;
-            border-top: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 16px;
-            top: 19px;
+            transform: translate(-50%, -50%) rotate(45deg);
         }
 
-    /* mobile */
+        /* esquerda */
+        .mySwiperCursos .swiper-button-prev::before {
+            border-left: 4px solid #7cbb29;
+            border-bottom: 4px solid #7cbb29;
+        }
+
+        /* direita */
+        .mySwiperCursos .swiper-button-next::before {
+            border-right: 4px solid #7cbb29;
+            border-top: 4px solid #7cbb29;
+        }
+
+    /* ==================== SVG  ==================== */
+
+    .mySwiperCursos .swiper-button-prev {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 63 109'%3E%3Cpath d='M0 20C0 9 9 0 20 0h23c11 0 20 9 20 20v69c0 11-9 20-20 20H20C9 109 0 100 0 89V20z' fill='%236a1b9a' fill-opacity='0.75'/%3E%3C/svg%3E") !important;
+    }
+
+    .mySwiperCursos .swiper-button-next {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 63 109'%3E%3Cpath d='M63 20C63 9 54 0 43 0H20C9 0 0 9 0 20v69c0 11 9 20 20 20h23c11 0 20-9 20-20V20z' fill='%236a1b9a' fill-opacity='0.75'/%3E%3C/svg%3E") !important;
+    }
+
+    /* MOBILE */
     @@media (max-width: 769px) {
         .mySwiperCursos .swiper-button-next,
         .mySwiperCursos .swiper-button-prev {
-            width: 44px;
-            height: 44px;
+            width: 52px;
+            height: 92px;
         }
-
-            .mySwiperCursos .swiper-button-prev::before,
-            .mySwiperCursos .swiper-button-next::before {
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%) rotate(45deg);
-            }
     }
+
+
+
 
     /* ==================== COMO INGRESSAR NA FIEB =================== */
 
@@ -1016,10 +1019,10 @@
             position: absolute;
             left: 18%;
             transform: translateX(-50%);
-            bottom: -42px; 
+            bottom: -42px;
             width: 90px;
             opacity: 1;
-            z-index: 4; 
+            z-index: 4;
             pointer-events: none;
         }
     }
