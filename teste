@@ -1855,7 +1855,7 @@
 
             const titles = {
                 fundamental1: '1º Ano – Ensino Fundamental',
-                basica: 'Educação Básica',
+                basica: 'Educação Básica Ensino Fundamental - 2° ao 9° ano Ensino Médio - 1ª a 3ª série',
                 tecnica: 'Educação Técnica (Modular)',
                 reserva: 'Reserva de Vagas'
             };
