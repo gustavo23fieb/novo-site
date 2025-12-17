@@ -1777,10 +1777,6 @@
             }
         });
 
-
-
-                // ============ COMO INGRESSAR (IGUAL AO OFICIAL: 1 CONTEÚDO POR VEZ) ============
-
                 // ============ COMO INGRESSAR — ESTADO ÚNICO ============
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -1817,7 +1813,6 @@
 
             const menu = document.getElementById('ftIngressoMenu');
             const dyn = document.getElementById('ftIngressoDyn');
-            const titleEl = document.getElementById('ftIngressoSlideTitle');
 
             const prevBtn = document.querySelector('.ft-ingresso-arrow.prev');
             const nextBtn = document.querySelector('.ft-ingresso-arrow.next');
@@ -1890,75 +1885,6 @@
             setActiveIngresso(currentKey);
 
         });
-
-
-                // ============ SETAS MOBILE ============
-        const keys = ['fundamental1', 'basica', 'tecnica', 'reserva'];
-        let currentIndex = 0;
-
-        const prevBtn = document.querySelector('.ft-ingresso-arrow.prev');
-        const nextBtn = document.querySelector('.ft-ingresso-arrow.next');
-
-        function goToByIndex(i) {
-            currentIndex = (i + keys.length) % keys.length;
-            const key = keys[currentIndex];
-
-            // atualiza menu oculto (fonte da verdade)
-            menu.querySelectorAll('li[data-key]').forEach(x => x.classList.remove('active'));
-            const activeItem = menu.querySelector(`li[data-key="${key}"]`);
-            if (activeItem) activeItem.classList.add('active');
-
-            render(key);
-        }
-
-        // sincroniza índice inicial
-        currentIndex = keys.indexOf('fundamental1');
-
-        if (prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => {
-                goToByIndex(currentIndex - 1);
-            });
-
-            nextBtn.addEventListener('click', () => {
-                goToByIndex(currentIndex + 1);
-            });
-        }
-
-                // ============ SWIPE MOBILE (COMO INGRESSAR) ============
-        const ingressoArea = document.querySelector('.ft-ingresso-right');
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        if (ingressoArea) {
-
-            ingressoArea.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
-            ingressoArea.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-
-        }
-
-        function handleSwipe() {
-            const deltaX = touchEndX - touchStartX;
-
-            // ignora movimentos pequenos (evita conflito com scroll)
-            if (Math.abs(deltaX) < 50) return;
-
-            if (deltaX > 0) {
-                // swipe para direita → item anterior
-                goToByIndex(currentIndex - 1);
-            } else {
-                // swipe para esquerda → próximo item
-                goToByIndex(currentIndex + 1);
-            }
-        }
-
-
 
             // ==================== NOTICIAS =============
         new Swiper('.mySwiperNoticiasHome', {
