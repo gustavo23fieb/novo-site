@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                                       CARROSSEL
-                                                       =================================================== */
+                                                                                           CARROSSEL
+                                                           =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -498,74 +498,53 @@
             background-color: #6a1b9a;
             opacity: 1;
         }
-    /* ==================== SETAS CURSOS – BLOCO FINAL ==================== */
+   
+    /* ==================== SETAS CURSOS – OFICIAL (ÚNICO BLOCO) ==================== */
 
     .mySwiperCursos .swiper-button-next,
     .mySwiperCursos .swiper-button-prev {
-        width: 63px;
-        height: 109px;
-        position: absolute;
+        width: 56px;
+        height: 96px;
         top: 50%;
         transform: translateY(-50%);
-        background-color: transparent !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-size: contain !important;
-        opacity: 1 !important;
-        filter: none !important;
-        z-index: 10;
+        background: rgba(106, 27, 154, 0.75);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7cbb29;
+        z-index: 20;
     }
 
-        /* remove ícone padrão do Swiper */
+        /* remove QUALQUER seta antiga */
+        .mySwiperCursos .swiper-button-next::before,
+        .mySwiperCursos .swiper-button-prev::before,
         .mySwiperCursos .swiper-button-next::after,
         .mySwiperCursos .swiper-button-prev::after {
-            content: none !important;
+            content: none;
+            border: 0;
         }
 
-        /* seta verde centralizada */
-        .mySwiperCursos .swiper-button-prev::before,
-        .mySwiperCursos .swiper-button-next::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 18px;
-            height: 18px;
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-
-        /* esquerda */
-        .mySwiperCursos .swiper-button-prev::before {
-            border-left: 4px solid #7cbb29;
-            border-bottom: 4px solid #7cbb29;
-        }
-
-        /* direita */
-        .mySwiperCursos .swiper-button-next::before {
-            border-right: 4px solid #7cbb29;
-            border-top: 4px solid #7cbb29;
-        }
-
-    /* ==================== SVG  ==================== */
-
-    .mySwiperCursos .swiper-button-prev {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 63 109'%3E%3Cpath d='M0 20C0 9 9 0 20 0h23c11 0 20 9 20 20v69c0 11-9 20-20 20H20C9 109 0 100 0 89V20z' fill='%236a1b9a' fill-opacity='0.75'/%3E%3C/svg%3E") !important;
+    /* SVG */
+    .mySwiperCursos .swiper-navigation-icon {
+        width: 11px;
+        height: 20px;
     }
 
-    .mySwiperCursos .swiper-button-next {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 63 109'%3E%3Cpath d='M63 20C63 9 54 0 43 0H20C9 0 0 9 0 20v69c0 11 9 20 20 20h23c11 0 20-9 20-20V20z' fill='%236a1b9a' fill-opacity='0.75'/%3E%3C/svg%3E") !important;
+    /* esquerda gira só o SVG */
+    .mySwiperCursos .swiper-button-prev .swiper-navigation-icon {
+        transform: rotate(180deg);
     }
 
-    /* MOBILE */
+    /* mobile */
     @@media (max-width: 769px) {
         .mySwiperCursos .swiper-button-next,
         .mySwiperCursos .swiper-button-prev {
-            width: 52px;
-            height: 92px;
+            width: 48px;
+            height: 88px;
+            border-radius: 16px;
         }
     }
-
-
 
 
     /* ==================== COMO INGRESSAR NA FIEB =================== */
@@ -906,46 +885,7 @@
             font-size: 36px;
         }
     }
-    /* ===== SETAS CURSOS  ===== */
-
-    .mySwiperCursos .swiper-button-next,
-    .mySwiperCursos .swiper-button-prev {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 999;
-        background: transparent;
-    }
-
-        /* seta esquerda */
-        .mySwiperCursos .swiper-button-prev::before,
-        .mySwiperCursos .swiper-button-prev::after {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-left: 4px solid #7cbb29;
-            border-bottom: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 22px;
-            top: 19px;
-        }
-
-        /* seta direita */
-        .mySwiperCursos .swiper-button-next::before,
-        .mySwiperCursos .swiper-button-next::after {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-right: 4px solid #7cbb29;
-            border-top: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 16px;
-            top: 19px;
-        }
+    
 
         /* remove ícone padrão do Swiper */
         .mySwiperCursos .swiper-button-next::after,
@@ -1137,7 +1077,6 @@
             display: block;
         }
     }
-
 
 </style>
 
@@ -1415,8 +1354,20 @@
             </div>
 
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-prev">
+                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                          fill="currentColor" />
+                </svg>
+            </div>
+
+            <div class="swiper-button-next">
+                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                          fill="currentColor" />
+                </svg>
+            </div>
+
 
         </div>
 
@@ -1488,7 +1439,7 @@
                 <div class="ft-ingresso-slide-header">
                     <div class="ft-ingresso-slide-title-row">
                         <span class="ft-ingresso-slide-dot"></span>
-                        
+
                         <h4 class="ft-ingresso-slide-title">
                             1º Ano – Ensino Fundamental
                         </h4>
@@ -1880,7 +1831,7 @@
                 // conteúdo
                 dyn.innerHTML = data[key].map(t => `<p>${t}</p>`).join('');
 
-                       // título (mobile) 
+                       // título (mobile)
             const mobileTitle = document.querySelector('.ft-ingresso-slide-header .ft-ingresso-slide-title');
             if (mobileTitle && titles[key]) {
             mobileTitle.textContent = titles[key];
