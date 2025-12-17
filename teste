@@ -160,8 +160,8 @@
 
 
     /* ===================================================
-                                                                                           CARROSSEL
-                                                           =================================================== */
+                                                                                               CARROSSEL
+                                                               =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -498,7 +498,7 @@
             background-color: #6a1b9a;
             opacity: 1;
         }
-   
+
     /* ==================== SETAS CURSOS – OFICIAL (ÚNICO BLOCO) ==================== */
 
     .mySwiperCursos .swiper-button-next,
@@ -892,13 +892,13 @@
             font-size: 36px;
         }
     }
-    
 
-        /* remove ícone padrão do Swiper */
-        .mySwiperCursos .swiper-button-next::after,
-        .mySwiperCursos .swiper-button-prev::after {
-            content: none;
-        }
+
+    /* remove ícone padrão do Swiper */
+    .mySwiperCursos .swiper-button-next::after,
+    .mySwiperCursos .swiper-button-prev::after {
+        content: none;
+    }
     /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS ====== */
     @@media (max-width: 769px) {
         .mySwiperCursos {
@@ -1018,7 +1018,7 @@
             display: flex;
             justify-content: space-between;
             max-width: 260px;
-            margin: 16px 0 8px;
+            margin: 16px auto 8px;
         }
 
         .ft-ingresso-arrow {
