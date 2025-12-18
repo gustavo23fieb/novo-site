@@ -2,6 +2,36 @@
     ViewData["Title"] = "FIEB";
 }
 
+@model site.Models.Noticia
+
+@{
+    var noticiasHome = new List<Noticia>
+    {
+        new Noticia
+        {
+            Titulo = "titulo pequeno teste",
+            Data = "19 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2025/02/Fotos-not%C3%ADcias-do-site-7.png",
+            TextoNoticia = "Lorena é atleta de patinação..."
+        },
+        new Noticia
+        {
+            Titulo = "Evento de Tecnologia reúne alunos e profissionais em Alphaville",
+            Data = "21 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2023/04/capa.jpg",
+            TextoNoticia = "A FIEBTECH promoveu um evento..."
+        },
+        new Noticia
+        {
+            Titulo = "FIEBTECH participa de cerimônia na Câmara Municipal de Barueri",
+            Data = "19 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2025/05/capa-mat%C3%A9ria.png",
+            TextoNoticia = "Lorena é atleta de patinação..."
+        }
+    };
+}
+
+
 <style>
     .ft-full-bleed {
         width: 100vw;
@@ -69,11 +99,6 @@
         z-index: 4;
     }
 
-
-
-
-
-
     @@keyframes fadeSvg {
         from {
             opacity: 0;
@@ -134,9 +159,7 @@
     }
 
 
-    /* ===================================================
-                                                       CARROSSEL
-                       =================================================== */
+    /* ================================================== CARROSSEL =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -404,7 +427,7 @@
         width: 100%;
         height: 500px;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         padding-bottom: 80px;
     }
 
@@ -452,12 +475,12 @@
         transition: transform 0.45s ease, opacity 0.45s ease;
     }
 
-
+    /* PAGINAÇÃO */
     .mySwiperCursos .swiper-pagination {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0px;
+        bottom: 0;
         z-index: 20;
     }
 
@@ -473,6 +496,54 @@
             background-color: #6a1b9a;
             opacity: 1;
         }
+
+    /* ==================== SETAS CURSOS – OFICIAL (ÚNICO BLOCO) ==================== */
+
+    .mySwiperCursos .swiper-button-next,
+    .mySwiperCursos .swiper-button-prev {
+        width: 56px;
+        height: 96px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(106, 27, 154, 0.75);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7cbb29;
+        z-index: 20;
+    }
+
+        /* remove QUALQUER seta antiga */
+        .mySwiperCursos .swiper-button-next::before,
+        .mySwiperCursos .swiper-button-prev::before,
+        .mySwiperCursos .swiper-button-next::after,
+        .mySwiperCursos .swiper-button-prev::after {
+            content: none;
+            border: 0;
+        }
+
+    /* SVG */
+    .mySwiperCursos .swiper-navigation-icon {
+        width: 11px;
+        height: 20px;
+    }
+
+    /* esquerda gira só o SVG */
+    .mySwiperCursos .swiper-button-prev .swiper-navigation-icon {
+        transform: rotate(180deg);
+    }
+
+    /* mobile */
+    @@media (max-width: 769px) {
+        .mySwiperCursos .swiper-button-next,
+        .mySwiperCursos .swiper-button-prev {
+            width: 48px;
+            height: 88px;
+            border-radius: 16px;
+        }
+    }
+
 
     /* ==================== COMO INGRESSAR NA FIEB =================== */
 
@@ -491,12 +562,12 @@
         .ft-ingresso-header h2 {
             font-size: 44px;
             font-weight: 700;
-            margin-bottom: 8px; 
+            margin-bottom: 8px;
         }
 
         .ft-ingresso-header p {
             font-size: 18px;
-            line-height: 1.45; 
+            line-height: 1.45;
             opacity: 0.9;
         }
 
@@ -545,6 +616,7 @@
         font-size: 22px;
         font-weight: 600;
         margin-bottom: 16px;
+        text-align: center;
     }
 
     .ft-ingresso-right p {
@@ -664,7 +736,8 @@
     /* ==================== DECORAÇÃO COMO INGRESSAR (OFICIAL) ==================== */
 
     .ft-ingresso {
-        position: relative; /* referência para o absoluto */
+        position: relative;
+        overflow: visible;
     }
 
     .ft-ingresso-deco-img {
@@ -676,35 +749,395 @@
         z-index: 1;
     }
 
-    /* ==================== PONTILHADO SUPERIOR (OFICIAL) ==================== */
+    /* ==================== PONTILHADO SUPERIOR ==================== */
 
     .ft-ingresso-dots-img {
         position: absolute;
-        top: -48px; 
+        top: -110px;
         right: calc(50% - 620px);
         width: 180px;
-       
     }
 
-    /* ==================== PONTILHADO LARANJA (OFICIAL) ==================== */
+    /* ==================== PONTILHADO LARANJA ==================== */
 
     .ft-ingresso-dots-orange {
         position: absolute;
-        left: calc(50% - 620px); /* alinhado à coluna esquerda */
-        bottom: -110px; /* invade a área branca */
-        width: 220px;
+        left: calc(50% - 720px); /* alinhado à coluna esquerda */
+        bottom: -85px; /* invade a área branca */
+        width: 165px;
         pointer-events: none;
-        z-index: 0; /* abaixo do conteúdo */
+        z-index: 5; /* abaixo do conteúdo */
     }
 
-    /* Mobile */
+    /* ==================== COMO INGRESSAR – ELEMENTOS EXCLUSIVOS MOBILE ==================== */
+    .ft-ingresso-slide-header,
+    .ft-ingresso-mobile-arrows {
+        display: none;
+    }
+
+
+    /* ==================== SEÇÃO NOTÍCIAS ==================== */
+
+    .ft-noticias {
+        background: #ffffff;
+        padding: 96px 0 120px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .ft-noticias-deco-img {
+        position: absolute;
+        top: 32px;
+        right: calc(50% - 600px);
+        width: 120px;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .ft-noticias-header {
+        text-align: center;
+        margin-bottom: 64px;
+    }
+
+        .ft-noticias-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #6a1b9a;
+            margin-bottom: 12px;
+        }
+
+        .ft-noticias-header p {
+            font-size: 20px;
+            color: #777;
+        }
+
+    /* GRID DE NOTÍCIAS */
+    .ft-noticias-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+    }
+
+    /* CARD */
+    .ft-noticia-card {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+        .ft-noticia-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+        }
+
+    .ft-noticia-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .ft-noticia-content {
+        padding: 20px 22px 26px;
+        flex: 1;
+    }
+
+    .ft-noticia-date {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 8px;
+    }
+
+    .ft-noticia-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #4b1f66;
+        line-height: 1.3;
+    }
+
+    /* BOTÃO VER TODAS */
+    .ft-noticias-footer {
+        text-align: center;
+        margin-top: 56px;
+    }
+
+    .ft-btn-noticias {
+        display: inline-block;
+        padding: 14px 40px;
+        background: #b7d957;
+        color: #4b1f66;
+        font-weight: 700;
+        border-radius: 28px;
+        text-decoration: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+        .ft-btn-noticias:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+    /* RESPONSIVO */
     @@media (max-width: 991px) {
-        .ft-ingresso-dots-orange {
-            left: 16px;
-            bottom: -90px;
-            width: 180px;
+        .ft-noticias-grid {
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        .ft-noticias-header h2 {
+            font-size: 36px;
         }
     }
+
+
+    /* remove ícone padrão do Swiper */
+    .mySwiperCursos .swiper-button-next::after,
+    .mySwiperCursos .swiper-button-prev::after {
+        content: none;
+    }
+    /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS ====== */
+    @@media (max-width: 769px) {
+        .mySwiperCursos {
+            overflow: hidden !important;
+        }
+
+            .mySwiperCursos .swiper-wrapper {
+                transform: none;
+            }
+
+            .mySwiperCursos .swiper-slide {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+    }
+
+    /* ==================== COMO INGRESSAR – QUADRADO VERDE (MOBILE) ==================== */
+    @@media (max-width: 769px) {
+
+        .ft-ingresso {
+            padding-top: 140px; /* espaço correto acima do título */
+        }
+
+        .ft-ingresso-deco-img {
+            display: block;
+            top: 20px; /* desce o quadrado para ficar 100% no roxo */
+            left: 24px;
+            width: 128px;
+            z-index: 1;
+        }
+    }
+
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-header {
+            margin-top: 64px;
+        }
+    }
+
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-left {
+            padding-top: 56px;
+        }
+    }
+
+    @@media (max-width: 769px) {
+        .ft-ingresso-dots-img {
+            display: block;
+            top: 250px;
+            left: 120px;
+            right: auto;
+            transform: none;
+            width: 140px;
+            z-index: 0;
+            opacity: 0.9;
+        }
+    }
+
+    /* ==================== COMO INGRESSAR – MOBILE (SLIDE) ==================== */
+    @@media (max-width: 769px) {
+        /* seção */
+        .ft-ingresso {
+            padding: 140px 0 140px;
+            position: relative;
+            overflow: visible;
+        }
+        /* conteúdo vira coluna única */
+        .ft-ingresso-content {
+            display: block;
+        }
+        /* esconde menu desktop */
+        .ft-ingresso-left {
+            display: none !important;
+        }
+        /* coluna direita vira viewport */
+        .ft-ingresso-right {
+            width: 100%;
+            padding-top: 32px;
+            max-width: 100%;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        /* header do slide */
+        .ft-ingresso-slide-header {
+            display: block;
+            margin: 0;
+        }
+
+        .ft-ingresso-slide-title-row {
+            display: flex;
+            align-items: center;
+            position: relative;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .ft-ingresso-slide-dot {
+            width: 10px;
+            height: 10px;
+            background: #b7d957;
+            flex-shrink: 0;
+            position: absolute;
+            left: 0;
+        }
+
+        .ft-ingresso-slide-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .ft-ingresso-slide-line {
+            width: 100%;
+            max-width: 260px;
+            margin: 0 auto;
+            height: 1px;
+            background: rgba(255,255,255,0.35);
+        }
+        /* setas */
+        .ft-ingresso-mobile-arrows {
+            display: flex;
+            justify-content: space-between;
+            max-width: none;
+            margin: 0;
+            gap: 12px;
+        }
+
+        .ft-ingresso-arrow {
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+            .ft-ingresso-arrow::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 14px;
+                height: 14px;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            .ft-ingresso-arrow.prev::before {
+                border-left: 4px solid #b7d957;
+                border-bottom: 4px solid #b7d957;
+            }
+
+            .ft-ingresso-arrow.next::before {
+                border-right: 4px solid #b7d957;
+                border-top: 4px solid #b7d957;
+            }
+
+        .ft-ingresso-mobile-nav {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        /* ===== SLIDE ===== */
+
+        #ftIngressoDyn {
+            position: relative;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            will-change: transform, opacity;
+        }
+
+            #ftIngressoDyn.is-exit-left {
+                transform: translateX(-40px);
+                opacity: 0;
+            }
+
+            #ftIngressoDyn.is-exit-right {
+                transform: translateX(40px);
+                opacity: 0;
+            }
+
+            #ftIngressoDyn.is-enter {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            /* textos */
+            #ftIngressoDyn p {
+                font-size: 18px;
+                line-height: 1.5;
+                margin-bottom: 14px;
+                text-align: center;
+            }
+        /* botão */
+        .ft-btn-acompanhe {
+            margin-top: 24px;
+            margin-left: auto;
+            margin-right: auto;
+            display: inline-block;
+        }
+        /* decorações */
+        .ft-ingresso-deco-img {
+            top: 20px;
+            left: 24px;
+            width: 128px;
+            z-index: 1;
+        }
+
+        .ft-ingresso-dots-img {
+            top: 250px;
+            left: 120px;
+            width: 140px;
+            opacity: 0.9;
+        }
+
+        .ft-ingresso-dots-orange {
+            position: absolute;
+            left: 15%;
+            bottom: -45px;
+            width: 90px;
+            z-index: 10;
+            pointer-events: none;
+        }
+    }
+
+        .ft-ingresso{
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+        }
+
+        .ft-ingresso > .container{
+            max-width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
 
 </style>
 
@@ -982,8 +1415,20 @@
             </div>
 
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-prev">
+                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                          fill="currentColor" />
+                </svg>
+            </div>
+
+            <div class="swiper-button-next">
+                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                          fill="currentColor" />
+                </svg>
+            </div>
+
 
         </div>
 
@@ -1026,7 +1471,7 @@
 
                     <li class="ft-ingresso-divider" aria-hidden="true"></li>
 
-                    <li class="ft-ingresso-item-main ft-ingresso-group active" data-key="basica">
+                    <li class="ft-ingresso-item-main ft-ingresso-group" data-key="basica">
                         Educação Básica
                         <span>Ensino Fundamental – 2º ao 9º ano</span>
                         <span>Ensino Médio – 1ª a 3ª série</span>
@@ -1051,6 +1496,24 @@
 
             <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
             <div class="ft-ingresso-right">
+
+                <div class="ft-ingresso-mobile-nav">
+                    <div class="ft-ingresso-slide-header">
+                        <div class="ft-ingresso-slide-title-row">
+                            <span class="ft-ingresso-slide-dot"></span>
+                            <h4 class="ft-ingresso-slide-title">1º Ano – Ensino Fundamental</h4>
+                        </div>
+                        <div class="ft-ingresso-slide-line"></div>
+                    </div>
+
+                    <div class="ft-ingresso-mobile-arrows">
+                        <button type="button" class="ft-ingresso-arrow prev" aria-label="Anterior"></button>
+                        <button type="button" class="ft-ingresso-arrow next" aria-label="Próximo"></button>
+                    </div>
+                </div>
+
+
+
                 <h3>Quem pode?</h3>
 
                 <div class="ft-ingresso-dyn" id="ftIngressoDyn">
@@ -1067,6 +1530,58 @@
     </div>
 </section>
 
+<section class="ft-noticias">
+
+    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_formas_amarelo_laranja.png"
+         alt=""
+         class="ft-noticias-deco-img" />
+
+    <div class="container">
+
+        <header class="ft-noticias-header">
+            <h2>Notícias</h2>
+            <p>Fique por dentro das novidades da FIEB</p>
+        </header>
+
+        <div class="swiper mySwiperNoticiasHome">
+            <div class="swiper-wrapper">
+
+                @foreach (var noti in noticiasHome)
+                {
+                    <div class="swiper-slide">
+                        <a href="#" class="ft-noticia-card">
+
+                            <img src="@noti.ImagemUrl"
+                                 alt="@noti.Titulo"
+                                 class="ft-noticia-img" />
+
+                            <div class="ft-noticia-content">
+                                <div class="ft-noticia-date">
+                                    @noti.Data
+                                </div>
+
+                                <div class="ft-noticia-title">
+                                    @noti.Titulo
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="ft-noticias-footer">
+            <a href="/noticia" class="ft-btn-noticias">
+                VER TODAS AS NOTÍCIAS
+            </a>
+        </div>
+
+    </div>
+</section>
 
 
 
@@ -1284,35 +1799,45 @@
 
                 // ============ SWIPER CURSOS ============
 
-                     document.addEventListener('DOMContentLoaded', function () {
+                   document.addEventListener('DOMContentLoaded', function () {
+            try {
+                new Swiper('.mySwiperCursos', {
+                    grabCursor: true,
+                    loop: true,
+                    spaceBetween: 0,
 
-            new Swiper('.mySwiperCursos', {
-                grabCursor: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                loop: true,
-                spaceBetween: 0,
+                    autoplay: {
+                        delay: 3500,
+                        disableOnInteraction: false,
+                    },
 
-                autoplay: {
-                    delay: 3500,
-                    disableOnInteraction: false,
-                },
+                    pagination: {
+                        el: '.mySwiperCursos .swiper-pagination',
+                        clickable: true,
+                    },
 
-                pagination: {
-                    el: '.mySwiperCursos .swiper-pagination',
-                    clickable: true,
-                },
+                    navigation: {
+                        nextEl: '.mySwiperCursos .swiper-button-next',
+                        prevEl: '.mySwiperCursos .swiper-button-prev',
+                    },
 
-                navigation: {
-                    nextEl: '.mySwiperCursos .swiper-button-next',
-                    prevEl: '.mySwiperCursos .swiper-button-prev',
-                },
-            });
-
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 1,
+                            centeredSlides: false
+                        },
+                        770: {
+                            slidesPerView: 'auto',
+                            centeredSlides: true
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error('Erro ao iniciar Swiper Cursos:', e);
+            }
         });
 
-
-                // ============ COMO INGRESSAR (IGUAL AO OFICIAL: 1 CONTEÚDO POR VEZ) ============
+                // ============ COMO INGRESSAR — ESTADO ÚNICO ============
 
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -1335,30 +1860,122 @@
                 ]
             };
 
+            const titles = {
+                fundamental1: '1º Ano – Ensino Fundamental',
+                basica: 'Educação Básica Ensino Fundamental - 2° ao 9° ano Ensino Médio - 1ª a 3ª série',
+                tecnica: 'Educação Técnica (Modular)',
+                reserva: 'Reserva de Vagas'
+            };
+
+            const order = ['fundamental1', 'basica', 'tecnica', 'reserva'];
+
+            let currentKey = 'fundamental1';
+
             const menu = document.getElementById('ftIngressoMenu');
             const dyn = document.getElementById('ftIngressoDyn');
 
-            function render(key) {
-                const lines = data[key] || [];
-                dyn.innerHTML = lines.map(t => `<p>${t}</p>`).join('');
+            const prevBtn = document.querySelector('.ft-ingresso-arrow.prev');
+            const nextBtn = document.querySelector('.ft-ingresso-arrow.next');
+            const swipeArea = document.querySelector('.ft-ingresso-right');
+
+            function setActiveIngresso(key) {
+                if (!data[key]) return;
+
+                currentKey = key;
+
+                        const direction = key === currentKey ? 0 : order.indexOf(key) > order.indexOf(currentKey) ? 1 : -1;
+
+        dyn.classList.remove('is-enter');
+        dyn.classList.add(direction > 0 ? 'is-exit-left' : 'is-exit-right');
+
+        setTimeout(() => {
+            dyn.innerHTML = data[key].map(t => `<p>${t}</p>`).join('');
+
+            dyn.classList.remove('is-exit-left', 'is-exit-right');
+            dyn.classList.add('is-enter');
+        }, 200);
+
+
+                       // título (mobile)
+            const mobileTitle = document.querySelector('.ft-ingresso-slide-header .ft-ingresso-slide-title');
+            if (mobileTitle && titles[key]) {
+            mobileTitle.textContent = titles[key];
+           }
+
+
+                // menu (desktop / fonte da verdade)
+                if (menu) {
+                    menu.querySelectorAll('li[data-key]').forEach(li => {
+                        li.classList.toggle('active', li.getAttribute('data-key') === key);
+                    });
+                }
             }
 
-            // Inicial (1º Ano)
-            render('fundamental1');
+            function goNext() {
+                const i = order.indexOf(currentKey);
+                setActiveIngresso(order[(i + 1) % order.length]);
+            }
 
-            // Clique no menu (delegação)
-            menu.addEventListener('click', function (e) {
-                const li = e.target.closest('li[data-key]');
-                if (!li) return;
+            function goPrev() {
+                const i = order.indexOf(currentKey);
+                setActiveIngresso(order[(i - 1 + order.length) % order.length]);
+            }
 
-                // remove active dos itens clicáveis
-                menu.querySelectorAll('li[data-key]').forEach(x => x.classList.remove('active'));
-                li.classList.add('active');
+            // menu desktop
+            if (menu) {
+                menu.addEventListener('click', function (e) {
+                    const li = e.target.closest('li[data-key]');
+                    if (!li) return;
+                    setActiveIngresso(li.getAttribute('data-key'));
+                });
+            }
 
-                render(li.getAttribute('data-key'));
-            });
+            // setas mobile
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', goPrev);
+                nextBtn.addEventListener('click', goNext);
+            }
+
+            // swipe mobile
+            let startX = 0;
+
+            if (swipeArea) {
+                swipeArea.addEventListener('touchstart', e => {
+                    startX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                swipeArea.addEventListener('touchend', e => {
+                    const delta = e.changedTouches[0].screenX - startX;
+                    if (Math.abs(delta) < 50) return;
+                    delta > 0 ? goPrev() : goNext();
+                }, { passive: true });
+            }
+
+            // inicial
+            setActiveIngresso(currentKey);
 
         });
+
+            // ==================== NOTICIAS =============
+        new Swiper('.mySwiperNoticiasHome', {
+            spaceBetween: 32,
+            pagination: {
+                el: '.mySwiperNoticiasHome .swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1100: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+
 
 
     </script>
