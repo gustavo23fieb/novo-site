@@ -159,9 +159,7 @@
     }
 
 
-    /* ===================================================
-                                                                               CARROSSEL
-                                               =================================================== */
+    /* ================================================== CARROSSEL =================================================== */
 
     .carousel-container {
         width: 100%;
@@ -477,12 +475,12 @@
         transition: transform 0.45s ease, opacity 0.45s ease;
     }
 
-
+    /* PAGINAÇÃO */
     .mySwiperCursos .swiper-pagination {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 0px;
+        bottom: 0;
         z-index: 20;
     }
 
@@ -499,71 +497,53 @@
             opacity: 1;
         }
 
+    /* ==================== SETAS CURSOS – OFICIAL (ÚNICO BLOCO) ==================== */
+
     .mySwiperCursos .swiper-button-next,
     .mySwiperCursos .swiper-button-prev {
         width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background-color: #6a1b9a;
+        height: 96px;
         top: 50%;
         transform: translateY(-50%);
-        transition: background-color 0.2s ease;
-        z-index: 999;
+        background: rgba(106, 27, 154, 0.75);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7cbb29;
+        z-index: 20;
     }
 
-        /* hover */
-        .mySwiperCursos .swiper-button-next:hover,
-        .mySwiperCursos .swiper-button-prev:hover {
-            background-color: #5a1584;
-        }
-
-        /* remove ícone padrão do Swiper */
+        /* remove QUALQUER seta antiga */
+        .mySwiperCursos .swiper-button-next::before,
+        .mySwiperCursos .swiper-button-prev::before,
         .mySwiperCursos .swiper-button-next::after,
         .mySwiperCursos .swiper-button-prev::after {
             content: none;
+            border: 0;
         }
 
-        /* seta esquerda (verde) */
-        .mySwiperCursos .swiper-button-prev::before {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-left: 4px solid #7cbb29;
-            border-bottom: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 22px;
-            top: 19px;
-        }
+    /* SVG */
+    .mySwiperCursos .swiper-navigation-icon {
+        width: 11px;
+        height: 20px;
+    }
 
-        /* seta direita (verde) */
-        .mySwiperCursos .swiper-button-next::before {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-right: 4px solid #7cbb29;
-            border-top: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 16px;
-            top: 19px;
-        }
+    /* esquerda gira só o SVG */
+    .mySwiperCursos .swiper-button-prev .swiper-navigation-icon {
+        transform: rotate(180deg);
+    }
 
     /* mobile */
     @@media (max-width: 769px) {
         .mySwiperCursos .swiper-button-next,
         .mySwiperCursos .swiper-button-prev {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 88px;
+            border-radius: 16px;
         }
-
-            .mySwiperCursos .swiper-button-prev::before,
-            .mySwiperCursos .swiper-button-next::before {
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%) rotate(45deg);
-            }
     }
+
 
     /* ==================== COMO INGRESSAR NA FIEB =================== */
 
@@ -755,7 +735,7 @@
     /* ==================== DECORAÇÃO COMO INGRESSAR (OFICIAL) ==================== */
 
     .ft-ingresso {
-        position: relative; /* referência para o absoluto */
+        position: relative;
         overflow: visible;
     }
 
@@ -787,6 +767,13 @@
         pointer-events: none;
         z-index: 5; /* abaixo do conteúdo */
     }
+
+    /* ==================== COMO INGRESSAR – ELEMENTOS EXCLUSIVOS MOBILE ==================== */
+    .ft-ingresso-slide-header,
+    .ft-ingresso-mobile-arrows {
+        display: none;
+    }
+
 
     /* ==================== SEÇÃO NOTÍCIAS ==================== */
 
@@ -903,53 +890,14 @@
             font-size: 36px;
         }
     }
-    /* ===== SETAS CURSOS – CSS PURO (OFICIAL-LIKE) ===== */
 
-    .mySwiperCursos .swiper-button-next,
-    .mySwiperCursos .swiper-button-prev {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 999;
-        background: transparent;
+
+    /* remove ícone padrão do Swiper */
+    .mySwiperCursos .swiper-button-next::after,
+    .mySwiperCursos .swiper-button-prev::after {
+        content: none;
     }
-
-        /* seta esquerda */
-        .mySwiperCursos .swiper-button-prev::before,
-        .mySwiperCursos .swiper-button-prev::after {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-left: 4px solid #7cbb29;
-            border-bottom: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 22px;
-            top: 19px;
-        }
-
-        /* seta direita */
-        .mySwiperCursos .swiper-button-next::before,
-        .mySwiperCursos .swiper-button-next::after {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-right: 4px solid #7cbb29;
-            border-top: 4px solid #7cbb29;
-            transform: rotate(45deg);
-            left: 16px;
-            top: 19px;
-        }
-
-        /* remove ícone padrão do Swiper */
-        .mySwiperCursos .swiper-button-next::after,
-        .mySwiperCursos .swiper-button-prev::after {
-            content: none;
-        }
-    /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS (igual ao oficial) ====== */
+    /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS ====== */
     @@media (max-width: 769px) {
         .mySwiperCursos {
             overflow: hidden !important;
@@ -965,103 +913,203 @@
             }
     }
 
+    /* ==================== COMO INGRESSAR – QUADRADO VERDE (MOBILE) ==================== */
     @@media (max-width: 769px) {
-        /* some menu desktop */
+
+        .ft-ingresso {
+            padding-top: 140px; /* espaço correto acima do título */
+        }
+
+        .ft-ingresso-deco-img {
+            display: block;
+            top: 20px; /* desce o quadrado para ficar 100% no roxo */
+            left: 24px;
+            width: 128px;
+            z-index: 1;
+        }
+    }
+
+    @@media (max-width: 769px) {
+
+        .ft-ingresso-header {
+            margin-top: 64px;
+        }
+    }
+
+    @@media (max-width: 769px) {
+
         .ft-ingresso-left {
-            display: none;
+            padding-top: 56px;
         }
+    }
 
+    @@media (max-width: 769px) {
+        .ft-ingresso-dots-img {
+            display: block;
+            top: 250px;
+            left: 120px;
+            right: auto;
+            transform: none;
+            width: 140px;
+            z-index: 0;
+            opacity: 0.9;
+        }
+    }
+
+    /* ==================== COMO INGRESSAR – MOBILE (SLIDE) ==================== */
+    @@media (max-width: 769px) {
+        /* seção */
+        .ft-ingresso {
+            padding: 140px 0 96px;
+            position: relative;
+            overflow: visible;
+        }
+        /* conteúdo vira coluna única */
         .ft-ingresso-content {
-            grid-template-columns: 1fr;
+            display: block;
         }
-        /* header mobile */
-        .ft-ingresso-mobile-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
+        /* esconde menu desktop */
+        .ft-ingresso-left {
+            display: none !important;
+        }
+        /* coluna direita vira viewport */
+        .ft-ingresso-right {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        /* header do slide */
+        .ft-ingresso-slide-header {
+            display: block;
+            margin: 0;
         }
 
-        .ft-ingresso-mobile-header {
+        .ft-ingresso-slide-title-row {
             display: flex;
             align-items: center;
             gap: 10px;
-            text-align: center;
+            margin-bottom: 10px;
         }
 
-        .ft-ingresso-square {
+        .ft-ingresso-slide-dot {
             width: 10px;
             height: 10px;
             background: #b7d957;
             flex-shrink: 0;
         }
 
-        .ft-ingresso-mobile-title {
+        .ft-ingresso-slide-title {
             font-size: 18px;
             font-weight: 700;
             margin: 0;
         }
 
-        .ft-ingresso-divider-mobile {
-            border: none;
+        .ft-ingresso-slide-line {
+            width: 100%;
+            max-width: 260px;
             height: 1px;
-            background: rgba(255,255,255,0.4);
-            margin: 12px 0 20px;
+            background: rgba(255,255,255,0.35);
         }
-        /* arrows */
-        .ft-ingresso-arrow {
-            font-size: 36px;
-            color: #b7d957;
-            cursor: pointer;
-            user-select: none;
-        }
-    }
-
-    @@media (max-width: 769px) {
-        .ft-ingresso-mobile-title {
-            font-size: 18px;
-            font-weight: 700;
+        /* setas */
+        .ft-ingresso-mobile-arrows {
+            display: flex;
+            justify-content: space-between;
+            max-width: none;
             margin: 0;
+            gap: 12px;
         }
 
-        .ft-ingresso-mobile-subtitle {
-            font-size: 15px;
-            margin-top: 6px;
-            opacity: 0.9;
-        }
-    }
-
-    @@media (max-width: 769px){
-
-        .ft-ingresso-mobile-nav{
-            justify-content: center;
-            gap: 24px;
+        .ft-ingresso-arrow {
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
         }
 
-        .ft-ingresso-arrow{
-            font-size: 32px;
-        }
-    
-    }
+            .ft-ingresso-arrow::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 14px;
+                height: 14px;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
 
-   @@media (max-width: 769px) {
-        /* espaço abaixo do cabeçalho (título + setas) */
-        .ft-ingresso-divider-mobile {
-            margin: 16px 0 24px;
+            .ft-ingresso-arrow.prev::before {
+                border-left: 4px solid #b7d957;
+                border-bottom: 4px solid #b7d957;
+            }
+
+            .ft-ingresso-arrow.next::before {
+                border-right: 4px solid #b7d957;
+                border-top: 4px solid #b7d957;
+            }
+
+            .ft-ingresso-mobile-nav{
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 6px;
+            }
+        /* ===== SLIDE ===== */
+
+        #ftIngressoDyn {
+            position: relative;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            will-change: transform, opacity;
         }
-        /* título "Quem pode?" */
-        .ft-ingresso-right h3 {
-            margin-top: 0;
-            margin-bottom: 16px;
-        }
-        /* textos */
-        .ft-ingresso-dyn p {
-            margin-bottom: 14px;
-            line-height: 1.5;
-        }
-        /* botão no final */
+
+            #ftIngressoDyn.is-exit-left {
+                transform: translateX(-40px);
+                opacity: 0;
+            }
+
+            #ftIngressoDyn.is-exit-right {
+                transform: translateX(40px);
+                opacity: 0;
+            }
+
+            #ftIngressoDyn.is-enter {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            /* textos */
+            #ftIngressoDyn p {
+                font-size: 18px;
+                line-height: 1.5;
+                margin-bottom: 14px;
+            }
+        /* botão */
         .ft-btn-acompanhe {
             margin-top: 24px;
+        }
+        /* decorações */
+        .ft-ingresso-deco-img {
+            top: 20px;
+            left: 24px;
+            width: 128px;
+            z-index: 1;
+        }
+
+        .ft-ingresso-dots-img {
+            top: 250px;
+            left: 120px;
+            width: 140px;
+            opacity: 0.9;
+        }
+
+        .ft-ingresso-dots-orange {
+            position: absolute;
+            left: 15%;
+            bottom: -45px;
+            width: 90px;
+            z-index: 10;
+            pointer-events: none;
         }
     }
 
@@ -1341,8 +1389,20 @@
             </div>
 
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-prev">
+                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                          fill="currentColor" />
+                </svg>
+            </div>
+
+            <div class="swiper-button-next">
+                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                          fill="currentColor" />
+                </svg>
+            </div>
+
 
         </div>
 
@@ -1411,23 +1471,22 @@
             <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
             <div class="ft-ingresso-right">
 
-                <!-- MOBILE NAV (somente mobile) -->
-                <div class="ft-ingresso-mobile-nav">
-                    <span class="ft-ingresso-arrow ft-ingresso-arrow-prev">&#10094;</span>
-
-                    <div class="ft-ingresso-mobile-header">
-                        <span class="ft-ingresso-square"></span>
-                        <div class="ft-ingresso-mobile-texts">
-                            <h3 class="ft-ingresso-mobile-title"></h3>
-                            <p class="ft-ingresso-mobile-subtitle"></p>
-                        </div>
-
-                    </div>
-
-                    <span class="ft-ingresso-arrow ft-ingresso-arrow-next">&#10095;</span>
+                        <div class="ft-ingresso-mobile-nav">
+              <div class="ft-ingresso-slide-header">
+                <div class="ft-ingresso-slide-title-row">
+                  <span class="ft-ingresso-slide-dot"></span>
+                  <h4 class="ft-ingresso-slide-title">1º Ano – Ensino Fundamental</h4>
                 </div>
+                <div class="ft-ingresso-slide-line"></div>
+              </div>
 
-                <hr class="ft-ingresso-divider-mobile">
+              <div class="ft-ingresso-mobile-arrows">
+                <button type="button" class="ft-ingresso-arrow prev" aria-label="Anterior"></button>
+                <button type="button" class="ft-ingresso-arrow next" aria-label="Próximo"></button>
+              </div>
+            </div>
+
+
 
                 <h3>Quem pode?</h3>
 
@@ -1752,9 +1811,7 @@
             }
         });
 
-
-
-                // ============ COMO INGRESSAR (IGUAL AO OFICIAL: 1 CONTEÚDO POR VEZ) ============
+                // ============ COMO INGRESSAR — ESTADO ÚNICO ============
 
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -1777,95 +1834,101 @@
                 ]
             };
 
+            const titles = {
+                fundamental1: '1º Ano – Ensino Fundamental',
+                basica: 'Educação Básica Ensino Fundamental - 2° ao 9° ano Ensino Médio - 1ª a 3ª série',
+                tecnica: 'Educação Técnica (Modular)',
+                reserva: 'Reserva de Vagas'
+            };
+
+            const order = ['fundamental1', 'basica', 'tecnica', 'reserva'];
+
+            let currentKey = 'fundamental1';
+
             const menu = document.getElementById('ftIngressoMenu');
             const dyn = document.getElementById('ftIngressoDyn');
 
-            function render(key) {
-                const lines = data[key] || [];
-                dyn.innerHTML = lines.map(t => `<p>${t}</p>`).join('');
+            const prevBtn = document.querySelector('.ft-ingresso-arrow.prev');
+            const nextBtn = document.querySelector('.ft-ingresso-arrow.next');
+            const swipeArea = document.querySelector('.ft-ingresso-right');
+
+            function setActiveIngresso(key) {
+                if (!data[key]) return;
+
+                currentKey = key;
+
+                        const direction = key === currentKey ? 0 : order.indexOf(key) > order.indexOf(currentKey) ? 1 : -1;
+
+        dyn.classList.remove('is-enter');
+        dyn.classList.add(direction > 0 ? 'is-exit-left' : 'is-exit-right');
+
+        setTimeout(() => {
+            dyn.innerHTML = data[key].map(t => `<p>${t}</p>`).join('');
+
+            dyn.classList.remove('is-exit-left', 'is-exit-right');
+            dyn.classList.add('is-enter');
+        }, 200);
+
+
+                       // título (mobile)
+            const mobileTitle = document.querySelector('.ft-ingresso-slide-header .ft-ingresso-slide-title');
+            if (mobileTitle && titles[key]) {
+            mobileTitle.textContent = titles[key];
+           }
+
+
+                // menu (desktop / fonte da verdade)
+                if (menu) {
+                    menu.querySelectorAll('li[data-key]').forEach(li => {
+                        li.classList.toggle('active', li.getAttribute('data-key') === key);
+                    });
+                }
             }
 
-            // Inicial (1º Ano)
-            render('fundamental1');
+            function goNext() {
+                const i = order.indexOf(currentKey);
+                setActiveIngresso(order[(i + 1) % order.length]);
+            }
 
-            // Clique no menu (delegação)
-            menu.addEventListener('click', function (e) {
-                const li = e.target.closest('li[data-key]');
-                if (!li) return;
+            function goPrev() {
+                const i = order.indexOf(currentKey);
+                setActiveIngresso(order[(i - 1 + order.length) % order.length]);
+            }
 
-                // remove active dos itens clicáveis
-                menu.querySelectorAll('li[data-key]').forEach(x => x.classList.remove('active'));
-                li.classList.add('active');
+            // menu desktop
+            if (menu) {
+                menu.addEventListener('click', function (e) {
+                    const li = e.target.closest('li[data-key]');
+                    if (!li) return;
+                    setActiveIngresso(li.getAttribute('data-key'));
+                });
+            }
 
-                render(li.getAttribute('data-key'));
-            });
+            // setas mobile
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', goPrev);
+                nextBtn.addEventListener('click', goNext);
+            }
+
+            // swipe mobile
+            let startX = 0;
+
+            if (swipeArea) {
+                swipeArea.addEventListener('touchstart', e => {
+                    startX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                swipeArea.addEventListener('touchend', e => {
+                    const delta = e.changedTouches[0].screenX - startX;
+                    if (Math.abs(delta) < 50) return;
+                    delta > 0 ? goPrev() : goNext();
+                }, { passive: true });
+            }
+
+            // inicial
+            setActiveIngresso(currentKey);
 
         });
-
-                // ===== MOBILE SLIDER - COMO INGRESSAR =====
-        const mobileSteps = [
-          {
-            title: '1º Ano – Ensino Fundamental',
-            lines: [
-              'Vagas exclusivas a moradores de Barueri',
-              'Para candidatos com 6 anos completos ou a completar, conforme data estabelecida em edital'
-            ]
-          },
-          {
-            title: 'Educação Básica',
-            subtitle: 'Ensino Fundamental – 2º ao 9º ano<br>Ensino Médio – 1ª a 3ª série',
-            lines: [
-              'Vagas exclusivas a moradores de Barueri',
-              'Sujeito à disponibilidade de vagas remanescentes'
-            ]
-          },
-          {
-            title: 'Educação Técnica (Modular)',
-            lines: [
-              'Vagas abertas ao público geral',
-              'Forma concomitante: para alunos cursando a 2ª ou 3ª série do Ensino Médio',
-              'Forma subsequente: para alunos que já concluíram o Ensino Médio'
-            ]
-          },
-          {
-            title: 'Reserva de Vagas',
-            lines: [
-              'Destinado exclusivamente aos alunos dos 9º anos do Ensino Fundamental da FIEB e da Rede Municipal de Educação de Barueri'
-            ]
-          }
-        ];
-
-        let mobileIndex = 0;
-
-        function renderMobileIngresso() {
-          if (window.innerWidth > 769) return;
-
-          const step = mobileSteps[mobileIndex];
-
-          document.querySelector('.ft-ingresso-mobile-title').innerText = step.title;
-          document.querySelector('.ft-ingresso-mobile-subtitle').innerHTML = step.subtitle || '';
-
-
-          document.getElementById('ftIngressoDyn').innerHTML =
-            step.lines.map(t => `<p>${t}</p>`).join('');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-          renderMobileIngresso();
-
-          document.querySelector('.ft-ingresso-arrow-prev').onclick = () => {
-            mobileIndex = (mobileIndex - 1 + mobileSteps.length) % mobileSteps.length;
-            renderMobileIngresso();
-          };
-
-          document.querySelector('.ft-ingresso-arrow-next').onclick = () => {
-            mobileIndex = (mobileIndex + 1) % mobileSteps.length;
-            renderMobileIngresso();
-          };
-        });
-
-        window.addEventListener('resize', renderMobileIngresso);
-
 
             // ==================== NOTICIAS =============
         new Swiper('.mySwiperNoticiasHome', {
