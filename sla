@@ -960,7 +960,7 @@
     @@media (max-width: 769px) {
         /* seção */
         .ft-ingresso {
-            padding: 140px 0 96px;
+            padding: 140px 0 140px;
             position: relative;
             overflow: visible;
         }
@@ -1049,13 +1049,13 @@
                 border-top: 4px solid #b7d957;
             }
 
-            .ft-ingresso-mobile-nav{
-                display: grid;
-                grid-template-columns: 1fr auto;
-                align-items: center;
-                gap: 12px;
-                margin-bottom: 6px;
-            }
+        .ft-ingresso-mobile-nav {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
         /* ===== SLIDE ===== */
 
         #ftIngressoDyn {
@@ -1112,6 +1112,18 @@
             pointer-events: none;
         }
     }
+
+        .ft-ingresso{
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+        }
+
+        .ft-ingresso > .container{
+            max-width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
 
 </style>
 
@@ -1471,20 +1483,20 @@
             <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
             <div class="ft-ingresso-right">
 
-                        <div class="ft-ingresso-mobile-nav">
-              <div class="ft-ingresso-slide-header">
-                <div class="ft-ingresso-slide-title-row">
-                  <span class="ft-ingresso-slide-dot"></span>
-                  <h4 class="ft-ingresso-slide-title">1º Ano – Ensino Fundamental</h4>
-                </div>
-                <div class="ft-ingresso-slide-line"></div>
-              </div>
+                <div class="ft-ingresso-mobile-nav">
+                    <div class="ft-ingresso-slide-header">
+                        <div class="ft-ingresso-slide-title-row">
+                            <span class="ft-ingresso-slide-dot"></span>
+                            <h4 class="ft-ingresso-slide-title">1º Ano – Ensino Fundamental</h4>
+                        </div>
+                        <div class="ft-ingresso-slide-line"></div>
+                    </div>
 
-              <div class="ft-ingresso-mobile-arrows">
-                <button type="button" class="ft-ingresso-arrow prev" aria-label="Anterior"></button>
-                <button type="button" class="ft-ingresso-arrow next" aria-label="Próximo"></button>
-              </div>
-            </div>
+                    <div class="ft-ingresso-mobile-arrows">
+                        <button type="button" class="ft-ingresso-arrow prev" aria-label="Anterior"></button>
+                        <button type="button" class="ft-ingresso-arrow next" aria-label="Próximo"></button>
+                    </div>
+                </div>
 
 
 
