@@ -616,7 +616,6 @@
         font-size: 22px;
         font-weight: 600;
         margin-bottom: 16px;
-        text-align: center;
     }
 
     .ft-ingresso-right p {
@@ -965,6 +964,21 @@
             position: relative;
             overflow: visible;
         }
+
+        .ft-ingresso {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+        }
+
+            .ft-ingresso > .container {
+                max-width: 100%;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+
+
         /* conteúdo vira coluna única */
         .ft-ingresso-content {
             display: block;
@@ -976,11 +990,10 @@
         /* coluna direita vira viewport */
         .ft-ingresso-right {
             width: 100%;
-            padding-top: 32px;
             max-width: 100%;
-            text-align: center;
             overflow: hidden;
             position: relative;
+            text-align: center;
         }
         /* header do slide */
         .ft-ingresso-slide-header {
@@ -988,39 +1001,42 @@
             margin: 0;
         }
 
-        .ft-ingresso-slide-title-row {
+       .ft-ingresso-slide-title-row {
+            position: relative;
             display: flex;
             align-items: center;
-            position: relative;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
+            padding-left: 20px; /* compensação visual do dot */
+}
 
-        .ft-ingresso-slide-dot {
-            width: 10px;
-            height: 10px;
-            background: #b7d957;
-            flex-shrink: 0;
-            position: absolute;
-            left: 0;
-        }
+         .ft-ingresso-slide-dot {
+              position: absolute;
+               left: 0;
+               width: 10px;
+               height: 10px;
+               background: #b7d957;
+}
 
         .ft-ingresso-slide-title {
             font-size: 18px;
             font-weight: 700;
             margin: 0;
             text-align: center;
-            width: 100%;
+            display: block;
         }
 
         .ft-ingresso-slide-line {
             width: 100%;
             max-width: 260px;
-            margin: 0 auto;
             height: 1px;
             background: rgba(255,255,255,0.35);
+            margin: 0 auto;
         }
+
+        .ft-ingresso-right h3{
+            text-align: center;
+        }
+
         /* setas */
         .ft-ingresso-mobile-arrows {
             display: flex;
@@ -1063,8 +1079,8 @@
             display: grid;
             grid-template-columns: 1fr auto;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 6px;
+           column-gap: 12px;
+            margin-bottom: 8px;
         }
         /* ===== SLIDE ===== */
 
@@ -1126,18 +1142,6 @@
             pointer-events: none;
         }
     }
-
-        .ft-ingresso{
-            width: 100vw;
-            margin-left: calc(50% - 50vw);
-            margin-right: calc(50% - 50vw);
-        }
-
-        .ft-ingresso > .container{
-            max-width: 100%;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
 
 </style>
 
