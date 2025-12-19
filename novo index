@@ -1548,20 +1548,20 @@
 
 
 
-                <h3>Quem pode?</h3>
+                    <h3>Quem pode?</h3>
 
-                <div class="ft-ingresso-dyn" id="ftIngressoDyn">
-                    <!-- JS injeta os <p> aqui -->
+                    <div class="ft-ingresso-dyn" id="ftIngressoDyn">
+                        <!-- JS injeta os <p> aqui -->
+                    </div>
+
+                    <a href="#" class="ft-btn-acompanhe" id="ftIngressoBtn">
+                        ACOMPANHE
+                    </a>
                 </div>
 
-                <a href="#" class="ft-btn-acompanhe" id="ftIngressoBtn">
-                    ACOMPANHE
-                </a>
             </div>
 
         </div>
-
-    </div>
 </section>
 
 <section class="ft-noticias">
@@ -1896,7 +1896,10 @@
 
             const titles = {
                 fundamental1: '1º Ano – Ensino Fundamental',
-                basica: 'Educação Básica Ensino Fundamental - 2° ao 9° ano Ensino Médio - 1ª a 3ª série',
+                    basica: window.innerWidth <= 769
+        ? 'Educação Básica Ensino Fundamental –<br>2º ao 9º ano Ensino Médio – 1ª a 3ª série'
+        : 'Educação Básica Ensino Fundamental - 2° ao 9° ano Ensino Médio - 1ª a 3ª série',
+
                 tecnica: 'Educação Técnica (Modular)',
                 reserva: 'Reserva de Vagas'
             };
@@ -1933,7 +1936,8 @@
                        // título (mobile)
             const mobileTitle = document.querySelector('.ft-ingresso-slide-header .ft-ingresso-slide-title');
             if (mobileTitle && titles[key]) {
-            mobileTitle.textContent = titles[key];
+            mobileTitle.innerHTML = titles[key];
+
            }
 
 
