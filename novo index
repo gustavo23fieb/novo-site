@@ -976,9 +976,6 @@
                 padding-left: 20px;
                 padding-right: 20px;
             }
-
-
-
         /* conteúdo vira coluna única */
         .ft-ingresso-content {
             display: block;
@@ -1001,16 +998,16 @@
             margin: 0;
         }
 
-       .ft-ingresso-slide-title-row{
-           display: grid;
-           grid-template-columns: auto auto;
-           align-items: center;
-           column-gap: 10px;
-           justify-content: center;
-           margin-bottom: 10px;
-       }
+        .ft-ingresso-slide-title-row {
+            display: grid;
+            grid-template-columns: auto auto;
+            align-items: center;
+            column-gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
 
-        .ft-ingresso-slide-dot{
+        .ft-ingresso-slide-dot {
             width: 10px;
             height: 10px;
             background: #b7d957;
@@ -1032,14 +1029,33 @@
             margin: 0 auto;
         }
 
-        .ft-ingresso-right h3{
+        .ft-ingresso-right h3 {
             text-align: center;
         }
-
         /* setas */
+        
         .ft-ingresso-mobile-arrows {
-            display: flex;
-            gap: 8px;
+             display: flex;
+             gap: 8px;
+        }
+
+        
+        .ft-ingresso-mobile-arrows {
+            position: relative;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .ft-ingresso-arrow.swiper-button-prev{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .ft-ingresso-arrow.next{
+            position: absolute;
+            right: 0;
+            top: 0;
         }
 
         .ft-ingresso-arrow {
@@ -1072,10 +1088,7 @@
             }
 
         .ft-ingresso-mobile-nav {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-           column-gap: 12px;
+            display: block;
             margin-bottom: 8px;
         }
         /* ===== SLIDE ===== */
