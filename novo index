@@ -996,6 +996,7 @@
         .ft-ingresso-slide-header {
             display: block;
             margin: 0;
+            margin-top: 36px;
         }
 
         .ft-ingresso-slide-title-row {
@@ -1033,26 +1034,26 @@
             text-align: center;
         }
         /* setas */
-        
+
         .ft-ingresso-mobile-arrows {
-             display: flex;
-             gap: 8px;
+            display: flex;
+            gap: 8px;
         }
 
-        
+
         .ft-ingresso-mobile-arrows {
             position: relative;
             width: 100%;
             margin-bottom: 8px;
         }
 
-        .ft-ingresso-arrow.swiper-button-prev{
+        .ft-ingresso-arrow.swiper-button-prev {
             position: absolute;
             left: 0;
             top: 0;
         }
 
-        .ft-ingresso-arrow.next{
+        .ft-ingresso-arrow.next {
             position: absolute;
             right: 0;
             top: 0;
