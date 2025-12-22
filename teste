@@ -30,1527 +30,460 @@
         }
     };
 }
-
-
-<style>
-    .ft-full-bleed {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* ===================== BANNER ===================== */
-
-    .ft-hero {
-        position: relative;
-        width: 100%;
-        height: 840px;
-        background-image: url("https://fieb.edu.br/wp-content/themes/fieb-2022/img/home.jpg");
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
-        overflow: hidden;
-        margin: 0;
-    }
-
-    .ft-svg-wrapper {
-        position: absolute;
-        top: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 1152px; /* igual ao viewBox */
-        height: 100%;
-        pointer-events: none;
-        z-index: 4;
-    }
-
-
-
-
-
-    .ft-hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(90deg, rgba(150, 0, 200, 0.05), rgba(0, 120, 255, 0.07));
-        pointer-events: none;
-        z-index: 2;
-    }
-
-
-    .ft-hero::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 3; /* acima da imagem e abaixo da seta */
-        background: linear-gradient( to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0.07) 70%, rgba(255, 255, 255, 0.22) 80%, rgba(255, 255, 255, 0.50) 88%, rgba(255, 255, 255, 0.80) 94%, rgba(255, 255, 255, 1) 100% );
-    }
-
-    .ft-svg-anim {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: auto;
-        opacity: 1;
-        z-index: 4;
-    }
-
-    @@keyframes fadeSvg {
-        from {
-            opacity: 0;
-            transform: scale(0.98);
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    .ft-hero-arrow {
-        position: absolute;
-        left: 50%;
-        bottom: 9px;
-        transform: translateX(-50%);
-        z-index: 6;
-    }
-
-    .ft-hero-arrow-img {
-        width: 100px;
-        height: 100px;
-    }
-
-    /* ===================== MOBILE BANNER ===================== */
-
-    @@media (max-width: 769px) {
-
-        .ft-hero {
-            height: 520px;
-            background-size: cover;
-            background-position: center top;
-        }
-
-        .ft-svg-anim {
-            width: 100%;
-            height: 260px;
-            top: -20px;
-            opacity: 1 !important;
-            position: absolute;
-        }
-
-        .ft-hero-arrow {
-            bottom: 22px;
-        }
-
-        svg {
-            width: 100%;
-            height: 100%;
-        }
-
-            svg text {
-                font-size: 24px !important;
-                font-weight: 500;
-                letter-spacing: 0.3px;
-            }
-    }
-
-
-    /* ===================================================
-                                                                                               CARROSSEL
-                                                               =================================================== */
-
-    .carousel-container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto 80px auto;
-        position: relative;
-    }
-
-    .carousel-slide {
-        width: 100%;
-        position: absolute;
-        opacity: 0;
-        transition: opacity 0.7s ease-in-out;
-    }
-
-        .carousel-slide.active {
-            opacity: 1;
-            position: relative;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-        }
-
-    .carousel-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 56px;
-        height: 56px;
-        border: none;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-        z-index: 20;
-    }
-
-        .carousel-arrow.left {
-            left: -28px;
-        }
-
-        .carousel-arrow.right {
-            right: -28px;
-        }
-
-    .arrow-svg {
-        width: 100%;
-        height: 100%;
-    }
-
-    .arrow-double {
-        fill: none;
-        stroke: #7cbb29; /* VERDE OFICIAL */
-        stroke-width: 5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        transition: stroke 0.2s ease, transform 0.2s ease;
-    }
-
-    .carousel-arrow:hover .arrow-double {
-        stroke: #5fa01f;
-        transform: scale(1.05);
-    }
-
-    /* Tablet */
-    @@media (max-width: 1100px) and (min-width: 770px) {
-        .carousel-arrow.left {
-            left: -10px;
-        }
-
-        .carousel-arrow.right {
-            right: -10px;
-        }
-    }
-
-    /* Mobile */
-    @@media (max-width: 769px) {
-
-        .carousel-arrow {
-            top: 50%;
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-        }
-
-            .carousel-arrow.left {
-                left: -4px;
-            }
-
-            .carousel-arrow.right {
-                right: -4px;
-            }
-    }
-
-    /* ===================== AJUSTES FT-FULL-BLEED ===================== */
-
-    .ft-full-bleed {
-        position: relative;
-        top: -30px;
-    }
-
-    @@media (max-width: 992px) && (min-width: 901px) {
-        .ft-full-bleed {
-            top: -55px;
-        }
-    }
-
-    @@media (max-width: 900px) {
-        .ft-full-bleed {
-            top: -26px;
-        }
-    }
-
-    @@media (max-width: 769px) {
-        .ft-full-bleed {
-            top: -26px;
-        }
-    }
-
-    .carousel-container {
-        max-width: 1080px;
-    }
-
-    .carousel-slide {
-        height: 320px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #fff;
-    }
-
-        .carousel-slide img {
-            width: auto;
-            height: 100%;
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-        }
-
-    @@media (max-width: 992px) and (min-width: 901px) {
-        .ft-full-bleed {
-            top: -46px !important;
-        }
-    }
-
-    .carousel-arrow {
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    /* ===================== MINI BANNER FIXO ===================== */
-
-    .mini-banner-fixo {
-        margin: 0 auto 48px auto;
-        display: flex;
-        justify-content: center;
-    }
-
-        .mini-banner-fixo img {
-            width: 100%;
-            max-width: 860px;
-            height: 180px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-    @@media (max-width: 769px) {
-        .mini-banner-fixo img {
-            max-width: 100%;
-        }
-    }
-
-    html, body {
-        overflow-x: hidden !important;
-    }
-
-    @@media (max-width: 769px) {
-        .carousel-slide {
-            height: 220px;
-        }
-    }
-
-    .ft-hero {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-    }
-
-    .mini-banner-fixo {
-        margin-top: 120px !important;
-        position: relative;
-        z-index: 10;
-    }
-
-    body, html {
-        background: #fff;
-    }
-
-    /* ====== DOTS DO CARROSSEL ====== */
-
-    .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 16px;
-    }
-
-        .carousel-dots span {
-            width: 12px;
-            height: 12px;
-            background-color: #d0d0d0;
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-            .carousel-dots span.active {
-                background-color: #6a1b9a;
-            }
-
-        .carousel-dots span {
-            width: 12px;
-            height: 12px;
-            background-color: #d0d0d0;
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            pointer-events: auto;
-            position: relative;
-            z-index: 999;
-        }
-
-
-    /* ==================== SEÇÃO CURSOS =================== */
-
-    .ft-cursos {
-        position: relative;
-        background-color: #ffffff;
-        padding: 96px 0 120px;
-    }
-
-    .ft-cursos-header {
-        text-align: center;
-        margin-bottom: 64px;
-    }
-
-        .ft-cursos-header h2 {
-            font-size: 48px;
-            font-weight: 700;
-            color: #6a1b9a;
-            margin-bottom: 12px;
-        }
-
-        .ft-cursos-header p {
-            font-size: 20px;
-            color: #777;
-        }
-
-    /* ==================== SWIPER CURSOS =================== */
-
-    .mySwiperCursos {
-        width: 100%;
-        height: 500px;
-        position: relative;
-        overflow: visible;
-        padding-bottom: 80px;
-    }
-
-        .mySwiperCursos .swiper-wrapper {
-            display: flex;
-            align-items: center;
-        }
-
-        .mySwiperCursos .swiper-slide {
-            width: 340px;
-            height: 420px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform-origin: center center;
-        }
-
-    .curso-slide-img {
-        width: 100%;
-        height: 100%;
-        max-height: 420px;
-        object-fit: contain;
-        border-radius: 16px;
-        background: #fff;
-    }
-
-    .mySwiperCursos
-    .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next) {
-        transform: scale(0.6);
-        opacity: 0.25;
-        transition: none;
-    }
-
-    .mySwiperCursos .swiper-slide-prev,
-    .mySwiperCursos .swiper-slide-next {
-        transform: scale(0.75);
-        opacity: 0.45;
-        transition: opacity 0.3s ease;
-    }
-
-    .mySwiperCursos .swiper-slide-active {
-        transform: scale(1);
-        opacity: 1;
-        z-index: 5;
-        transition: transform 0.45s ease, opacity 0.45s ease;
-    }
-
-    /* PAGINAÇÃO */
-    .mySwiperCursos .swiper-pagination {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 20;
-    }
-
-    .mySwiperCursos .swiper-pagination-bullet {
-        background-color: #cfcfcf;
-        width: 12px;
-        height: 12px;
-        opacity: 0.6;
-    }
-
-        .mySwiperCursos
-        .swiper-pagination-bullet.swiper-pagination-bullet-active {
-            background-color: #6a1b9a;
-            opacity: 1;
-        }
-
-    /* ==================== SETAS CURSOS – OFICIAL (ÚNICO BLOCO) ==================== */
-
-    .mySwiperCursos .swiper-button-next,
-    .mySwiperCursos .swiper-button-prev {
-        width: 56px;
-        height: 96px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(106, 27, 154, 0.75);
-        border-radius: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #7cbb29;
-        z-index: 20;
-    }
-
-        /* remove QUALQUER seta antiga */
-        .mySwiperCursos .swiper-button-next::before,
-        .mySwiperCursos .swiper-button-prev::before,
-        .mySwiperCursos .swiper-button-next::after,
-        .mySwiperCursos .swiper-button-prev::after {
-            content: none;
-            border: 0;
-        }
-
-    /* SVG */
-    .mySwiperCursos .swiper-navigation-icon {
-        width: 11px;
-        height: 20px;
-    }
-
-    /* esquerda gira só o SVG */
-    .mySwiperCursos .swiper-button-prev .swiper-navigation-icon {
-        transform: rotate(180deg);
-    }
-
-    /* mobile */
-    @@media (max-width: 769px) {
-        .mySwiperCursos .swiper-button-next,
-        .mySwiperCursos .swiper-button-prev {
-            width: 48px;
-            height: 88px;
-            border-radius: 16px;
-        }
-    }
-
-
-    /* ==================== COMO INGRESSAR NA FIEB =================== */
-
-    .ft-ingresso {
-        background-color: #5e2a7f; /* roxo institucional */
-        padding: 48px 0;
-        color: #ffffff;
-    }
-
-    .ft-ingresso-header {
-        text-align: center;
-        max-width: 820px;
-        margin: 0 auto 56px;
-    }
-
-        .ft-ingresso-header h2 {
-            font-size: 44px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .ft-ingresso-header p {
-            font-size: 18px;
-            line-height: 1.45;
-            opacity: 0.9;
-        }
-
-
-    /* layout em duas colunas */
-    .ft-ingresso-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 64px;
-    }
-
-    /* COLUNA ESQUERDA */
-    .ft-ingresso-left h3 {
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid rgba(255,255,255,0.3);
-    }
-
-    .ft-ingresso-left ul {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 32px;
-    }
-
-        .ft-ingresso-left ul li {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-    .ft-ingresso-left h4 {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 16px;
-    }
-
-    .ft-ingresso-link {
-        font-size: 18px;
-        padding-top: 12px;
-        border-top: 1px solid rgba(255,255,255,0.3);
-    }
-
-    /* COLUNA DIREITA */
-    .ft-ingresso-right h3 {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 16px;
-    }
-
-    .ft-ingresso-right p {
-        font-size: 18px;
-        line-height: 1.6;
-        margin-bottom: 16px;
-    }
-
-    /* BOTÃO */
-    .ft-btn-acompanhe {
-        display: inline-block;
-        margin-top: 24px;
-        padding: 12px 32px;
-        background-color: #b7d957; /* verde */
-        color: #4b1f66;
-        font-weight: 700;
-        border-radius: 24px;
-        text-decoration: none;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-        .ft-btn-acompanhe:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-    @@media (max-width: 991px) {
-        .ft-ingresso-content {
-            grid-template-columns: 1fr;
-            gap: 48px;
-        }
-
-        .ft-ingresso {
-            padding: 72px 0;
-        }
-
-        .ft-ingresso-header h2 {
-            font-size: 36px;
-        }
-    }
-
-    /* ==================== INGRESSO (MENU + CONTEÚDO DINÂMICO) =================== */
-
-    .ft-ingresso-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        max-width: 520px;
-    }
-
-        .ft-ingresso-menu li {
-            position: relative;
-            padding: 10px 0 10px 26px; /* espaço pro quadradinho */
-            font-size: 18px;
-            line-height: 1.3;
-            cursor: pointer;
-            opacity: 0.95;
-        }
-
-            .ft-ingresso-menu li:hover {
-                opacity: 1;
-            }
-
-            /* item “principal” (mais forte) */
-            .ft-ingresso-menu li.ft-ingresso-item-main {
-                font-weight: 700;
-            }
-
-            /* subitens (Educação Básica / Fundamental / Médio) */
-            .ft-ingresso-menu li.ft-ingresso-item-sub {
-                font-weight: 500;
-                padding-left: 26px;
-            }
-
-            /* separadores (linhas como no oficial) */
-            .ft-ingresso-menu li.ft-ingresso-divider {
-                cursor: default;
-                padding: 0;
-                margin: 6px 0 10px;
-                height: 1px;
-                background: rgba(255,255,255,0.35);
-                opacity: 1;
-            }
-
-            /* quadradinho verde do item ativo */
-            .ft-ingresso-menu li.active::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 14px;
-                width: 9px;
-                height: 9px;
-                background: #b7d957;
-            }
-
-    /* bloco da direita */
-    .ft-ingresso-right {
-        max-width: 520px;
-    }
-
-    .ft-ingresso-dyn p {
-        margin-bottom: 14px;
-    }
-
-    .ft-ingresso-group {
-        display: block;
-    }
-
-        .ft-ingresso-group span {
-            display: block;
-            font-weight: 400;
-            margin-top: 6px;
-            padding-left: 0;
-            opacity: 0.95;
-        }
-
-    /* ==================== DECORAÇÃO COMO INGRESSAR (OFICIAL) ==================== */
-
-    .ft-ingresso {
-        position: relative;
-        overflow: visible;
-    }
-
-    .ft-ingresso-deco-img {
-        position: absolute;
-        top: 32px;
-        left: calc(50% - 600px);
-        width: 120px;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    /* ==================== PONTILHADO SUPERIOR ==================== */
-
-    .ft-ingresso-dots-img {
-        position: absolute;
-        top: -110px;
-        right: calc(50% - 620px);
-        width: 180px;
-    }
-
-    /* ==================== PONTILHADO LARANJA ==================== */
-
-    .ft-ingresso-dots-orange {
-        position: absolute;
-        left: calc(50% - 720px); /* alinhado à coluna esquerda */
-        bottom: -85px; /* invade a área branca */
-        width: 165px;
-        pointer-events: none;
-        z-index: 5; /* abaixo do conteúdo */
-    }
-
-    /* ==================== COMO INGRESSAR – ELEMENTOS EXCLUSIVOS MOBILE ==================== */
-    .ft-ingresso-slide-header,
-    .ft-ingresso-mobile-arrows {
-        display: none;
-    }
-
-
-    /* ==================== SEÇÃO NOTÍCIAS ==================== */
-
-    .ft-noticias {
-        background: #ffffff;
-        padding: 96px 0 120px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .ft-noticias-deco-img {
-        position: absolute;
-        top: 32px;
-        right: calc(50% - 600px);
-        width: 120px;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .ft-noticias-header {
-        text-align: center;
-        margin-bottom: 64px;
-    }
-
-        .ft-noticias-header h2 {
-            font-size: 48px;
-            font-weight: 700;
-            color: #6a1b9a;
-            margin-bottom: 12px;
-        }
-
-        .ft-noticias-header p {
-            font-size: 20px;
-            color: #777;
-        }
-
-    /* GRID DE NOTÍCIAS */
-    .ft-noticias-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
-    }
-
-    /* CARD */
-    .ft-noticia-card {
-        display: flex;
-        flex-direction: column;
-        background: #fff;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-        .ft-noticia-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 14px 36px rgba(0,0,0,0.12);
-        }
-
-    .ft-noticia-img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .ft-noticia-content {
-        padding: 20px 22px 26px;
-        flex: 1;
-    }
-
-    .ft-noticia-date {
-        font-size: 14px;
-        color: #999;
-        margin-bottom: 8px;
-    }
-
-    .ft-noticia-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: #4b1f66;
-        line-height: 1.3;
-    }
-
-    /* BOTÃO VER TODAS */
-    .ft-noticias-footer {
-        text-align: center;
-        margin-top: 56px;
-    }
-
-    .ft-btn-noticias {
-        display: inline-block;
-        padding: 14px 40px;
-        background: #b7d957;
-        color: #4b1f66;
-        font-weight: 700;
-        border-radius: 28px;
-        text-decoration: none;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-        .ft-btn-noticias:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-    /* RESPONSIVO */
-    @@media (max-width: 991px) {
-        .ft-noticias-grid {
-            grid-template-columns: 1fr;
-            gap: 28px;
-        }
-
-        .ft-noticias-header h2 {
-            font-size: 36px;
-        }
-    }
-
-
-    /* remove ícone padrão do Swiper */
-    .mySwiperCursos .swiper-button-next::after,
-    .mySwiperCursos .swiper-button-prev::after {
-        content: none;
-    }
-    /* ====== CURSOS: MOBILE SEM SLIDES LATERAIS ====== */
-    @@media (max-width: 769px) {
-        .mySwiperCursos {
-            overflow: hidden !important;
-        }
-
-            .mySwiperCursos .swiper-wrapper {
-                transform: none;
-            }
-
-            .mySwiperCursos .swiper-slide {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-    }
-
-    /* ==================== COMO INGRESSAR – QUADRADO VERDE (MOBILE) ==================== */
-    @@media (max-width: 769px) {
-
-        .ft-ingresso {
-            padding-top: 140px; /* espaço correto acima do título */
-        }
-
-        .ft-ingresso-deco-img {
-            display: block;
-            top: 20px; /* desce o quadrado para ficar 100% no roxo */
-            left: 24px;
-            width: 128px;
-            z-index: 1;
-        }
-    }
-
-    @@media (max-width: 769px) {
-
-        .ft-ingresso-header {
-            margin-top: 64px;
-        }
-    }
-
-    @@media (max-width: 769px) {
-
-        .ft-ingresso-left {
-            padding-top: 56px;
-        }
-    }
-
-    @@media (max-width: 769px) {
-        .ft-ingresso-dots-img {
-            display: block;
-            top: 250px;
-            left: 120px;
-            right: auto;
-            transform: none;
-            width: 140px;
-            z-index: 0;
-            opacity: 0.9;
-        }
-    }
-
-    /* ==================== COMO INGRESSAR – MOBILE (SLIDE) ==================== */
-    @@media (max-width: 769px) {
-        /* seção */
-        .ft-ingresso {
-            padding: 140px 0 96px;
-            position: relative;
-            overflow: visible;
-        }
-        /* conteúdo vira coluna única */
-        .ft-ingresso-content {
-            display: block;
-        }
-        /* esconde menu desktop */
-        .ft-ingresso-left {
-            display: none !important;
-        }
-        /* coluna direita vira viewport */
-        .ft-ingresso-right {
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        /* header do slide */
-        .ft-ingresso-slide-header {
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .ft-ingresso-slide-title-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .ft-ingresso-slide-dot {
-            width: 10px;
-            height: 10px;
-            background: #b7d957;
-            flex-shrink: 0;
-        }
-
-        .ft-ingresso-slide-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .ft-ingresso-slide-line {
-            width: 100%;
-            max-width: 260px;
-            height: 1px;
-            background: rgba(255,255,255,0.35);
-        }
-        /* setas */
-        .ft-ingresso-mobile-arrows {
-            display: flex;
-            justify-content: space-between;
-            max-width: 260px;
-            margin: 16px auto 8px;
-        }
-
-        .ft-ingresso-arrow {
-            width: 44px;
-            height: 44px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            position: relative;
-        }
-
-            .ft-ingresso-arrow::before {
-                content: "";
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 14px;
-                height: 14px;
-                transform: translate(-50%, -50%) rotate(45deg);
-            }
-
-            .ft-ingresso-arrow.prev::before {
-                border-left: 4px solid #b7d957;
-                border-bottom: 4px solid #b7d957;
-            }
-
-            .ft-ingresso-arrow.next::before {
-                border-right: 4px solid #b7d957;
-                border-top: 4px solid #b7d957;
-            }
-        /* ===== SLIDE ===== */
-
-        #ftIngressoDyn {
-            position: relative;
-            transition: transform 0.35s ease, opacity 0.35s ease;
-            will-change: transform, opacity;
-        }
-
-            #ftIngressoDyn.is-exit-left {
-                transform: translateX(-40px);
-                opacity: 0;
-            }
-
-            #ftIngressoDyn.is-exit-right {
-                transform: translateX(40px);
-                opacity: 0;
-            }
-
-            #ftIngressoDyn.is-enter {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            /* textos */
-            #ftIngressoDyn p {
-                font-size: 18px;
-                line-height: 1.5;
-                margin-bottom: 14px;
-            }
-        /* botão */
-        .ft-btn-acompanhe {
-            margin-top: 24px;
-        }
-        /* decorações */
-        .ft-ingresso-deco-img {
-            top: 20px;
-            left: 24px;
-            width: 128px;
-            z-index: 1;
-        }
-
-        .ft-ingresso-dots-img {
-            top: 250px;
-            left: 120px;
-            width: 140px;
-            opacity: 0.9;
-        }
-
-        .ft-ingresso-dots-orange {
-            position: absolute;
-            left: 15%;
-            bottom: -45px;
-            width: 90px;
-            z-index: 10;
-            pointer-events: none;
-        }
-    }
-
-</style>
-
 <!-- ===================== BANNER + CARROSSEL ===================== -->
+<div class="home-site"> 
+    
+    <div class="ft-full-bleed">
 
-<div class="ft-full-bleed">
+        <section class="ft-hero">
 
-    <section class="ft-hero">
+            <div class="ft-svg-wrapper">
+                <svg class="ft-svg-anim"
+                     viewBox="0 0 1152 590"
+                     preserveAspectRatio="xMidYMid meet">
 
-        <div class="ft-svg-wrapper">
-            <svg class="ft-svg-anim"
-                 viewBox="0 0 1152 590"
-                 preserveAspectRatio="xMidYMid meet">
-
-                <g fill="none" fill-rule="evenodd">
-                    <polygon class="polymorph-left" stroke="#fff" stroke-width="1"
-                             points="77.95938846720004,256.18927032319993 582.9563168767999,24
+                    <g fill="none" fill-rule="evenodd">
+                        <polygon class="polymorph-left" stroke="#fff" stroke-width="1"
+                                 points="77.95938846720004,256.18927032319993 582.9563168767999,24
                              859.5777762304,399.9187769344001 442.0643641343999,541.2735649792">
-                    </polygon>
+                        </polygon>
 
-                    <polygon class="polymorph-right" stroke="#fff" stroke-width="1"
-                             points="466.60872249469395,348.36041154612246 876.4725121436734,38.48740783020406
+                        <polygon class="polymorph-right" stroke="#fff" stroke-width="1"
+                                 points="466.60872249469395,348.36041154612246 876.4725121436734,38.48740783020406
                              998.2483109485715,342.8935810220408 941.852426409796,550.6544841404083">
-                    </polygon>
-                </g>
-
-                <g id="Criatividade" style="transform: translateX(72.9594px) translateY(-14.8107px);">
-                    <g transform="translate(0 264)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
-                        <circle cx="10" cy="10" r="10"></circle>
-                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                        </polygon>
                     </g>
-                    <text transform="translate(28 285)" fill="#fff" font-size="24">Criatividade</text>
-                </g>
 
-                <g id="Inovacao" style="transform: translateX(-76.6552px) translateY(11.3885px);">
-                    <g transform="translate(650 0)" fill="#c65f16" stroke="#c65f16">
-                        <circle cx="10" cy="10" r="10"></circle>
-                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                    <g id="Criatividade" style="transform: translateX(72.9594px) translateY(-14.8107px);">
+                        <g transform="translate(0 264)" fill="#c65f16" stroke="#c65f16" stroke-width="1">
+                            <circle cx="10" cy="10" r="10"></circle>
+                            <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                        </g>
+                        <text transform="translate(28 285)" fill="#fff" font-size="24">Criatividade</text>
                     </g>
-                    <text transform="translate(680 20)" fill="#fff" font-size="24">Inovação</text>
-                </g>
 
-                <g id="Negocios" style="transform: translateX(4.91571px) translateY(13.8851px);">
-                    <g transform="translate(428 518)" fill="#c65f16" stroke="#c65f16">
-                        <circle cx="10" cy="10" r="10"></circle>
-                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                    <g id="Inovacao" style="transform: translateX(-76.6552px) translateY(11.3885px);">
+                        <g transform="translate(650 0)" fill="#c65f16" stroke="#c65f16">
+                            <circle cx="10" cy="10" r="10"></circle>
+                            <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                        </g>
+                        <text transform="translate(680 20)" fill="#fff" font-size="24">Inovação</text>
                     </g>
-                    <text transform="translate(458 538)" fill="#fff" font-size="24">Negócios</text>
-                </g>
 
-                <g id="Producao" style="transform: translateX(-27.0309px) translateY(0px);">
-                    <g transform="translate(485 340)" fill="#c65f16" stroke="#c65f16">
-                        <circle cx="10" cy="10" r="10"></circle>
-                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                    <g id="Negocios" style="transform: translateX(4.91571px) translateY(13.8851px);">
+                        <g transform="translate(428 518)" fill="#c65f16" stroke="#c65f16">
+                            <circle cx="10" cy="10" r="10"></circle>
+                            <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                        </g>
+                        <text transform="translate(458 538)" fill="#fff" font-size="24">Negócios</text>
                     </g>
-                    <text transform="translate(510 355)" fill="#fff" font-size="24">Produção</text>
-                </g>
 
-                <g id="BemEstar" style="transform: translateX(-27.0309px) translateY(10.8123px);">
-                    <g transform="translate(1016 321)" fill="#c65f16" stroke="#c65f16">
-                        <circle cx="10" cy="10" r="10"></circle>
-                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                    <g id="Producao" style="transform: translateX(-27.0309px) translateY(0px);">
+                        <g transform="translate(485 340)" fill="#c65f16" stroke="#c65f16">
+                            <circle cx="10" cy="10" r="10"></circle>
+                            <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                        </g>
+                        <text transform="translate(510 355)" fill="#fff" font-size="24">Produção</text>
                     </g>
-                    <text transform="translate(1040 340)" fill="#fff" font-size="24">Bem-Estar</text>
-                </g>
 
-                <g id="EnsinoRegular" style="transform: translateX(-25.2288px) translateY(-23.4268px);">
-                    <g transform="translate(956 563)" fill="#c65f16" stroke="#c65f16">
-                        <circle cx="10" cy="10" r="10"></circle>
-                        <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                    <g id="BemEstar" style="transform: translateX(-27.0309px) translateY(10.8123px);">
+                        <g transform="translate(1016 321)" fill="#c65f16" stroke="#c65f16">
+                            <circle cx="10" cy="10" r="10"></circle>
+                            <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                        </g>
+                        <text transform="translate(1040 340)" fill="#fff" font-size="24">Bem-Estar</text>
                     </g>
-                    <text transform="translate(980 580)" fill="#fff" font-size="24">Ensino Regular</text>
-                </g>
 
-            </svg>
+                    <g id="EnsinoRegular" style="transform: translateX(-25.2288px) translateY(-23.4268px);">
+                        <g transform="translate(956 563)" fill="#c65f16" stroke="#c65f16">
+                            <circle cx="10" cy="10" r="10"></circle>
+                            <circle cx="10" cy="10" r="9.5" fill="none"></circle>
+                        </g>
+                        <text transform="translate(980 580)" fill="#fff" font-size="24">Ensino Regular</text>
+                    </g>
+
+                </svg>
+            </div>
+
+
+
+            <div class="ft-hero-arrow">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
+            </div>
+        </section>
+
+        <!-- MINI BANNER FIXO ACIMA DO CARROSSEL -->
+        <div class="mini-banner-fixo">
+            <a href="https://matricula.fieb.edu.br/" target="_blank">
+                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_matricula.jpg" alt="Vestibulinho 2026">
+            </a>
+        </div>
+
+        <!-- CARROSSEL -->
+        <div class="carousel-container">
+
+            <button class="carousel-arrow left" aria-label="Anterior">
+                <svg viewBox="0 0 70 70" class="arrow-svg">
+                    <polyline points="42,18 26,35 42,52" class="arrow-double" />
+                    <polyline points="52,18 36,35 52,52" class="arrow-double" />
+                </svg>
+            </button>
+
+            <button class="carousel-arrow right" aria-label="Próximo">
+                <svg viewBox="0 0 70 70" class="arrow-svg">
+                    <polyline points="28,18 44,35 28,52" class="arrow-double" />
+                    <polyline points="18,18 34,35 18,52" class="arrow-double" />
+                </svg>
+            </button>
+
+            <div class="carousel-slide active">
+                <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
+                    <picture>
+                        <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
+                    </picture>
+                </a>
+            </div>
+
+            <div class="carousel-slide">
+                <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
+                    <picture>
+                        <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
+                    </picture>
+                </a>
+            </div>
+
+            <div class="carousel-slide">
+                <a href="https://reservadevagas.fieb.edu.br/" target="_blank">
+                    <picture>
+                        <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
+                    </picture>
+                </a>
+            </div>
+
+            <div class="carousel-slide">
+                <a href="https://fieb.edu.br/nexus" target="_blank">
+                    <picture>
+                        <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
+                    </picture>
+                </a>
+            </div>
+
+            <div class="carousel-slide">
+                <a href="https://whatsapp.com/channel/0029VakGwrSCMY0ENunPA72u" target="_blank">
+                    <picture>
+                        <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
+                    </picture>
+                </a>
+            </div>
+
+            <div class="carousel-slide">
+                <a href="https://estagio.fieb.edu.br/" target="_blank">
+                    <picture>
+                        <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
+                    </picture>
+                </a>
+            </div>
+
+            <div class="carousel-dots"></div>
         </div>
 
 
 
-        <div class="ft-hero-arrow">
-            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
+    </div>
+
+    @await Html.PartialAsync("Widgets/_PapelParedeHome")
+
+
+    <!-- ===================== CURSOS ===================== -->
+
+    <section class="ft-cursos" id="cursos">
+        <div class="container">
+
+            <header class="ft-cursos-header">
+                <h2>Cursos</h2>
+                <p>Há 31 anos formando profissionais para o mercado de trabalho</p>
+            </header>
+
+            <div class="swiper mySwiperCursos">
+
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/adm.png" alt="Administração" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/analisesclinicas.png" alt="Análises Clínicas" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/contabilidade.png" alt="Contabilidade" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/designdeinteriores.png" alt="Design de Interiores" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/edificacoes.png" alt="Edificações" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/eletroeletronica.png" alt="Eletroeletrônica" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/enfermagem.png" alt="Enfermagem" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/farmacia.png" alt="Farmácia" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/financas.png" alt="Finanças" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/hospedagem.png" alt="Hospedagem" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/informatica.png" alt="Informática" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/informaticaparainternet.png" alt="Informática para Internet" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/jogosdigitais.png" alt="Jogos Digitais" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/logistica.png" alt="Logística" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/manutencaosupo.png" alt="Manutenção e Suporte" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/publicidade.png" alt="Publicidade" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/quimica.png" alt="Química" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/recursoshumanos.png" alt="Recursos Humanos" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/redesdecomputadores.png" alt="Redes de Computadores" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/segurancadotrabalho.png" alt="Segurança do Trabalho" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/servicosjuridicos.png" alt="Serviços Jurídicos" class="curso-slide-img">
+                    </div>
+
+                    <div class="swiper-slide">
+                        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/telecomunicacoes.png" alt="Telecomunicações" class="curso-slide-img">
+                    </div>
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev">
+                    <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                              fill="currentColor" />
+                    </svg>
+                </div>
+
+                <div class="swiper-button-next">
+                    <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
+                              fill="currentColor" />
+                    </svg>
+                </div>
+
+
+            </div>
+
         </div>
     </section>
 
-    <!-- MINI BANNER FIXO ACIMA DO CARROSSEL -->
-    <div class="mini-banner-fixo">
-        <a href="https://matricula.fieb.edu.br/" target="_blank">
-            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_matricula.jpg" alt="Vestibulinho 2026">
-        </a>
-    </div>
 
-    <!-- CARROSSEL -->
-    <div class="carousel-container">
+    <section class="ft-ingresso">
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_formas_amarelo_laranja.png"
+             alt=""
+             class="ft-ingresso-deco-img" />
 
-        <button class="carousel-arrow left" aria-label="Anterior">
-            <svg viewBox="0 0 70 70" class="arrow-svg">
-                <polyline points="42,18 26,35 42,52" class="arrow-double" />
-                <polyline points="52,18 36,35 52,52" class="arrow-double" />
-            </svg>
-        </button>
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_pontilhado_cinza.png"
+             alt=""
+             class="ft-ingresso-dots-img" />
 
-        <button class="carousel-arrow right" aria-label="Próximo">
-            <svg viewBox="0 0 70 70" class="arrow-svg">
-                <polyline points="28,18 44,35 28,52" class="arrow-double" />
-                <polyline points="18,18 34,35 18,52" class="arrow-double" />
-            </svg>
-        </button>
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_pontilhado_laranja.png"
+             alt=""
+             class="ft-ingresso-dots-orange" />
 
-        <div class="carousel-slide active">
-            <a href="https://processoseletivo.fieb.edu.br/Docentes" target="_blank">
-                <picture>
-                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_processoseletivo2026.png">
-                </picture>
-            </a>
-        </div>
+        <div class="container">
 
-        <div class="carousel-slide">
-            <a href="https://vestibulinho.fieb.edu.br/" target="_blank">
-                <picture>
-                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_vestibulinho_20261.png">
-                </picture>
-            </a>
-        </div>
-
-        <div class="carousel-slide">
-            <a href="https://reservadevagas.fieb.edu.br/" target="_blank">
-                <picture>
-                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_reservadevagas_2026_desktop.png">
-                </picture>
-            </a>
-        </div>
-
-        <div class="carousel-slide">
-            <a href="https://fieb.edu.br/nexus" target="_blank">
-                <picture>
-                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_nexus.jpg">
-                </picture>
-            </a>
-        </div>
-
-        <div class="carousel-slide">
-            <a href="https://whatsapp.com/channel/0029VakGwrSCMY0ENunPA72u" target="_blank">
-                <picture>
-                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_whatsappfieb.png">
-                </picture>
-            </a>
-        </div>
-
-        <div class="carousel-slide">
-            <a href="https://estagio.fieb.edu.br/" target="_blank">
-                <picture>
-                    <source media="(min-width:770px)" srcset="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_estagio_desktop.jpg">
-                </picture>
-            </a>
-        </div>
-
-        <div class="carousel-dots"></div>
-    </div>
-
-
-
-</div>
-
-
-
-
-<!-- ===================== CURSOS ===================== -->
-
-<section class="ft-cursos" id="cursos">
-    <div class="container">
-
-        <header class="ft-cursos-header">
-            <h2>Cursos</h2>
-            <p>Há 31 anos formando profissionais para o mercado de trabalho</p>
-        </header>
-
-        <div class="swiper mySwiperCursos">
-
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/adm.png" alt="Administração" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/analisesclinicas.png" alt="Análises Clínicas" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/contabilidade.png" alt="Contabilidade" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/designdeinteriores.png" alt="Design de Interiores" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/edificacoes.png" alt="Edificações" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/eletroeletronica.png" alt="Eletroeletrônica" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/enfermagem.png" alt="Enfermagem" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/farmacia.png" alt="Farmácia" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/financas.png" alt="Finanças" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/hospedagem.png" alt="Hospedagem" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/informatica.png" alt="Informática" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/informaticaparainternet.png" alt="Informática para Internet" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/jogosdigitais.png" alt="Jogos Digitais" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/logistica.png" alt="Logística" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/manutencaosupo.png" alt="Manutenção e Suporte" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/publicidade.png" alt="Publicidade" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/quimica.png" alt="Química" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/recursoshumanos.png" alt="Recursos Humanos" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/redesdecomputadores.png" alt="Redes de Computadores" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/segurancadotrabalho.png" alt="Segurança do Trabalho" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/servicosjuridicos.png" alt="Serviços Jurídicos" class="curso-slide-img">
-                </div>
-
-                <div class="swiper-slide">
-                    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/cursos/telecomunicacoes.png" alt="Telecomunicações" class="curso-slide-img">
-                </div>
-
+            <div class="ft-ingresso-header">
+                <h2>Como Ingressar na FIEB</h2>
+                <p>
+                    Tem dúvidas sobre como estudar na FIEB? Então confira como funciona o processo
+                    para cada modalidade de ingresso da Fundação
+                </p>
             </div>
 
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev">
-                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
-                          fill="currentColor" />
-                </svg>
-            </div>
+            <div class="ft-ingresso-content">
 
-            <div class="swiper-button-next">
-                <svg class="swiper-navigation-icon" width="11" height="20" viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.38296 20.0762C0.111788 19.805 0.111788 19.3654 0.38296 19.0942L9.19758 10.2796L0.38296 1.46497C0.111788 1.19379 0.111788 0.754138 0.38296 0.482966C0.654131 0.211794 1.09379 0.211794 1.36496 0.482966L10.4341 9.55214C10.8359 9.9539 10.8359 10.6053 10.4341 11.007L1.36496 20.0762C1.09379 20.3474 0.654131 20.3474 0.38296 20.0762Z"
-                          fill="currentColor" />
-                </svg>
-            </div>
+                <!-- COLUNA ESQUERDA (MENU) -->
+                <div class="ft-ingresso-left">
+                    <ul class="ft-ingresso-menu" id="ftIngressoMenu">
 
-
-        </div>
-
-    </div>
-</section>
-
-
-<section class="ft-ingresso">
-    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_formas_amarelo_laranja.png"
-         alt=""
-         class="ft-ingresso-deco-img" />
-
-    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_pontilhado_cinza.png"
-         alt=""
-         class="ft-ingresso-dots-img" />
-
-    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_pontilhado_laranja.png"
-         alt=""
-         class="ft-ingresso-dots-orange" />
-
-    <div class="container">
-
-        <div class="ft-ingresso-header">
-            <h2>Como Ingressar na FIEB</h2>
-            <p>
-                Tem dúvidas sobre como estudar na FIEB? Então confira como funciona o processo
-                para cada modalidade de ingresso da Fundação
-            </p>
-        </div>
-
-        <div class="ft-ingresso-content">
-
-            <!-- COLUNA ESQUERDA (MENU) -->
-            <div class="ft-ingresso-left">
-                <ul class="ft-ingresso-menu" id="ftIngressoMenu">
-
-                    <li class="ft-ingresso-item-main active" data-key="fundamental1">
-                        1º Ano – Ensino Fundamental
-                    </li>
-
-                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
-
-                    <li class="ft-ingresso-item-main ft-ingresso-group" data-key="basica">
-                        Educação Básica
-                        <span>Ensino Fundamental – 2º ao 9º ano</span>
-                        <span>Ensino Médio – 1ª a 3ª série</span>
-                    </li>
-
-
-                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
-
-                    <li class="ft-ingresso-item-main" data-key="tecnica">
-                        Educação Técnica (Modular)
-                    </li>
-
-                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
-
-                    <li class="ft-ingresso-item-main" data-key="reserva">
-                        Reserva de Vagas
-                    </li>
-
-                    <li class="ft-ingresso-divider" aria-hidden="true"></li>
-                </ul>
-            </div>
-
-            <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
-            <div class="ft-ingresso-right">
-
-                <div class="ft-ingresso-slide-header">
-                    <div class="ft-ingresso-slide-title-row">
-                        <span class="ft-ingresso-slide-dot"></span>
-
-                        <h4 class="ft-ingresso-slide-title">
+                        <li class="ft-ingresso-item-main active" data-key="fundamental1">
                             1º Ano – Ensino Fundamental
-                        </h4>
+                        </li>
+
+                        <li class="ft-ingresso-divider" aria-hidden="true"></li>
+
+                        <li class="ft-ingresso-item-main ft-ingresso-group" data-key="basica">
+                            Educação Básica
+                            <span>Ensino Fundamental – 2º ao 9º ano</span>
+                            <span>Ensino Médio – 1ª a 3ª série</span>
+                        </li>
+
+
+                        <li class="ft-ingresso-divider" aria-hidden="true"></li>
+
+                        <li class="ft-ingresso-item-main" data-key="tecnica">
+                            Educação Técnica (Modular)
+                        </li>
+
+                        <li class="ft-ingresso-divider" aria-hidden="true"></li>
+
+                        <li class="ft-ingresso-item-main" data-key="reserva">
+                            Reserva de Vagas
+                        </li>
+
+                        <li class="ft-ingresso-divider" aria-hidden="true"></li>
+                    </ul>
+                </div>
+            </div>
+
+                <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
+                <div class="ft-ingresso-right">
+
+                    <div class="ft-ingresso-mobile-nav">
+                        <div class="ft-ingresso-slide-header">
+                            <div class="ft-ingresso-slide-title-row">
+                                <span class="ft-ingresso-slide-dot"></span>
+                                <h4 class="ft-ingresso-slide-title">1º Ano – Ensino Fundamental</h4>
+                            </div>
+                            <div class="ft-ingresso-slide-line"></div>
+                        </div>
+
+                        <div class="ft-ingresso-mobile-arrows">
+                            <button type="button" class="ft-ingresso-arrow prev" aria-label="Anterior">
+                                <svg viewBox="0 0 70 70" class="arrow-svg">
+                                    <polyline points="28,18 44,35 28,52" class="arrow-double" />
+                                    <polyline points="18,18 34,35 18,52" class="arrow-double" />
+                                </svg>
+                            </button>
+
+                            <button type="button" class="ft-ingresso-arrow next" aria-label="Próximo">
+                                <svg viewBox="0 0 70 70" class="arrow-svg">
+                                    <polyline points="28,18 44,35 28,52" class="arrow-double" />
+                                    <polyline points="18,18 34,35 18,52" class="arrow-double" />
+                                </svg>
+                            </button>
+                        </div>
+
+
+
+                        <h3>Quem pode?</h3>
+
+                        <div class="ft-ingresso-dyn" id="ftIngressoDyn">
+                            <!-- JS injeta os <p> aqui -->
+                        </div>
+
+                        <a href="#" class="ft-btn-acompanhe" id="ftIngressoBtn">
+                            ACOMPANHE
+                        </a>
                     </div>
-                    <div class="ft-ingresso-slide-line"></div>
+
                 </div>
 
-                <!-- MOBILE – SETAS DO SLIDE -->
-                <div class="ft-ingresso-mobile-arrows">
-                    <button type="button" class="ft-ingresso-arrow prev" aria-label="Anterior"></button>
-                    <button type="button" class="ft-ingresso-arrow next" aria-label="Próximo"></button>
+            </div>
+    </section>
+
+    <section class="ft-noticias">
+
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_formas_amarelo_laranja.png"
+             alt=""
+             class="ft-noticias-deco-img" />
+
+        <div class="container">
+
+            <header class="ft-noticias-header">
+                <h2>Notícias</h2>
+                <p>Fique por dentro das novidades da FIEB</p>
+            </header>
+
+            <div class="swiper mySwiperNoticiasHome">
+                <div class="swiper-wrapper">
+
+                    @foreach (var noti in noticiasHome)
+                    {
+                        <div class="swiper-slide">
+                            <a href="#" class="ft-noticia-card">
+
+                                <img src="@noti.ImagemUrl"
+                                     alt="@noti.Titulo"
+                                     class="ft-noticia-img" />
+
+                                <div class="ft-noticia-content">
+                                    <div class="ft-noticia-date">
+                                        @noti.Data
+                                    </div>
+
+                                    <div class="ft-noticia-title">
+                                        @noti.Titulo
+                                    </div>
+                                </div>
+
+                            </a>
+                        </div>
+                    }
+
                 </div>
 
+                <div class="swiper-pagination"></div>
+            </div>
 
-                <h3>Quem pode?</h3>
-
-                <div class="ft-ingresso-dyn" id="ftIngressoDyn">
-                    <!-- JS injeta os <p> aqui -->
-                </div>
-
-                <a href="#" class="ft-btn-acompanhe" id="ftIngressoBtn">
-                    ACOMPANHE
+            <div class="ft-noticias-footer">
+                <a href="/noticia" class="ft-btn-noticias">
+                    VER TODAS AS NOTÍCIAS
                 </a>
             </div>
 
         </div>
-
-    </div>
-</section>
-
-<section class="ft-noticias">
-
-    <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_formas_amarelo_laranja.png"
-         alt=""
-         class="ft-noticias-deco-img" />
-
-    <div class="container">
-
-        <header class="ft-noticias-header">
-            <h2>Notícias</h2>
-            <p>Fique por dentro das novidades da FIEB</p>
-        </header>
-
-        <div class="swiper mySwiperNoticiasHome">
-            <div class="swiper-wrapper">
-
-                @foreach (var noti in noticiasHome)
-                {
-                    <div class="swiper-slide">
-                        <a href="#" class="ft-noticia-card">
-
-                            <img src="@noti.ImagemUrl"
-                                 alt="@noti.Titulo"
-                                 class="ft-noticia-img" />
-
-                            <div class="ft-noticia-content">
-                                <div class="ft-noticia-date">
-                                    @noti.Data
-                                </div>
-
-                                <div class="ft-noticia-title">
-                                    @noti.Titulo
-                                </div>
-                            </div>
-
-                        </a>
-                    </div>
-                }
-
-            </div>
-
-            <div class="swiper-pagination"></div>
-        </div>
-
-        <div class="ft-noticias-footer">
-            <a href="/noticia" class="ft-btn-noticias">
-                VER TODAS AS NOTÍCIAS
-            </a>
-        </div>
-
-    </div>
-</section>
-
+    </section>
+</div>
 
 
 
@@ -1830,7 +763,10 @@
 
             const titles = {
                 fundamental1: '1º Ano – Ensino Fundamental',
-                basica: 'Educação Básica Ensino Fundamental - 2° ao 9° ano Ensino Médio - 1ª a 3ª série',
+                    basica: window.innerWidth <= 769
+        ? 'Educação Básica Ensino Fundamental –<br>2º ao 9º ano Ensino Médio – 1ª a 3ª série'
+        : 'Educação Básica Ensino Fundamental - 2° ao 9° ano Ensino Médio - 1ª a 3ª série',
+
                 tecnica: 'Educação Técnica (Modular)',
                 reserva: 'Reserva de Vagas'
             };
@@ -1867,7 +803,8 @@
                        // título (mobile)
             const mobileTitle = document.querySelector('.ft-ingresso-slide-header .ft-ingresso-slide-title');
             if (mobileTitle && titles[key]) {
-            mobileTitle.textContent = titles[key];
+            mobileTitle.innerHTML = titles[key];
+
            }
 
 
