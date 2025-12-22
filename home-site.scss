@@ -1,8 +1,4 @@
-@use '../variaveis' as *;
-
-/*==========================================
-        HOME BASE GLOBAL (FULL BLEED / RESET LOCAL)
-    ================================================*/
+@use '../variaveis' as *; /*========================================== HOME BASE GLOBAL (FULL BLEED / RESET LOCAL) ================================================*/
 
 .ft-full-bleed {
     width: 100vw;
@@ -11,9 +7,7 @@
     position: relative;
     overflow: hidden;
 }
-/*=========================================================== 
-        HOME HERO/BANNER PRINCIPAL (SVG ANIMADO, GRADIENTES, SETA)
-    ===============================================================*/
+/*=========================================================== HOME HERO/BANNER PRINCIPAL (SVG ANIMADO, GRADIENTES, SETA) ===============================================================*/
 
 .ft-hero {
     position: relative;
@@ -90,9 +84,7 @@
     width: 100px;
     height: 100px;
 }
-/*==========================
-        HERO AJUSTES MOBILE
-    =============================*/
+/*========================== HERO AJUSTES MOBILE =============================*/
 
 @media (max-width: 769px) {
     .ft-hero {
@@ -124,9 +116,7 @@
             letter-spacing: 0.3px;
         }
 }
-/*==================================== 
-        HOME CARROSEL PRINCIPAL (BANNERS) 
-    ======================================*/
+/*==================================== HOME CARROSEL PRINCIPAL (BANNERS) ======================================*/
 
 .carousel-container {
     width: 100%;
@@ -152,9 +142,7 @@
         height: auto;
         border-radius: 6px;
     }
-/*============================ 
-        CARROSSEL SETAS (SVG) 
-    ==============================*/
+/*============================ CARROSSEL SETAS (SVG) ==============================*/
 
 .carousel-arrow {
     position: absolute;
@@ -295,9 +283,7 @@ html, body {
 body, html {
     background: #fff;
 }
-/*===============================
-        CARROSSEL DOTS / PAGINACAO 
-    =================================*/
+/*=============================== CARROSSEL DOTS / PAGINACAO =================================*/
 
 .carousel-dots {
     display: flex;
@@ -332,9 +318,7 @@ body, html {
         position: relative;
         z-index: 999;
     }
-/*======================================== 
-        HOME CURSOS (SWIPER, ESCALAS, SETAS) 
-    ==========================================*/
+/*======================================== HOME CURSOS (SWIPER, ESCALAS, SETAS) ==========================================*/
 
 .ft-cursos {
     position: relative;
@@ -456,9 +440,7 @@ body, html {
 .mySwiperCursos .swiper-button-prev .swiper-navigation-icon {
     transform: rotate(180deg);
 }
-/*========================== 
-        CURSOS AJUSTES MOBILE 
-    ============================*/
+/*========================== CURSOS AJUSTES MOBILE ============================*/
 
 @media (max-width: 769px) {
     .mySwiperCursos .swiper-button-next, .mySwiperCursos .swiper-button-prev {
@@ -467,9 +449,7 @@ body, html {
         border-radius: 16px;
     }
 }
-/*================================ 
-        HOME COMO INGRESSAR (DESKTOP) 
-    =================================*/
+/*================================ HOME COMO INGRESSAR (DESKTOP) =================================*/
 
 .ft-ingresso {
     background-color: #5e2a7f;
@@ -575,9 +555,7 @@ body, html {
         font-size: 36px;
     }
 }
-/*======================================== 
-        COMO INGRESSAR MENU LATERAL (DESKTOP) 
-    ==========================================*/
+/*======================================== COMO INGRESSAR MENU LATERAL (DESKTOP) ==========================================*/
 
 .ft-ingresso-menu {
     list-style: none;
@@ -651,9 +629,7 @@ body, html {
     position: relative;
     overflow: visible;
 }
-/*================================================================ 
-        COMO INGRESSAR ELEMENTOS DECORATIVOS (quadrado, pontilhados) 
-    ==================================================================*/
+/*================================================================ COMO INGRESSAR ELEMENTOS DECORATIVOS (quadrado, pontilhados) ==================================================================*/
 
 .ft-ingresso-deco-img {
     position: absolute;
@@ -683,9 +659,7 @@ body, html {
 .ft-ingresso-slide-header, .ft-ingresso-mobile-arrows {
     display: none;
 }
-/*===================== 
-        HOME NOTICIAS
-    ======================*/
+/*===================== HOME NOTICIAS ======================*/
 
 .ft-noticias {
     background: #ffffff;
@@ -800,9 +774,7 @@ body, html {
 .mySwiperCursos .swiper-button-next::after, .mySwiperCursos .swiper-button-prev::after {
     content: none;
 }
-/*======================= 
-        CURSOS AJUSTES MOBILE 
-    =========================*/
+/*======================= CURSOS AJUSTES MOBILE =========================*/
 
 @media (max-width: 769px) {
     .mySwiperCursos {
@@ -818,9 +790,7 @@ body, html {
             transform: none !important;
         }
 }
-/*=========================== 
-        COMO INGRESSAR MOBILE 
-    =============================*/
+/*=========================== COMO INGRESSAR MOBILE =============================*/
 
 @media (max-width: 769px) {
     .ft-ingresso {
