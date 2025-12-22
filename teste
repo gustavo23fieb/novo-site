@@ -105,19 +105,10 @@
                 </svg>
             </div>
 
-
-
             <div class="ft-hero-arrow">
                 <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
             </div>
         </section>
-
-        <!-- MINI BANNER FIXO ACIMA DO CARROSSEL -->
-        <div class="mini-banner-fixo">
-            <a href="https://matricula.fieb.edu.br/" target="_blank">
-                <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_matricula.jpg" alt="Vestibulinho 2026">
-            </a>
-        </div>
 
         <!-- CARROSSEL -->
         <div class="carousel-container">
@@ -198,7 +189,6 @@
     </div>
 
     @await Html.PartialAsync("Widgets/_PapelParedeHome")
-
 
     <!-- ===================== CURSOS ===================== -->
 
@@ -383,7 +373,7 @@
                         <li class="ft-ingresso-divider" aria-hidden="true"></li>
                     </ul>
                 </div>
-            </div>
+            
 
                 <!-- COLUNA DIREITA (CONTEÚDO ÚNICO QUE MUDA) -->
                 <div class="ft-ingresso-right">
@@ -412,8 +402,7 @@
                                 </svg>
                             </button>
                         </div>
-
-
+                        </div>
 
                         <h3>Quem pode?</h3>
 
@@ -484,8 +473,6 @@
         </div>
     </section>
 </div>
-
-
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -807,7 +794,6 @@
 
            }
 
-
                 // menu (desktop / fonte da verdade)
                 if (menu) {
                     menu.querySelectorAll('li[data-key]').forEach(li => {
@@ -880,8 +866,6 @@
                 }
             }
         });
-
-
 
     </script>
 }
