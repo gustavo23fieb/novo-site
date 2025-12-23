@@ -398,6 +398,14 @@ html, body {
     gap: 64px;
 }
 
+.ft-ingresso-slide-line{
+    width: 100%;
+    max-width:260px;
+    height: 1px;
+    background: rgba(255,255,255,0.35);
+    margin: 12px auto 0;
+}
+
 /* decorativos */
 .ft-ingresso-deco-img {
     position: absolute;
@@ -418,6 +426,18 @@ html, body {
     left: calc(50% - 720px);
     bottom: -85px;
     width: 165px;
+}
+
+@media (max-width: 769px){
+    .ft-ingresso-slide-title{
+        white-space: normal;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .ft-ingresso-slide-line{
+        max-width: 340px;
+    }
 }
 
 /* ========================================== NOTÍCIAS ========================================== */
