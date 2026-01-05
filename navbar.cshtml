@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light box-shadow">
+    <div class="container px-0 d-flex justify-content-between align-items-center ">
+
+        <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="https://stgwebfiebbrs001.blob.core.windows.net/web/logo-fiebtech-branco.svg"
+                 alt="Logotipo FIEB" width="160" class="logo" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a href="#"
+                       class="nav-link dropdown dropdown-toggle"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false"
+                       aria-label="A FIEB">
+                        A FIEB
+                    </a>
+                    <ul class="dropdown-menu w-100" aria-labelledby="navbarScrollingAFIEB">
+                        <li><a class="dropdown-item" asp-controller="HistoriaSite" asp-action="Index">História</a></li>
+                        <li><a class="dropdown-item" href="">Institucional</a></li>
+                    </ul>
+                </li>
+
+               @*  <li class="nav-item">
+                    <a class="nav-link" asp-controller="CursoFiebSite" asp-action="Index">Cursos</a>
+                </li> *@
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/curso">Cursos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#"
+                       class="nav-link dropdown dropdown-toggle"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false"
+                       aria-label="Unidades">
+                        Unidades
+                    </a>
+                    @await Component.InvokeAsync("Unidades", new { viewName = "UnidadeMenu" })
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="NoticiaSite" asp-action="Index">Notícias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="FaleConoscoSite" asp-action="Index">Contato</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
