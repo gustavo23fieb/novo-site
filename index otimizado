@@ -1,0 +1,121 @@
+@{
+    ViewData["Title"] = "FIEB";
+}
+
+@model site.Models.Noticia
+
+@{
+    var noticiasHome = new List<Noticia>
+    {
+        new Noticia
+        {
+            Titulo = "titulo pequeno teste",
+            Data = "19 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2025/02/Fotos-not%C3%ADcias-do-site-7.png",
+            TextoNoticia = "Lorena é atleta de patinação..."
+        },
+        new Noticia
+        {
+            Titulo = "Evento de Tecnologia reúne alunos e profissionais em Alphaville",
+            Data = "21 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2023/04/capa.jpg",
+            TextoNoticia = "A FIEBTECH promoveu um evento..."
+        },
+        new Noticia
+        {
+            Titulo = "FIEBTECH participa de cerimônia na Câmara Municipal de Barueri",
+            Data = "19 de nov de 2025",
+            ImagemUrl = "https://fieb.edu.br/wp-content/uploads/2025/05/capa-mat%C3%A9ria.png",
+            TextoNoticia = "Lorena é atleta de patinação..."
+        }
+    };
+}
+<!-- ===================== BANNER + CARROSSEL ===================== -->
+<div class="home-site">
+
+    <div class="ft-full-bleed">
+
+        @await Html.PartialAsync("Widgets/_Hero")
+        @await Html.PartialAsync("Widgets/_Carousel")
+        @await Html.PartialAsync("Widgets/_Cursos")
+        @await Html.PartialAsync("Widgets/_Ingresso")
+        @await Html.PartialAsync("Widgets/_Noticias", noticiasHome)
+
+    </div>
+
+
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script src="~/js/home-carousel.js"></script>
+    <script src="~/js/home-anime.js"></script>
+    <script src="~/js/home-ingresso.js"></script>
+
+
+    <script>
+        
+                // ============ SWIPER CURSOS ============
+
+                   document.addEventListener('DOMContentLoaded', function () {
+            try {
+                new Swiper('.mySwiperCursos', {
+                    grabCursor: true,
+                    loop: true,
+                    spaceBetween: 0,
+
+                    autoplay: {
+                        delay: 3500,
+                        disableOnInteraction: false,
+                    },
+
+                    pagination: {
+                        el: '.mySwiperCursos .swiper-pagination',
+                        clickable: true,
+                    },
+
+                    navigation: {
+                        nextEl: '.mySwiperCursos .swiper-button-next',
+                        prevEl: '.mySwiperCursos .swiper-button-prev',
+                    },
+
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 1,
+                            centeredSlides: false
+                        },
+                        770: {
+                            slidesPerView: 'auto',
+                            centeredSlides: true
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error('Erro ao iniciar Swiper Cursos:', e);
+            }
+        });
+
+            // ==================== NOTICIAS =============
+        new Swiper('.mySwiperNoticiasHome', {
+            spaceBetween: 32,
+            pagination: {
+                el: '.mySwiperNoticiasHome .swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1100: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+
+    </script>
+}
