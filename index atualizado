@@ -31,8 +31,8 @@
     };
 }
 <!-- ===================== BANNER + CARROSSEL ===================== -->
-<div class="home-site"> 
-    
+<div class="home-site">
+
     <div class="ft-full-bleed">
 
         @await Html.PartialAsync("Widgets/_Hero")
@@ -43,12 +43,14 @@
 
     </div>
 
-    
+
 </div>
 
 @section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script src="~/js/home-carousel.js"></script>
 
 
     <script>
@@ -198,64 +200,6 @@
             direction: 'alternate',
             loop: true
         });
-
-        // ============ SCRIPT DO CARROSSEL ============
-
-        const slides = document.querySelectorAll(".carousel-slide");
-        const dotsContainer = document.querySelector(".carousel-dots");
-        const prev = document.querySelector(".carousel-arrow.left");
-        const next = document.querySelector(".carousel-arrow.right");
-
-        let index = 0;
-        let autoplay = null;
-
-        slides.forEach((_, i) => {
-            const dot = document.createElement("span");
-            dot.onclick = (e) => {
-                e.stopPropagation();
-                goToSlide(i);
-                resetAutoplay();
-            };
-            dotsContainer.appendChild(dot);
-        });
-
-        const dots = dotsContainer.querySelectorAll("span");
-
-        function showSlide(i) {
-            slides.forEach(s => s.classList.remove("active"));
-            dots.forEach(d => d.classList.remove("active"));
-            slides[i].classList.add("active");
-            dots[i].classList.add("active");
-        }
-
-        function goToSlide(i) {
-            index = (i + slides.length) % slides.length;
-            showSlide(index);
-        }
-
-        prev.onclick = () => {
-            goToSlide(index - 1);
-            resetAutoplay();
-        };
-
-        next.onclick = () => {
-            goToSlide(index + 1);
-            resetAutoplay();
-        };
-
-        function startAutoplay() {
-            autoplay = setInterval(() => {
-                goToSlide(index + 1);
-            }, 5000);
-        }
-
-        function resetAutoplay() {
-            clearInterval(autoplay);
-            startAutoplay();
-        }
-
-        showSlide(index);
-        startAutoplay();
 
                 // ============ SWIPER CURSOS ============
 
