@@ -1,0 +1,53 @@
+@model List<site.Models.Noticia>
+<section class="ft-noticias">
+
+        <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/graf_formas_amarelo_laranja.png"
+             alt=""
+             class="ft-noticias-deco-img" />
+
+        <div class="container">
+
+            <header class="ft-noticias-header">
+                <h2>Notícias</h2>
+                <p>Fique por dentro das novidades da FIEB</p>
+            </header>
+
+            <div class="swiper mySwiperNoticiasHome">
+                <div class="swiper-wrapper">
+
+                    @foreach (var noti in Model)
+                    {
+                        <div class="swiper-slide">
+                            <a href="#" class="ft-noticia-card">
+
+                                <img src="@noti.ImagemUrl"
+                                     alt="@noti.Titulo"
+                                     class="ft-noticia-img" />
+
+                                <div class="ft-noticia-content">
+                                    <div class="ft-noticia-date">
+                                        @noti.Data
+                                    </div>
+
+                                    <div class="ft-noticia-title">
+                                        @noti.Titulo
+                                    </div>
+                                </div>
+
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="ft-noticias-footer">
+                <a href="/noticia" class="ft-btn-noticias">
+                    VER TODAS AS NOTÍCIAS
+                </a>
+            </div>
+
+        </div>
+    </section>
