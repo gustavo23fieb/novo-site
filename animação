@@ -1,122 +1,186 @@
-@{
-    ViewData["Title"] = "FIEB";
-}
+(function () {
+    function initHomeAnime() {
+        if (typeof anime !== 'function') return;
 
-@section Styles {
-    <style>
-        /* === TODO SEU CSS PERMANECE 100% IGUAL === */
-        /* (mantido exatamente como você enviou) */
-    </style>
-}
+        // Só roda se existir algum dos alvos
+        const hasDots =
+            document.querySelector('#Criatividade') ||
+            document.querySelector('#Inovacao') ||
+            document.querySelector('#Negocios') ||
+            document.querySelector('#Producao') ||
+            document.querySelector('#BemEstar') ||
+            document.querySelector('#EnsinoRegular');
 
-<div class="ft-full-bleed">
+        const hasPoly =
+            document.querySelector('.polymorph-left') ||
+            document.querySelector('.polymorph-right');
 
-    <section class="ft-hero">
+        if (!hasDots && !hasPoly) return;
 
-        <!-- ✅ SVG 100% OFICIAL -->
-        <svg class="ft-svg-anim" viewBox="0 0 1152 590">
+        // ============ DOTS ============
+        if (document.querySelector('#Criatividade')) {
+            anime({
+                targets: '#Criatividade',
+                translateX: [
+                    { value: 70, duration: 1250 },
+                    { value: 88, duration: 1250 },
+                    { value: 60, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                translateY: [
+                    { value: -75, duration: 1250 },
+                    { value: -32, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                easing: 'easeOutQuad',
+                direction: 'alternate',
+                loop: true
+            });
+        }
 
-            <polygon class="polymorph-left" fill="none" stroke="#fff" stroke-width="1"
-                points="10,274 660,9 934,382 434,526"></polygon>
+        if (document.querySelector('#Inovacao')) {
+            anime({
+                targets: '#Inovacao',
+                translateX: [
+                    { value: -70, duration: 1250 },
+                    { value: -125, duration: 1250 },
+                    { value: -35, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                translateY: [
+                    { value: 70, duration: 1250 },
+                    { value: 13, duration: 1250 },
+                    { value: 10, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                easing: 'easeOutQuad',
+                direction: 'alternate',
+                loop: true
+            });
+        }
 
-            <polygon class="polymorph-right" fill="none" stroke="#fff" stroke-width="1"
-                points="450,319 845,76 995,334 861,559"></polygon>
+        if (document.querySelector('#Negocios')) {
+            anime({
+                targets: '#Negocios',
+                translateX: [
+                    { value: -75, duration: 1250 },
+                    { value: -30, duration: 1250 },
+                    { value: 35, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                translateY: [
+                    { value: 0, duration: 1250 },
+                    { value: 30, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                easing: 'easeOutQuad',
+                direction: 'alternate',
+                loop: true
+            });
+        }
 
-            <!-- ✅ DOTS OFICIAIS -->
-            <g id="Criatividade" transform="translate(0 264)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Criatividade</text>
-            </g>
+        if (document.querySelector('#Producao')) {
+            anime({
+                targets: '#Producao',
+                translateX: [
+                    { value: 65, duration: 1750 },
+                    { value: -40, duration: 1750 },
+                    { value: -75, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                translateY: [
+                    { value: -2, duration: 1750 },
+                    { value: -30, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                easing: 'easeOutQuad',
+                direction: 'alternate',
+                loop: true
+            });
+        }
 
-            <g id="Inovacao" transform="translate(650 0)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Inovação</text>
-            </g>
+        if (document.querySelector('#BemEstar')) {
+            anime({
+                targets: '#BemEstar',
+                translateX: [
+                    { value: -40, duration: 1750 },
+                    { value: -30, duration: 1750 },
+                    { value: -75, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                translateY: [
+                    { value: -25, duration: 1750 },
+                    { value: 3, duration: 1750 },
+                    { value: 30, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                easing: 'easeOutQuad',
+                direction: 'alternate',
+                loop: true
+            });
+        }
 
-            <g id="Negocios" transform="translate(428 518)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Negócios</text>
-            </g>
+        if (document.querySelector('#EnsinoRegular')) {
+            anime({
+                targets: '#EnsinoRegular',
+                translateX: [
+                    { value: -25, duration: 1750 },
+                    { value: -108, duration: 1750 },
+                    { value: -70, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                translateY: [
+                    { value: -65, duration: 1750 },
+                    { value: -18, duration: 1750 },
+                    { value: -65, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                easing: 'easeOutQuad',
+                direction: 'alternate',
+                loop: true
+            });
+        }
 
-            <g id="Producao" transform="translate(485 340)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Produção</text>
-            </g>
+        // ============ POLÍGONOS ============
+        if (document.querySelector('.polymorph-left')) {
+            anime({
+                targets: '.polymorph-left',
+                points: [
+                    { value: '75,197 592,76 893,477 367,526' },
+                    { value: '93,239 533,24 844,430 405,559' },
+                    { value: '65,271 626,24 873,374 474,526' },
+                    { value: '10,274 660,9 934,382 434,526' },
+                ],
+                easing: 'easeOutQuad',
+                duration: 5000,
+                direction: 'alternate',
+                loop: true
+            });
+        }
 
-            <g id="BemEstar" transform="translate(1016 321)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Bem-Estar</text>
-            </g>
+        if (document.querySelector('.polymorph-right')) {
+            anime({
+                targets: '.polymorph-right',
+                points: [
+                    { value: '554,346 845,76 982,304 939,511' },
+                    { value: '450,318 845,76 995,334 861,559' },
+                    { value: '418,349 927,50 949,364 899,511' },
+                    { value: '494,348 848,32 1026,331 966,573' },
+                ],
+                easing: 'easeOutQuad',
+                duration: 7000,
+                direction: 'alternate',
+                loop: true
+            });
+        }
+    }
 
-            <g id="EnsinoRegular" transform="translate(956 563)">
-                <circle cx="10" cy="10" r="10" fill="#c65f16"></circle>
-                <text x="28" y="20" fill="#fff" font-size="24">Ensino Regular</text>
-            </g>
-
-        </svg>
-
-        <div class="ft-hero-arrow">
-            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/setahome.png" class="ft-hero-arrow-img" />
-        </div>
-
-    </section>
-
-    <div class="mini-banner-fixo">
-        <a href="https://matricula.fieb.edu.br/" target="_blank">
-            <img src="https://fieb.edu.br/wp-content/themes/fieb-2022/img/banner_matricula.jpg">
-        </a>
-    </div>
-
-    <div class="carousel-container">
-        <!-- ✅ CARROSSEL INTACTO (não alterado) -->
-        @* todo seu carrossel permanece exatamente como está *@
-    </div>
-
-</div>
-
-@section Scripts {
-
-<!-- ✅ GARANTA QUE ESTE SCRIPT EXISTE NO LAYOUT -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-<script>
-const loop = true;
-
-/* ✅ DOTS */
-anime({ targets:'#Criatividade', translateX:[0,70,88,60,0], translateY:[0,-75,-32,0], duration:5000, loop });
-anime({ targets:'#Inovacao', translateX:[0,-70,-125,-35,0], translateY:[0,70,13,10,0], duration:5000, loop });
-anime({ targets:'#Negocios', translateX:[0,-75,-30,35,0], translateY:[0,0,30,0,0], duration:5000, loop });
-anime({ targets:'#Producao', translateX:[0,65,-40,-75,0], translateY:[0,-2,-30,0,0], duration:7000, loop });
-anime({ targets:'#BemEstar', translateX:[0,-40,-30,-75,0], translateY:[0,-25,3,30,0], duration:7000, loop });
-anime({ targets:'#EnsinoRegular', translateX:[0,-25,-108,-70,0], translateY:[0,-65,-18,-65,0], duration:7000, loop });
-
-/* ✅ POLYGON LEFT */
-anime({
-  targets: '.polymorph-left',
-  points: [
-    { value: '75,197 592,76 893,477 367,526'},
-    { value: '93,239 533,24 844,430 405,559'},
-    { value: '65,271 626,24 873,374 474,526'},
-    { value: '10,274 660,9 934,382 434,526'}
-  ],
-  easing: 'easeOutQuad',
-  duration: 5000,
-  loop
-});
-
-/* ✅ POLYGON RIGHT */
-anime({
-  targets: '.polymorph-right',
-  points: [
-    { value: '554,346 845,76 982,304 939,511'},
-    { value: '450,318 845,76 995,334 861,559'},
-    { value: '418,349 927,50 949,364 899,511'},
-    { value: '494,348 848,32 1026,331 966,573'}
-  ],
-  easing: 'easeOutQuad',
-  duration: 7000,
-  loop
-});
-</script>
-
-}
+    // funciona mesmo se o script for carregado depois do DOMContentLoaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHomeAnime);
+    } else {
+        initHomeAnime();
+    }
+})();
