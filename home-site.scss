@@ -45,11 +45,13 @@
             }
         }
 
-        @media (max-width: 769px) {
+        @media (max-width: 768px) {
             .ft-full-bleed {
                 top: -26px;
             }
         }
+
+
         /* ========================================== HERO / BANNER ========================================== */
 
 
@@ -67,7 +69,7 @@
         }
 
             .ft-svg-wrapper svg a,
-            ft-svg-wrapper svg a * {
+            .ft-svg-wrapper svg a * {
                 pointer-events: auto;
                 cursor: pointer;
             }
@@ -94,7 +96,7 @@
             }
         }
         /* HERO MOBILE */
-        @media (max-width: 769px) {
+        @media (max-width: 768px) {
             .ft-hero {
                 height: 520px;
             }
