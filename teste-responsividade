@@ -45,7 +45,7 @@
             }
         }
 
-        @media (max-width: 769px) {
+        @media (max-width: 768px) {
             .ft-full-bleed {
                 top: -26px;
             }
@@ -65,7 +65,7 @@
             height: 100%;
         }
 
-        @media (max-width: 769px) {
+        @media (max-width: 768px) {
             & {
                 height: 520px;
             }
