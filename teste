@@ -1,0 +1,45 @@
+ & {
+            height: clamp(520px, 70vh, 840px);
+        }
+
+        .ft-svg-wrapper {
+            top: 40px;
+        }
+
+        .ft-svg-anim {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            & {
+                height: 520px;
+            }
+
+            .ft-svg-wrapper {
+                top: 10px;
+                max-width: 100%;
+                padding: 0 12px;
+            }
+
+            .ft-svg-anim {
+                height: 260px;
+                top: -20px;
+            }
+
+            .ft-hero-arrow {
+                bottom: 22px;
+            }
+
+            .ft-svg-wrapper svg {
+                width: 100%;
+                height: 100%;
+
+                text {
+                    font-size: 24px !important;
+                    font-weight: 500;
+                    letter-spacing: .3px;
+                }
+            }
+        }
