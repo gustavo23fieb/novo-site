@@ -12,7 +12,7 @@
             height: 100%;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 769px) {
             & {
                 height: 520px;
             }
