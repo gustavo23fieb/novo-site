@@ -3,7 +3,6 @@
 
 
 .home-site {
-
     /* ----- inicio do wallpaper ----- */
 
     .wallpaper-home {
@@ -66,6 +65,13 @@
             z-index: 4;
             pointer-events: none;
         }
+
+            .ft-svg-wrapper svg a,
+            ft-svg-wrapper svg a * {
+                pointer-events: auto;
+                cursor: pointer;
+            }
+
 
         .ft-svg-anim {
             position: absolute;
