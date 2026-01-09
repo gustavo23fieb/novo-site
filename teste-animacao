@@ -1,0 +1,204 @@
+(() => {
+    const onReady = (fn) => {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn, { once: true });
+        } else {
+            fn();
+        }
+    };
+
+    onReady(() => {
+        // Roda apenas se o Hero existir
+        const hero = document.querySelector(".wallpaper-home");
+        if (!hero) return;
+
+        // Evita inicializar 2x
+        if (hero.dataset.animHomeInit === "1") return;
+        hero.dataset.animHomeInit = "1";
+
+        // Anime.js disponível?
+        if (typeof window.anime !== "function") return;
+
+        // Acessibilidade: reduz movimento
+        const reduceMotion =
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // Seleciona categorias dinâmicas
+     const nodes = Array.from(hero.querySelectorAll("g.ft-cat-node-inner"));
+
+
+        const profiles = [
+            // Perfil 0 (ex: Criatividade)
+            {
+                tx: [
+                    { value: 0, duration: 0 },
+                    { value: 70, duration: 1250 },
+                    { value: 88, duration: 1250 },
+                    { value: 60, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                ty: [
+                    { value: 0, duration: 0 },
+                    { value: -75, duration: 1250 },
+                    { value: -32, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                easing: "easeOutQuad",
+            },
+
+            // Perfil 1 (ex: Inovacao)
+            {
+                tx: [
+                    { value: 0, duration: 0 },
+                    { value: -70, duration: 1250 },
+                    { value: -125, duration: 1250 },
+                    { value: -35, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                ty: [
+                    { value: 0, duration: 0 },
+                    { value: 70, duration: 1250 },
+                    { value: 13, duration: 1250 },
+                    { value: 10, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                easing: "easeOutQuad",
+            },
+
+            // Perfil 2 (ex: Negocios)
+            {
+                tx: [
+                    { value: 0, duration: 0 },
+                    { value: -75, duration: 1250 },
+                    { value: -30, duration: 1250 },
+                    { value: 35, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                ty: [
+                    { value: 0, duration: 0 },
+                    { value: 0, duration: 1250 },
+                    { value: 30, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                    { value: 0, duration: 1250 },
+                ],
+                easing: "easeOutQuad",
+            },
+
+            // Perfil 3 (ex: Producao)
+            {
+                tx: [
+                    { value: 0, duration: 0 },
+                    { value: 65, duration: 1750 },
+                    { value: -40, duration: 1750 },
+                    { value: -75, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                ty: [
+                    { value: 0, duration: 0 },
+                    { value: -2, duration: 1750 },
+                    { value: -30, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                easing: "easeOutQuad",
+            },
+
+            // Perfil 4 (ex: BemEstar)
+            {
+                tx: [
+                    { value: 0, duration: 0 },
+                    { value: -40, duration: 1750 },
+                    { value: -30, duration: 1750 },
+                    { value: -75, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                ty: [
+                    { value: 0, duration: 0 },
+                    { value: -25, duration: 1750 },
+                    { value: 3, duration: 1750 },
+                    { value: 30, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                easing: "easeOutQuad",
+            },
+
+            // Perfil 5 (ex: EnsinoRegular)
+            {
+                tx: [
+                    { value: 0, duration: 0 },
+                    { value: -25, duration: 1750 },
+                    { value: -108, duration: 1750 },
+                    { value: -70, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                ty: [
+                    { value: 0, duration: 0 },
+                    { value: -65, duration: 1750 },
+                    { value: -18, duration: 1750 },
+                    { value: -65, duration: 1750 },
+                    { value: 0, duration: 1750 },
+                ],
+                easing: "easeOutQuad",
+            },
+        ];
+
+        // 1) Categorias: aplica perfis diferentes
+        // “Mais dinâmico” sem mudar formato:
+        // - um pequeno delay por índice (desfasagem)
+        // - pequena variação de duração (controlada) mantendo o “DNA”
+        if (!reduceMotion && nodes.length) {
+            nodes.forEach((node, i) => {
+                const p = profiles[i % profiles.length];
+
+                // Desfase leve (evita tudo sincronizado)
+                const delay = (i % 6) * 120; // 0ms, 120ms, 240ms...
+
+                // Variação mínima de timing (não muda estilo, só dá vida)
+                const tweak = (i % 3) * 60; // 0, 60, 120 ms
+
+                // Clona os arrays para não mutar o perfil base
+                const tx = p.tx.map((k) => ({ ...k, duration: k.duration ? k.duration + tweak : k.duration }));
+                const ty = p.ty.map((k) => ({ ...k, duration: k.duration ? k.duration + tweak : k.duration }));
+
+                window.anime({
+                    targets: node,
+                    translateX: tx,
+                    translateY: ty,
+                    easing: p.easing,
+                    loop: true,
+                    delay,
+                });
+            });
+        }
+
+        // 2) Polígonos: reaproveita praticamente igual (só respeita reduce motion)
+        if (!reduceMotion) {
+            window.anime({
+                targets: hero.querySelectorAll(".polymorph-left"),
+                points: [
+                    { value: "75,197 592,76 893,477 367,526" },
+                    { value: "93,239 533,24 844,430 405,559" },
+                    { value: "65,271 626,24 873,374 474,526" },
+                    { value: "10,274 660,9 934,382 434,526" },
+                ],
+                easing: "easeOutQuad",
+                duration: 5000,
+                loop: true,
+            });
+
+            window.anime({
+                targets: hero.querySelectorAll(".polymorph-right"),
+                points: [
+                    { value: "554,346 845,76 982,304 939,511" },
+                    { value: "450,318 845,76 995,334 861,559" },
+                    { value: "418,349 927,50 949,364 899,511" },
+                    { value: "494,348 848,32 1026,331 966,573" },
+                ],
+                easing: "easeOutQuad",
+                duration: 7000,
+                loop: true,
+            });
+        }
+    });
+})();
