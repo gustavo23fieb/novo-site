@@ -1,0 +1,26 @@
+@model IEnumerable<site.Models.CursoFieb>
+
+@{
+    var cursos = Model.ToList();
+}
+
+
+@for (int i = 0; i<cursos.Count(); i++)
+{
+   
+    <g id="@(cursos[i].CategoriaCurso)_@i">
+        <g id="Elipse_@(cursos[i].CategoriaCurso)_@i" data-name="Elipse @(cursos[i].CategoriaCurso)_@i" transform="translate(0 264)"
+           fill="#c65f16" stroke="#c65f16" stroke-width="1">
+            <circle cx="10" cy="10" r="10" stroke="none" />
+            <circle cx="10" cy="10" r="9.5" fill="none" />
+        </g>
+        <a asp-action="Index" asp-controller="CursoFiebSite" asp-route-parametroRotaCategoria="@(cursos[i].ParametroRotaCategoria)" class="text-decoration-none">
+            <text id="@(cursos[i].CategoriaCurso)_@(i)_texto" data-name="@(cursos[i].CategoriaCurso)_@i" transform="translate(28 285)" fill="#fff"
+                  font-size="24" font-family="CeraPro-Medium, Cera Pro" font-weight="500">
+                <tspan x="0" y="0">@(cursos[i].CategoriaCurso)@i</tspan>
+            </text>
+        </a>
+    </g>
+}
+
+
